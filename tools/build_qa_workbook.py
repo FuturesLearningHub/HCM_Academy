@@ -36,6 +36,8 @@ BY = {c["slug"]: c for c in COURSES}
 def source_of(c):
     p = c.get("pending", "")
     if p.startswith("Built from Oracle"): return "Oracle docs and official sources (pending SME review)"
+    if p.startswith("Built from U.S. Department of Labor"): return "DOL sources (pending SME review)"
+    if p.startswith("Built from the other"): return "Other Academy courses (pending owner review)"
     return "Vanderbilt SME sessions, transcripts, and guides"
 
 def open_items(c):
@@ -108,7 +110,7 @@ REF = {k: f"{k}$1:${k}${len(v)}" for k, v in lists.items()}
 H = wb.create_sheet("How to use", 0)
 H.column_dimensions["A"].width = 28; H.column_dimensions["B"].width = 100
 H["A1"] = "HCM Academy QA review"; H["A1"].font = Font(name="Georgia", size=22, color=BLACK)
-H["A2"] = "V.01 draft review workbook. Add your feedback in the cream input columns; gray columns are pre-filled."; H["A2"].font = Font(name="Arial", size=10, italic=True, color="5E5B55")
+H["A2"] = "V.02 draft review workbook. Add your feedback in the cream input columns; gray columns are pre-filled."; H["A2"].font = Font(name="Arial", size=10, italic=True, color="5E5B55")
 info = [("Site", SITE), ("HCM Playbook (PDF)", SITE + "playbook/HCM_Playbook.pdf"), ("Return to", "pcb@vanderbilt.edu"),
         ("Reviewer name", ""), ("Review date", ""), ("",""),
         ("Overall", "Feedback on the Academy as a whole: landing page, navigation, assessments, locking, playbook, design, accessibility."),

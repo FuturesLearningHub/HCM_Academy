@@ -6,10 +6,12 @@ import html, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from course_content import COURSES  # noqa: E402
+import governance as G  # noqa: E402
 ROOT = os.path.dirname(HERE)
 E = lambda s: html.escape(str(s), quote=True)
 SITE = "me5231979.github.io/HCM_Academy"
-EDITION = "V.01 draft · October 2026"
+EDITION = f"{G.EDITION} · {G.EDITION_MONTH}"
+TABLE_ROWS = 16   # rows of a long table on each continuation page
 
 # Topic order, names, and blurbs come from the landing page cards; course order follows the rows.
 landing = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
@@ -30,26 +32,47 @@ def steps_html(steps):
         out.append(f'<li><span class="n">{i}</span><div><p class="st">{E(s["t"])}</p>{f"<ul>{sub}</ul>" if sub else ""}</div></li>')
     return "\n".join(out)
 
-def table_html(tb):
+def table_html(tb, rows=None, part=""):
     if not tb: return ""
     head = "".join(f"<th>{E(h)}</th>" for h in tb["head"])
-    rows = "".join("<tr>" + "".join(f"<td>{E(c)}</td>" for c in r) + "</tr>" for r in tb["rows"])
-    return f'<table><caption>{E(tb["title"])}</caption><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table>'
+    body = "".join("<tr>" + "".join(f"<td>{E(c)}</td>" for c in r) + "</tr>" for r in (tb["rows"] if rows is None else rows))
+    return f'<table class="c{len(tb["head"])}"><caption>{E(tb["title"])}{E(part)}</caption><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>'
+
+def before_html(c):
+    """Before you submit, in three lines: attach, check, cutoff (from tools/governance.py)."""
+    b = G.before(c["slug"])
+    if not b: return ""
+    lines = [f"<li><b>Attach</b>{E(G.attach_line(b))}</li>", f"<li><b>Check</b>{E(' '.join(b['checks']))}</li>"]
+    if b.get("cutoff"): lines.append(f"<li><b>Cutoff</b>{E(G.CUTOFF_SHORT[b['cutoff']])}</li>")
+    return f'<div class="before"><p class="wh">{E(b.get("title", "Before you submit"))}</p><ul>{"".join(lines)}</ul></div>'
+
+def long_table(c):
+    return bool(c.get("table")) and len(c["table"]["rows"]) > TABLE_ROWS
 
 def chrome(topic, page, inner, cls=""):
     return (f'<section class="page guide {cls}"><header class="run"><span>HCM Playbook</span><span>{E(topic["no"])} &middot; {E(topic["short"])}</span></header>'
             f'{inner}<footer class="foot"><span>{E(EDITION)} &middot; Questions: pcb@vanderbilt.edu</span><span class="pg">{page:02d}</span></footer></section>')
 
 def guide_page(c, topic, page):
-    draft = '<span class="tag">Pending SME review</span>' if c.get("pending", "").startswith("Built from Oracle") else ""
+    draft = '<span class="tag">Pending SME review</span>' if c.get("pending", "").startswith("Built from") else ""
     watch = "".join(f"<li>{E(w)}</li>" for w in c["watch"])
+    tb = "" if long_table(c) else table_html(c.get("table"))   # a long table gets its own pages
     inner = (f'<div class="head"><p class="eyebrow">{E(c["topic_label"])}</p><h2>{E(c["name"])}</h2>'
-             f'<p class="meta"><span>{E(c["system"])}</span><span>{E(c["time"])} micro-learning</span>{draft}</p>'
+             f'<p class="meta"><span>{E(c["system"])}</span><span>{E(c["time"])} micro-learning</span><span>Owner: {E(G.owner(c))}</span>{draft}</p>'
              f'<p class="use"><b>Use when</b>{E(c["use_when"])}</p></div>'
-             f'<ol class="steps">{steps_html(c["steps"])}</ol>{table_html(c.get("table"))}'
+             f'<ol class="steps">{steps_html(c["steps"])}</ol>{tb}{before_html(c)}'
              f'<div class="watch"><p class="wh">Watch-outs</p><ul>{watch}</ul></div>'
              f'<p class="src">Course: {SITE}/courses/{E(c["slug"])}/ &middot; Sources: {E("; ".join(c["sources"]))}</p>')
     return chrome(topic, page, inner)
+
+def table_pages(c, topic, start):
+    """Continuation pages for a table too long to share the guide's page."""
+    tb = c["table"]; rows = tb["rows"]; chunks = [rows[k:k + TABLE_ROWS] for k in range(0, len(rows), TABLE_ROWS)]
+    pages = []
+    for i, ch in enumerate(chunks, 1):
+        head = f'<div class="head"><p class="eyebrow">{E(c["name"])}</p></div>'
+        pages.append(chrome(topic, start + len(pages), head + table_html(tb, ch, f" · {i} of {len(chunks)}"), "tablepage"))
+    return pages
 
 def detail_pages(c, topic, start):
     det = c["detailed"]; pages = []; st = det["steps"]
@@ -70,6 +93,8 @@ for t in TOPICS:
     divider_at = page; page += 1; guides = []
     for sl in t["slugs"]:
         c = BY[sl]; entries.append((c["name"], page)); guides.append(guide_page(c, t, page)); page += 1
+        if long_table(c):
+            d = table_pages(c, t, page); guides += d; page += len(d)
         if c.get("detailed"):
             d = detail_pages(c, t, page); guides += d; page += len(d)
     t["entries"] = entries
@@ -119,10 +144,10 @@ doc = f'''<!DOCTYPE html>
   <div class="cols">
     <div><p class="k">01</p><h3>Find the task</h3><p>Guides are grouped into the eight HCM Academy topics. Use the contents page, or go to the topic's divider page for its list.</p></div>
     <div><p class="k">02</p><h3>Follow the steps</h3><p>Each guide is one page: when to use it, the steps in order, and the watch-outs that cause send-backs. The same steps are in the matching micro-learning course.</p></div>
-    <div><p class="k">03</p><h3>Check before you submit</h3><p>Read the watch-outs before you click Submit. Bad data in is bad data out: what you enter flows into pay, costing, and reports.</p></div>
+    <div><p class="k">03</p><h3>Check before you submit</h3><p>Pay-impacting guides end with Before you submit: what to attach, what to check, and the cutoff. Bad data in is bad data out: what you enter flows into pay, costing, and reports.</p></div>
   </div>
   <div class="note"><p><b>Where things are.</b> Oracle: Home page &gt; Our Workforce &gt; Quick Actions (Show More). Employee records: Our Workforce &gt; Employment Info. UKG: Oracle Me tab &gt; Apps &gt; UKG (Kronos) Timesheets. Track approvals with the notifications bell.</p>
-  <p><b>This is a V.01 draft.</b> Guides marked <span class="tag">Pending SME review</span> were built from Oracle documentation and official sources and are waiting on Vanderbilt review. The payroll calendar and your PCB consultant are the source of truth.</p>
+  <p><b>This is a {E(G.EDITION)}.</b> Guides marked <span class="tag">Pending SME review</span> were built from official documentation or from other guides and are waiting on Vanderbilt review. Each guide names the area that owns it. Anything marked To confirm is not yet a rule. The payroll calendar and your PCB consultant are the source of truth.</p>
   <p><b>Online.</b> Every guide links to its course at {SITE}. Questions: pcb@vanderbilt.edu</p></div>
   <footer class="foot"><span>{E(EDITION)}</span><span class="pg">02</span></footer>
 </section>

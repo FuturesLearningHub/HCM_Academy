@@ -217,6 +217,7 @@ COURSES_R = [{'slug': 'hcm-structure',
                   'person may be paid late or need a correction.'}],
   'watch': ['Do not assume the 18th. Check the calendar every month, and especially in December.',
             'Back-dated changes are retro changes and have the earlier cutoff.',
+            'Pending approvals do not pay. A change still waiting in approvals at the cutoff misses that payroll.',
             'Open item: confirm where the shared administrative calendar is published and who maintains it.'],
   'docs': [('Oracle: Overview of Payroll Definitions',
             'https://docs.oracle.com/en/cloud/saas/human-resources/faucf/overview-of-payroll-definitions.html'),
@@ -1060,6 +1061,10 @@ COURSES_R = [{'slug': 'hcm-structure',
   'watch': ['Managers approve; payroll signs off. If a correction is needed after sign-off, contact payroll; the manager cannot simply '
             'remove approval.',
             "Exempt employees' time off is managed in Oracle, not UKG. Only non-exempt time off is approved in UKG.",
+            'One person does not both submit and approve the same time card. A manager who submits a time card for an employee asks '
+            'another approver to approve it.',
+            'Open item: Payroll to confirm the rule that the person who submits a time card does not approve it, and who approves when '
+            'the manager is out.',
             'Open item: confirm the exact manager screens Vanderbilt uses (Manage Timecards, Control Center, schedule views), any delegate '
             'approver setup, and the manager approval deadline each pay period.'],
   'docs': [('UKG: Sign-off timecards', 'https://developer.ukg.com/wfm/docs/sign-off-timecards-doc'),
@@ -2888,4 +2893,4 @@ VERIFY_R = {'hcm-structure': ['Which person types and work relationship types Va
  'student-faculty-approvals': ['Approval routing for each student and faculty transaction type.',
                                'Who has Transaction Console and Quick Convert access at Vanderbilt.',
                                'Whether approval notifications reach HCMs by email as well as the bell.']}
-PARKED_R = ['shared-calendar', 'confidentiality-agreement', 'hire-union', 'out-of-state-risk', 'pay-transparency', 'payroll-cadence-by-state', 'regional-benefits-leave', 'leave-status-updates', 'leave-monthly-vs-biweekly', 'student-expense-only', 'service-free-stipend', 'faculty-hiring-process', 'hire-faculty', 'emeritus', 'ferdc', 'student-faculty-approvals']
+PARKED_R = ['confidentiality-agreement', 'hire-union', 'out-of-state-risk', 'pay-transparency', 'payroll-cadence-by-state', 'regional-benefits-leave', 'leave-status-updates', 'leave-monthly-vs-biweekly', 'student-expense-only', 'service-free-stipend', 'faculty-hiring-process', 'hire-faculty', 'emeritus', 'ferdc', 'student-faculty-approvals']

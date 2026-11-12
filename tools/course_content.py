@@ -453,7 +453,7 @@ dict(slug="weekly-time-card-check", topic="payroll", topic_label="Payroll & Time
   {'t': 'Missing or late time card: contact the manager.', 'd': 'Email or call the manager with the employee\'s name, the pay period, and what\'s missing (for example, "no punches Tuesday"). Ask them to correct and approve it before the deadline on the payroll calendar.'},
   {'t': "An error you can't resolve: contact payroll.", 'd': "Give payroll the employee's name and ID, the pay period, what the time card shows, and what you expected. Payroll decides whether a correction or an off-cycle payment is needed."},
  ],
- watch=["Empty time cards early in an open period are normal.","In an open period, Save. Don't Submit."],
+ watch=["Empty time cards early in an open period are normal.","In an open period, Save. Don't Submit.",'One person does not both submit and approve the same time card. If you submit a time card for an employee, the manager approves it, not you.','Open item: Payroll to confirm the rule that the person who submits a time card does not approve it, and who approves when the manager is out.'],
  docs=docs("ukg_approve"),
  quiz=[
   dict(q="How often do you run this check?", o=["Once a month","Every week","Only when payroll asks"], a=1, why="Weekly and biweekly employees need a weekly check."),
@@ -472,16 +472,17 @@ dict(slug="review-approve-time-cards", topic="payroll", topic_label="Payroll & T
   {'t': 'Open the time cards for your employees.', 'd': 'On the UKG Home page, scroll down to Links and select By Pay Period. Timesheets (By Pay Period) opens on the most recently completed (previous) pay period, one row per employee.', 'sub': ['Filter: in the row under the column headings, type your business unit under Business Unit (or your work unit under Work Unit), then select Refresh. Until you filter, the list shows everyone you have access to.', 'Each row shows the Approval State: Open, Submitted, or Approved (PayPrep Ready).']},
   {'t': "Review each employee's status and hours.", 'd': "Scan the list for each employee's total hours, exceptions, and approval status (employee approved, manager approved, both, or none). Resolve exceptions such as a missing punch before you approve: open the time card, fix or ask the manager, then come back."},
   {'t': 'To check the open period, move to the current pay period.', 'd': "Use the arrow to the right of Pay Period at the top of the list. The current period is still in progress, so use it to spot problems early. Don't approve or submit an open period."},
-  {'t': 'Act on a time card.', 'd': "Open the employee's time card by selecting their name, or select their row in the list. To act from the list, check the box next to the employee's name, then choose Submit, Approve, or Reject at the top right. To act on several people at once, check each box (or the box in the header row), then choose the action.", 'sub': ['Approve: the hours are correct and ready for payroll.', "Submit on their behalf: the employee couldn't submit.", 'Reject: send it back so it can be corrected.']},
+  {'t': 'Act on a time card.', 'd': "Open the employee's time card by selecting their name, or select their row in the list. To act from the list, check the box next to the employee's name, then choose Submit, Approve, or Reject at the top right. To act on several people at once, check each box (or the box in the header row), then choose the action.", 'sub': ['Approve: the hours are correct and ready for payroll.', "Submit on their behalf: the employee couldn't submit. Then the manager approves, not you.", 'Reject: send it back so it can be corrected.']},
   {'t': 'To enter hours for an employee, add a row on their time card and click Save.', 'd': "Use this for a system glitch or a secondary time type like PTO. On the day, add a new row (the + icon), choose the pay code, enter the hours, and click Save at the top right. UKG won't put a pay code on a row that already has a punch, which is why you add a row.", 'sub': ["In an open period, Save only. Don't submit."]},
   {'t': 'Confirm the result.', 'd': "Return to the list and check that the employee's status shows your approval (or that the hours you entered appear). Reopen the time card if you're not sure."},
  ],
- watch=["Empty time cards early in an open period are normal.","In an open period, Save. Don't Submit. Submitting means you must edit, update, and resubmit later.","Once payroll signs off a time card, an approval can't be removed unless the sign-off is removed first."],
+ watch=["Empty time cards early in an open period are normal.","In an open period, Save. Don't Submit. Submitting means you must edit, update, and resubmit later.","Once payroll signs off a time card, an approval can't be removed unless the sign-off is removed first.",'One person does not both submit and approve the same time card. If you submit a time card for an employee, the manager approves it, not you.','Open item: Payroll to confirm the rule that the person who submits a time card does not approve it, and who approves when the manager is out.'],
  docs=docs("ukg_approve","ukg_paycode"),
  quiz=[
   dict(q="You select By pay period. Which period opens?", o=["The current open period","The most recently completed period","The next future period"], a=1, why="It opens the most recently completed period. Toggle the date range to see the open one."),
   dict(q="You entered hours in an open period. What do you click?", o=["Submit","Save","Approve"], a=1, why="Save only. Submitting in an open period means editing and resubmitting later."),
   dict(q="Payroll has signed off a time card. Can you remove your approval?", o=["Yes, any time","Not unless the sign-off is removed first","Only on Fridays"], a=1, why="After sign-off, the approval stays unless payroll removes the sign-off."),
+  dict(q="You submitted a time card for an employee who couldn't. Who approves it?", o=["You, since you checked the hours","The employee's manager","No one; payroll signs off next"], a=1, why="The person who submits a time card does not approve it. The manager approves, then payroll signs off."),
  ]),
 
 dict(slug="enter-pto", topic="payroll", topic_label="Payroll & Timecards",
@@ -879,3 +880,8 @@ VERIFY = {k: (v if k in _UKG_SLUGS else list(v) + ["that a regular HCM (not a su
 from courses_researched import COURSES_R, VERIFY_R, PARKED_R  # noqa: E402
 COURSES += [c for c in COURSES_R if c["slug"] not in PARKED_R]
 VERIFY.update(VERIFY_R)
+
+# Courses added in V.02 (see tools/courses_v02.py and tools/governance.py).
+import courses_v02  # noqa: E402
+COURSES += courses_v02.build({c["slug"]: c for c in COURSES})
+VERIFY.update(courses_v02.VERIFY_A)

@@ -11,7 +11,10 @@ landing = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
 
 def source(slug):
     if not slug: return ("none", "No content yet")
-    return ("oracle", "Oracle docs, pending SME review") if BY[slug].get("pending", "").startswith("Built from Oracle") else ("vu", "Vanderbilt SME sources")
+    p = BY[slug].get("pending", "")
+    if p.startswith("Built from Oracle"): return ("oracle", "Oracle docs, pending SME review")
+    if p.startswith("Built from"): return ("oracle", "Draft, pending SME review")   # built from official sources or other courses
+    return ("vu", "Vanderbilt SME sources")
 
 topics, counts = [], {"vu": 0, "oracle": 0, "none": 0}
 for m in re.finditer(r'<section class="card[^"]*" id="([a-z]+)" data-short="([^"]*)">(.*?)</section>', landing, re.S):
@@ -80,7 +83,7 @@ doc = f'''<!DOCTYPE html>
 <body>
 <section class="cover">
   <img src="../../assets/img/vu-lockup-black.png" alt="Vanderbilt University" class="lockup" />
-  <p class="eyebrow">HCM Academy &middot; V.01 draft &middot; October 2026</p>
+  <p class="eyebrow">HCM Academy &middot; V.02 draft &middot; November 2026</p>
   <h1>Topic <em>audit</em>.</h1>
   <p class="lede">Every topic, subtopic, and course topic in HCM Academy. For each one, check Keep, Change, Remove, or Merge (and name the topic to merge with), then add a note. Use the topic-level boxes to flag a topic that should be renamed, reordered, or is missing subtopics.</p>
   <div class="stats"><div><b>{total}</b><span>course topics</span></div><div><b>{counts["vu"]}</b><span>live from Vanderbilt SME sources</span></div><div><b>{counts["oracle"]}</b><span>live from Oracle docs, pending SME review</span></div><div><b>{counts["none"]}</b><span>coming soon, no content yet</span></div></div>

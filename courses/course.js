@@ -1,4 +1,4 @@
-/* HCM Academy micro-course behavior: step checklist, 3-question check, completion, print.
+/* HCM Academy micro-course behavior: step checklist, knowledge check, completion, print.
    Completion is saved only in this browser (localStorage hcm-done), shared with the landing page. */
 (function(){
   'use strict';
@@ -25,7 +25,7 @@
   }
   boxes.forEach(function(b){ b.addEventListener('change', steps); }); steps();
 
-  /* knowledge check: instant feedback, all 3 right marks the course complete */
+  /* knowledge check: instant feedback, every answer right marks the course complete */
   var sets = document.querySelectorAll('.quiz fieldset'), score = document.getElementById('score');
   function grade(){
     var right = 0, answered = 0;
@@ -39,11 +39,11 @@
     if (right === sets.length){
       if (done.indexOf(id) < 0){ done.push(id); store.set('hcm-done', done); }
       score.className = 'score pass';
-      score.textContent = '3 of 3. Course complete. It is checked off on your HCM Academy page.';
+      score.textContent = sets.length + ' of ' + sets.length + '. Course complete. It is checked off on your HCM Academy page.';
       document.querySelector('a[href="#check"]').classList.add('ok');
     } else {
       score.className = 'score';
-      score.textContent = right + ' of ' + sets.length + '. Review the explanation and pick again. All three right completes the course.';
+      score.textContent = right + ' of ' + sets.length + '. Review the explanation and pick again. Every answer right completes the course.';
     }
     say(score.textContent);
   }

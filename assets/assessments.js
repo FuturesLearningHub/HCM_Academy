@@ -1,7 +1,7 @@
 /* HCM Academy pre-assessment and final assessment questions.
    Single source for the assessment pages (assessment/pre, assessment/final) and the review document
    (node tools/build_assessment_doc.cjs). topic = the card id on the landing page.
-   a = index of the correct option. draft = topic has no course yet; confirm with the SME. */
+   a = index of the correct option. draft = an SME must confirm it: its topic has no course yet, or the rule behind it is not confirmed. */
 window.HCM_ASSESS = {
   pass: 0.9,
   topics: {
@@ -47,6 +47,10 @@ window.HCM_ASSESS = {
     {"topic":"students","q":"A faculty member is acting in an interim administrative role. Do you use a staff supplement?","o":["Yes, Administrative Supplement","No, faculty have their own supplements","Yes, Temporary Supplement"],"a":1,"draft":true},
     {"topic":"students","q":"What Account goes on element costing for a faculty member?","o":["5110","5120","5130"],"a":0,"draft":true},
     {"topic":"records","q":"A written discipline is issued Jan 10, 2026. What are the dates?","o":["Issued On Jan 10, To Date Jan 10, 2026","Issued On Jan 10, From Date Jan 10, To Date Jan 10, 2027","Issued On the upload date, with no To Date"],"a":1},
-    {"topic":"records","q":"Before the HCM Transaction Cutoff, how do you check costing for your whole unit at once?","o":["Open every employee one by one","Run the HCM Assignment Cost Allocation Plan report from the Departmental Playbook","Ask payroll for a list"],"a":1}
+    {"topic":"records","q":"Before the HCM Transaction Cutoff, how do you check costing for your whole unit at once?","o":["Open every employee one by one","Run the HCM Assignment Cost Allocation Plan report from the Departmental Playbook","Ask payroll for a list"],"a":1},
+    {"topic":"payroll","q":"You submitted a time card for an employee who couldn't. Who approves it?","o":["You, since you checked the hours","The employee's manager","No one; payroll signs off next"],"a":1,"why":"The person who submits a time card does not approve it. The manager approves, then payroll signs off.","draft":true},
+    {"topic":"start","q":"A salary change is still waiting in approvals when the cutoff passes. What happens?","o":["It pays this period anyway","It misses this payroll and pays later","Payroll approves it for you"],"a":1,"why":"Pending approvals do not pay. The change waits for the next run."},
+    {"topic":"payroll","q":"An employee was paid the wrong amount. What is your part?","o":["Rerun payroll for that one employee","Bring payroll the facts and let payroll decide the correction","Enter a one-time payment for the difference"],"a":1,"why":"You bring the facts: what was expected, what was paid, and what the record shows. Payroll decides how and when to correct it."},
+    {"topic":"records","q":"The What to attach table says To confirm for your transaction. What do you do?","o":["Submit with no attachment and no comment","Ask your finance partner or PCB consultant what they expect","Attach every document in the employee's file"],"a":1,"why":"To confirm means no standard is set yet, so ask before you submit.","draft":true}
   ]
 };

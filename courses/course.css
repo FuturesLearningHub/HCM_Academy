@@ -1,4 +1,4 @@
-/* HCM Academy micro-course template (V.01). Vanderbilt FLH brand. */
+/* HCM Academy micro-course template. Vanderbilt FLH brand. */
 @font-face{font-family:'Libre Caslon Display';font-weight:400;font-display:swap;src:url('../assets/fonts/libre-caslon-display-latin-400-normal.woff2') format('woff2');}
 @font-face{font-family:'Libre Caslon Text';font-style:italic;font-weight:400;font-display:swap;src:url('../assets/fonts/libre-caslon-text-latin-400-italic.woff2') format('woff2');}
 @font-face{font-family:'Inter';font-weight:400;font-display:swap;src:url('../assets/fonts/inter-latin-400-normal.woff2') format('woff2');}
@@ -169,6 +169,13 @@ footer a{ color:var(--gold); }
   #jobaid{ border:0; box-shadow:none; padding:0; margin:0; }
   .ja-preview{ border:0; padding:0; background:#fff; margin:0; }
   .jobaid{ border:0; padding:0; font-size:8.5pt; line-height:1.3; }
+  /* job aids that carry Before you submit: slightly tighter, so the guide still prints on one page */
+  .jobaid.ja-b{ font-size:8pt; line-height:1.24; }
+  .jobaid.ja-b h2{ font-size:1.25rem; margin-top:8px; }
+  .jobaid.ja-b h3{ margin-top:8px; }
+  .jobaid.ja-b table.ref{ font-size:7.4pt; margin-top:5px; }
+  .jobaid.ja-b table.ref th,.jobaid.ja-b table.ref td{ padding:3px 6px; }
+  .jobaid.ja-b .ja-foot{ margin-top:8px; padding-top:5px; }
   .jobaid li{ margin:0 0 2px; } .jobaid ul,.jobaid ol{ margin-top:2px; margin-bottom:4px; }
   .jobaid table.ref th{ background:#1C1C1C !important; color:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .ja-head{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
@@ -191,3 +198,56 @@ footer a{ color:var(--gold); }
 [hidden]{ display:none !important; }
 .docs li,.jobaid,.ja-head{ overflow-wrap:anywhere; }
 table.ref th,table.ref td{ overflow-wrap:anywhere; }
+
+/* V.02: owner line, Before you submit, To confirm notes, course record, What changed page */
+.rec{ display:flex; flex-wrap:wrap; gap:4px 18px; margin-top:14px; font-size:.88rem; color:rgba(255,255,255,.85); }
+.rec b{ color:#fff; font-weight:600; }
+.rec a{ color:var(--gold); text-underline-offset:3px; }
+.hero.flat{ padding-bottom:clamp(28px,5vw,48px); }
+.before{ margin-top:20px; border:1px solid var(--sand); border-left:3px solid var(--gold); border-radius:0 6px 6px 0; padding:16px 18px; }
+.before h3{ font-family:var(--cond); font-weight:700; letter-spacing:.05em; text-transform:uppercase; font-size:.85rem; display:flex; align-items:center; gap:8px; }
+.before h3 svg{ width:18px; height:18px; color:var(--oak); }
+.part .before p{ margin-top:6px; max-width:none; }
+.part .before .blede{ font-size:.9rem; color:var(--muted); }
+.bgrid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 28px; margin-top:14px; }
+.bgrid h4{ font-family:var(--cond); font-weight:700; letter-spacing:.05em; text-transform:uppercase; font-size:.78rem; border-bottom:1px solid var(--gray); padding-bottom:4px; }
+.bgrid p,.bgrid li{ font-size:.95rem; overflow-wrap:anywhere; }
+.bgrid ul{ margin:4px 0 0 18px; }
+.bgrid li{ margin-top:5px; }
+.bgrid ul.who{ list-style:none; margin-left:0; }
+.tag{ display:inline-block; font-size:.72rem; font-weight:600; line-height:1.5; border:1px solid #8F8571; border-radius:999px; padding:0 8px; margin-left:2px; white-space:nowrap; background:var(--cream); }
+.tb{ font-style:italic; }
+table.ref.tl th:last-child,table.ref.tl td:last-child{ white-space:nowrap; }
+.part p.tbc{ margin-top:10px; max-width:none; border:1px dashed #8F8571; border-radius:4px; padding:7px 10px; font-size:.9rem; }
+p.tbc b{ font-family:var(--cond); letter-spacing:.05em; text-transform:uppercase; font-size:.76rem; margin-right:8px; }
+.recl{ margin-top:14px; border:1px solid var(--gray); border-radius:6px; }
+.recl > div{ display:grid; grid-template-columns:110px minmax(0,1fr); gap:12px; padding:10px 14px; border-top:1px solid var(--gray); }
+.recl > div:first-child{ border-top:0; }
+.recl dt{ font-family:var(--cond); font-weight:700; letter-spacing:.05em; text-transform:uppercase; font-size:.78rem; padding-top:4px; }
+.recl dd{ overflow-wrap:anywhere; }
+.recl dd span{ display:block; color:var(--muted); font-size:.9rem; }
+.rech{ font-family:var(--cond); font-weight:700; letter-spacing:.05em; text-transform:uppercase; font-size:.85rem; margin-top:22px; }
+ul.chg{ list-style:none; margin-top:6px; }
+ul.chg li{ display:grid; grid-template-columns:110px minmax(0,1fr); gap:12px; padding:9px 0; border-top:1px solid var(--gray); font-size:.95rem; }
+ul.chg li:first-child{ border-top:0; }
+ul.chg b{ font-family:var(--cond); letter-spacing:.03em; }
+.part p.recf{ font-size:.92rem; margin-top:16px; }
+.recf a,ul.chgl a{ color:var(--oak); font-weight:600; }
+ul.plain,ul.chgl{ margin:8px 0 0 20px; }
+ul.plain li,ul.chgl li{ margin-top:5px; font-size:.97rem; overflow-wrap:anywhere; }
+ul.chgl{ columns:2; column-gap:36px; }
+ul.chgl li{ break-inside:avoid; }
+@media (max-width:640px){
+  .bgrid{ grid-template-columns:1fr; }
+  ul.chgl{ columns:1; }
+  .recl > div,ul.chg li{ grid-template-columns:1fr; gap:2px; }
+  /* tables with four or more columns: one labeled block per row */
+  table.ref.wide thead{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+  table.ref.wide,table.ref.wide tbody,table.ref.wide tr,table.ref.wide td{ display:block; width:100%; }
+  table.ref.wide caption{ display:block; }
+  table.ref.wide tr{ border-top:2px solid var(--black); padding:8px 0; }
+  table.ref.wide td{ border:0; padding:3px 0; }
+  table.ref.wide td:first-child{ width:100%; }
+  table.ref.wide td::before{ content:attr(data-th); display:block; font-family:var(--cond); font-weight:700; letter-spacing:.04em; text-transform:uppercase; font-size:.72rem; color:var(--muted); }
+  table.ref.wide td:first-child::before{ content:none; }
+}

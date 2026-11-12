@@ -8,6 +8,7 @@ from openpyxl.formatting.rule import CellIsRule, FormulaRule
 from openpyxl.worksheet.datavalidation import DataValidation
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 from course_content import COURSES, VERIFY  # noqa: E402
+import governance as G  # noqa: E402
 ROOT = os.path.dirname(HERE)
 SITE = "https://me5231979.github.io/HCM_Academy/"
 BLACK, GOLD, OAK, CREAM, SAND = "1C1C1C", "CFAE70", "6B4F17", "F5F3EF", "E0D5C0"
@@ -33,10 +34,23 @@ for m in re.finditer(r'<section class="card[^"]*" id="([a-z]+)" data-short="([^"
 
 def source_of(slug):
     if not slug: return "No content yet"
-    return "Oracle docs, pending SME review" if BY[slug].get("pending", "").startswith("Built from Oracle") else "Vanderbilt SME sources"
+    p = BY[slug].get("pending", "")
+    if p.startswith("Built from Oracle"): return "Oracle docs, pending SME review"
+    if p.startswith("Built from U.S. Department of Labor"): return "DOL sources, pending SME review"
+    if p.startswith("Built from the other"): return "Other Academy courses, pending owner review"
+    return "Vanderbilt SME sources"
+
+def before_items(slug):
+    """Open points from the Before you submit block (tools/governance.py), so reviewers see them here too."""
+    b = G.before(slug)
+    if not b: return []
+    out = [b[k] for k in ("docs_gap", "confirm") if b.get(k)]
+    if "To confirm" in b["approves"]: out.append("The approval chain for this transaction")
+    if b["docs"]: out.append("Which of these are required and which optional: " + "; ".join(d for d, _ in b["docs"]))
+    return out
 
 def open_items(c):
-    items = [w.replace("Open item: ", "") for w in c["watch"] if w.startswith("Open item")] + VERIFY.get(c["slug"], [])
+    items = [w.replace("Open item: ", "") for w in c["watch"] if w.startswith("Open item")] + VERIFY.get(c["slug"], []) + before_items(c["slug"])
     seen, out = [], []
     for i in items:
         k = i.lower().strip(" .")
@@ -78,7 +92,7 @@ def dropdown(ws, cols, name, ref, first, last):
 def sheet_name(sec): return f'{sec["no"]} {sec["short"]}'[:31].replace("&", "and")
 
 # Section sheets
-SEC_COLS = [("#", 5), ("Subtopic", 18), ("Course topic", 34), ("Course status", 12), ("Source", 22), ("Link", 9), ("Time", 8),
+SEC_COLS = [("#", 5), ("Subtopic", 18), ("Course topic", 34), ("Course status", 12), ("Source", 22), ("Link", 9), ("Time", 8), ("Owner", 18),
             ("Open items to confirm", 44), ("Reviewer", 14), ("Decision", 12), ("Merge with", 24), ("Steps accurate?", 14),
             ("Job aid OK?", 13), ("Quiz OK?", 13), ("Notes or changes needed", 50), ("Priority", 10), ("PCB status", 12), ("PCB response", 34)]
 SEC_IN = {"Reviewer", "Decision", "Merge with", "Steps accurate?", "Job aid OK?", "Quiz OK?", "Notes or changes needed", "Priority"}
@@ -86,7 +100,7 @@ for sec in SECTIONS:
     ws = wb.create_sheet(sheet_name(sec)); header(ws, SEC_COLS)
     for i, r in enumerate(sec["rows"], 1):
         c = BY.get(r["slug"]) if r["slug"] else None
-        ws.append([i, r["sub"] or sec["name"], r["title"], "Live" if c else "Coming soon", source_of(r["slug"]), "", r["time"],
+        ws.append([i, r["sub"] or sec["name"], r["title"], "Live" if c else "Coming soon", source_of(r["slug"]), "", r["time"], G.owner(c) if c else "",
                    open_items(c) if c else "Needs a source: SME session, guide, or recording.", "", "", "", "", "", "", "", "", "Open", ""])
         if c:
             cell = ws.cell(row=i + 1, column=6, value="Open"); cell.hyperlink = SITE + f"courses/{c['slug']}/"
@@ -103,6 +117,7 @@ for sec in SECTIONS:
     ws.conditional_formatting.add(f"D2:D{n+1}", CellIsRule(operator="equal", formula=['"Coming soon"'], font=F(italic=True, color="8A8478")))
     ws.auto_filter.ref = f"A1:{ws.cell(row=1, column=len(SEC_COLS)).column_letter}{n+1}"
     sec["dec_col"] = D_
+    sec["pri_col"] = ws.cell(row=1, column=[c[0] for c in SEC_COLS].index("Priority") + 1).column_letter
 
 def q(sec): return "'" + sec["sheet"].replace("'", "''") + "'"
 
@@ -144,7 +159,7 @@ su.row_dimensions[1].height = 34
 SM_COLS = [("Section", 30), ("Reviewers", 26), ("Course topics", 9), ("Audited", 9), ("% done", 9), ("Keep", 8), ("Change", 8), ("Remove", 8), ("Merge", 8), ("High priority", 9), ("Audit status", 13)]
 sm = wb.create_sheet("Summary"); header(sm, SM_COLS); sm.freeze_panes = "B2"
 for i, sec in enumerate(SECTIONS, 2):
-    d = f'{q(sec)}!{sec["dec_col"]}2:{sec["dec_col"]}{sec["n"]+1}'; pr = f'{q(sec)}!P2:P{sec["n"]+1}'
+    d = f'{q(sec)}!{sec["dec_col"]}2:{sec["dec_col"]}{sec["n"]+1}'; pr = f'{q(sec)}!{sec["pri_col"]}2:{sec["pri_col"]}{sec["n"]+1}'
     sm.append([f'{sec["no"]} {sec["name"]}', "=MID(" + "&".join(f"IF(LEN('Sign-up'!{c}{i})>0,\", \"&'Sign-up'!{c}{i},\"\")" for c in name_lets) + ",3,500)", sec["n"], f"=COUNTA({d})",
                f"=IFERROR(D{i}/C{i},0)", f'=COUNTIF({d},"Keep")', f'=COUNTIF({d},"Change")', f'=COUNTIF({d},"Remove")', f'=COUNTIF({d},"Merge")',
                f'=COUNTIF({pr},"High")', f"='Sign-up'!{LET('Audit status')}{i}"])
@@ -157,7 +172,7 @@ for c in range(1, len(SM_COLS) + 1): sm.cell(row=t, column=c).font = F(bold=True
 # Start here
 H = wb.create_sheet("Start here", 0); H.column_dimensions["A"].width = 6; H.column_dimensions["B"].width = 110
 H["B1"] = "HCM Academy section audit"; H["B1"].font = Font(name="Georgia", size=22, color=BLACK)
-H["B2"] = "Sign up for a section, then audit every course topic in it. V.01 draft."; H["B2"].font = F(italic=True, color="5E5B55")
+H["B2"] = "Sign up for a section, then audit every course topic in it. " + G.EDITION + "."; H["B2"].font = F(italic=True, color="5E5B55")
 steps = [("1", "Sign up. On the Sign-up tab, put your name and email in the next open Reviewer slot (highlighted) for a section. Up to five reviewers per section; split the course topics between you and put your name in the Reviewer column of each row you audit."),
          ("2", "Set a target date and change Audit status to In progress."),
          ("3", "Open your section's tab (Go to section link). For each course topic, open the course (Link), then fill in the cream columns: your name, a Decision (Keep, Change, Remove, Merge), Merge with (if Merge), whether the steps, job aid, and quiz are accurate, and your notes."),

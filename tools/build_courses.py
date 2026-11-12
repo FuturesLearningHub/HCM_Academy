@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
-"""Build HCM Academy V.01 micro-course pages from tools/course_content.py.
-Writes courses/<slug>/index.html and the two assessment pages (assessment/pre, assessment/final).
+"""Build HCM Academy micro-course pages from tools/course_content.py.
+Writes courses/<slug>/index.html, the two assessment pages (assessment/pre, assessment/final),
+and changes/index.html (what changed, by date). Owners, versions, the change log, and the
+"Before you submit" block come from tools/governance.py.
 Run: python3 tools/build_courses.py"""
 import html, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from course_content import COURSES, VERIFY  # noqa: E402
+import governance as G  # noqa: E402
 ROOT = os.path.dirname(HERE)
 E = lambda s: html.escape(s, quote=True)
+NUM = {1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six"}
 
 WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>'
 BOOK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>'
@@ -26,16 +30,78 @@ def step_items(steps, checklist):
     return "\n".join(out)
 
 def table(tb):
+    """A reference table. Tables with four or more columns stack into labeled rows on small screens (data-th)."""
     if not tb: return ""
     head = "".join(f'<th scope="col">{E(h)}</th>' for h in tb["head"])
-    rows = "".join("<tr>" + "".join(f"<td>{E(c)}</td>" for c in r) + "</tr>" for r in tb["rows"])
-    return f'<table class="ref"><caption>{E(tb["title"])}</caption><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table>'
+    rows = "".join("<tr>" + "".join(f'<td data-th="{E(h)}">{confirm(c)}</td>' for h, c in zip(tb["head"], r)) + "</tr>" for r in tb["rows"])
+    cls = "ref wide" if len(tb["head"]) >= 4 else "ref tl" if tb.get("tight_last") else "ref"
+    return f'<table class="{cls}"><caption>{E(tb["title"])}</caption><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table>'
+
+CHECKED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>'
+
+def confirm(s):
+    """Escape text, marking any 'To confirm: ...' part so an open point reads the same everywhere."""
+    if "To confirm: " not in s: return E(s)
+    a, b = s.split("To confirm: ", 1)
+    return f'{E(a)}<span class="tb">To confirm: {E(b)}</span>'
+
+def before_html(c):
+    """The Before you submit block on a pay-impacting course: attach, check, cutoff, who does what."""
+    b = G.before(c["slug"])
+    if not b: return ""
+    if b.get("docs_none"): docs = f"<p>{E(b['docs_none'])}</p>"
+    elif b["docs"]: docs = "<ul>" + "".join(f'<li>{E(d)} <span class="tag">{E(st)}</span></li>' for d, st in b["docs"]) + "</ul>"
+    else: docs = "<p>None named yet.</p>"
+    gap = f'<p class="tbc"><b>To confirm</b>{E(b["docs_gap"])}</p>' if b.get("docs_gap") else ""
+    conf = f'<p class="tbc"><b>To confirm</b>{E(b["confirm"])}</p>' if b.get("confirm") else ""
+    checks = "".join(f"<li>{E(x)}</li>" for x in b["checks"])
+    cut = f'<div><h4>Cutoff</h4><p>{confirm(G.CUTOFF[b["cutoff"]])}</p></div>' if b.get("cutoff") else ""
+    who = (f'<li><b>Who starts it:</b> {confirm(G.sentence(b["submits"]))}</li>'
+           f'<li><b>Who approves:</b> {confirm(b["approves"])}</li>'
+           f'<li><b>What happens next:</b> {confirm(b["then"])}</li>')
+    std = f"<p>{E(G.STANDARD_CHECK)}</p>" if b.get("standard", True) else ""
+    return (f'<div class="before" id="before"><h3>{CHECKED}{E(b.get("title", "Before you submit"))}</h3>'
+            f'<p class="blede">The same four checks on every pay-impacting transaction. Draft: the owner for this area confirms anything marked To confirm.</p>'
+            f'<div class="bgrid"><div><h4>Attach</h4>{docs}{gap}</div>'
+            f'<div><h4>Check</h4>{std}<ul>{checks}</ul>{conf}</div>'
+            f'{cut}<div><h4>Who does what</h4><ul class="who">{who}</ul></div></div></div>')
+
+def before_ja(c):
+    """The same block in three lines, for the printed job aid."""
+    b = G.before(c["slug"])
+    if not b: return ""
+    lines = [f"<li><b>Attach:</b> {confirm(G.attach_line(b))}</li>", f"<li><b>Check:</b> {E(' '.join(b['checks']))}</li>"]
+    if b.get("cutoff"): lines.append(f"<li><b>Cutoff:</b> {confirm(G.CUTOFF_SHORT[b['cutoff']])}</li>")
+    return f'<h3>{E(b.get("title", "Before you submit"))}</h3><ul class="jw">{"".join(lines)}</ul>'
+
+def review_status(c):
+    p = c.get("pending", "")
+    if not p: return "Built from SME sessions and Vanderbilt guides. Validation by the HCM group is pending."
+    return p
+
+def record_html(c):
+    """Course record: owner, version, review status, and what changed."""
+    own = G.owner(c)
+    items = "".join(f"<li><b>{E(d)}</b>{E(x)}</li>" for d, x in G.changes(c))
+    scope = G.OWNER_SCOPE[own]
+    return f'''<section class="part record" id="record" aria-labelledby="h5">
+      <p class="mono num">Course record</p>
+      <h2 id="h5">Owner and <em>changes</em>.</h2>
+      <dl class="recl">
+        <div><dt>Owner</dt><dd>{E(own)}<span>{E(scope)}</span></dd></div>
+        <div><dt>Version</dt><dd>{E(G.EDITION)}<span>Updated {E(G.UPDATED)}</span></dd></div>
+        <div><dt>Review</dt><dd>{E(review_status(c))}</dd></div>
+      </dl>
+      <h3 class="rech">What changed</h3>
+      <ul class="chg">{items}</ul>
+      <p class="recf"><a href="../../changes/">See changes across all courses</a>. Something out of date? Email <a href="mailto:pcb@vanderbilt.edu">pcb@vanderbilt.edu</a>.</p>
+    </section>'''
 
 def page(c, n, total):
     title_html = f'{E(c["title_pre"])} <em>{E(c["title_em"])}</em>.'
     src = "; ".join(c["sources"])
-    pending = f'<p class="draft"><b>V.01 draft</b>{E(c["pending"])}</p>' if c.get("pending") else \
-              '<p class="draft"><b>V.01 draft</b>Built from SME sessions and Vanderbilt guides. Validate with the HCM group before release.</p>'
+    pending = f'<p class="draft"><b>{G.EDITION}</b>{E(c["pending"])}</p>' if c.get("pending") else \
+              f'<p class="draft"><b>{G.EDITION}</b>Built from SME sessions and Vanderbilt guides. Validate with the HCM group before release.</p>'
     intro = "".join(f"<p>{E(p)}</p>" for p in c["intro"])
     video = ""
     if c.get("video"):
@@ -67,7 +133,7 @@ def page(c, n, total):
                          f'<div class="ja-head"><img src="../../assets/img/vu-lockup-black.png" alt="Vanderbilt University" width="100" height="26" /><span class="mono">HCM Academy detailed job aid &middot; {E(c["topic_label"])}</span></div>'
                          f'<h2>{E(det["title"])}</h2><p class="ja-use">Step by step with screenshots. {E(det["source"])}</p>'
                          f'<ol class="dsteps">{items}</ol>'
-                         f'<div class="ja-foot"><span>V.01 draft.</span><span>Questions: pcb@vanderbilt.edu</span></div></article>')
+                         f'<div class="ja-foot"><span>{G.EDITION}, updated {G.UPDATED}.</span><span>Questions: pcb@vanderbilt.edu</span></div></article>')
         ja_intro = "<p>Two parts: a one-page <b>quick guide</b>, then a <b>detailed job aid</b> with a screenshot for every step. Print either one, or save it as a PDF.</p>"
         ja_buttons = f'<button type="button" class="btn" data-print="quick">{PRINT}Print quick guide</button><button type="button" class="btn ghost" data-print>{PRINT}Print quick guide and detailed job aid</button>'
     else:
@@ -76,6 +142,7 @@ def page(c, n, total):
     st = c.get("steps_title", "Step by step")
     w = st.rsplit(" ", 1)
     steps_h = f'{E(w[0])} <em>{E(w[1])}</em>.'
+    nq = len(c["quiz"]); nw = NUM[nq]; own = G.owner(c)
     follow = "Check off each item as you read." if c["system"] == "Overview" or c.get("steps_title") else f'Follow along in {E(c["system"].split(" (")[0].split(" +")[0])}. Check off each step as you go.'
     return f'''<!DOCTYPE html>
 <html lang="en">
@@ -101,7 +168,8 @@ def page(c, n, total):
   <div class="wrap">
     <p class="mono crumb">{E(c["topic_label"])} &middot; Course {n} of {total}</p>
     <h1 id="t">{title_html}</h1>
-    <ul class="meta" aria-label="Course details"><li class="v">V.01 draft</li><li>Micro-learning</li><li>{E(c["time"])}</li>{'<li>Video</li>' if c.get("video") else ''}<li>{E(c["system"])}</li><li>3-question check</li><li>Printable job aid</li></ul>
+    <ul class="meta" aria-label="Course details"><li class="v">{G.EDITION}</li><li>Micro-learning</li><li>{E(c["time"])}</li>{'<li>Video</li>' if c.get("video") else ''}<li>{E(c["system"])}</li><li>{nq}-question check</li><li>Printable job aid</li></ul>
+    <p class="rec"><span>Owner: <b>{E(own)}</b></span><span>Updated {E(G.UPDATED)}</span><a href="#record">What changed</a></p>
   </div>
   <nav class="parts" aria-label="Course parts"><ol>
     <li><a href="#intro"><span>1</span>Intro</a></li><li><a href="#steps"><span>2</span>Walk through</a></li><li><a href="#check"><span>3</span>Check</a></li><li><a href="#jobaid"><span>4</span>Job aid</a></li>
@@ -132,13 +200,14 @@ def page(c, n, total):
       </ol>
       <p class="stepcount" id="stepcount" aria-live="polite"></p>
       {table(c.get("table"))}
+      {before_html(c)}
       <div class="watch"><h3>{WARN}Watch-outs</h3><ul>{watch}</ul></div>
       {docs_box}
     </section>
     <section class="part quiz" id="check" aria-labelledby="h3">
       <p class="mono num">3 &middot; Knowledge check</p>
       <h2 id="h3">Check your <em>understanding</em>.</h2>
-      <p>Three questions. You get feedback on each answer. All three right completes the course.</p>
+      <p>{nw} questions. You get feedback on each answer. All {nw.lower()} right completes the course.</p>
       {"".join(quiz)}
       <p class="score" id="score" hidden></p>
     </section>
@@ -148,7 +217,7 @@ def page(c, n, total):
       {ja_intro}
       <div class="acts">{ja_buttons}<a class="btn ghost" href="{back}">Back to all courses</a></div>
       <div class="ja-preview">
-        <article class="jobaid" aria-label="{"Quick guide" if det else "Job aid"} preview">
+        <article class="jobaid{" ja-b" if G.before(c["slug"]) else ""}" aria-label="{"Quick guide" if det else "Job aid"} preview">
           <div class="ja-head"><img src="../../assets/img/vu-lockup-black.png" alt="Vanderbilt University" width="100" height="26" /><span class="mono">HCM Academy {"quick guide" if det else "job aid"} &middot; {E(c["topic_label"])}</span></div>
           <h2>{E(c["name"])}</h2>
           <p class="ja-use"><b>Use when:</b> {E(c["use_when"])} &middot; <b>System:</b> {E(c["system"])}</p>
@@ -156,19 +225,21 @@ def page(c, n, total):
 {step_items(c["steps"], False)}
           </ol>
           {table(c.get("table"))}
+          {before_ja(c)}
           <h3>Watch-outs</h3>
           <ul class="jw">{watch}</ul>
-          <div class="ja-foot"><span>V.01 draft. Sources: {E(src)}.</span><span>Questions: pcb@vanderbilt.edu</span></div>
+          <div class="ja-foot"><span>{G.EDITION}, updated {G.UPDATED}. Owner: {E(own)}. Sources: {E(src)}.</span><span>Questions: pcb@vanderbilt.edu</span></div>
         </article>
         {detailed_html}
       </div>
     </section>
+    {record_html(c)}
   </div>
 </main>
 <p id="live" class="sr" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></p>
 <footer>
   <div class="wrap">
-    <p>HCM Academy &middot; V.01 draft. Sources: {E(src)}.</p>
+    <p>HCM Academy &middot; {G.EDITION}. Sources: {E(src)}.</p>
     <p>An internal training prototype, not an official Vanderbilt University site. Questions or accessibility needs: <a href="mailto:pcb@vanderbilt.edu">pcb@vanderbilt.edu</a></p>
   </div>
 </footer>
@@ -261,7 +332,7 @@ def assessment_page(kind, count):
 </main>
 <footer>
   <div class="wrap">
-    <p>HCM Academy &middot; V.01 draft.</p>
+    <p>HCM Academy &middot; {G.EDITION}.</p>
     <p>An internal training prototype, not an official Vanderbilt University site. Questions or accessibility needs: <a href="mailto:pcb@vanderbilt.edu">pcb@vanderbilt.edu</a></p>
   </div>
 </footer>
@@ -284,6 +355,99 @@ def build_assessments():
             f.write(assessment_page(kind, counts[kind]))
     print(f"built assessments: pre {counts['pre']} questions, final {counts['final']} questions")
 
+def build_changes():
+    """changes/index.html: how updates work, who owns what area, and what changed, newest first."""
+    from collections import Counter
+    link = lambda c: f'<a href="../courses/{c["slug"]}/">{E(c["name"])}</a>'
+    lst = lambda cs: "".join(f"<li>{link(c)}</li>" for c in cs)
+    new = [c for c in COURSES if c["slug"] in G.NEW_IN_V02]
+    bef = [c for c in COURSES if c["slug"] in G.BEFORE]
+    rule = [c for c in COURSES if c["slug"] in G.TIME_CARD_RULE]
+    counts = Counter(G.owner(c) for c in COURSES)
+    owners = "".join(f'<tr><td data-th="Area">{E(o)}</td><td data-th="Covers">{E(G.OWNER_SCOPE[o])}</td><td data-th="Courses">{counts[o]}</td></tr>' for o in (G.PAY, G.HIRE, G.TBD))
+    back = "../index.html"; n_first = len(COURSES) - len(new)
+    doc = f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>What changed · HCM Academy</title>
+<meta name="description" content="Changes to HCM Academy courses, by date, and who owns each area." />
+<meta name="theme-color" content="#1C1C1C" />
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../courses/course.css?v={ver('courses/course.css')}" />
+<!-- Generated by tools/build_courses.py from tools/governance.py. Edit there and rebuild. -->
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="{back}" aria-label="HCM Academy home"><img src="../assets/img/vu-lockup-white.png" alt="" width="122" height="32" /><span class="mono" aria-hidden="true">HCM Academy</span></a>
+    <a class="back" href="{back}">&larr; All courses</a>
+  </div>
+</header>
+<section class="hero flat" aria-labelledby="t">
+  <div class="wrap">
+    <p class="mono crumb">HCM Academy &middot; Course updates</p>
+    <h1 id="t">What <em>changed</em>.</h1>
+    <ul class="meta" aria-label="Edition"><li class="v">{G.EDITION}</li><li>Updated {E(G.UPDATED)}</li><li>{len(COURSES)} courses</li></ul>
+  </div>
+</section>
+<main id="main">
+  <div class="wrap">
+    <section class="part" aria-labelledby="c1">
+      <p class="mono num">How updates work</p>
+      <h2 id="c1">Every change is <em>logged</em>.</h2>
+      <p>Guidance goes out of date when a process changes and nobody says so. From {E(G.EDITION.split()[0])}, every course shows who owns it, its version, and the date it was last updated, and every change is listed on the course and on this page.</p>
+      <ul class="plain">
+        <li>Each course has a <b>Course record</b> at the bottom: owner, version, review status, and what changed.</li>
+        <li>Pay-impacting courses carry a <b>Before you submit</b> block: what to attach, what to check, the cutoff, and who does what.</li>
+        <li>Anything not yet confirmed is marked <b>To confirm</b> or listed as an open item, so nobody mistakes a draft for a rule.</li>
+      </ul>
+      <p class="tbc"><b>To confirm</b>Who tells HCMs when a pay-impacting course changes, how the notice is sent, and how often each course is reviewed.</p>
+    </section>
+    <section class="part" aria-labelledby="c2">
+      <p class="mono num">Owners</p>
+      <h2 id="c2">Who owns each <em>area</em>.</h2>
+      <p>The owner keeps the courses in an area current and confirms the open items. Owners are shown by area.</p>
+      <table class="ref tl"><caption>Course owners by area</caption><thead><tr><th scope="col">Area</th><th scope="col">Covers</th><th scope="col">Courses</th></tr></thead><tbody>{owners}</tbody></table>
+      <p class="tbc"><b>To confirm</b>An owner for the {counts[G.TBD]} courses marked To be named.</p>
+    </section>
+    <section class="part" aria-labelledby="c3">
+      <p class="mono num">{E(G.UPDATED)} &middot; {E(G.EDITION)}</p>
+      <h2 id="c3">Getting pay right the first <em>time</em>.</h2>
+      <p>These changes add standard documents and checks, clearer ownership, cutoffs, the time card approval rule, and pay rules to the courses. All of it is a draft for the owners to confirm.</p>
+      <h3 class="rech">New courses ({len(new)})</h3>
+      <ul class="chgl">{lst(new)}</ul>
+      <h3 class="rech">Before you submit added ({len(bef)})</h3>
+      <ul class="chgl">{lst(bef)}</ul>
+      <h3 class="rech">Time card approval rule added ({len(rule)})</h3>
+      <ul class="chgl">{lst(rule)}</ul>
+      <h3 class="rech">On every course ({len(COURSES)})</h3>
+      <ul class="plain"><li>Owner, version, and updated date at the top, and a Course record with the change log at the bottom.</li></ul>
+      <h3 class="rech">Assessment</h3>
+      <ul class="plain"><li>Four questions added to the final assessment: time card approval, a change still pending at the cutoff, your part in a pay error, and what to attach.</li></ul>
+    </section>
+    <section class="part" aria-labelledby="c4">
+      <p class="mono num">{E(G.FIRST)} &middot; V.01 draft</p>
+      <h2 id="c4">First <em>drafts</em>.</h2>
+      <p>{n_first} courses drafted from SME sessions, Vanderbilt guides, and official documentation, each with a walkthrough, a knowledge check, and a printable job aid.</p>
+    </section>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <p>HCM Academy &middot; {G.EDITION}.</p>
+    <p>An internal training prototype, not an official Vanderbilt University site. Questions or accessibility needs: <a href="mailto:pcb@vanderbilt.edu">pcb@vanderbilt.edu</a></p>
+  </div>
+</footer>
+</body>
+</html>
+'''
+    d = os.path.join(ROOT, "changes"); os.makedirs(d, exist_ok=True)
+    open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(doc)
+    print(f"built changes page: {len(new)} new courses, {len(bef)} with Before you submit, owners {dict(counts)}")
+
 def main():
     total = len(COURSES)
     for i, c in enumerate(COURSES, 1):
@@ -292,6 +456,7 @@ def main():
             f.write(page(c, i, total))
     print(f"built {total} courses")
     build_assessments()
+    build_changes()
     sync_landing()
 
 def sync_landing():
