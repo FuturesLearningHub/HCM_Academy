@@ -89,7 +89,7 @@ def record_html(c):
       <h2 id="h5">Owner and <em>changes</em>.</h2>
       <dl class="recl">
         <div><dt>Owner</dt><dd>{E(own)}<span>{E(scope)}</span></dd></div>
-        <div><dt>Version</dt><dd>{E(G.EDITION)}<span>Updated {E(G.UPDATED)}</span></dd></div>
+        <div><dt>Version</dt><dd>{E(G.EDITION)}<span>Updated {E(G.updated(c))}</span></dd></div>
         <div><dt>Review</dt><dd>{E(review_status(c))}</dd></div>
       </dl>
       <h3 class="rech">What changed</h3>
@@ -133,7 +133,7 @@ def page(c, n, total):
                          f'<div class="ja-head"><img src="../../assets/img/vu-lockup-black.png" alt="Vanderbilt University" width="100" height="26" /><span class="mono">HCM Academy detailed job aid &middot; {E(c["topic_label"])}</span></div>'
                          f'<h2>{E(det["title"])}</h2><p class="ja-use">Step by step with screenshots. {E(det["source"])}</p>'
                          f'<ol class="dsteps">{items}</ol>'
-                         f'<div class="ja-foot"><span>{G.EDITION}, updated {G.UPDATED}.</span><span>Questions: pcb@vanderbilt.edu</span></div></article>')
+                         f'<div class="ja-foot"><span>{G.EDITION}, updated {G.updated(c)}.</span><span>Questions: pcb@vanderbilt.edu</span></div></article>')
         ja_intro = "<p>Two parts: a one-page <b>quick guide</b>, then a <b>detailed job aid</b> with a screenshot for every step. Print either one, or save it as a PDF.</p>"
         ja_buttons = f'<button type="button" class="btn" data-print="quick">{PRINT}Print quick guide</button><button type="button" class="btn ghost" data-print>{PRINT}Print quick guide and detailed job aid</button>'
     else:
@@ -169,7 +169,7 @@ def page(c, n, total):
     <p class="mono crumb">{E(c["topic_label"])} &middot; Course {n} of {total}</p>
     <h1 id="t">{title_html}</h1>
     <ul class="meta" aria-label="Course details"><li class="v">{G.EDITION}</li><li>Micro-learning</li><li>{E(c["time"])}</li>{'<li>Video</li>' if c.get("video") else ''}<li>{E(c["system"])}</li><li>{nq}-question check</li><li>Printable job aid</li></ul>
-    <p class="rec"><span>Owner: <b>{E(own)}</b></span><span>Updated {E(G.UPDATED)}</span><a href="#record">What changed</a></p>
+    <p class="rec"><span>Owner: <b>{E(own)}</b></span><span>Updated {E(G.updated(c))}</span><a href="#record">What changed</a></p>
   </div>
   <nav class="parts" aria-label="Course parts"><ol>
     <li><a href="#intro"><span>1</span>Intro</a></li><li><a href="#steps"><span>2</span>Walk through</a></li><li><a href="#check"><span>3</span>Check</a></li><li><a href="#jobaid"><span>4</span>Job aid</a></li>
@@ -228,7 +228,7 @@ def page(c, n, total):
           {before_ja(c)}
           <h3>Watch-outs</h3>
           <ul class="jw">{watch}</ul>
-          <div class="ja-foot"><span>{G.EDITION}, updated {G.UPDATED}. Owner: {E(own)}. Sources: {E(src)}.</span><span>Questions: pcb@vanderbilt.edu</span></div>
+          <div class="ja-foot"><span>{G.EDITION}, updated {G.updated(c)}. Owner: {E(own)}. Sources: {E(src)}.</span><span>Questions: pcb@vanderbilt.edu</span></div>
         </article>
         {detailed_html}
       </div>
@@ -364,7 +364,7 @@ def build_changes():
     bef = [c for c in COURSES if c["slug"] in G.BEFORE]
     rule = [c for c in COURSES if c["slug"] in G.TIME_CARD_RULE]
     counts = Counter(G.owner(c) for c in COURSES)
-    owners = "".join(f'<tr><td data-th="Area">{E(o)}</td><td data-th="Covers">{E(G.OWNER_SCOPE[o])}</td><td data-th="Courses">{counts[o]}</td></tr>' for o in (G.PAY, G.HIRE, G.TBD))
+    owners = "".join(f'<tr><td data-th="Owner">{E(o)}</td><td data-th="Covers">{E(G.OWNER_SCOPE[o])}</td><td data-th="Courses">{counts[o]}</td></tr>' for o in (G.PAY, G.HIRE, G.TBD))
     back = "../index.html"; n_first = len(COURSES) - len(new)
     doc = f'''<!DOCTYPE html>
 <html lang="en">
@@ -390,7 +390,7 @@ def build_changes():
   <div class="wrap">
     <p class="mono crumb">HCM Academy &middot; Course updates</p>
     <h1 id="t">What <em>changed</em>.</h1>
-    <ul class="meta" aria-label="Edition"><li class="v">{G.EDITION}</li><li>Updated {E(G.UPDATED)}</li><li>{len(COURSES)} courses</li></ul>
+    <ul class="meta" aria-label="Edition"><li class="v">{G.EDITION}</li><li>Updated {E(G.LATEST)}</li><li>{len(COURSES)} courses</li></ul>
   </div>
 </section>
 <main id="main">
@@ -408,10 +408,19 @@ def build_changes():
     </section>
     <section class="part" aria-labelledby="c2">
       <p class="mono num">Owners</p>
-      <h2 id="c2">Who owns each <em>area</em>.</h2>
-      <p>The owner keeps the courses in an area current and confirms the open items. Owners are shown by area.</p>
-      <table class="ref tl"><caption>Course owners by area</caption><thead><tr><th scope="col">Area</th><th scope="col">Covers</th><th scope="col">Courses</th></tr></thead><tbody>{owners}</tbody></table>
+      <h2 id="c2">Which team owns each <em>course</em>.</h2>
+      <p>The owning team keeps its courses current and confirms the open items. Owners are teams, not individuals.</p>
+      <table class="ref tl"><caption>Course owners</caption><thead><tr><th scope="col">Owner</th><th scope="col">Covers</th><th scope="col">Courses</th></tr></thead><tbody>{owners}</tbody></table>
       <p class="tbc"><b>To confirm</b>An owner for the {counts[G.TBD]} courses marked To be named.</p>
+    </section>
+    <section class="part" aria-labelledby="c5">
+      <p class="mono num">{E(G.OWNERS_SET)} &middot; {E(G.EDITION)}</p>
+      <h2 id="c5">Owners are <em>teams</em>.</h2>
+      <p>Each course is owned by a team. The owner shows at the top of the course, on its job aid, and in its Course record.</p>
+      <ul class="plain">
+        <li><b>{E(G.PAY)}</b> owns all payroll and financial topics: {counts[G.PAY]} courses. They were shown as {E(G.OWNER_WAS[G.PAY])}.</li>
+        <li><b>{E(G.HIRE)}</b> owns recruiting: {counts[G.HIRE]} courses. They were shown as {E(G.OWNER_WAS[G.HIRE])}.</li>
+      </ul>
     </section>
     <section class="part" aria-labelledby="c3">
       <p class="mono num">{E(G.UPDATED)} &middot; {E(G.EDITION)}</p>

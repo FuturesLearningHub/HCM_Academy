@@ -10,19 +10,23 @@
 #
 # Rules: no em or en dashes. Every item is taken from a course in tools/course_content.py or
 # tools/courses_researched.py. Where the courses do not say, the entry says so ("to confirm") instead
-# of guessing. No individual names: owners are shown by area. The people are in the owner register,
-# which is kept outside this repository.
+# of guessing. No individual names: owners are teams. The contact for each team is in the owner
+# register, which is kept outside this repository.
 
 EDITION = "V.02 draft"
 EDITION_MONTH = "November 2026"
-UPDATED = "Nov 12, 2026"
+UPDATED = "Nov 12, 2026"        # when the V.02 draft was first published
+OWNERS_SET = "Nov 13, 2026"     # when owners were set to the teams: Payroll and HRIS
+LATEST = OWNERS_SET             # the newest change across all courses
 FIRST = "October 2026"          # when the V.01 courses were first drafted
 
 # ───────────── Owners ─────────────
-PAY, HIRE, TBD = "Payroll and Finance", "Recruiting and Hiring", "To be named"
+# Payroll owns all payroll and financial topics. HRIS owns recruiting. The rest are still to be named.
+PAY, HIRE, TBD = "Payroll", "HRIS", "To be named"
+OWNER_WAS = {PAY: "Payroll and Finance", HIRE: "Recruiting and Hiring"}   # how V.02 first showed them; kept for the change log
 OWNER_SCOPE = {
-    PAY: "Payroll, time cards, pay changes, the payroll calendar, and costing.",
-    HIRE: "Positions, requisitions, hiring, and student and faculty hiring.",
+    PAY: "All payroll and financial topics: payroll, time cards, pay changes, the payroll calendar, and costing.",
+    HIRE: "Recruiting: positions, requisitions, hiring, and student and faculty hiring.",
     TBD: "Assignment changes, offboarding, leave, records and reporting, and the HCM foundations.",
 }
 _BY_TOPIC = {"payroll": PAY, "costing": PAY, "recruiting": HIRE, "students": HIRE}
@@ -33,7 +37,7 @@ _BY_SLUG = {
 }
 
 def owner(c):
-    """The area that owns a course. Finance and payroll topics, and recruiting and hiring topics, have owners; the rest are still to be named."""
+    """The team that owns a course. Payroll owns payroll and financial topics, HRIS owns recruiting; the rest are still to be named."""
     return _BY_SLUG.get(c["slug"]) or _BY_TOPIC.get(c["topic"], TBD)
 
 # ───────────── Cutoffs ─────────────
@@ -320,14 +324,20 @@ EXTRA_CHANGES = {
 
 def changes(c):
     """What changed on a course, newest first: (date, text)."""
-    s = c["slug"]; out = list(EXTRA_CHANGES.get(s, []))
+    s = c["slug"]; own = owner(c); out = list(EXTRA_CHANGES.get(s, []))
+    if own in OWNER_WAS:
+        out.append((OWNERS_SET, f"Owner is now {own}. It was shown as {OWNER_WAS[own]}."))
     if s in NEW_IN_V02:
         out.append((UPDATED, "New course."))
         return out
     bits = []
     if s in BEFORE: bits.append("Added Before you submit: what to attach, what to check, the cutoff, and who does what.")
     if s in TIME_CARD_RULE: bits.append("Added the rule that the person who submits a time card does not approve it.")
-    bits.append(f"Owner shown: {owner(c)}." if owner(c) != TBD else "Owner still to be named.")
+    bits.append(f"Owner shown: {OWNER_WAS[own]}." if own in OWNER_WAS else "Owner still to be named.")
     out.append((UPDATED, " ".join(bits)))
     out.append((FIRST, "First draft (V.01)."))
     return out
+
+def updated(c):
+    """The date of a course's newest change."""
+    return changes(c)[0][0]
