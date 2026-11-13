@@ -21,24 +21,28 @@ LATEST = OWNERS_SET             # the newest change across all courses
 FIRST = "October 2026"          # when the V.01 courses were first drafted
 
 # ───────────── Owners ─────────────
-# Payroll owns all payroll and financial topics. HRIS owns recruiting. The rest are still to be named.
-PAY, HIRE, TBD = "Payroll", "HRIS", "To be named"
-OWNER_WAS = {PAY: "Payroll and Finance", HIRE: "Recruiting and Hiring"}   # how V.02 first showed them; kept for the change log
+# Payroll owns all payroll and financial topics. HRIS owns everything else: recruiting and hiring,
+# assignment changes, offboarding, leave, records and reporting, and the foundations.
+PAY, HIRE, TBD = "Payroll", "HRIS", "To be named"   # TBD is for a future course that has no owner yet
 OWNER_SCOPE = {
     PAY: "All payroll and financial topics: payroll, time cards, pay changes, the payroll calendar, and costing.",
-    HIRE: "Recruiting: positions, requisitions, hiring, and student and faculty hiring.",
-    TBD: "Assignment changes, offboarding, leave, records and reporting, and the HCM foundations.",
+    HIRE: "Recruiting and hiring, assignment changes, offboarding, leave, records and reporting, and the HCM foundations.",
+    TBD: "No owner yet.",
 }
-_BY_TOPIC = {"payroll": PAY, "costing": PAY, "recruiting": HIRE, "students": HIRE}
-_BY_SLUG = {
-    "shared-calendar": PAY,                  # payroll dates
-    "i9-background-by-worker-type": HIRE,    # checks for a new hire
-    "student-faculty-changes": TBD,          # assignment changes, not hiring
-}
+_BY_TOPIC = {"payroll": PAY, "costing": PAY}
+_BY_SLUG = {"shared-calendar": PAY}   # payroll dates, listed under Start Here
 
 def owner(c):
-    """The team that owns a course. Payroll owns payroll and financial topics, HRIS owns recruiting; the rest are still to be named."""
-    return _BY_SLUG.get(c["slug"]) or _BY_TOPIC.get(c["topic"], TBD)
+    """The team that owns a course: Payroll for payroll and financial topics, HRIS for everything else."""
+    return _BY_SLUG.get(c["slug"]) or _BY_TOPIC.get(c["topic"], HIRE)
+
+# How the V.02 draft first showed the owner on Nov 12, kept so the change log stays true. None = it had no owner yet.
+_FIRST_BY_TOPIC = {"payroll": "Payroll and Finance", "costing": "Payroll and Finance", "recruiting": "Recruiting and Hiring", "students": "Recruiting and Hiring"}
+_FIRST_BY_SLUG = {"shared-calendar": "Payroll and Finance", "i9-background-by-worker-type": "Recruiting and Hiring", "student-faculty-changes": None}
+
+def owner_first(c):
+    s = c["slug"]
+    return _FIRST_BY_SLUG[s] if s in _FIRST_BY_SLUG else _FIRST_BY_TOPIC.get(c["topic"])
 
 # ───────────── Cutoffs ─────────────
 PENDING = "Pending approvals do not pay. A change still waiting in approvals at the cutoff misses that payroll."
@@ -324,16 +328,15 @@ EXTRA_CHANGES = {
 
 def changes(c):
     """What changed on a course, newest first: (date, text)."""
-    s = c["slug"]; own = owner(c); out = list(EXTRA_CHANGES.get(s, []))
-    if own in OWNER_WAS:
-        out.append((OWNERS_SET, f"Owner is now {own}. It was shown as {OWNER_WAS[own]}."))
+    s = c["slug"]; own = owner(c); was = owner_first(c); out = list(EXTRA_CHANGES.get(s, []))
+    out.append((OWNERS_SET, f"Owner is now {own}. " + (f"It was shown as {was}." if was else "It had no owner yet.")))
     if s in NEW_IN_V02:
         out.append((UPDATED, "New course."))
         return out
     bits = []
     if s in BEFORE: bits.append("Added Before you submit: what to attach, what to check, the cutoff, and who does what.")
     if s in TIME_CARD_RULE: bits.append("Added the rule that the person who submits a time card does not approve it.")
-    bits.append(f"Owner shown: {OWNER_WAS[own]}." if own in OWNER_WAS else "Owner still to be named.")
+    bits.append(f"Owner shown: {was}." if was else "Owner still to be named.")
     out.append((UPDATED, " ".join(bits)))
     out.append((FIRST, "First draft (V.01)."))
     return out

@@ -89,8 +89,9 @@ nothing is guessed.
   24 pay-impacting courses. The course pages, the Playbook, and the section audit workbook all read it.
 - **Owner on every course.** Owners are teams, shown at the top of the course, on the job aid, and
   in the Course record at the bottom. Payroll owns all payroll and financial topics (payroll, time
-  cards, pay changes, the payroll calendar, costing). HRIS owns recruiting (positions, requisitions,
-  hiring, student and faculty hiring). The rest are To be named. No individual names are published;
+  cards, pay changes, the payroll calendar, costing). HRIS owns everything else (recruiting and
+  hiring, assignment changes, offboarding, leave, records and reporting, the foundations). No
+  individual names are published;
   the contact for each team is in an owner register kept outside this repository. The mapping is
   `owner()` in `tools/governance.py`: by topic, with a few courses set by slug.
 - **Before you submit.** A block in the walkthrough and three lines on the job aid of each
@@ -111,9 +112,10 @@ nothing is guessed.
   fourth question on it.
 - **Final assessment.** Four questions added (time card approval, a change pending at the cutoff, your
   part in a pay error, what to attach); two are marked `draft` until the rules are confirmed.
-- **Owners set to teams (Nov 13, 2026).** V.02 first showed the two owners as Payroll and Finance
-  and Recruiting and Hiring. They are now Payroll and HRIS, and each of those courses logs the change.
-- **Still to decide** (not something a build can settle): owners for the To be named courses, how
+- **Owners set to teams (Nov 13, 2026).** V.02 first showed two owners, Payroll and Finance and
+  Recruiting and Hiring, and left 30 courses with no owner. Every course is now owned by Payroll or
+  HRIS, and each course logs the change.
+- **Still to decide** (not something a build can settle): how
   often courses are reviewed, who sends the notice when a pay-impacting course changes, and Payroll's
   list of the errors it corrects most.
 

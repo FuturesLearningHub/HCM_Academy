@@ -364,7 +364,9 @@ def build_changes():
     bef = [c for c in COURSES if c["slug"] in G.BEFORE]
     rule = [c for c in COURSES if c["slug"] in G.TIME_CARD_RULE]
     counts = Counter(G.owner(c) for c in COURSES)
-    owners = "".join(f'<tr><td data-th="Owner">{E(o)}</td><td data-th="Covers">{E(G.OWNER_SCOPE[o])}</td><td data-th="Courses">{counts[o]}</td></tr>' for o in (G.PAY, G.HIRE, G.TBD))
+    owners = "".join(f'<tr><td data-th="Owner">{E(o)}</td><td data-th="Covers">{E(G.OWNER_SCOPE[o])}</td><td data-th="Courses">{counts[o]}</td></tr>' for o in (G.PAY, G.HIRE, G.TBD) if counts[o])
+    unowned = f'<p class="tbc"><b>To confirm</b>An owner for the {counts[G.TBD]} courses marked To be named.</p>' if counts[G.TBD] else ""
+    had_none = sum(1 for c in COURSES if G.owner_first(c) is None)
     back = "../index.html"; n_first = len(COURSES) - len(new)
     doc = f'''<!DOCTYPE html>
 <html lang="en">
@@ -411,16 +413,17 @@ def build_changes():
       <h2 id="c2">Which team owns each <em>course</em>.</h2>
       <p>The owning team keeps its courses current and confirms the open items. Owners are teams, not individuals.</p>
       <table class="ref tl"><caption>Course owners</caption><thead><tr><th scope="col">Owner</th><th scope="col">Covers</th><th scope="col">Courses</th></tr></thead><tbody>{owners}</tbody></table>
-      <p class="tbc"><b>To confirm</b>An owner for the {counts[G.TBD]} courses marked To be named.</p>
+      {unowned}
     </section>
     <section class="part" aria-labelledby="c5">
       <p class="mono num">{E(G.OWNERS_SET)} &middot; {E(G.EDITION)}</p>
       <h2 id="c5">Owners are <em>teams</em>.</h2>
       <p>Each course is owned by a team. The owner shows at the top of the course, on its job aid, and in its Course record.</p>
       <ul class="plain">
-        <li><b>{E(G.PAY)}</b> owns all payroll and financial topics: {counts[G.PAY]} courses. They were shown as {E(G.OWNER_WAS[G.PAY])}.</li>
-        <li><b>{E(G.HIRE)}</b> owns recruiting: {counts[G.HIRE]} courses. They were shown as {E(G.OWNER_WAS[G.HIRE])}.</li>
+        <li><b>{E(G.PAY)}</b> owns all payroll and financial topics: {counts[G.PAY]} courses.</li>
+        <li><b>{E(G.HIRE)}</b> owns everything else, from recruiting and hiring through assignment changes, offboarding, leave, records and reporting, and the foundations: {counts[G.HIRE]} courses.</li>
       </ul>
+      <p>The draft first showed the owners as Payroll and Finance and as Recruiting and Hiring, and {had_none} courses had no owner. Every course now has one.</p>
     </section>
     <section class="part" aria-labelledby="c3">
       <p class="mono num">{E(G.UPDATED)} &middot; {E(G.EDITION)}</p>
