@@ -38,6 +38,7 @@ def source_of(c):
     if p.startswith("Built from Oracle"): return "Oracle docs and official sources (pending SME review)"
     if p.startswith("Built from U.S. Department of Labor"): return "DOL sources (pending SME review)"
     if p.startswith("Built from the other"): return "Other Academy courses (pending owner review)"
+    if p.startswith("Built from Vanderbilt's published"): return "Vanderbilt published calendar (pending Payroll review)"
     return "Vanderbilt SME sessions, transcripts, and guides"
 
 def open_items(c):

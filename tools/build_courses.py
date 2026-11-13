@@ -424,6 +424,16 @@ def build_changes():
         <li><b>{E(G.HIRE)}</b> owns everything else, from recruiting and hiring through assignment changes, offboarding, leave, records and reporting, and the foundations: {counts[G.HIRE]} courses.</li>
       </ul>
       <p>The draft first showed the owners as Payroll and Finance and as Recruiting and Hiring, and {had_none} courses had no owner. Every course now has one.</p>
+      <h3 class="rech">From Vanderbilt's published pages</h3>
+      <p>These facts were read from the HR/Payroll Calendar for 2026 and 2027 and from the Vanderbilt Student Privacy Statement. They replace guesses and close open items.</p>
+      <ul class="plain">
+        <li><b>The Shared Administrative Calendar</b> now follows the published calendar: where it is, each cutoff, and when time cards are due.</li>
+        <li><b>Monthly cutoff:</b> the 18th in most months and earlier in December. Courses that said the 15th to the 18th are corrected.</li>
+        <li><b>Time cards:</b> due at noon on the Monday after the pay period ends. Holiday weeks move it.</li>
+        <li><b>Off-cycle runs:</b> about two a month, with a cutoff of noon two days before.</li>
+        <li><b>FERPA:</b> Vanderbilt's directory information list, and the University Registrar as the contact.</li>
+      </ul>
+      <p class="tbc"><b>To confirm</b>The 2027 calendar adds a Semi Monthly payroll that no course covers yet, and the Retro Change Cutoff used by the costing courses is not on the published calendar.</p>
     </section>
     <section class="part" aria-labelledby="c3">
       <p class="mono num">{E(G.UPDATED)} &middot; {E(G.EDITION)}</p>

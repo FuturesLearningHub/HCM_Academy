@@ -1,4 +1,4 @@
-# Courses added in V.02: what to attach, who owns what, pay rules, and common pay errors.
+# Courses added in V.02: what to attach, who owns what, pay rules, common pay errors, and the HR/Payroll calendar.
 # Same shape as the courses in tools/course_content.py. Two of them are tables built from
 # tools/governance.py, so the table and the "Before you submit" block on each course never disagree.
 # Rules: no em or en dashes; every fact comes from another HCM Academy course or an official source;
@@ -97,7 +97,7 @@ def build(BY):
      ],
      watch=["These are the federal rules. A state where the employee works can require more.",
             "Never remove or reduce hours an employee worked to avoid overtime.",
-            "Open item: Vanderbilt's rule on whether paid time off and holidays count toward overtime, and when the workweek starts and ends.",
+            "Open item: Vanderbilt's rule on whether paid time off and holidays count toward overtime, and which seven days make the overtime workweek. The published calendar shows weekly pay periods running Monday to Sunday and biweekly periods Sunday to Saturday.",
             "Open item: Vanderbilt's holiday pay rules, shift differential rates, on-call and call-back pay, and the UKG pay code for each. Payroll is documenting these."],
      docs=[("DOL: Fact Sheet #23, Overtime Pay Requirements of the FLSA", DOL + "agencies/whd/fact-sheets/23-flsa-overtime-pay"),
            ("DOL: Fact Sheet #22, Hours Worked Under the FLSA", DOL + "agencies/whd/fact-sheets/22-flsa-hours-worked"),
@@ -141,10 +141,51 @@ def build(BY):
       dict(q="A supplement for a three-month interim role is left as Ongoing. What is the risk?", o=["It stops after one payroll", "It keeps paying until someone ends it", "It turns into base salary"], a=1, why="Ongoing supplements keep paying until someone ends them."),
      ],
      pending="Built from the other HCM Academy courses. Not yet ranked or confirmed by Payroll; confirm the open items before release."),
+    # ───────────── The HR/Payroll Calendar (replaces the parked draft in tools/courses_researched.py) ─────────────
+    # Every date rule here was read from Vanderbilt's published HR/Payroll Calendar PDFs for 2026 and 2027.
+    dict(slug="shared-calendar", topic="start", topic_label="Start Here",
+     title_pre="Work to the HR/Payroll", title_em="calendar", name="The Shared Administrative Calendar",
+     system="Overview", time="5 min",
+     sources=["Vanderbilt HR/Payroll Calendar, 2026 and 2027 (People Experience, Pay Calendar page)", "Oracle: Overview of Payroll Definitions", "Oracle: Recalculate Payroll for Retroactive Changes"],
+     intro=["Payroll runs on fixed dates. A transaction has to be approved before its cutoff, and a time card has to be in by its deadline, or the pay waits for the next run.",
+            "Vanderbilt publishes those dates in the HR/Payroll Calendar. This course shows where it is and how to read it."],
+     use_when="You are planning when to submit a transaction, or you need to know whether a change will make this payroll.",
+     steps_title="How to read the calendar",
+     steps=[
+      {"t": "Open the HR/Payroll Calendar.", "d": "People Experience publishes it on the Pay Calendar page of its site (hr.vanderbilt.edu, under Payroll). There is one PDF for each year, with a page for each month. The 2026 and 2027 calendars are posted."},
+      {"t": "Find your pay group.", "d": "Each row is one payroll. For each, the calendar gives the pay period, the paycheck date, the HCM Transaction Cutoff, and when time cards are due.",
+       "sub": ["Weekly: Monday to Sunday.", "Biweekly: two weeks, Sunday to Saturday.", "Monthly: the calendar month.", "Academic Monthly: the 16th to the 15th.", "Off Cycle: extra runs, about two a month."]},
+      {"t": "Monthly pay: the cutoff is the 18th in most months.", "d": "In 2026 the HCM Transaction Cutoff for monthly and academic monthly pay is the 18th in every month but December, when it is the 16th. It stays the 18th even when that is a weekend, so finish on the last working day before it. In 2027 it is the 17th or the 19th in five months."},
+      {"t": "Weekly and biweekly pay: the cutoff is the Friday a week before payday.", "d": "The HCM Transaction Cutoff falls seven days before the paycheck date in nearly every pay period. Holiday weeks move it."},
+      {"t": "Time cards are due at noon on the Monday after the pay period ends.", "d": "This is the Time Card Due column for weekly and biweekly pay. In holiday weeks the deadline moves, often to 10am or to Tuesday. Monthly pay has no time card."},
+      {"t": "Off-cycle runs: noon, two days before.", "d": "The calendar lists the off-cycle paycheck dates. For each one, the HCM Transaction Cutoff and the time card deadline are noon two days before, usually a Wednesday."},
+      {"t": "Submit early enough for approvals.", "d": "A transaction counts only once it is fully approved. Leave time for every approver to act before the cutoff, and track it with the notifications bell."},
+      {"t": "Know what happens if you miss it.", "d": "A change that arrives after payroll is calculated is picked up as a retroactive adjustment in a later run. The person may be paid late or need a correction."},
+     ],
+     table=dict(title="The deadlines on the 2026 calendar", head=["Payroll", "Paid", "HCM Transaction Cutoff", "Time Card Due"], rows=[
+      ["Weekly", "The Friday after the pay period ends", "The Friday a week before payday", "Noon on the Monday after the period ends"],
+      ["Biweekly", "The Friday after the pay period ends", "The Friday a week before payday", "Noon on the Monday after the period ends"],
+      ["Monthly and Academic Monthly", "The last business day of the month", "The 18th; December 16", "None"],
+      ["Off Cycle", "About twice a month", "Noon, two days before the paycheck date", "Noon, two days before the paycheck date"]]),
+     watch=["Do not work from memory. Dates move around holidays, and the December cutoff is early.",
+            "Pending approvals do not pay. A change still waiting in approvals at the cutoff misses that payroll.",
+            "Open item: the Retro Change Cutoff that the costing courses use is not on the published calendar. Payroll or Finance to say where it is published.",
+            "Open item: the 2027 calendar adds a Semi Monthly payroll that no course covers, and lists no off-cycle runs. Payroll to say who is paid semi-monthly and what changes for HCMs.",
+            "Open item: confirm that the HR/Payroll Calendar is what HCMs call the shared administrative calendar, and who maintains it."],
+     docs=[("Vanderbilt: Pay Calendar (People Experience)", "https://hr.vanderbilt.edu/compensation/payroll-calendar/"),
+           ("Oracle: Overview of Payroll Definitions", "https://docs.oracle.com/en/cloud/saas/human-resources/faucf/overview-of-payroll-definitions.html"),
+           ("Oracle: Recalculate Payroll for Retroactive Changes", "https://docs.oracle.com/en/cloud/saas/human-resources/faagp/recalculate-payroll-for-retroactive-changes.html")],
+     quiz=[
+      dict(q="Where do you find this year's payroll deadlines?", o=["The HR/Payroll Calendar on the People Experience site", "Last month's dates, which repeat every month", "The email your manager sent at the start of the year"], a=0, why="The calendar is published for each year and is the source of truth. Dates move around holidays."),
+      dict(q="It is December 2026. When is the monthly HCM Transaction Cutoff?", o=["December 18, as in other months", "December 16, moved for winter break", "December 31, the paycheck date"], a=1, why="The cutoff is the 18th in most months, but December is early. In 2026 it is December 16."),
+      dict(q="When are weekly time cards due?", o=["Friday, the day the paycheck goes out", "The 18th, with the monthly cutoff", "Noon on the Monday after the period ends"], a=2, why="The Time Card Due column gives noon on the Monday after the pay period ends. Holiday weeks move it."),
+     ],
+     pending="Built from Vanderbilt's published HR/Payroll Calendar and Oracle documentation. Not yet reviewed by Payroll; confirm the open items before release."),
     ]
 
 # What to confirm for each new course (shown as the Screen check note on the course page).
 VERIFY_A = {
+    "shared-calendar": ["that the HR/Payroll Calendar is what HCMs call the shared administrative calendar, and who maintains it", "where the Retro Change Cutoff is published", "who is paid semi-monthly from 2027, and whether off-cycle runs continue"],
     "what-to-attach": ["for each transaction, which documents are required and which are optional", "where each document is filed", "who decides when a course says If finance asks"],
     "who-owns-what": ["approval chains by transaction type", "who enters costing in each area", "the name of the team that processes moves from a requisition"],
     "pay-rules": ["when Vanderbilt's workweek starts and ends", "whether PTO and holiday hours count toward overtime", "holiday pay rules and pay codes", "shift differential rates and pay codes", "on-call and call-back pay rules", "that each DOL link opens"],

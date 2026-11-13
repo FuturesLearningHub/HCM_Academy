@@ -115,6 +115,14 @@ nothing is guessed.
 - **Owners set to teams (Nov 13, 2026).** V.02 first showed two owners, Payroll and Finance and
   Recruiting and Hiring, and left 30 courses with no owner. Every course is now owned by Payroll or
   HRIS, and each course logs the change.
+- **Facts from Vanderbilt's published pages (Nov 13, 2026).** The Shared Administrative Calendar course is
+  built from the HR/Payroll Calendar PDFs for 2026 and 2027 (People Experience site, Pay Calendar page).
+  The monthly cutoff, time card deadlines, and off-cycle runs in other courses were corrected from the
+  same source, and the FERPA course carries the directory information list from the Vanderbilt Student
+  Privacy Statement. `PUBLISHED` in `tools/governance.py` logs each change. Re-read the calendar when a
+  new one is posted: the 2027 calendar adds a Semi Monthly payroll and lists no off-cycle runs.
+- **Open items are asked once.** `fold_items` in `tools/governance.py` folds near-duplicate open items
+  in the section audit workbook, so a reviewer answers each point one time.
 - **Still to decide** (not something a build can settle): how
   often courses are reviewed, who sends the notice when a pay-impacting course changes, and Payroll's
   list of the errors it corrects most.

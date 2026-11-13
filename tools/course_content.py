@@ -6,7 +6,7 @@
 # Rules: no em or en dashes; every fact traceable to a source session, Vanderbilt guide, or vendor doc.
 
 TWO_PATHS = "Start from the Quick Action, or search the employee's name and open the action from their record. Both reach the same screen."
-CUTOFF = "Exempt (monthly) payroll cutoff is around the 18th, usually the 15th to 18th, and earlier in December. The payroll calendar is the source of truth."
+CUTOFF = 'The monthly (exempt) HCM Transaction Cutoff is the 18th in most months and earlier in December. The HR/Payroll Calendar is the source of truth.'
 FINANCE = "Oracle needs little in comments and attachments, but many departmental finance approvers want more. Confirm what your finance partner expects before you submit."
 SUBMIT_D = "Submit sends the transaction into approval. If your finance partner wants a note or a document, click Continue first to reach the comments and attachments step."
 
@@ -450,7 +450,7 @@ dict(slug="weekly-time-card-check", topic="payroll", topic_label="Payroll & Time
   {'t': "Review each employee's punches.", 'd': "Open each employee's time card (select their name). Each row is a day with In and Out punches and the hours they total. Missing punches and other problems show as exceptions, usually highlighted in color. Look for: a missing In or Out, a day with no punches on a scheduled workday, and unusually long or short days."},
   {'t': "Compare the punches to the employee's schedule.", 'd': 'The schedule shows when the employee was expected to work. A punch far from the scheduled time, or a scheduled day with no punches, is a question for the manager before the period closes.'},
   {'t': 'Confirm every time card is complete and approved.', 'd': "Back on the list for your department, look at the Approval State column for each employee: Open, Submitted, or Approved (PayPrep Ready). A time card that isn't approved won't pay correctly. Approvals must be in before payroll signs off; after sign-off an approval can't be removed unless payroll removes the sign-off first."},
-  {'t': 'Missing or late time card: contact the manager.', 'd': 'Email or call the manager with the employee\'s name, the pay period, and what\'s missing (for example, "no punches Tuesday"). Ask them to correct and approve it before the deadline on the payroll calendar.'},
+  {'t': 'Missing or late time card: contact the manager.', 'd': 'Email or call the manager with the employee\'s name, the pay period, and what\'s missing (for example, "no punches Tuesday"). Ask them to correct and approve it before the deadline on the payroll calendar. Time cards are due at noon on the Monday after the pay period ends; holiday weeks move it.'},
   {'t': "An error you can't resolve: contact payroll.", 'd': "Give payroll the employee's name and ID, the pay period, what the time card shows, and what you expected. Payroll decides whether a correction or an off-cycle payment is needed."},
  ],
  watch=["Empty time cards early in an open period are normal.","In an open period, Save. Don't Submit.",'One person does not both submit and approve the same time card. If you submit a time card for an employee, the manager approves it, not you.','Open item: Payroll to confirm the rule that the person who submits a time card does not approve it, and who approves when the manager is out.'],
@@ -522,7 +522,7 @@ dict(slug="off-cycle-payment", topic="payroll", topic_label="Payroll & Timecards
   {'t': 'Contact payroll.', 'd': "Email or call payroll: give the employee's name and ID, say the request meets off-cycle criteria, and say when the Oracle transaction will be approved. Payroll can't run QuickPay until the transaction is approved."},
   {'t': 'Payroll pays it in the next off-cycle run.', 'd': 'Tell the employee when to expect it. Pay goes to direct deposit.'},
  ],
- watch=["The form and the Oracle transaction go together. One without the other won't pay.","Off-cycle is the only way exempt staff are paid outside the monthly payroll."],
+ watch=["The form and the Oracle transaction go together. One without the other won't pay.","Off-cycle is the only way exempt staff are paid outside the monthly payroll.", "The HR/Payroll Calendar lists the off-cycle paycheck dates, usually two a month. The cutoff for each is noon two days before."],
  docs=docs("quickpay"),
  quiz=[
   dict(q="What two things are needed for an off-cycle payment?", o=["The Oracle transaction and the off-cycle request form","An email to payroll and a manager's approval","The form only"], a=0, why="The form and the transaction go together. One without the other won't pay."),

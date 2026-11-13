@@ -47,25 +47,25 @@ def owner_first(c):
 # ───────────── Cutoffs ─────────────
 PENDING = "Pending approvals do not pay. A change still waiting in approvals at the cutoff misses that payroll."
 CUTOFF = {
-    "monthly": "Monthly (exempt) pay: the change must be fully approved by the payroll cutoff, around the 18th and earlier in December. It is the HCM Transaction Cutoff on the payroll calendar. " + PENDING,
+    "monthly": "Monthly (exempt) pay: the change must be fully approved by the HCM Transaction Cutoff, the 18th in most months and earlier in December. Check the HR/Payroll Calendar. " + PENDING,
     "hire": "No pay starts until the hire is approved. Check the payroll calendar for the cutoff that applies to the person's pay cycle. " + PENDING,
-    "time": "Weekly and biweekly pay: time cards must be approved before payroll signs off. The deadline is on the payroll calendar. After sign-off, an approval can't be removed unless payroll removes the sign-off first.",
-    "term": "Submit before the payroll cutoff so pay stops on time. The exempt cutoff is around the 18th; check the payroll calendar.",
+    "time": "Weekly and biweekly pay: time cards are due at noon on the Monday after the pay period ends, and holiday weeks move that. Check the HR/Payroll Calendar. After payroll signs off, an approval can't be removed unless payroll removes the sign-off first.",
+    "term": "Submit before the HCM Transaction Cutoff so pay stops on time. For monthly pay it is the 18th in most months; check the HR/Payroll Calendar.",
     "costing": "Current and future changes: enter by the HCM Transaction Cutoff. Prior periods: send the Retro Costing Request Form (Salary) to the Research Finance Team by the Retro Change Cutoff, usually two business days earlier.",
     "position": "No payroll cutoff applies to a position. It must be approved and active before it can be posted or used, so date it today.",
-    "offcycle": "Payroll can't run the off-cycle payment until the Oracle transaction is approved. If the request does not meet the criteria on the form, the amount pays in the next regular payroll.",
+    "offcycle": "Off-cycle runs are on the HR/Payroll Calendar, with a cutoff of noon two days before each one. Payroll can't run the off-cycle payment until the Oracle transaction is approved. If the request does not meet the criteria on the form, the amount pays in the next regular payroll.",
     "leave": "To confirm: how leave entries line up with the payroll cutoffs. Vanderbilt's leave process is pending review by the Leave SME.",
 }
 
 # One-line versions for the printed job aid and the Playbook.
 CUTOFF_SHORT = {
-    "monthly": "Fully approved by the payroll cutoff (around the 18th, earlier in December). Pending approvals do not pay.",
+    "monthly": "Fully approved by the HCM Transaction Cutoff (the 18th in most months, earlier in December). Pending approvals do not pay.",
     "hire": "Approved before the cutoff for the person's pay cycle. No approval, no pay.",
-    "time": "Approved before payroll signs off. The deadline is on the payroll calendar.",
-    "term": "Submitted before the payroll cutoff, so pay stops on time.",
+    "time": "Due at noon on the Monday after the pay period ends. Holiday weeks move it.",
+    "term": "Submitted before the HCM Transaction Cutoff, so pay stops on time.",
     "costing": "By the HCM Transaction Cutoff. Prior periods: the retro form by the Retro Change Cutoff, usually two business days earlier.",
     "position": "No payroll cutoff. Date it today so it can be used.",
-    "offcycle": "Paid only after the Oracle transaction is approved.",
+    "offcycle": "Noon two days before the off-cycle run, and only once the Oracle transaction is approved.",
     "leave": "To confirm with the Leave SME.",
 }
 
@@ -250,6 +250,7 @@ BEFORE = {
             "The lines total 100%.",
             "The COA or POET string came from your finance partner.",
             "You ran the HCM Cost Allocation Verification Plan report afterward."],
+    confirm="Where the Retro Change Cutoff is published. It is not on the HR/Payroll Calendar.",
     cutoff="costing", submits="You or your finance partner. Confirm who owns it in your department", approves=CHAIN,
     then="Oracle uses the costing in effect on the Pay Period End Date and does not prorate."),
  "change-existing-costing": dict(tx="Change existing costing",
@@ -259,6 +260,7 @@ BEFORE = {
             "The action is right: Update, Correct, End Date, or Delete Record.",
             "End Date ends everything from that date forward.",
             "The lines total 100%, and you ran the verification report afterward."],
+    confirm="Where the Retro Change Cutoff is published. It is not on the HR/Payroll Calendar.",
     cutoff="costing", submits="You or your finance partner. Confirm who owns it in your department", approves=CHAIN,
     then="Costing results post to the General Ledger after payroll runs."),
  "fmla-tmla-transactions": dict(tx="FMLA or TMLA absence",
@@ -326,9 +328,40 @@ EXTRA_CHANGES = {
     # slug: [(date, text)] for hand-written entries. Newest first.
 }
 
+# Changes made on Nov 13, 2026 from Vanderbilt's own published pages: the HR/Payroll Calendar for 2026 and 2027
+# (People Experience, Pay Calendar page) and the Vanderbilt Student Privacy Statement (University Registrar).
+_MONTHLY_FIX = "Monthly cutoff corrected from the published HR/Payroll Calendar: the 18th in most months, earlier in December."
+_TIME_FIX = "Added when time cards are due, from the published HR/Payroll Calendar: noon on the Monday after the pay period ends."
+PUBLISHED = {
+    "shared-calendar": "Rewritten from Vanderbilt's published HR/Payroll Calendar for 2026 and 2027: where it is, each cutoff, when time cards are due, and off-cycle runs.",
+    "ferpa-for-staff": "Added Vanderbilt's directory information list and the University Registrar as the contact, from the Vanderbilt Student Privacy Statement.",
+    "comp-impacts-payroll": "Cutoffs corrected from the published HR/Payroll Calendar: the 18th in most months for monthly pay, and the Friday a week before payday for weekly and biweekly pay.",
+    "exempt-time-off": _MONTHLY_FIX, "change-salary": _MONTHLY_FIX,
+    "weekly-time-card-check": _TIME_FIX, "ukg-for-managers": _TIME_FIX,
+    "off-cycle-payment": "Added the off-cycle schedule from the published HR/Payroll Calendar: noon, two days before each run.",
+    "hire-staff": "Course names corrected to match the catalog.",
+    "pay-rules": "Added the pay period days from the published HR/Payroll Calendar to the open item on the workweek.",
+}
+_BLOCK_FIX = "Cutoff in Before you submit updated from the published HR/Payroll Calendar."
+
+def fold_items(items):
+    """Drop an open item when most of its words are already in a longer item for the same course, so reviewers answer each point once."""
+    import re
+    stop = set("the a an of to in is it and or for on at by you your with that this be are as from not do does can if then than they their its who what which whether how when where confirm vanderbilt vanderbilt's exact each any must still yet".split())
+    toks = lambda s: {w for w in re.findall(r"[a-z0-9]+", s.lower()) if w not in stop and len(w) > 2}
+    keep = []
+    for text in sorted(items, key=lambda x: -len(x)):
+        t = toks(text)
+        if any(len(t & toks(k)) >= 0.6 * max(1, len(t)) for k in keep): continue
+        keep.append(text)
+    return [x for x in items if x in keep]
+
 def changes(c):
     """What changed on a course, newest first: (date, text)."""
     s = c["slug"]; own = owner(c); was = owner_first(c); out = list(EXTRA_CHANGES.get(s, []))
+    b = BEFORE.get(s)
+    if s in PUBLISHED: out.append((OWNERS_SET, PUBLISHED[s] + (" " + _BLOCK_FIX if b and b.get("cutoff") in ("monthly", "term", "time", "offcycle") else "")))
+    elif b and b.get("cutoff") in ("monthly", "term", "time", "offcycle"): out.append((OWNERS_SET, _BLOCK_FIX))
     out.append((OWNERS_SET, f"Owner is now {own}. " + (f"It was shown as {was}." if was else "It had no owner yet.")))
     if s in NEW_IN_V02:
         out.append((UPDATED, "New course."))

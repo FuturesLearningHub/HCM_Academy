@@ -38,6 +38,7 @@ def source_of(slug):
     if p.startswith("Built from Oracle"): return "Oracle docs, pending SME review"
     if p.startswith("Built from U.S. Department of Labor"): return "DOL sources, pending SME review"
     if p.startswith("Built from the other"): return "Other Academy courses, pending owner review"
+    if p.startswith("Built from Vanderbilt's published"): return "Vanderbilt published calendar, pending Payroll review"
     return "Vanderbilt SME sources"
 
 def before_items(slug):
@@ -51,10 +52,7 @@ def before_items(slug):
 
 def open_items(c):
     items = [w.replace("Open item: ", "") for w in c["watch"] if w.startswith("Open item")] + VERIFY.get(c["slug"], []) + before_items(c["slug"])
-    seen, out = [], []
-    for i in items:
-        k = i.lower().strip(" .")
-        if not any(k in x or x in k for x in seen): seen.append(k); out.append(i[0].upper() + i[1:])
+    out = [i[0].upper() + i[1:] for i in G.fold_items(list(dict.fromkeys(items)))]   # fold near-duplicates so each point is asked once
     return "\n".join(f"- {i}" for i in out)
 
 wb = Workbook()
