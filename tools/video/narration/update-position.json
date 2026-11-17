@@ -10,5 +10,39 @@
     "Attach the reclass memo, add comments, and submit. Approval follows the same path as a new position.",
     "After approval, update the incumbent's assignment for what didn't flow. Person type, location, working hours, and hourly salary don't sync from the position. Open the employee's Employment Info, and use Change Assignment to update them, and the business title.",
     "Two things to remember. Position changes never reach an existing requisition; it keeps the position as it was when submitted. And reclassifications need Compensation's reclass memo before you update the position."
+  ],
+  "clips": [
+    [
+      0.0,
+      19.32
+    ],
+    [
+      19.93,
+      30.05
+    ],
+    [
+      30.49,
+      39.11
+    ],
+    [
+      39.67,
+      53.3
+    ],
+    [
+      53.91,
+      70.14
+    ],
+    [
+      70.63,
+      77.71
+    ],
+    [
+      78.16,
+      94.79
+    ],
+    [
+      95.42,
+      109.79
+    ]
   ]
 }

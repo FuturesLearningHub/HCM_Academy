@@ -14,5 +14,55 @@
     "Headcount one is single incumbent. More than one is pool. Set overlap allowed to Yes, so you can recruit while the current incumbent is still on payroll. Then set Term or Flex, if it applies.",
     "Attach the pre-search memo and the position description, add comments, and submit. Central HR approves only with the memo attached. Approval goes to your business unit approver, then to the central HR approval group.",
     "Three things to remember. Don't reactivate an inactive position; create a new one. Don't repurpose a position built for a different worker type. And the requisition copies the position when it's submitted, so fix the position first."
+  ],
+  "clips": [
+    [
+      0.0,
+      20.87
+    ],
+    [
+      21.43,
+      30.09
+    ],
+    [
+      30.59,
+      39.72
+    ],
+    [
+      40.22,
+      44.97
+    ],
+    [
+      45.45,
+      58.67
+    ],
+    [
+      59.29,
+      70.79
+    ],
+    [
+      71.37,
+      88.47
+    ],
+    [
+      89.05,
+      103.55
+    ],
+    [
+      104.15,
+      118.28
+    ],
+    [
+      118.87,
+      132.99
+    ],
+    [
+      133.54,
+      147.75
+    ],
+    [
+      148.62,
+      164.91
+    ]
   ]
 }

@@ -10,5 +10,39 @@
     "Convert the pending worker as you would any hire, after the background check clears and PEBC emails clear to start. Check that the new assignment, position, location, and pay reflect the new job, not the old one.",
     "Then review costing on the new assignment. Old costing does not carry the right account for a new job automatically. Check Costing for Persons after the hire. Blank costing means the work unit default is used, which is not an error.",
     "Two things to remember. The rehire field is only as good as the termination entry, so set it carefully when you terminate someone. And search inactive records before hiring a familiar name; a duplicate person record is hard to undo."
+  ],
+  "clips": [
+    [
+      0.0,
+      22.21
+    ],
+    [
+      22.72,
+      41.35
+    ],
+    [
+      41.93,
+      56.78
+    ],
+    [
+      57.18,
+      72.65
+    ],
+    [
+      73.09,
+      90.73
+    ],
+    [
+      91.22,
+      105.32
+    ],
+    [
+      105.71,
+      121.29
+    ],
+    [
+      121.91,
+      138.09
+    ]
   ]
 }
