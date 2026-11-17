@@ -1,14 +1,55 @@
 {
   "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
-  "note": "One read of the whole script, cut at the pauses between paragraphs. clips[i] is [start, end] in seconds and plays when segment i of the scene starts (window.__segs).",
-  "clips": [[0.0, 11.12], [11.59, 24.65], [25.14, 29.74], [30.18, 33.24], [33.72, 39.38], [39.84, 45.10], [45.53, 54.76], [55.23, 66.11], [66.58, 72.36], [72.84, 79.07], [79.55, 92.03]],
+  "note": "One read of the whole script, cut at the pauses between paragraphs. Step 3 (Show More) was recorded later in direct-reports-show-more.mp3, when the course moved to the Direct Reports quick action.",
+  "clips": [
+    [
+      0.0,
+      11.12
+    ],
+    [
+      11.59,
+      24.65
+    ],
+    [
+      25.14,
+      29.74
+    ],
+    [
+      0.0,
+      5.88,
+      "direct-reports-show-more.mp3"
+    ],
+    [
+      33.72,
+      39.38
+    ],
+    [
+      45.53,
+      54.76
+    ],
+    [
+      55.23,
+      66.11
+    ],
+    [
+      66.58,
+      72.36
+    ],
+    [
+      72.84,
+      79.07
+    ],
+    [
+      79.55,
+      92.03
+    ]
+  ],
   "script": [
     "Direct Reports. When a manager is leaving, moving, or handing off their team, you can move the whole team to a new manager in one transaction, from the manager's record.",
     "First, decide. If one person needs a new manager, use Change Manager on that person. If several people report to the same manager, use Direct Reports on the manager. That's what we'll do here.",
     "In Oracle, start on the Home page, and open the Our Workforce tab.",
-    "Under Quick Actions, select Employment Info.",
+    "Select Show More. Then, under Employment, select Direct Reports.",
     "Search for the current manager. That's the person whose reports are moving. Then select them.",
-    "You're now on the manager's record. Open Actions, and select Direct Reports.",
     "Enter the date the new manager takes over. If the current manager is leaving, use a date on or before their last day. Then select Continue.",
     "Select the reports who are moving. Then search for the new manager, and select them. You can send everyone to one manager, or split the team. Then select Continue.",
     "Review the summary, then select Submit. You can track the approval with the notifications bell.",

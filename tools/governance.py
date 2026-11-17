@@ -17,7 +17,8 @@ EDITION = "V.02 draft"
 EDITION_MONTH = "November 2026"
 UPDATED = "Nov 12, 2026"        # when the V.02 draft was first published
 OWNERS_SET = "Nov 13, 2026"     # when owners were set to the teams: Payroll and HRIS
-LATEST = OWNERS_SET             # the newest change across all courses
+SCREENS = "Nov 17, 2026"       # videos added; corrections from Vanderbilt's Our Workforce screens
+LATEST = SCREENS                # the newest change across all courses
 FIRST = "October 2026"          # when the V.01 courses were first drafted
 
 # ───────────── Owners ─────────────
@@ -324,8 +325,14 @@ def who_rows():
 # ───────────── Change log ─────────────
 NEW_IN_V02 = {"what-to-attach", "who-owns-what", "shared-calendar", "pay-rules", "common-pay-errors"}
 TIME_CARD_RULE = {"review-approve-time-cards", "weekly-time-card-check", "ukg-for-managers"}
+_VIDEO = "Added a narrated video and a detailed job aid with a picture for each step."
 EXTRA_CHANGES = {
     # slug: [(date, text)] for hand-written entries. Newest first.
+    "direct-reports": [(SCREENS, "Steps now follow Vanderbilt's Our Workforce screens: open Direct Reports from Show More, then search for the manager. " + _VIDEO)],
+    "create-requisition": [(SCREENS, "Path corrected from Vanderbilt's Our Workforce screens: Hiring > Job Requisitions, or the Create Job Requisition quick action.")],
+    "hire-non-worker": [(SCREENS, "Added an open item: when to use Add a Nonworker or Add a Contingent Worker, which Vanderbilt's Our Workforce screens list under New Person.")],
+    "compensation-memo": [(SCREENS, _VIDEO)], "background-checks": [(SCREENS, _VIDEO)],
+    "executive-search": [(SCREENS, _VIDEO)], "hire-staff": [(SCREENS, _VIDEO)],
 }
 
 # Changes made on Nov 13, 2026 from Vanderbilt's own published pages: the HR/Payroll Calendar for 2026 and 2027

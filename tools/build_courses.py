@@ -369,6 +369,7 @@ def build_changes():
     link = lambda c: f'<a href="../courses/{c["slug"]}/">{E(c["name"])}</a>'
     lst = lambda cs: "".join(f"<li>{link(c)}</li>" for c in cs)
     new = [c for c in COURSES if c["slug"] in G.NEW_IN_V02]
+    vids = [c for c in COURSES if c.get("video", {}).get("src", "").endswith(".mp4")]
     bef = [c for c in COURSES if c["slug"] in G.BEFORE]
     rule = [c for c in COURSES if c["slug"] in G.TIME_CARD_RULE]
     counts = Counter(G.owner(c) for c in COURSES)
@@ -422,6 +423,19 @@ def build_changes():
       <p>The owning team keeps its courses current and confirms the open items. Owners are teams, not individuals.</p>
       <table class="ref tl"><caption>Course owners</caption><thead><tr><th scope="col">Owner</th><th scope="col">Covers</th><th scope="col">Courses</th></tr></thead><tbody>{owners}</tbody></table>
       {unowned}
+    </section>
+    <section class="part" aria-labelledby="c6">
+      <p class="mono num">{E(G.SCREENS)} &middot; {E(G.EDITION)}</p>
+      <h2 id="c6">Watch it, then <em>do</em> it.</h2>
+      <p>Narrated explainer videos, each with a detailed job aid that has a picture for every step. Every line comes from the course itself. Steps outside Oracle are shown as diagrams; steps in Oracle are shown on rebuilt screens with fictional names.</p>
+      <h3 class="rech">Videos added ({len(vids)})</h3>
+      <ul class="chgl">{lst(vids)}</ul>
+      <h3 class="rech">From Vanderbilt's Our Workforce screens</h3>
+      <ul class="plain">
+        <li><b>Direct Reports</b> now opens from Our Workforce &gt; Show More, then you search for the manager.</li>
+        <li><b>Create a requisition:</b> the path is Hiring &gt; Job Requisitions, or the Create Job Requisition quick action.</li>
+        <li><b>Non-Workers:</b> new open item on when to use Add a Nonworker or Add a Contingent Worker.</li>
+      </ul>
     </section>
     <section class="part" aria-labelledby="c5">
       <p class="mono num">{E(G.OWNERS_SET)} &middot; {E(G.EDITION)}</p>
