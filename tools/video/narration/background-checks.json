@@ -10,5 +10,39 @@
     "Then convert the pending worker. Only convert after the clear to start email. PEBC also records citizenship on the application, which you'll need during conversion.",
     "Not on a requisition? For populations hired without a requisition, request the background check manually, through Formstack.",
     "Two things to remember. Work with minors set to Yes adds a protection of minors check. And if you're not sure where a candidate stands, ask central recruiting before you create a direct hire."
+  ],
+  "clips": [
+    [
+      0.0,
+      17.02
+    ],
+    [
+      17.54,
+      35.65
+    ],
+    [
+      36.2,
+      51.14
+    ],
+    [
+      51.58,
+      65.76
+    ],
+    [
+      66.22,
+      77.57
+    ],
+    [
+      78.04,
+      89.18
+    ],
+    [
+      89.65,
+      97.22
+    ],
+    [
+      97.84,
+      110.37
+    ]
   ]
 }
