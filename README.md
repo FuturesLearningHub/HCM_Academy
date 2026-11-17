@@ -175,6 +175,7 @@ This writes `dist/HCM_Academy_SCORM_1.2.zip` and `dist/HCM_Academy_SCORM_2004.zi
 - **Package-only changes**: folder links point at `index.html` (LMS file servers often do not serve folders); the Mock-up buttons are hidden; the 15 rows with no course yet are shown but do not count, so completion means all 68 courses; pages outside the package open in a new tab.
 - **Checks in the build**: every link and asset must resolve inside the package; the longest progress record must fit SCORM 1.2's 4,096 characters; the manifest must be well-formed. The schema files in `tools/scorm/xsd/` go into each zip.
 - Opened without an LMS, the launch page says it is not connected and keeps progress in the browser.
+- When the LMS opens the course in a small pop-up window, the launch page resizes that window to fill the screen (browsers allow this only for pop-ups). For the LMS setting, see the launch window options in the LMS (SCORM Cloud: Launch Behavior).
 
 ## HCM Playbook
 

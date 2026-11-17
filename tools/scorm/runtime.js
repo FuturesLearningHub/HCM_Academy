@@ -216,6 +216,20 @@
   window.addEventListener('beforeunload', end);
   window.addEventListener('unload', end);
 
+  /* ---------- fill the screen when the LMS opens the course in a small pop-up window ---------- */
+  function fillScreen(){
+    var top = window;
+    try { while (top.parent && top.parent !== top && top.parent.document) top = top.parent; } catch(e){}
+    try {
+      if (!top.opener) return;                       /* only a pop-up window can be resized */
+      var sw = screen.availWidth, sh = screen.availHeight;
+      if (top.outerWidth >= sw * 0.9 && top.outerHeight >= sh * 0.9) return;
+      top.moveTo(screen.availLeft || 0, screen.availTop || 0);
+      top.resizeTo(sw, sh);
+    } catch(e){}
+  }
+  fillScreen();
+
   /* ---------- start ---------- */
   function safe(rel){ return rel && !/^[a-z]+:|^\/|\.\.|\\/i.test(rel) && /\.html(#[\w-]*)?$/.test(rel) ? rel : ''; }
   var found = find(), resume = '';
