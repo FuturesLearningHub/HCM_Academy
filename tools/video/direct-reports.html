@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Direct Reports explainer</title>
+<!-- Explainer video source: a training simulation of Oracle HCM screens with fictional names.
+     Preview: open in a browser (space pauses). Render: node tools/video/render.cjs direct-reports courses/direct-reports/video/direct-reports.mp4 -->
+<style>
+@font-face{font-family:Inter;font-weight:300;src:url(fonts/inter-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:Inter;font-weight:400;src:url(../../assets/fonts/inter-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:Inter;font-weight:500;src:url(../../assets/fonts/inter-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:Inter;font-weight:600;src:url(../../assets/fonts/inter-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:Inter;font-weight:700;src:url(fonts/inter-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Libre Caslon Display';src:url(../../assets/fonts/libre-caslon-display-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Libre Caslon Text';font-style:italic;src:url(../../assets/fonts/libre-caslon-text-latin-400-italic.woff2) format('woff2');}
+@font-face{font-family:Antonio;font-weight:700;src:url(../../assets/fonts/antonio-latin-700-normal.woff2) format('woff2');}
+:root{ --black:#1C1C1C; --gold:#CFAE70; --oak:#946E24; --cream:#F5F3EF;
+  --o-bg:#323232; --o-tile:#4F4F4F; --o-ink:#161513; --o-ink2:rgba(22,21,19,.68); --o-line:#DCD8D3; --o-page:#FBF9F8; --o-cta:#312D2A; }
+*{ box-sizing:border-box; }
+html,body{ margin:0; background:#000; overflow:hidden; }
+body{ font-family:Inter,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+[hidden]{ display:none !important; }
+#stage{ position:relative; width:1920px; height:1080px; overflow:hidden; background:var(--o-bg); }
+#cam{ position:absolute; left:0; top:0; width:1440px; height:1000px; transform-origin:0 0; }
+.scr{ position:absolute; inset:0; overflow:hidden; }
+.dark{ background:var(--o-bg); color:#fff; }
+.light{ background:var(--o-page); color:var(--o-ink); }
+svg.i{ width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; flex:none; }
+
+/* global header */
+.gh{ position:absolute; left:0; top:0; width:1440px; height:86px; background:var(--o-bg); color:#fff; }
+.gh .menu{ position:absolute; left:12px; top:31px; width:24px; height:24px; }
+.gh .logo{ position:absolute; left:40px; top:19px; height:46px; }
+.gh .search{ position:absolute; left:431px; top:20px; width:581px; height:45px; background:#fff; border-radius:2px; display:flex; align-items:center; gap:10px; padding:0 14px; }
+.gh .search svg{ color:#C74634; width:24px; height:24px; stroke-width:2.2; }
+.gh .search span{ font-style:italic; color:#6b6b6b; font-size:15.5px; }
+.gh .ic{ position:absolute; top:31px; width:24px; height:24px; color:#fff; }
+.gh .ava{ position:absolute; left:1400px; top:26px; width:32px; height:34px; border-radius:3px; background:linear-gradient(160deg,#8a7a63,#4b4034); border:1px solid #9a9a9a; color:#fff; font:600 12px Inter; display:flex; align-items:center; justify-content:center; }
+
+/* home */
+.greet{ position:absolute; left:284px; top:108px; margin:0; font-weight:300; font-size:33px; letter-spacing:-.4px; color:#fff; }
+.tabs{ position:absolute; left:284px; top:190px; width:872px; height:38px; border-bottom:2px solid #5d5d5d; display:flex; gap:45px; font-size:16.5px; color:#d6d6d6; }
+.tabs span{ position:relative; height:38px; }
+.tabs span.on{ color:#fff; }
+.tabs span.on::after{ content:''; position:absolute; left:0; right:-14px; bottom:-2px; height:3px; background:#fff; }
+.lbl{ position:absolute; top:254px; font-weight:700; font-size:11.5px; letter-spacing:.02em; text-transform:uppercase; color:#fff; }
+.qa{ position:absolute; left:284px; top:296px; width:270px; margin:0; padding:0; list-style:none; }
+.qa li{ height:53.6px; display:flex; align-items:center; gap:13px; font-size:13.4px; color:#f2f2f2; padding-left:6px; }
+.qa li svg{ width:23px; height:23px; }
+.apps{ position:absolute; left:575px; top:295px; display:grid; grid-template-columns:repeat(4,136px); grid-auto-rows:136px; gap:9px; }
+.apps.three{ grid-template-columns:repeat(3,145px); grid-auto-rows:145px; gap:10px; }
+.tile{ background:var(--o-tile); display:flex; flex-direction:column; align-items:center; padding-top:30px; text-align:center; font-size:12.8px; line-height:1.2; color:#f3f3f3; }
+.tile svg{ width:40px; height:40px; stroke-width:2.3; margin-bottom:14px; }
+.three .tile{ padding-top:34px; }
+.tile.plus{ background:transparent; justify-content:center; padding:0; }
+.tile.plus svg{ width:44px; height:44px; stroke-width:1.5; margin:0; }
+.pill{ position:absolute; left:1384px; top:338px; width:32px; height:68px; border-radius:16px; background:#262626; box-shadow:0 2px 6px rgba(0,0,0,.4); display:flex; flex-direction:column; align-items:center; justify-content:space-around; padding:6px 0; color:#ddd; }
+.pill svg{ width:18px; height:18px; }
+.bubble{ position:absolute; left:1368px; top:694px; width:52px; height:44px; }
+.toast{ position:absolute; left:431px; top:96px; width:581px; background:#fff; color:var(--o-ink); border-radius:6px; box-shadow:0 6px 18px rgba(0,0,0,.35); display:flex; gap:12px; align-items:center; padding:13px 16px; font-size:14px; border-left:5px solid #508223; }
+.toast svg{ color:#508223; width:22px; height:22px; stroke-width:2.2; }
+.notif{ position:absolute; left:1110px; top:76px; width:330px; background:#fff; color:var(--o-ink); border-radius:6px; box-shadow:0 8px 24px rgba(0,0,0,.45); padding:14px 0 6px; }
+.notif h4{ margin:0 18px 10px; font-size:16px; font-weight:600; display:flex; justify-content:space-between; }
+.notif h4 span{ font-size:13px; font-weight:500; color:#2a6bb1; }
+.notif .it{ display:flex; gap:12px; padding:12px 18px; border-top:1px solid var(--o-line); font-size:13.5px; line-height:1.4; }
+.notif .it.new{ background:#F5F1E8; }
+.notif .it b{ font-weight:600; display:block; }
+.notif .it small{ color:var(--o-ink2); font-size:12.5px; }
+.notif .dot{ width:34px; height:34px; border-radius:50%; background:#E7E2D9; flex:none; display:flex; align-items:center; justify-content:center; color:var(--o-ink); }
+.notif .dot svg{ width:18px; height:18px; }
+
+/* light pages */
+.ptitle{ position:absolute; left:150px; top:102px; display:flex; align-items:center; gap:10px; font-size:28px; font-weight:400; letter-spacing:-.2px; }
+.ptitle svg{ width:24px; height:24px; color:var(--o-ink2); }
+.psub{ position:absolute; left:186px; top:146px; font-size:14px; color:var(--o-ink2); }
+.field{ height:40px; border:1px solid #8F8A85; border-radius:4px; background:#fff; display:flex; align-items:center; gap:8px; padding:0 12px; font-size:15px; color:var(--o-ink); position:relative; }
+.field.focus{ border-color:var(--o-ink); box-shadow:0 0 0 1px var(--o-ink); }
+.field .ph{ color:rgba(22,21,19,.5); }
+.field .grow{ flex:1; white-space:nowrap; overflow:hidden; }
+.field svg{ width:18px; height:18px; color:var(--o-ink2); }
+.field.ro{ background:#F1EFED; border-color:#C9C4BE; }
+.caret{ display:inline-block; width:1.5px; height:18px; background:var(--o-ink); vertical-align:-3px; margin-left:1px; }
+.flabel{ font-size:13px; color:var(--o-ink2); margin:0 0 6px; }
+.btn{ display:inline-flex; align-items:center; justify-content:center; height:36px; padding:0 18px; border-radius:4px; font:600 14px Inter; }
+.btn.cta{ background:var(--o-cta); color:#fff; }
+.btn.sec{ background:#fff; color:var(--o-ink); border:1px solid #8F8A85; }
+.btn.off{ opacity:.4; }
+.dd{ position:absolute; left:0; right:0; top:44px; background:#fff; border-radius:4px; box-shadow:0 6px 18px rgba(0,0,0,.18); border:1px solid var(--o-line); z-index:5; padding:4px 0; }
+.dd div{ padding:9px 14px; font-size:14.5px; }
+.dd div small{ display:block; color:var(--o-ink2); font-size:12.5px; margin-top:2px; }
+.dd div.hov{ background:#F1EFED; }
+.av{ border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:600; flex:none; }
+
+/* select person */
+.ssearch{ position:absolute; left:186px; top:190px; width:600px; }
+.slist{ position:absolute; left:186px; top:268px; width:720px; }
+.slist h3{ margin:0 0 6px; font-size:15px; font-weight:600; }
+.prow{ display:flex; align-items:center; gap:14px; height:66px; border-bottom:1px solid var(--o-line); padding:0 6px; }
+.prow .av{ width:40px; height:40px; font-size:14px; }
+.prow b{ font-size:15px; font-weight:600; display:block; }
+.prow small{ font-size:13px; color:var(--o-ink2); }
+
+/* flow */
+.fbtns{ position:absolute; right:150px; top:104px; display:flex; gap:10px; }
+.pban{ position:absolute; left:150px; top:154px; display:flex; align-items:center; gap:14px; }
+.pban .av{ width:50px; height:50px; font-size:17px; background:#2F7D7A; }
+.pban b{ font-size:18px; font-weight:600; display:block; }
+.pban small{ font-size:13.5px; color:var(--o-ink2); }
+.secs{ position:absolute; left:150px; top:228px; width:1000px; border-top:1px solid var(--o-line); }
+.sec{ border-bottom:1px solid var(--o-line); padding:14px 0; }
+.sh{ display:flex; align-items:center; gap:12px; height:34px; }
+.sh .n{ width:28px; height:28px; border-radius:50%; border:1.5px solid var(--o-ink); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; }
+.sh .n.ok{ background:#508223; border-color:#508223; color:#fff; }
+.sh .n.ok svg{ width:15px; height:15px; stroke-width:3; color:#fff; }
+.sh h3{ margin:0; font-size:19px; font-weight:600; flex:1; }
+.sh .sum{ font-size:14px; color:var(--o-ink2); flex:3; }
+.sh .edit{ font-size:14px; color:#2a6bb1; font-weight:500; }
+.sec.later .sh{ color:rgba(22,21,19,.45); }
+.sec.later .sh .n{ border-color:rgba(22,21,19,.35); }
+.sb{ padding:14px 0 6px 40px; }
+.grid2{ display:grid; grid-template-columns:330px 330px 330px; gap:20px; }
+.fw{ position:relative; }
+.mgr{ display:flex; align-items:center; gap:14px; width:520px; border:1px solid var(--o-line); border-radius:6px; padding:12px 14px; background:#fff; }
+.mgr .av{ width:40px; height:40px; font-size:14px; background:#7A5C2E; }
+.mgr b{ display:block; font-size:15px; font-weight:600; }
+.mgr small{ font-size:13px; color:var(--o-ink2); }
+.mgr .k{ font-size:12px; color:var(--o-ink2); text-transform:uppercase; letter-spacing:.04em; margin-bottom:2px; }
+.mgr .pen{ margin-left:auto; width:34px; height:34px; border-radius:4px; display:flex; align-items:center; justify-content:center; border:1px solid #C9C4BE; }
+.mgr .pen svg{ width:18px; height:18px; }
+.ta{ width:690px; height:88px; border:1px solid #8F8A85; border-radius:4px; background:#fff; padding:10px 12px; font-size:15px; line-height:1.4; }
+.ta.focus{ border-color:var(--o-ink); box-shadow:0 0 0 1px var(--o-ink); }
+.drop{ width:690px; height:62px; border:1px dashed #A9A39D; border-radius:6px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:14px; color:var(--o-ink2); margin-top:14px; }
+.drop svg{ width:20px; height:20px; }
+.drop u{ color:#2a6bb1; text-decoration:none; font-weight:500; }
+
+
+.amenu{ position:absolute; right:150px; top:146px; width:230px; background:#fff; border:1px solid var(--o-line); border-radius:4px; box-shadow:0 6px 18px rgba(0,0,0,.18); padding:4px 0; z-index:6; }
+.amenu div{ padding:9px 16px; font-size:14.5px; }
+.amenu div.hov{ background:#F1EFED; }
+.asof{ position:absolute; left:150px; top:222px; display:flex; align-items:center; gap:8px; font-size:14px; color:var(--o-ink2); border:1px solid #C9C4BE; border-radius:4px; padding:6px 10px; background:#fff; }
+.asof b{ color:var(--o-ink); font-weight:600; }
+.asof svg{ width:16px; height:16px; }
+.einfo{ position:absolute; left:150px; top:272px; display:flex; gap:20px; }
+.ecard{ width:480px; background:#fff; border:1px solid var(--o-line); border-radius:6px; padding:18px 22px; }
+.ecard h4{ margin:0 0 12px; font-size:16px; font-weight:600; }
+.ecard dl{ display:grid; grid-template-columns:150px 1fr; gap:10px 12px; margin:0; font-size:14px; }
+.ecard dt{ color:var(--o-ink2); } .ecard dd{ margin:0; font-weight:500; }
+.dr-list{ margin:0; font-size:14px; line-height:1.5; }
+.seg{ display:inline-flex; border:1px solid #8F8A85; border-radius:4px; overflow:hidden; height:40px; }
+.seg span{ padding:0 22px; display:flex; align-items:center; font-size:14.5px; }
+.seg span.on{ background:var(--o-cta); color:#fff; }
+.rtab{ width:900px; border:1px solid var(--o-line); border-radius:6px; background:#fff; overflow:hidden; }
+.rr{ display:grid; grid-template-columns:48px 220px 260px 1fr; align-items:center; height:42px; border-top:1px solid var(--o-line); font-size:14px; }
+.rr.hd{ border-top:0; background:#F1EFED; font-weight:600; font-size:13px; color:var(--o-ink2); height:36px; }
+.rr .cb{ width:18px; height:18px; border:1.5px solid #8F8A85; border-radius:3px; margin-left:16px; display:flex; align-items:center; justify-content:center; }
+.rr .cb svg{ width:13px; height:13px; stroke-width:3; color:#fff; display:none; }
+.rr.sel{ background:#F5F1E8; }
+.rr.sel .cb{ background:var(--o-cta); border-color:var(--o-cta); }
+.rr.sel .cb svg{ display:block; }
+.rr .nm{ font-weight:600; }
+.secs .sec#s2 .sb{ padding-top:8px; }
+/* cursor, click, highlight */
+#cursor{ position:absolute; left:0; top:0; width:30px; height:30px; transform-origin:0 0; z-index:50; pointer-events:none; }
+#ripple{ position:absolute; border-radius:50%; border:3px solid var(--gold); z-index:49; pointer-events:none; }
+#hl{ position:absolute; border:3px solid var(--gold); border-radius:8px; box-shadow:0 0 0 6px rgba(207,174,112,.28); z-index:48; pointer-events:none; }
+
+/* overlays, at video pixels */
+.cap{ position:absolute; left:72px; bottom:58px; max-width:1260px; background:rgba(28,28,28,.95); border-left:6px solid var(--gold); padding:24px 36px 28px 32px; color:var(--cream); box-shadow:0 10px 30px rgba(0,0,0,.35); }
+.cap .e{ font:700 21px Antonio; letter-spacing:.09em; color:var(--gold); text-transform:uppercase; }
+.cap .t{ font:500 35px/1.3 Inter; margin-top:6px; letter-spacing:-.2px; }
+.tag{ position:absolute; right:40px; bottom:40px; font:700 17px Antonio; letter-spacing:.08em; text-transform:uppercase; color:var(--cream); background:rgba(28,28,28,.85); padding:8px 14px; border-radius:3px; }
+.tag b{ color:var(--gold); font-weight:700; }
+.card{ position:absolute; inset:0; background:var(--black); color:var(--cream); }
+.card .vmark{ position:absolute; right:-120px; top:150px; height:900px; opacity:.07; }
+.card .in{ position:absolute; left:150px; top:250px; width:1500px; }
+.card .e{ font:700 26px Antonio; letter-spacing:.12em; color:var(--gold); text-transform:uppercase; }
+.card h1{ font:400 128px/1.02 'Libre Caslon Display'; margin:26px 0 30px; letter-spacing:-1px; }
+.card h1 em,.card h2 em{ font-family:'Libre Caslon Text'; font-style:italic; color:var(--gold); }
+.card p{ font:400 34px/1.4 Inter; margin:0; color:rgba(245,243,239,.82); max-width:1300px; }
+.card .rule{ width:120px; height:4px; background:var(--gold); margin:44px 0 0; }
+.card .lock{ position:absolute; left:150px; bottom:90px; height:64px; }
+.card .meta{ position:absolute; right:150px; bottom:100px; font:700 22px Antonio; letter-spacing:.1em; color:rgba(245,243,239,.6); text-transform:uppercase; }
+.card h2{ font:400 96px/1.05 'Libre Caslon Display'; margin:22px 0 46px; }
+.card ol{ margin:0; padding:0; list-style:none; counter-reset:k; }
+.card ol li{ counter-increment:k; display:flex; gap:30px; align-items:baseline; font:400 36px/1.35 Inter; margin-bottom:30px; max-width:1450px; }
+.card ol li::before{ content:counter(k,decimal-leading-zero); font:700 34px Antonio; color:var(--gold); min-width:56px; }
+#out .in{ top:180px; }
+.card.pc{ background:var(--cream); color:var(--black); }
+.card.pc .vmark{ opacity:.06; filter:invert(1); }
+.card.pc .e{ color:var(--oak); }
+.card.pc h2 em{ color:var(--oak); }
+.card.pc ol li{ color:var(--black); }
+.card.pc ol li::before{ color:var(--oak); }
+.card.pc .meta{ color:rgba(28,28,28,.55); }
+.card.pc .who{ position:absolute; right:150px; top:190px; display:flex; gap:18px; }
+.card.pc .who div{ width:118px; text-align:center; font:700 19px Antonio; letter-spacing:.08em; text-transform:uppercase; color:rgba(28,28,28,.65); }
+.card.pc .who span{ display:flex; width:96px; height:96px; margin:0 auto 12px; border-radius:50%; background:var(--black); color:var(--gold); align-items:center; justify-content:center; font:400 40px 'Libre Caslon Display'; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+ <defs>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 11 12 3.5 20.5 11v9.5h-17z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4h14l-2.5 4.5L19 13H5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M8 7h8M8 10h8M8 13h8M8 16h5"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 9.5h17M8 3v4M16 3v4M7 13h2M11 13h2M15 13h2M7 16.5h2M11 16.5h2M15 16.5h2"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M8 7h8M8 11h2M11 11h2M14 11h2M8 14h2M11 14h2M14 14h2M8 17h2M11 17h2M14 17h2"/></symbol>
+  <symbol id="i-calclock" viewBox="0 0 24 24"><rect x="3" y="4" width="15" height="13" rx="1"/><path d="M3 8h15M6 11h9M6 14h5"/><circle cx="18" cy="17.5" r="3.5"/><path d="M18 16v1.6l1 .8"/></symbol>
+  <symbol id="i-cal2" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15.5" rx="1"/><path d="M3.5 9h17M7 12.5h4M7 15.5h7"/></symbol>
+  <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5zM5 11v7M9.5 11v7M14.5 11v7M19 11v7M3 20.5h18"/></symbol>
+  <symbol id="i-walk" viewBox="0 0 24 24"><circle cx="11" cy="4.5" r="2"/><path d="m8 21 2.5-6 2.5 2 1 4M10.5 15l.5-6.5 3 3 3 1M11 8.5 7.5 11"/><path d="M16 20h5v-4"/></symbol>
+  <symbol id="i-skill" viewBox="0 0 24 24"><circle cx="8" cy="5.5" r="2.2"/><path d="M4 21v-8a4 4 0 0 1 8 0v1M14 17l6-9M17 18l4-4"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><rect x="5" y="4" width="13" height="16" rx="1"/><path d="M8 4V2.5h13V18h-3M8 8h7M8 11h7M8 14h7"/></symbol>
+  <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3.5"/><path d="M5 21v-3.5A5.5 5.5 0 0 1 10.5 12h3a5.5 5.5 0 0 1 5.5 5.5V21z"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 17H6a4 4 0 0 1-.5-8A6 6 0 0 1 17 8a4.5 4.5 0 0 1 1 9h-1"/><rect x="9" y="12" width="6" height="9" rx="1"/><path d="M10.5 15h3M10.5 18h3"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><circle cx="12" cy="9" r="2.2"/><path d="M8.5 15a3.5 3.5 0 0 1 7 0M8 18h8"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.5h4"/></symbol>
+  <symbol id="i-act" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3"/><path d="M7 21v-4a5 5 0 0 1 10 0v4M5 7a8 8 0 0 1 13-3.5M19 11a8 8 0 0 1-1 4"/></symbol>
+  <symbol id="i-net" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="4" r="1.6"/><circle cx="20" cy="4" r="1.6"/><circle cx="4" cy="20" r="1.6"/><circle cx="20" cy="20" r="1.6"/><path d="m5.2 5.2 4.6 4.6M18.8 5.2l-4.6 4.6M5.2 18.8l4.6-4.6M18.8 18.8l-4.6-4.6"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-absence" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3" stroke-dasharray="2 2"/><path d="M6 21v-5a6 6 0 0 1 12 0v5z" stroke-dasharray="2 2"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="m3 13 5 1 3-3-6-4 2-1 8 2 3-3a1.5 1.5 0 0 1 2 2l-3 3 2 8-1 2-4-6-3 3 1 5-1.5 1-2.5-4.5L2.5 14.5z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l5.5-3.5z"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="14" height="12"/><path d="M10 9v12M3 13h14M10 9C8 5 5 5 5 7s3 2 5 2c2 0 5 0 5-2s-3-2-5 2M15 15h6v6h-6zM16 18l1.5-1.5 1.5 3 1.5-1.5"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 21v-6h4v6zM10 21v-9h4v9zM16 21V9h4v12zM4 11l6-5 4 2 6-5M17 3h3v3"/></symbol>
+  <symbol id="i-jobs" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M9 7V4h6v3"/><circle cx="10" cy="13.5" r="3"/><path d="m12 15.5 3 3"/></symbol>
+  <symbol id="i-team" viewBox="0 0 24 24"><circle cx="7" cy="6" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="12" cy="5" r="2.5"/><path d="M3 20v-5a4 4 0 0 1 4-4M21 20v-5a4 4 0 0 0-4-4M8 20v-5a4 4 0 0 1 8 0v5z"/></symbol>
+  <symbol id="i-hire" viewBox="0 0 24 24"><circle cx="7" cy="5" r="2.5"/><circle cx="16" cy="5" r="2.5"/><path d="M3 18v-5a4 4 0 0 1 8 0"/><circle cx="16" cy="13" r="3.5"/><path d="m18.5 15.5 3 4"/></symbol>
+  <symbol id="i-review" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/><circle cx="7" cy="6.5" r="1.4"/><circle cx="17" cy="16.5" r="1.4"/></symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24"><path d="m12 2 2.4 1.8 3-.2.9 2.9 2.5 1.7-1 2.8 1 2.8-2.5 1.7-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9-2.5-1.7 1-2.8-1-2.8 2.5-1.7.9-2.9 3 .2z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-goal" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><path d="M2.5 19v-4a3.5 3.5 0 0 1 7 0v4z"/><circle cx="16" cy="12" r="6"/><circle cx="16" cy="12" r="2.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="1.5"/><path d="M5 6 17 3v3M14 13h7v4h-7a2 2 0 0 1 0-4z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/></symbol>
+  <symbol id="i-updown" viewBox="0 0 24 24"><path d="M7 21V4M4 7l3-3 3 3M15 4h4M15 8h4M17 4v13M14 20h6"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="6" cy="6" r="1.6"/><circle cx="12" cy="6" r="1.6"/><circle cx="18" cy="6" r="1.6"/><circle cx="6" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/><circle cx="6" cy="18" r="1.6"/><circle cx="12" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></g></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-checkc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 3 3 5-6"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 15v5h16v-5"/></symbol>
+ </defs>
+</svg>
+
+<template id="ghead">
+ <div class="gh">
+  <svg class="i menu"><use href="#i-menu"/></svg>
+  <img class="logo" src="../../assets/img/vu-lockup-white.png" alt="" />
+  <div class="search"><svg class="i"><use href="#i-search"/></svg><span>Search for people and actions</span></div>
+  <svg class="i ic" style="left:1236px"><use href="#i-home"/></svg>
+  <svg class="i ic" style="left:1275px"><use href="#i-star"/></svg>
+  <svg class="i ic" style="left:1313px"><use href="#i-flag"/></svg>
+  <svg class="i ic bell" style="left:1352px"><use href="#i-bell"/></svg>
+  <div class="ava">JA</div>
+ </div>
+</template>
+
+<div id="stage">
+ <div id="cam">
+
+  <!-- HOME -->
+  <section class="scr dark" data-screen="home">
+   <div class="ghs"></div>
+   <h1 class="greet">Good afternoon, Jordan Avery</h1>
+   <nav class="tabs"><span data-cls="!tab-wf:on">Me</span><span>My Team</span><span id="tab-wf" data-cls="tab-wf:on">Our Workforce</span><span>Help Desk</span><span>Reporting</span><span>Knowledge</span><span>Tools</span><span>Others</span></nav>
+   <div class="lbl" style="left:284px">Quick Actions</div>
+   <div class="lbl" style="left:575px">Apps</div>
+   <div data-if="!tab-wf">
+    <ul class="qa">
+     <li><svg class="i"><use href="#i-doc"/></svg>My Payslips</li>
+     <li><svg class="i"><use href="#i-cal"/></svg>Add Absence</li>
+     <li><svg class="i"><use href="#i-calc"/></svg>Absence Balance</li>
+     <li><svg class="i"><use href="#i-calclock"/></svg>Existing Absences</li>
+     <li><svg class="i"><use href="#i-bank"/></svg>Payroll Payment Methods</li>
+     <li><svg class="i"><use href="#i-walk"/></svg>Grow</li>
+     <li><svg class="i"><use href="#i-skill"/></svg>Skills and Qualifications</li>
+     <li><svg class="i"><use href="#i-book"/></svg>Current Learning</li>
+     <li><svg class="i"><use href="#i-search"/></svg>Search Jobs</li>
+     <li><svg class="i"><use href="#i-person"/></svg>Personal Details</li>
+    </ul>
+    <div class="apps">
+     <div class="tile"><svg class="i"><use href="#i-clock"/></svg>UKG (Kronos)<br>Timesheets</div>
+     <div class="tile"><svg class="i"><use href="#i-act"/></svg>My Activity<br>Center</div>
+     <div class="tile"><svg class="i"><use href="#i-net"/></svg>Connections</div>
+     <div class="tile"><svg class="i"><use href="#i-compass"/></svg>Journeys</div>
+     <div class="tile"><svg class="i"><use href="#i-person"/></svg>Personal<br>Information</div>
+     <div class="tile"><svg class="i"><use href="#i-bank"/></svg>Pay</div>
+     <div class="tile"><svg class="i"><use href="#i-absence"/></svg>Absences</div>
+     <div class="tile"><svg class="i"><use href="#i-plane"/></svg>Concur Travel</div>
+     <div class="tile"><svg class="i"><use href="#i-play"/></svg>Learning Hub</div>
+     <div class="tile"><svg class="i"><use href="#i-gift"/></svg>Benefits</div>
+     <div class="tile"><svg class="i"><use href="#i-chart"/></svg>Fidelity<br>Investments</div>
+     <div class="tile"><svg class="i"><use href="#i-jobs"/></svg>Internal Jobs</div>
+     <div class="tile"><svg class="i"><use href="#i-id"/></svg></div>
+     <div class="tile"><svg class="i"><use href="#i-updown"/></svg></div>
+     <div class="tile"><svg class="i"><use href="#i-wallet"/></svg></div>
+     <div class="tile"><svg class="i"><use href="#i-help"/></svg></div>
+    </div>
+   </div>
+   <div data-if="tab-wf">
+    <ul class="qa" id="qa-wf">
+     <li><svg class="i"><use href="#i-person"/></svg>Hire an Employee</li>
+     <li><svg class="i"><use href="#i-person"/></svg>Add a Pending Worker</li>
+     <li id="qa-ei"><svg class="i"><use href="#i-id"/></svg><span>Employment Info</span></li>
+     <li><svg class="i"><use href="#i-person"/></svg>Personal Details</li>
+     <li><svg class="i"><use href="#i-cloud"/></svg>Document Records</li>
+     <li><svg class="i"><use href="#i-doc"/></svg>Change Assignment</li>
+     <li><svg class="i"><use href="#i-updown"/></svg>Transfer</li>
+     <li><svg class="i"><use href="#i-id"/></svg>Terminate Employment</li>
+     <li style="padding-left:0">Show More</li>
+    </ul>
+    <div class="apps three">
+     <div class="tile"><svg class="i"><use href="#i-hire"/></svg>Hiring</div>
+     <div class="tile"><svg class="i"><use href="#i-compass"/></svg>Journeys</div>
+     <div class="tile"><svg class="i"><use href="#i-review"/></svg>Positions</div>
+     <div class="tile"><svg class="i"><use href="#i-team"/></svg>Person<br>Management</div>
+     <div class="tile"><svg class="i"><use href="#i-cloud"/></svg>Document<br>Records</div>
+     <div class="tile"><svg class="i"><use href="#i-chart"/></svg>Reports</div>
+     <div class="tile plus"><svg class="i"><use href="#i-plus"/></svg></div>
+    </div>
+   </div>
+   <div class="pill"><svg class="i"><use href="#i-info"/></svg><svg class="i"><use href="#i-dots"/></svg></div>
+   <svg class="bubble" viewBox="0 0 52 44"><path d="M4 4h34a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H16l-8 7v-7H4a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" fill="#fff"/><text x="21" y="24" text-anchor="middle" font-family="Libre Caslon Display" font-size="20" fill="#B4924A">V</text><circle cx="40" cy="30" r="11" fill="#fff" stroke="#CFAE70" stroke-width="1.5"/><circle cx="36" cy="30" r="1.6" fill="#B4924A"/><circle cx="41" cy="30" r="1.6" fill="#B4924A"/></svg>
+   <div class="toast" data-if="toast"><svg class="i"><use href="#i-checkc"/></svg><span>You submitted the Direct Reports request for Morgan Ellis.</span></div>
+   <div class="notif" data-if="notif">
+    <h4>Notifications <span>Show All</span></h4>
+    <div class="it new" id="n-item"><div class="dot"><svg class="i"><use href="#i-team"/></svg></div><div><b>Direct Reports: Morgan Ellis</b><small>Submitted by you · Just now</small></div></div>
+    <div class="it"><div class="dot"><svg class="i"><use href="#i-cal"/></svg></div><div><b>Absence request: Sam Patel</b><small>Approved · Yesterday</small></div></div>
+   </div>
+  </section>
+
+  <!-- SELECT PERSON -->
+  <section class="scr light" data-screen="select">
+   <div class="ghs"></div>
+   <div class="ptitle"><svg class="i"><use href="#i-back"/></svg>Employment Info</div>
+   <div class="psub" data-if="!verify">Select a person</div>
+   <div class="psub" data-if="verify">Select a person</div>
+   <div class="ssearch"><div class="field" id="sel-search" data-focus="search"><svg class="i"><use href="#i-search"/></svg><span class="grow"><span data-bind="search"></span><span class="caret" data-caret="search"></span><span class="ph" data-ph="search">Search by name or person number</span></span></div></div>
+   <div class="slist">
+    <h3 data-if="!sel-filter">Recent (4)</h3><h3 data-if="sel-filter">Results (1)</h3>
+    <div class="prow" id="row-morgan" data-if="!sel-filter"><div class="av" style="background:#7A5C2E">ME</div><div><b>Morgan Ellis</b><small>Director · Biological Sciences · Person Number 104402</small></div></div>
+    <div class="prow" id="row-morgan2" data-if="!verify sel-filter"><div class="av" style="background:#7A5C2E">ME</div><div><b>Morgan Ellis</b><small>Director · Biological Sciences · Person Number 104402</small></div></div>
+    <div class="prow" id="row-riley" data-if="verify sel-filter"><div class="av" style="background:#2F7D7A">RT</div><div><b>Riley Thompson</b><small>Program Coordinator · Biological Sciences · Person Number 104522</small></div></div>
+    <div class="prow" data-if="!sel-filter"><div class="av" style="background:#4A6FA5">DK</div><div><b>Drew Kim</b><small>Department Administrator · Chemistry · Person Number 103877</small></div></div>
+    <div class="prow" data-if="!sel-filter"><div class="av" style="background:#9C5B3B">SP</div><div><b>Sam Patel</b><small>Research Analyst · Biological Sciences · Person Number 104531</small></div></div>
+    <div class="prow" data-if="!sel-filter"><div class="av" style="background:#6B5B95">LR</div><div><b>Lee Robinson</b><small>Lab Manager · Biological Sciences · Person Number 104610</small></div></div>
+   </div>
+  </section>
+
+  <!-- EMPLOYMENT INFO -->
+  <section class="scr light" data-screen="emp">
+   <div class="ghs"></div>
+   <div class="ptitle"><svg class="i"><use href="#i-back"/></svg>Employment Info</div>
+   <div class="fbtns"><span class="btn sec" id="b-actions" data-if="!verify">Actions<svg class="i" style="width:16px;height:16px;margin-left:6px"><use href="#i-down"/></svg></span></div>
+   <div class="amenu" data-if="menu">
+    <div>Change Assignment</div><div>Change Location</div><div>Change Manager</div><div>Change Working Hours</div><div id="m-dr" class="hov">Direct Reports</div><div>Promote</div><div>Transfer</div><div>Terminate Employment</div>
+   </div>
+   <div class="pban" data-if="!verify"><div class="av" style="background:#7A5C2E">ME</div><div><b>Morgan Ellis</b><small>Director · Biological Sciences · Person Number 104402</small></div></div>
+   <div class="pban" data-if="verify"><div class="av" style="background:#2F7D7A">RT</div><div><b>Riley Thompson</b><small>Program Coordinator · Biological Sciences · Person Number 104522</small></div></div>
+   <div class="asof">As of <b data-if="!verify">11/17/2026</b><b data-if="verify" id="asof-date">12/01/2026</b><svg class="i"><use href="#i-cal"/></svg></div>
+   <div class="einfo">
+    <div class="ecard"><h4>Assignment</h4>
+     <dl data-if="!verify"><dt>Job</dt><dd>Director</dd><dt>Department</dt><dd>Biological Sciences</dd><dt>Assignment Status</dt><dd>Active - Payroll Eligible</dd><dt>Location</dt><dd>Nashville Main Campus</dd></dl>
+     <dl data-if="verify"><dt>Job</dt><dd>Program Coordinator</dd><dt>Department</dt><dd>Biological Sciences</dd><dt>Assignment Status</dt><dd>Active - Payroll Eligible</dd><dt>Location</dt><dd>Nashville Main Campus</dd></dl>
+    </div>
+    <div class="ecard" id="mgr-card"><h4>Managers</h4>
+     <dl data-if="!verify"><dt>Line Manager</dt><dd>Dana Price</dd></dl>
+     <dl data-if="verify"><dt>Line Manager</dt><dd id="v-mgr">Casey Nguyen</dd></dl>
+     <h4 style="margin-top:18px" data-if="!verify">Direct Reports (5)</h4>
+     <p class="dr-list" data-if="!verify">Avery Brooks, Riley Thompson, Sam Patel, Taylor Morgan, Jamie Chen</p>
+    </div>
+   </div>
+  </section>
+
+  <!-- DIRECT REPORTS FLOW -->
+  <section class="scr light" data-screen="flow">
+   <div class="ghs"></div>
+   <div class="ptitle" id="flow-top"><svg class="i"><use href="#i-back"/></svg>Direct Reports</div>
+   <div class="fbtns"><span class="btn sec">Cancel</span><span class="btn cta off" id="b-submit" data-cls="can-submit:on">Submit</span></div>
+   <div class="pban"><div class="av" style="background:#7A5C2E">ME</div><div><b>Morgan Ellis</b><small>Director · Biological Sciences · Person Number 104402</small></div></div>
+   <div class="secs">
+    <div class="sec" id="s1">
+     <div class="sh"><span class="n" data-if="!s1-done">1</span><span class="n ok" data-if="s1-done"><svg class="i"><use href="#i-check"/></svg></span><h3>When and Why</h3>
+      <span class="sum" data-if="s1-done">Starts 12/01/2026 · Same date for all reports</span><span class="edit" data-if="s1-done">Edit</span></div>
+     <div class="sb" data-if="!s1-done">
+      <div class="grid2">
+       <div class="fw"><p class="flabel">When do the changes start?</p><div class="field" id="f-date" data-focus="date"><span class="grow"><span data-bind="date"></span><span class="caret" data-caret="date"></span><span class="ph" data-ph="date">m/d/yyyy</span></span><svg class="i"><use href="#i-cal"/></svg></div></div>
+       <div class="fw"><p class="flabel">Use the same date for all reports?</p><div class="seg"><span class="on">Yes</span><span>No</span></div></div>
+      </div>
+      <div style="margin-top:20px"><span class="btn cta" id="c1">Continue</span></div>
+     </div>
+    </div>
+    <div class="sec" id="s2" data-cls="!s1-done:later">
+     <div class="sh"><span class="n" data-if="!s2-done">2</span><span class="n ok" data-if="s2-done"><svg class="i"><use href="#i-check"/></svg></span><h3>Existing Reports</h3>
+      <span class="sum" data-if="s2-done">3 of 5 reports move to Casey Nguyen</span><span class="edit" data-if="s2-done">Edit</span></div>
+     <div class="sb" data-if="s1-done !s2-done">
+      <p class="flabel">Reports to Morgan Ellis on 12/01/2026. Select the people to move.</p>
+      <div class="rtab" id="rtab">
+       <div class="rr hd"><span></span><span>Name</span><span>Job</span><span>New Manager</span></div>
+       <div class="rr"><span class="cb"></span><span>Avery Brooks</span><span>Administrative Assistant</span><span class="nm"></span></div>
+       <div class="rr" id="r-riley" data-cls="pick-riley:sel"><span class="cb"><svg class="i"><use href="#i-check"/></svg></span><span>Riley Thompson</span><span>Program Coordinator</span><span class="nm" data-if="assigned">Casey Nguyen</span></div>
+       <div class="rr" id="r-sam" data-cls="pick-sam:sel"><span class="cb"><svg class="i"><use href="#i-check"/></svg></span><span>Sam Patel</span><span>Research Analyst</span><span class="nm" data-if="assigned">Casey Nguyen</span></div>
+       <div class="rr" id="r-taylor" data-cls="pick-taylor:sel"><span class="cb"><svg class="i"><use href="#i-check"/></svg></span><span>Taylor Morgan</span><span>Financial Analyst</span><span class="nm" data-if="assigned">Casey Nguyen</span></div>
+       <div class="rr"><span class="cb"></span><span>Jamie Chen</span><span>Office Manager</span><span class="nm"></span></div>
+      </div>
+      <div class="grid2" style="margin-top:16px">
+       <div class="fw"><p class="flabel">New manager for the selected reports</p><div class="field" id="f-mgr" data-focus="mgr"><svg class="i"><use href="#i-search"/></svg><span class="grow"><span data-bind="mgr"></span><span class="caret" data-caret="mgr"></span><span class="ph" data-ph="mgr">Search for a person</span></span></div>
+        <div class="dd up" data-if="dd-mgr"><div id="opt-casey" class="hov">Casey Nguyen<small>Associate Director · Biological Sciences</small></div><div>Casey Ramirez<small>Lab Manager · Chemistry</small></div></div></div>
+      </div>
+      <div style="margin-top:18px"><span class="btn cta" id="c2">Continue</span></div>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <div id="hl" hidden></div>
+  <div id="ripple" hidden></div>
+  <svg id="cursor" viewBox="0 0 30 30"><path d="M4 2.5v21l5.4-5 3.6 8.2 3.6-1.6-3.6-8h7.5z" fill="#161513" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>
+ </div>
+
+ <div class="cap" id="cap" hidden><div class="e" id="cap-e"></div><div class="t" id="cap-t"></div></div>
+ <div class="tag" id="tag">Training simulation <b>·</b> fictional names</div>
+
+ <div class="card" id="intro">
+  <img class="vmark" src="../../assets/img/vu-v-icon.png" alt="" />
+  <div class="in">
+   <div class="e">HCM Academy · Assignment Changes</div>
+   <h1>Move a manager's direct <em>reports</em>.</h1>
+   <p>A manager is leaving, moving, or handing off their team. Move the team to a new manager in one transaction, from the manager's record.</p>
+   <div class="rule"></div>
+  </div>
+  <img class="lock" src="../../assets/img/vu-lockup-white.png" alt="" />
+  <div class="meta">Oracle HCM · Direct Reports</div>
+ </div>
+ <div class="card pc" id="p1">
+  <img class="vmark" src="../../assets/img/vu-v-icon.png" alt="" />
+  <div class="in">
+   <div class="e">Step 1 of 9 · Before you start</div>
+   <h2>One person, or the whole <em>team</em>?</h2>
+   <ol>
+    <li>One person needs a new manager: use Change Manager on that person.</li>
+    <li>Several people who report to the same manager: use Direct Reports on the manager. That is this video.</li>
+   </ol>
+  </div>
+  <div class="meta">Decide first</div>
+ </div>
+ <div class="card" id="out">
+  <img class="vmark" src="../../assets/img/vu-v-icon.png" alt="" />
+  <div class="in">
+   <div class="e">Watch-outs</div>
+   <h2>Three things to <em>remember</em>.</h2>
+   <ol>
+    <li>Do this before you terminate the manager. Reports left on a terminated manager leave approvals with no one to act on them.</li>
+    <li>If the manager is leaving, date the move on or before their last day.</li>
+    <li>Oracle moves at most 50 reports at a time. Split larger teams into batches.</li>
+   </ol>
+  </div>
+  <img class="lock" src="../../assets/img/vu-lockup-white.png" alt="" />
+  <div class="meta">Questions: pcb@vanderbilt.edu</div>
+ </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+/* header copies */
+var tpl = document.getElementById('ghead');
+document.querySelectorAll('.ghs').forEach(function(h){ h.replaceWith(tpl.content.cloneNode(true)); });
+
+var stage = document.getElementById('stage'), cam = document.getElementById('cam');
+var OUT = 1920 / 1440, W = 1440, H = 1000;   /* pages are taller than the window, so the camera can scroll */
+
+/* ---------- timeline ---------- */
+var EV = [], T = 0;
+function ev(o){ o.t = T; EV.push(o); return o; }
+function wait(d){ T += d; }
+function scene(n){ ev({ k:'scene', v:n }); }
+function flag(f, on){ ev({ k:'flag', f:f, on:on !== false }); }
+function val(key, v){ ev({ k:'val', key:key, v:v }); }
+function fset(key){ ev({ k:'focus', v:key }); }
+function move(sel, d){ ev({ k:'move', sel:sel, d:d || 1 }); T += d || 1; }
+function click(after){ ev({ k:'click', d:.5 }); T += .22; if (after) after(); T += .2; }
+function type(key, text, d){ ev({ k:'type', key:key, text:text, d:d }); T += d; }
+function camTo(sel, s, d, dx, dy){ ev({ k:'cam', sel:sel, s:s, d:d === undefined ? .9 : d, dx:dx || 0, dy:dy || 0 }); }
+function cap(n, text){ ev({ k:'cap', n:n, text:text }); }
+function hl(sel){ ev({ k:'hl', sel:sel }); }
+function card(name, on){ ev({ k:'card', name:name, on:on }); }
+var STEPS = 9;
+card('intro', true); scene('home');
+wait(3.8); card('p1', true); wait(.6); card('intro', false); wait(6.8); card('p1', false); wait(.7);
+
+cap(2, 'In Oracle, start on the Home page. Open the Our Workforce tab.');
+wait(.8); move('#tab-wf', 1.2); click(function(){ flag('tab-wf'); }); wait(1.3);
+
+cap(3, 'Under Quick Actions, select Employment Info.');
+camTo('#qa-wf', 1.5, 1.0); wait(.6); move('#qa-ei span', 1.1); hl('#qa-ei'); wait(.9); click(function(){ hl(null); }); wait(.35);
+
+camTo(null, 1, 0); scene('select'); wait(.5);
+cap(4, 'Search for the current manager: the person whose reports are moving.');
+wait(.5); move('#sel-search', 1.0); click(function(){ fset('search'); }); type('search', 'Morgan', .9); flag('sel-filter'); wait(.6);
+move('#row-morgan2', .9); hl('#row-morgan2'); wait(.7); click(function(){ hl(null); fset(null); }); wait(.35);
+
+scene('emp'); wait(.5);
+cap(5, "You are on the manager's record. Open Actions and select Direct Reports.");
+wait(.4); hl('.dr-list'); wait(1.6); hl(null); move('#b-actions', 1.0); click(function(){ flag('menu'); }); wait(.5);
+move('#m-dr', .8); hl('#m-dr'); wait(.5); click(function(){ hl(null); flag('menu', false); }); wait(.35);
+
+scene('flow'); wait(.5);
+cap(6, 'Pick the date the new manager takes over. If the current manager is leaving, use a date on or before their last day.');
+camTo('#s1', 1.3, .9, -70, 40); wait(.7); move('#f-date', 1.0); click(function(){ fset('date'); }); type('date', '12/01/2026', 1.3); wait(1.6);
+move('#c1', .9); click(function(){ fset(null); flag('s1-done'); }); wait(.8);
+
+cap(7, 'Select the reports to move, then assign the new manager. You can send everyone to one manager or split them.');
+camTo('#rtab', 1.2, .9, 0, 125); wait(.8);
+move('#r-riley .cb', .8); click(function(){ flag('pick-riley'); }); wait(.2);
+move('#r-sam .cb', .5); click(function(){ flag('pick-sam'); }); wait(.2);
+move('#r-taylor .cb', .5); click(function(){ flag('pick-taylor'); }); wait(.6);
+move('#f-mgr', .9); click(function(){ fset('mgr'); }); type('mgr', 'Casey', .8); flag('dd-mgr'); wait(.6);
+move('#opt-casey', .8); click(function(){ flag('dd-mgr', false); val('mgr', 'Casey Nguyen'); fset(null); flag('assigned'); }); wait(1.2);
+move('#c2', .9); click(function(){ flag('s2-done'); flag('can-submit'); }); wait(.6);
+
+cap(8, 'Review, then Submit. Track the approval with the notifications bell.');
+camTo(null, 1, 1.0); wait(1.4); move('#b-submit', 1.1); hl('#b-submit'); wait(.8); click(function(){ hl(null); }); wait(.35);
+scene('home'); flag('toast'); wait(1.6); move('.bell', 1.0); click(function(){ flag('toast', false); flag('notif'); }); wait(.3);
+camTo('.notif', 1.5, 1.0, -60, 40); wait(1.0); hl('#n-item'); wait(2.2); hl(null);
+
+camTo(null, 1, 0); flag('notif', false); flag('verify'); flag('sel-filter', false); val('search', ''); scene('select');
+cap(9, 'Then open a few of the moved employees in Employment Info and check their manager on the effective date.');
+wait(.6); move('#sel-search', .9); click(function(){ fset('search'); }); type('search', 'Riley', .8); flag('sel-filter'); wait(.5);
+move('#row-riley', .8); click(function(){ fset(null); }); wait(.3);
+scene('emp'); wait(.5); camTo('#mgr-card', 1.45, 1.0, -80, 0); wait(.9); hl('.asof'); wait(1.6); hl('#v-mgr'); wait(2.4); hl(null);
+card('out', true); wait(9.5);
+var DUR = T;
+
+/* ---------- state ---------- */
+function clamp(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
+function ease(x){ return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+function compute(t){
+  var s = { scene:'home', flags:{}, vals:{}, focus:null, typing:null, cur:{ x:760, y:560 }, click:null, cam:{ x:W / 2, y:405, s:1 }, cap:null, hl:null, cards:{} };
+  for (var i = 0; i < EV.length; i++){
+    var e = EV[i]; if (e.t > t) break;
+    var p = e.d ? clamp((t - e.t) / e.d) : 1;
+    switch (e.k){
+      case 'scene': s.scene = e.v; break;
+      case 'flag': s.flags[e.f] = e.on; break;
+      case 'val': s.vals[e.key] = e.v; break;
+      case 'focus': s.focus = e.v; break;
+      case 'move': if (e.to){ var q = ease(p), f = s.cur; s.cur = { x:f.x + (e.to.x - f.x) * q, y:f.y + (e.to.y - f.y) * q }; } break;
+      case 'click': s.click = { x:s.cur.x, y:s.cur.y, p:p }; break;
+      case 'type': s.vals[e.key] = e.text.slice(0, Math.round(e.text.length * p)); s.focus = e.key; break;
+      case 'cam':
+        var tg = e.sel ? e.fc : { x:W / 2, y:405 };
+        if (tg){ var q2 = ease(p), c = s.cam; s.cam = { x:c.x + (tg.x + e.dx - c.x) * q2, y:c.y + (tg.y + e.dy - c.y) * q2, s:c.s + (e.s - c.s) * q2 }; }
+        break;
+      case 'cap': s.cap = { n:e.n, text:e.text, t0:e.t }; break;
+      case 'hl': s.hl = e.sel ? { sel:e.sel, t0:e.t } : null; break;
+      case 'card': s.cards[e.name] = { on:e.on, t0:e.t }; break;
+    }
+  }
+  return s;
+}
+
+/* ---------- draw ---------- */
+var screens = [].slice.call(document.querySelectorAll('[data-screen]'));
+var active = screens[0];
+function q(sel){ return active.querySelector(sel) || document.querySelector(sel); }
+function on(s, expr){ return expr.split(' ').every(function(x){ return x.charAt(0) === '!' ? !s.flags[x.slice(1)] : !!s.flags[x]; }); }
+function camScale(s){ return OUT * s.cam.s; }
+function rectOf(el){
+  var c = cam.getBoundingClientRect(), r = el.getBoundingClientRect(), k = c.width / W;
+  return { x:(r.left - c.left) / k, y:(r.top - c.top) / k, w:r.width / k, h:r.height / k };
+}
+function center(el){ var r = rectOf(el); return { x:r.x + r.w / 2, y:r.y + r.h / 2 }; }
+var cur = document.getElementById('cursor'), rip = document.getElementById('ripple'), hlb = document.getElementById('hl');
+var capEl = document.getElementById('cap');
+var CARDS = [].map.call(document.querySelectorAll('.card'), function(c){ return c.id; });
+function draw(s, t){
+  screens.forEach(function(sc){ var me = sc.dataset.screen === s.scene; sc.hidden = !me; if (me) active = sc; });
+  document.querySelectorAll('[data-if]').forEach(function(el){ el.hidden = !on(s, el.getAttribute('data-if')); });
+  document.querySelectorAll('[data-cls]').forEach(function(el){
+    var a = el.getAttribute('data-cls').split(':'); el.classList.toggle(a[1], on(s, a[0]));
+  });
+  document.querySelectorAll('[data-bind]').forEach(function(el){ el.textContent = s.vals[el.dataset.bind] || ''; });
+  document.querySelectorAll('[data-ph]').forEach(function(el){ el.hidden = !!s.vals[el.dataset.ph] || s.focus === el.dataset.ph; });
+  document.querySelectorAll('[data-caret]').forEach(function(el){ el.hidden = s.focus !== el.dataset.caret || (Math.floor(t * 2) % 2 === 1 && s.typingDone !== false && false); });
+  document.querySelectorAll('[data-focus]').forEach(function(el){ el.classList.toggle('focus', s.focus === el.dataset.focus); });
+
+  var S = camScale(s), tx = 960 - s.cam.x * S, ty = 540 - s.cam.y * S;
+  tx = Math.min(0, Math.max(1920 - W * S, tx)); ty = Math.min(0, Math.max(1080 - H * S, ty));
+  cam.style.transform = 'translate(' + tx.toFixed(2) + 'px,' + ty.toFixed(2) + 'px) scale(' + S.toFixed(4) + ')';
+  var inv = 1 / s.cam.s;
+  cur.style.transform = 'translate(' + (s.cur.x - 4 * inv).toFixed(2) + 'px,' + (s.cur.y - 2.5 * inv).toFixed(2) + 'px) scale(' + inv.toFixed(4) + ')';
+  if (s.click && s.click.p < 1){
+    var r = (8 + 26 * ease(s.click.p)) * inv;
+    rip.hidden = false; rip.style.opacity = (1 - s.click.p).toFixed(3);
+    rip.style.left = (s.click.x - r) + 'px'; rip.style.top = (s.click.y - r) + 'px'; rip.style.width = rip.style.height = (2 * r) + 'px';
+    rip.style.borderWidth = (3 * inv) + 'px';
+  } else rip.hidden = true;
+  var target = s.hl && q(s.hl.sel);
+  if (target && !target.hidden && target.offsetParent){
+    var b = rectOf(target), pad = 6, a = clamp((t - s.hl.t0) / .3);
+    hlb.hidden = false; hlb.style.opacity = a;
+    hlb.style.left = (b.x - pad) + 'px'; hlb.style.top = (b.y - pad) + 'px'; hlb.style.width = (b.w + 2 * pad) + 'px'; hlb.style.height = (b.h + 2 * pad) + 'px';
+    hlb.style.borderWidth = (3 * inv) + 'px';
+  } else hlb.hidden = true;
+
+  if (s.cap){
+    var ca = clamp((t - s.cap.t0) / .35);
+    capEl.hidden = false; capEl.style.opacity = ease(ca); capEl.style.transform = 'translateY(' + (16 * (1 - ease(ca))).toFixed(1) + 'px)';
+    document.getElementById('cap-e').textContent = 'Step ' + s.cap.n + ' of ' + STEPS;
+    document.getElementById('cap-t').textContent = s.cap.text;
+  } else capEl.hidden = true;
+  CARDS.forEach(function(n){
+    var c = s.cards[n], el = document.getElementById(n), o = 0;
+    if (c){ var p = clamp((t - c.t0) / .6); o = c.on ? (c.t0 === 0 ? 1 : ease(p)) : 1 - ease(p); }
+    el.style.opacity = o; el.hidden = o <= 0;
+  });
+  document.getElementById('tag').hidden = CARDS.some(function(n){ return s.cards[n] && s.cards[n].on; });
+}
+
+/* measure each target in the state it is reached in */
+function prime(){
+  EV.forEach(function(e){
+    if ((e.k === 'move' || (e.k === 'cam' && e.sel)) && !e.to && !e.fc){
+      draw(compute(e.t + 1e-4), e.t);
+      var el = q(e.sel);
+      if (!el) throw new Error('no element ' + e.sel);
+      if (e.k === 'move'){ var r = rectOf(el); e.to = { x:r.x + Math.min(r.w / 2, 60), y:r.y + r.h / 2 }; if (r.w < 120) e.to.x = r.x + r.w / 2; }
+      else e.fc = center(el);
+    }
+  });
+}
+function seek(t){ draw(compute(t), t); }
+
+var capture = /capture/.test(location.search);
+Promise.all([document.fonts.ready].concat([].slice.call(document.images).map(function(im){ return im.complete ? 0 : new Promise(function(r){ im.onload = im.onerror = r; }); }))).then(function(){
+  prime();
+  window.__seek = seek; window.__dur = DUR; window.__ready = true;
+  if (!capture){
+    var fit = function(){ var k = Math.min(innerWidth / 1920, innerHeight / 1080); stage.style.transform = 'scale(' + k + ')'; stage.style.transformOrigin = '0 0'; };
+    fit(); addEventListener('resize', fit);
+    var t0 = performance.now(), paused = false, pt = 0;
+    addEventListener('keydown', function(e){ if (e.code === 'Space'){ paused = !paused; if (!paused) t0 = performance.now() - pt * 1000; } });
+    (function loop(){ if (!paused){ pt = ((performance.now() - t0) / 1000) % (DUR + 1); seek(pt); } requestAnimationFrame(loop); })();
+  }
+});
+})();
+</script>
+</body>
+</html>

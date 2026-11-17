@@ -1545,6 +1545,7 @@ COURSES_R = [{'slug': 'hcm-structure',
   'pending': 'Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before '
              'release.'},
  {'slug': 'direct-reports',
+  'video': {'src': 'video/direct-reports.mp4', 'poster': 'video/direct-reports.jpg', 'title': 'Direct Reports in Oracle HCM'},
   'topic': 'positions',
   'topic_label': 'Assignment Changes',
   'title_pre': 'Move direct',

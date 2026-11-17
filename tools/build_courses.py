@@ -106,9 +106,15 @@ def page(c, n, total):
     video = ""
     if c.get("video"):
         v = c["video"]
-        video = (f'<figure class="video"><div class="frame"><iframe src="{E(v["src"])}" title="Video: {E(v["title"])}" loading="lazy" '
-                 'allow="autoplay; fullscreen; clipboard-write" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'
-                 '<figcaption>Watch first, then read the details below.</figcaption></figure>')
+        if v["src"].endswith(".mp4"):   # explainer video kept with the course (no sound; the captions are on screen)
+            video = (f'<figure class="video"><div class="frame"><video controls playsinline preload="metadata" poster="{E(v["poster"])}" '
+                     f'aria-label="Video: {E(v["title"])}"><source src="{E(v["src"])}" type="video/mp4" /></video></div>'
+                     '<figcaption>Watch first, then read the details below. No sound: the steps are captioned on screen. '
+                     'A training simulation with fictional names, built from standard Oracle screens; Vanderbilt\'s screens may differ slightly.</figcaption></figure>')
+        else:
+          video = (f'<figure class="video"><div class="frame"><iframe src="{E(v["src"])}" title="Video: {E(v["title"])}" loading="lazy" '
+                   'allow="autoplay; fullscreen; clipboard-write" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'
+                   '<figcaption>Watch first, then read the details below.</figcaption></figure>')
     vf = VERIFY.get(c["slug"])
     if vf:
         pending += f'<p class="draft"><b>Screen check</b>Confirm in Vanderbilt\'s Oracle or UKG during a recorded demo: {E("; ".join(vf))}.</p>'

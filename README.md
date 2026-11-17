@@ -208,3 +208,16 @@ Keep / Change / Remove / Merge, Merge with, accuracy of steps, job aid, and quiz
 priority, PCB status), the owner by area, open items including the Before you submit points to confirm,
 and a Summary with live counts. Share it from SharePoint or OneDrive
 so reviewers edit one copy.
+
+## Explainer videos
+
+Each video is a scripted scene in `tools/video/<process>.html`: Oracle HCM screens rebuilt in HTML (Vanderbilt header, Redwood pages), a cursor that clicks and types, a camera that zooms to the field in use, and on-brand captions. Names and data are fictional, and every frame carries a "Training simulation" tag. Steps, captions and watch-outs come only from the course's own content.
+
+```
+node tools/video/render.cjs direct-reports courses/direct-reports/video/direct-reports.mp4
+python3 tools/build_courses.py
+```
+
+Open the scene file in a browser to preview it (space pauses). A course shows the video when its entry in the course data has `video` with an `.mp4` source and a poster.
+
+- Direct Reports (Assignment Changes): 82 seconds, no sound, captioned steps. The screens follow standard Oracle Redwood; check the labels against Vanderbilt's Oracle (see the course's Screen check).
