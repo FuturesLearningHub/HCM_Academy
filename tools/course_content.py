@@ -885,3 +885,5 @@ VERIFY.update(VERIFY_R)
 import courses_v02  # noqa: E402
 COURSES += courses_v02.build({c["slug"]: c for c in COURSES})
 VERIFY.update(courses_v02.VERIFY_A)
+import videos
+videos.apply(COURSES)

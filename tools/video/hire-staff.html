@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hiring staff explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). The hiring chain as a branded process board.
+     Every line comes from the course "Staff", which points to the course for each step. -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script>
+VIDEO.set({ steps:7 });
+var see = function(name){ return '<div class="df" data-in="st-' + see.k + '" data-d="1.8">' + C.I('book', 'width:22px;height:22px;vertical-align:-4px;margin-right:8px;color:#946E24') + 'See: ' + C.esc(name) + '</div>'; };
+var page = function(k, o){ see.k = k; return o; };
+VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Hire a staff ', em:'member', post:'.', rule:true,
+  p:'Hiring is a chain. The position feeds the requisition, the requisition feeds the pending worker, and the conversion builds the assignment and pay.', meta:'Process · From memo to day one' }));
+var pages = [];
+see.k = 1; pages.push({ pre:'Get the pre-search ', em:'memo', post:'.', lines:['Email vu.compensation@vanderbilt.edu.'],
+  art:C.doc({ kicker:'Step 1', title:'The memo gives you', rows:[['Job code', 'Six digits', 'st-1', .6], ['Also', 'Title, level, and assignment category', 'st-1', 1.0]], foot:see('Compensation Management: Getting the Compensation Memo') }) });
+see.k = 2; pages.push({ pre:'Create the ', em:'position', post:'.', lines:['Or update one that fits.', 'Never reactivate an inactive position, or repurpose one built for another worker type.'],
+  art:C.doc({ kicker:'Step 2', title:'Build it right', rows:[['Job', "The memo's job code", 'st-2', .6], ['Standard working hours', '40', 'st-2', .9], ['Location', 'The real location', 'st-2', 1.2], ['Attach', 'The memo', 'st-2', 1.5]], foot:see('Create a position') }) });
+see.k = 3; pages.push({ pre:'Create the ', em:'requisition', post:'.', lines:['Create it from the approved position.', 'The requisition copies the position, so fix the position first.'],
+  art:C.doc({ kicker:'Step 3', title:'Built from the position', rows:[['Copies', 'The approved position', 'st-3', .6], ['Location', 'Drives whether a pay range must be posted', 'st-3', 1.0]], foot:see('Create a requisition') }) });
+see.k = 4; pages.push({ pre:'Interviews and the ', em:'offer', post:'.', lines:['The recruiter manages candidates and the offer in Oracle Recruiting.'],
+  art:C.doc({ kicker:'Step 4', title:'The recruiter leads', rows:[['Candidates and offer', 'In Oracle Recruiting', 'st-4', .6], ['Position changes after the offer', 'The recruiter issues a new offer letter', 'st-4', 1.0]] }) });
+see.k = 5; pages.push({ pre:'Wait for ', em:'clearance', post:'.', lines:['Staff need an I-9 and a background check.', 'On a requisition, the check is automated in Oracle Recruiting, with HireRight.'],
+  art:C.doc({ kicker:'Step 5', title:'From PEBC', rows:[['You get', 'The clear to start email', 'st-5', .6]], foot:see('Background checks') }) });
+see.k = 6; pages.push({ pre:'Convert the pending ', em:'worker', post:'.', lines:['Our Workforce, then Pending Workers, then the three dots, then Convert.'],
+  art:C.doc({ kicker:'Step 6', title:'Get these right', rows:[['Hire reason', 'Hire employment', 'st-6', .6], ['Assignment status', 'Active payroll eligible', 'st-6', .9], ['Home address', 'In the United States', 'st-6', 1.2], ['New hire report', 'Include', 'st-6', 1.5]], foot:see('Convert a pending worker') }) });
+see.k = 7; pages.push({ pre:'Check costing on ', em:'day one', post:'.', lines:['Open Costing for Persons for the new hire and confirm the account.'],
+  art:C.doc({ kicker:'Step 7', title:'Costing for Persons', rows:[['Confirm', 'The account', 'st-7', .6], ['Blank costing', 'Uses the work unit default', 'st-7', 1.0]], foot:see('Enter costing for a person') }) });
+VIDEO.addCard(C.board({ id:'board', steps:['Memo', 'Position', 'Requisition', 'Interviews and offer', 'Background check', 'Convert', 'Costing'], pages:pages }));
+VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Bad data in, bad data ', em:'out', post:'.',
+  items:['Most hire problems start at the position. A wrong location, hours, or job code flows into the posting, the offer, and the first paycheck.', "Don't convert until PEBC sends clear to start."], meta:'Questions: pcb@vanderbilt.edu' }));
+
+seg(); card('intro'); wait(3.5); hold(-.5);
+for (var k = 1; k <= 7; k++){
+  seg(); if (k === 1){ card('board'); wait(.6); card('intro', false); }
+  stepTo(k, 7); wait(3.2); mark(k); hold(-.7);
+}
+seg(); card('out'); wait(.6); card('board', false); wait(2); hold(-2.2);
+VIDEO.run();
+</script>
+</body>
+</html>

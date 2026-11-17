@@ -110,8 +110,9 @@ def page(c, n, total):
             video = (f'<figure class="video"><div class="frame"><video controls playsinline preload="metadata" poster="{E(v["poster"])}" '
                      f'aria-label="Video: {E(v["title"])}"><source src="{E(v["src"])}" type="video/mp4" /></video></div>'
                      '<figcaption>Watch first, then read the details below. '
-                     + ('Narrated, with the steps captioned on screen. ' if v.get("narrated") else 'No sound: the steps are captioned on screen. ') +
-                     'A training simulation with fictional names, built from standard Oracle screens; Vanderbilt\'s screens may differ slightly.</figcaption></figure>')
+                     + ('Narrated, with the steps on screen.</figcaption></figure>' if v.get("kind") == "board" else
+                        ('Narrated, with the steps captioned on screen. ' if v.get("narrated") else 'No sound: the steps are captioned on screen. ') +
+                        'A training simulation with fictional names, built from standard Oracle screens; Vanderbilt\'s screens may differ slightly.</figcaption></figure>'))
         else:
           video = (f'<figure class="video"><div class="frame"><iframe src="{E(v["src"])}" title="Video: {E(v["title"])}" loading="lazy" '
                    'allow="autoplay; fullscreen; clipboard-write" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'

@@ -1,0 +1,11 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Executive or external search. Most staff recruiting runs through Cielo, Vanderbilt's recruiting partner, which focuses on roles at M four and below. Executive roles usually go to a search firm, and that changes how the requisition is created.",
+    "For Cielo's executive search program, create a recruiting requisition, and pick Executive search as the requisition type. A Cielo liaison takes the requisition, and a separate Cielo team recruits.",
+    "Any other firm, for example Korn Ferry, needs a P O requisition, not a recruiting requisition. Outside firms are paid differently, so the search can't be a requisition in Oracle Recruiting. Work with your procurement contact on the P O.",
+    "Everything else is Standard or Abbreviated. Executive search isn't for regular roles. See the course, Create a requisition.",
+    "One thing to remember. Confirm with central recruiting before you start an executive search."
+  ]
+}

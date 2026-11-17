@@ -2,6 +2,8 @@ const { chromium } = require('playwright'); const { spawn } = require('child_pro
 (async () => {
   const FPS = 30, out = process.argv[3];   /* usage: node tools/video/render.cjs <scene> <out.mp4> */
   const b = await chromium.launch(); const p = await b.newPage({ viewport:{ width:1920, height:1080 } });
+  const nj = __dirname + '/narration/' + process.argv[2] + '.json';
+  if (require('fs').existsSync(nj)){ const cl = JSON.parse(require('fs').readFileSync(nj, 'utf8')).clips; if (cl) await p.addInitScript(d => { window.HCM_NARR = d; }, cl.map(c => c[1] - c[0])); }
   await p.goto('file://' + __dirname + '/' + process.argv[2] + '.html?capture'); await p.waitForFunction(() => window.__ready);
   const dur = await p.evaluate(() => window.__dur), n = Math.ceil(dur * FPS);
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',

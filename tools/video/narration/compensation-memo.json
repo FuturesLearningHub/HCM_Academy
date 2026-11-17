@@ -1,0 +1,48 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Getting the compensation memo. No staff or non-exempt position is approved, and no requisition goes forward, without Compensation's pre-search memo. So get it first.",
+    "Start with your engagement consultant. They help you write the position description, using the standard Vanderbilt template.",
+    "Next, request the review from Compensation. Submit a help desk ticket to the Compensation team, at V U dot compensation at Vanderbilt dot E D U, with the role details and the position description.",
+    "Include the work location. The recommended pay range depends on it. Say if the role is in New York, Miami, California, or on another campus. Don't let it default to Nashville.",
+    "Compensation reviews market data and internal equity, matches the duties to a job in the job architecture, and sends the memo. It gives you the six-digit job code, the job name and level, the assignment category, and the recommended pay range. A reclassification gets a reclass memo instead.",
+    "Use the memo to build the position. Enter the job code, name, and category from the memo, and attach the memo to the position. Central HR won't approve a staff position without it.",
+    "Attach it to the requisition too. Central recruiting checks that the memo is from the last twelve months, and that its job code matches the requisition. If your business unit doesn't want hiring managers to see the full range, send the memo to central recruiting directly instead.",
+    "Two things to remember. VTS temporary positions don't need a memo. And a memo older than twelve months means a new request."
+  ],
+  "clips": [
+    [
+      0.0,
+      12.03
+    ],
+    [
+      12.58,
+      19.35
+    ],
+    [
+      19.91,
+      33.59
+    ],
+    [
+      34.13,
+      45.8
+    ],
+    [
+      46.38,
+      66.16
+    ],
+    [
+      66.74,
+      78.77
+    ],
+    [
+      79.12,
+      98.11
+    ],
+    [
+      98.6,
+      106.76
+    ]
+  ]
+}

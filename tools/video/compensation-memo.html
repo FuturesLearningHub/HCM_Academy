@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Compensation memo explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Steps outside Oracle, shown as a branded process board.
+     Every line comes from the course "Compensation Management: Getting the Compensation Memo". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script>
+VIDEO.set({ steps:6 });
+var ck = C.I('checkc');
+VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Get the compensation ', em:'memo', post:' first.', rule:true,
+  p:"No staff or non-exempt position is approved, and no requisition goes forward, without Compensation's pre-search memo.", meta:'Process · Compensation' }));
+VIDEO.addCard(C.board({ id:'board',
+  steps:['Position description', 'Request the review', 'Work location', 'The memo', 'Build the position', 'Attach to the requisition'],
+  pages:[
+    { pre:'Start with the position ', em:'description', post:'.', lines:['Your engagement consultant helps write it.', 'Use the standard Vanderbilt position description template.'],
+      art:C.doc({ kicker:'Position description', title:'Written with your engagement consultant', rows:[['Template', 'Standard Vanderbilt', 'st-1', .6], ['Helps write it', 'Engagement consultant', 'st-1', 1.0]] }) },
+    { pre:'Request the ', em:'review', post:'.', lines:['Submit a help desk ticket to the Compensation team.', 'Include the role details and the position description.'],
+      art:C.doc({ kicker:'Help desk ticket', title:'Compensation review', rows:[['To', 'Compensation team', 'st-2', .5], ['Email', 'vu.compensation@vanderbilt.edu', 'st-2', .8], ['Include', 'Role details', 'st-2', 1.1], ['Attach', 'Position description', 'st-2', 1.4]] }) },
+    { pre:'Include the work ', em:'location', post:'.', lines:['The recommended pay range depends on location.', "Say where the role is. Don't let it default to Nashville."],
+      art:'<div class="art"><div class="dk">Where is the role?</div><b>Say it in the request</b><div class="row"><span class="tg on">New York</span><span class="tg on">Miami</span><span class="tg on">California</span><span class="tg on">Another campus</span></div>' +
+          '<div class="ln no" data-in="st-3" data-d="1.2">' + C.I('info') + '<span>Not stated? The pay range defaults to Nashville.</span></div></div>' },
+    { pre:'Compensation sends the ', em:'memo', post:'.', lines:['They review market data and internal equity.', 'They match the duties to a job in the job architecture.', 'A reclassification gets a reclass memo instead.'],
+      art:C.doc({ kicker:'Pre-search memo', title:'What the memo gives you', rows:[['Job code', 'Six digits', 'st-4', .6], ['Job name and level', 'From the job architecture', 'st-4', .9], ['Assignment category', 'For example, Professional exempt', 'st-4', 1.2], ['Recommended pay range', 'For the work location', 'st-4', 1.5]] }) },
+    { pre:'Use it to build the ', em:'position', post:'.', lines:['Enter the job code, name, and category from the memo.', 'Attach the memo to the position.', "Central HR won't approve a staff position without it."],
+      art:C.doc({ kicker:'Position', title:'Built from the memo', rows:[['Job', 'Six-digit code from the memo', 'st-5', .6], ['Name', 'From the memo', 'st-5', .9], ['Assignment category', 'From the memo', 'st-5', 1.2]], foot:'<span data-in="st-5" data-d="1.6">' + C.I('clip', 'width:22px;height:22px;vertical-align:-4px;margin-right:8px;color:#946E24') + 'Attached: pre-search memo</span>' }) },
+    { pre:'Attach it to the ', em:'requisition', post:' too.', lines:['Central recruiting checks the memo before the requisition goes forward.', "Don't want hiring managers to see the full range? Send the memo to central recruiting directly instead."],
+      art:'<div class="art"><div class="dk">Central recruiting checks</div><b>Before the requisition goes forward</b>' +
+          '<div class="ln" data-in="st-6" data-d=".6">' + ck + '<span>The memo is from the last 12 months.</span></div>' +
+          '<div class="ln" data-in="st-6" data-d="1.0">' + ck + '<span>Its job code matches the requisition.</span></div></div>' }
+  ] }));
+VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Two things to ', em:'remember', post:'.',
+  items:["VTS temporary positions don't need a memo.", 'A memo older than 12 months means a new request.'], meta:'Questions: pcb@vanderbilt.edu' }));
+
+/* timeline: one segment per narration paragraph */
+seg(); card('intro'); wait(3.5); hold(-.5);
+for (var k = 1; k <= 6; k++){
+  seg(); if (k === 1){ card('board'); wait(.6); card('intro', false); }
+  stepTo(k, 6); wait(3.2); mark(k); hold(-.7);
+}
+seg(); card('out'); wait(.6); card('board', false); wait(2); hold(-2.2);
+VIDEO.run();
+</script>
+</body>
+</html>

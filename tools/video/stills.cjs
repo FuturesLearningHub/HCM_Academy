@@ -4,6 +4,8 @@ const { chromium } = require('playwright'); const fs = require('fs'); const path
 (async () => {
   const [scene, dir] = process.argv.slice(2); fs.mkdirSync(dir, { recursive:true });
   const b = await chromium.launch(); const p = await b.newPage({ viewport:{ width:1920, height:1080 } });
+  const nj = __dirname + '/narration/' + scene + '.json';
+  if (fs.existsSync(nj)){ const cl = JSON.parse(fs.readFileSync(nj, 'utf8')).clips; if (cl) await p.addInitScript(d => { window.HCM_NARR = d; }, cl.map(c => c[1] - c[0])); }
   await p.goto('file://' + __dirname + '/' + scene + '.html?capture&still'); await p.waitForFunction(() => window.__ready);
   const marks = await p.evaluate(() => window.__marks);
   for (const [n, m] of Object.entries(marks)){

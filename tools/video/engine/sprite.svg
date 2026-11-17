@@ -1,0 +1,54 @@
+<svg width="0" height="0" style="position:absolute">
+ <defs>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 11 12 3.5 20.5 11v9.5h-17z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4h14l-2.5 4.5L19 13H5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M8 7h8M8 10h8M8 13h8M8 16h5"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 9.5h17M8 3v4M16 3v4M7 13h2M11 13h2M15 13h2M7 16.5h2M11 16.5h2M15 16.5h2"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M8 7h8M8 11h2M11 11h2M14 11h2M8 14h2M11 14h2M14 14h2M8 17h2M11 17h2M14 17h2"/></symbol>
+  <symbol id="i-calclock" viewBox="0 0 24 24"><rect x="3" y="4" width="15" height="13" rx="1"/><path d="M3 8h15M6 11h9M6 14h5"/><circle cx="18" cy="17.5" r="3.5"/><path d="M18 16v1.6l1 .8"/></symbol>
+  <symbol id="i-cal2" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15.5" rx="1"/><path d="M3.5 9h17M7 12.5h4M7 15.5h7"/></symbol>
+  <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5zM5 11v7M9.5 11v7M14.5 11v7M19 11v7M3 20.5h18"/></symbol>
+  <symbol id="i-walk" viewBox="0 0 24 24"><circle cx="11" cy="4.5" r="2"/><path d="m8 21 2.5-6 2.5 2 1 4M10.5 15l.5-6.5 3 3 3 1M11 8.5 7.5 11"/><path d="M16 20h5v-4"/></symbol>
+  <symbol id="i-skill" viewBox="0 0 24 24"><circle cx="8" cy="5.5" r="2.2"/><path d="M4 21v-8a4 4 0 0 1 8 0v1M14 17l6-9M17 18l4-4"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><rect x="5" y="4" width="13" height="16" rx="1"/><path d="M8 4V2.5h13V18h-3M8 8h7M8 11h7M8 14h7"/></symbol>
+  <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3.5"/><path d="M5 21v-3.5A5.5 5.5 0 0 1 10.5 12h3a5.5 5.5 0 0 1 5.5 5.5V21z"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 17H6a4 4 0 0 1-.5-8A6 6 0 0 1 17 8a4.5 4.5 0 0 1 1 9h-1"/><rect x="9" y="12" width="6" height="9" rx="1"/><path d="M10.5 15h3M10.5 18h3"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><circle cx="12" cy="9" r="2.2"/><path d="M8.5 15a3.5 3.5 0 0 1 7 0M8 18h8"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.5h4"/></symbol>
+  <symbol id="i-act" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3"/><path d="M7 21v-4a5 5 0 0 1 10 0v4M5 7a8 8 0 0 1 13-3.5M19 11a8 8 0 0 1-1 4"/></symbol>
+  <symbol id="i-net" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="4" r="1.6"/><circle cx="20" cy="4" r="1.6"/><circle cx="4" cy="20" r="1.6"/><circle cx="20" cy="20" r="1.6"/><path d="m5.2 5.2 4.6 4.6M18.8 5.2l-4.6 4.6M5.2 18.8l4.6-4.6M18.8 18.8l-4.6-4.6"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-absence" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3" stroke-dasharray="2 2"/><path d="M6 21v-5a6 6 0 0 1 12 0v5z" stroke-dasharray="2 2"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="m3 13 5 1 3-3-6-4 2-1 8 2 3-3a1.5 1.5 0 0 1 2 2l-3 3 2 8-1 2-4-6-3 3 1 5-1.5 1-2.5-4.5L2.5 14.5z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l5.5-3.5z"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="14" height="12"/><path d="M10 9v12M3 13h14M10 9C8 5 5 5 5 7s3 2 5 2c2 0 5 0 5-2s-3-2-5 2M15 15h6v6h-6zM16 18l1.5-1.5 1.5 3 1.5-1.5"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 21v-6h4v6zM10 21v-9h4v9zM16 21V9h4v12zM4 11l6-5 4 2 6-5M17 3h3v3"/></symbol>
+  <symbol id="i-jobs" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M9 7V4h6v3"/><circle cx="10" cy="13.5" r="3"/><path d="m12 15.5 3 3"/></symbol>
+  <symbol id="i-team" viewBox="0 0 24 24"><circle cx="7" cy="6" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="12" cy="5" r="2.5"/><path d="M3 20v-5a4 4 0 0 1 4-4M21 20v-5a4 4 0 0 0-4-4M8 20v-5a4 4 0 0 1 8 0v5z"/></symbol>
+  <symbol id="i-hire" viewBox="0 0 24 24"><circle cx="7" cy="5" r="2.5"/><circle cx="16" cy="5" r="2.5"/><path d="M3 18v-5a4 4 0 0 1 8 0"/><circle cx="16" cy="13" r="3.5"/><path d="m18.5 15.5 3 4"/></symbol>
+  <symbol id="i-review" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/><circle cx="7" cy="6.5" r="1.4"/><circle cx="17" cy="16.5" r="1.4"/></symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24"><path d="m12 2 2.4 1.8 3-.2.9 2.9 2.5 1.7-1 2.8 1 2.8-2.5 1.7-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9-2.5-1.7 1-2.8-1-2.8 2.5-1.7.9-2.9 3 .2z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-goal" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><path d="M2.5 19v-4a3.5 3.5 0 0 1 7 0v4z"/><circle cx="16" cy="12" r="6"/><circle cx="16" cy="12" r="2.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="1.5"/><path d="M5 6 17 3v3M14 13h7v4h-7a2 2 0 0 1 0-4z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/></symbol>
+  <symbol id="i-updown" viewBox="0 0 24 24"><path d="M7 21V4M4 7l3-3 3 3M15 4h4M15 8h4M17 4v13M14 20h6"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="6" cy="6" r="1.6"/><circle cx="12" cy="6" r="1.6"/><circle cx="18" cy="6" r="1.6"/><circle cx="6" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/><circle cx="6" cy="18" r="1.6"/><circle cx="12" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></g></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-checkc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 3 3 5-6"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 15v5h16v-5"/></symbol>
+   <symbol id="i-kebab" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></g></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><path d="M20 11.5 12 19.5a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L9.7 17.2a1.7 1.7 0 0 1-2.4-2.4L15 7"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6 8.5 7 8.5-7"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 5h16l-6 7.5V19l-4 1.5v-8z"/></symbol>
+  <symbol id="i-calcx" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M8 7h8v3H8zM8 14h2M11 14h2M14 14h2M8 17h2M11 17h2M14 17h2"/></symbol>
+ </defs>
+</svg>

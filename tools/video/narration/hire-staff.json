@@ -1,0 +1,53 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Hiring a staff member is a chain. The position feeds the requisition, the requisition feeds the pending worker, and the conversion builds the assignment and pay. Bad data in, bad data out. Here's the map.",
+    "First, get the pre-search memo from Compensation. Email V U dot compensation at Vanderbilt dot E D U. The memo gives the six-digit job code, title, level, and assignment category.",
+    "Next, create the position, or update one that fits. Use the memo's job code, standard working hours of forty, the real location, and attach the memo. Never reactivate an inactive position, or repurpose one built for another worker type.",
+    "Then create the requisition from the approved position. The requisition copies the position, so fix the position first. Location drives whether a pay range must be posted.",
+    "Work with the recruiter through interviews and the offer. The recruiter manages candidates and the offer in Oracle Recruiting. If the position changes after the offer, the recruiter issues a new offer letter.",
+    "Wait for background check clearance from PEBC. Staff need an I-9 and a background check. For staff on a requisition, the check is automated in Oracle Recruiting, with HireRight. PEBC emails you clear to start.",
+    "Convert the pending worker: Our Workforce, then Pending Workers, then the three dots, then Convert. Use the hire reason Hire employment, the status Active payroll eligible, a U S home address, and include them in the new hire report.",
+    "Finally, check costing on day one. Open Costing for Persons for the new hire, and confirm the account. Blank costing uses the work unit default.",
+    "Two things to remember. Most hire problems start at the position: a wrong location, hours, or job code flows into the posting, the offer, and the first paycheck. And don't convert until PEBC sends clear to start."
+  ],
+  "clips": [
+    [
+      0.0,
+      13.99
+    ],
+    [
+      14.44,
+      27.87
+    ],
+    [
+      28.52,
+      44.49
+    ],
+    [
+      45.03,
+      56.15
+    ],
+    [
+      56.75,
+      72.27
+    ],
+    [
+      72.63,
+      86.07
+    ],
+    [
+      86.47,
+      102.6
+    ],
+    [
+      102.84,
+      111.98
+    ],
+    [
+      112.6,
+      128.13
+    ]
+  ]
+}

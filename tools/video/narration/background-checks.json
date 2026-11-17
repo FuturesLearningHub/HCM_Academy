@@ -1,0 +1,14 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Background checks. Most hires need a background check before they can start. For staff on a requisition, it runs through recruiting automatically. Your part is setting it up correctly on the requisition, and waiting for clearance before you convert.",
+    "Set it up on the requisition. In Configuration, choose the background check vendor, HireRight, and the account: V A N zero zero zero for anywhere except New York, and V A N zero nine for New York. Mark Work with minors, Fingerprinting, and Motor vehicle record if the role needs them.",
+    "New York has its own order. New York requires non-criminal checks before any conditional offer. New York requisitions must use the New York candidate selection process, which sends the candidate to HireRight when they're selected for offer.",
+    "The recruiter picks the packages at the offer. Which checks run depends on the person. For example, an existing employee may only need a motor vehicle record check. So ignore the packages pop-up when you submit the requisition.",
+    "The pre-employment background check team, PEBC, marks the check cleared. That creates the pending worker, and PEBC emails you that the person is clear to start.",
+    "Then convert the pending worker. Only convert after the clear to start email. PEBC also records citizenship on the application, which you'll need during conversion.",
+    "Not on a requisition? For populations hired without a requisition, request the background check manually, through Formstack.",
+    "Two things to remember. Work with minors set to Yes adds a protection of minors check. And if you're not sure where a candidate stands, ask central recruiting before you create a direct hire."
+  ]
+}

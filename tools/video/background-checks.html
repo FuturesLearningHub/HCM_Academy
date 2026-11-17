@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Background checks explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Steps shown as a branded process board.
+     Every line comes from the course "Background checks" (and, for the New York process, "Create a requisition"). -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script>
+VIDEO.set({ steps:6 });
+var ck = C.I('checkc'), info = C.I('info');
+VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Clear the background ', em:'check', post:' first.', rule:true,
+  p:'Most hires need a background check before they can start. For staff on a requisition, it runs through recruiting automatically. Your part: set it up right, and wait for clearance before you convert.', meta:'Process · Background checks' }));
+VIDEO.addCard(C.board({ id:'board',
+  steps:['Set up the requisition', 'New York', 'Packages at the offer', 'PEBC clears', 'Convert', 'No requisition'],
+  pages:[
+    { pre:'Set it up on the ', em:'requisition', post:'.', lines:['In Configuration, choose the background check vendor and the account.', 'Mark the extra checks if the role needs them.'],
+      art:C.doc({ kicker:'Requisition configuration', title:'Background check', rows:[['Vendor', 'HireRight', 'st-1', .5], ['Account, not New York', 'VAN000', 'st-1', .8], ['Account, New York', 'VAN09', 'st-1', 1.1], ['If the role needs them', 'Work with minors, Fingerprinting, Motor vehicle record', 'st-1', 1.4]] }) },
+    { pre:'New York has its own ', em:'order', post:'.', lines:['New York requires non-criminal checks before any conditional offer.', "New York requisitions use the New York candidate selection process. It sends the candidate to HireRight when they're selected for offer."],
+      art:C.doc({ kicker:'Candidate selection process', title:'Pick by location', rows:[['New York', 'New York process', 'st-2', .6], ['Everywhere else', 'Standard', 'st-2', 1.0]], foot:'<span data-in="st-2" data-d="1.5">The wrong process breaks the New York law.</span>' }) },
+    { pre:'The recruiter picks the ', em:'packages', post:'.', lines:['Which checks run depends on the person.', 'For example, an existing employee may only need a motor vehicle record check.'],
+      art:'<div class="art"><div class="dk">Who picks the checks</div><b>The recruiter, at the offer</b>' +
+          '<div class="ln" data-in="st-3" data-d=".7">' + info + '<span>When you submit the requisition, ignore the background check packages pop-up.</span></div></div>' },
+    { pre:'PEBC clears the ', em:'candidate', post:'.', lines:['The pre-employment background check team marks the check cleared.', 'That creates the pending worker, and PEBC emails you that the person is clear to start.'],
+      art:C.doc({ kicker:'From PEBC', title:'Clear to start', rows:[['Check', 'Cleared', 'st-4', .6], ['Creates', 'The pending worker', 'st-4', 1.0], ['You get', 'The clear to start email', 'st-4', 1.4]] }) },
+    { pre:'Then convert the ', em:'pending worker', post:'.', lines:['Only convert after the clear to start email.', "PEBC also records citizenship on the application. You'll need it during conversion."],
+      art:'<div class="art"><div class="dk">In order</div><b>Clear first, then convert</b>' +
+          '<div class="ln" data-in="st-5" data-d=".6">' + ck + '<span>Clear to start email from PEBC</span></div>' +
+          '<div class="ln" data-in="st-5" data-d="1.0">' + ck + '<span>Convert the pending worker (see Convert a pending worker)</span></div></div>' },
+    { pre:'No requisition? Request it ', em:'manually', post:'.', lines:['For populations hired without a requisition, request the background check through Formstack.'],
+      art:C.doc({ kicker:'Formstack', title:'Manual background check request', rows:[['Use it for', 'Hires without a requisition', 'st-6', .6]] }) }
+  ] }));
+VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Two things to ', em:'remember', post:'.',
+  items:['Work with minors set to Yes adds a protection of minors check.', 'Not sure where a candidate stands? Ask central recruiting before you create a direct hire.'], meta:'Questions: pcb@vanderbilt.edu' }));
+
+seg(); card('intro'); wait(3.5); hold(-.5);
+for (var k = 1; k <= 6; k++){
+  seg(); if (k === 1){ card('board'); wait(.6); card('intro', false); }
+  stepTo(k, 6); wait(3.2); mark(k); hold(-.7);
+}
+seg(); card('out'); wait(.6); card('board', false); wait(2); hold(-2.2);
+VIDEO.run();
+</script>
+</body>
+</html>
