@@ -141,6 +141,8 @@ a.btn{ display:inline-flex; align-items:center; justify-content:center; text-dec
 .links li.cbtn.sub::before{ top:1.55em; }
 .course-btn{ all:unset; box-sizing:border-box; display:flex; align-items:baseline; gap:10px; width:100%; padding:10px 0; cursor:pointer; font:inherit; color:inherit; }
 .course-btn:focus-visible{ outline:2px solid var(--oak); outline-offset:2px; }
+.course-btn.later{ cursor:default; }
+.course-btn.later .ck{ opacity:.35; }
 .course-btn .nm{ flex:1; }
 .ck{ flex-shrink:0; width:20px; height:20px; border-radius:50%; border:2px solid #B8AD98; display:inline-grid; place-items:center; position:relative; top:4px; transition:background-color .2s, border-color .2s; }
 .ck svg{ width:12px; height:12px; color:#fff; opacity:0; }
@@ -766,7 +768,9 @@ footer a{ color:var(--gold); }
    Saved in this browser only (localStorage hcm-*); nothing is sent anywhere. */
 (function(){
   'use strict';
-  var store = {
+  /* in the SCORM package, scorm/bridge.js supplies HCM_STORE (progress saved in the LMS) */
+  var SCORM = !!window.HCM_SCORM_MODE, IDX = SCORM ? 'index.html' : '';
+  var store = window.HCM_STORE || {
     get: function(k, d){ try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch(e){ return d; } },
     set: function(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} },
     clear: function(){ try { ['hcm-pre','hcm-done','hcm-final'].forEach(function(k){ localStorage.removeItem(k); }); } catch(e){} }
@@ -790,15 +794,22 @@ footer a{ color:var(--gold); }
         return;
       }
       if (li.dataset.assess){
-        preLink = document.createElement('a'); preLink.href = 'assessment/' + li.dataset.assess + '/'; preLink.className = 'course-btn course-link assess-link';
+        preLink = document.createElement('a'); preLink.href = 'assessment/' + li.dataset.assess + '/' + IDX; preLink.className = 'course-btn course-link assess-link';
         preLink.innerHTML = '<span class="ck" aria-hidden="true">' + CHECK + '</span>';
         while (li.firstChild) preLink.appendChild(li.firstChild);
         li.appendChild(preLink); li.classList.add('cbtn');
         return;
       }
       var slug = li.dataset.course, id = slug ? 'c-' + slug : c.id + '-' + i;
+      if (!slug && SCORM){ /* in the LMS, rows with no course yet are shown but do not count toward completion */
+        var sp = document.createElement('span'); sp.className = 'course-btn later';
+        sp.innerHTML = '<span class="ck" aria-hidden="true"></span>';
+        while (li.firstChild) sp.appendChild(li.firstChild);
+        li.appendChild(sp); li.classList.add('cbtn');
+        return;
+      }
       var b = document.createElement(slug ? 'a' : 'button');
-      if (slug){ b.href = 'courses/' + slug + '/'; b.className = 'course-btn course-link'; } else { b.type = 'button'; b.className = 'course-btn'; }
+      if (slug){ b.href = 'courses/' + slug + '/' + IDX; b.className = 'course-btn course-link'; } else { b.type = 'button'; b.className = 'course-btn'; }
       b.dataset.id = id;
       b.innerHTML = '<span class="ck" aria-hidden="true">' + CHECK + '</span>';
       while (li.firstChild) b.appendChild(li.firstChild);
@@ -841,13 +852,13 @@ footer a{ color:var(--gold); }
       sp.closest('li').classList.toggle('locked', !preDone);
     });
     if (preLink){ preLink.dataset.done = preDone ? 'true' : 'false'; preLink.querySelector('.soon').textContent = preDone ? 'Taken' : 'Start'; }
-    if (all && !finalPassed){ finalBtn.href = 'assessment/final/'; finalBtn.removeAttribute('aria-disabled'); }
+    if (all && !finalPassed){ finalBtn.href = 'assessment/final/' + IDX; finalBtn.removeAttribute('aria-disabled'); }
     else { finalBtn.removeAttribute('href'); finalBtn.setAttribute('aria-disabled', 'true'); }
     finalBtn.textContent = finalPassed ? 'Final assessment passed' : all ? 'Take the final assessment' : 'Final assessment unlocks when every course is complete';
     passed.hidden = !finalPassed;
     var ring = document.getElementById('pring'); if (ring) ring.style.strokeDashoffset = 119.4 * (1 - (total ? n / total : 0));
     cards.forEach(function(c){
-      var bs = c.querySelectorAll('.course-btn:not(.assess-link)'), d = c.querySelectorAll('.course-btn:not(.assess-link):is([aria-pressed="true"],[data-done="true"])').length,
+      var bs = c.querySelectorAll('.course-btn:not(.assess-link):not(.later)'), d = c.querySelectorAll('.course-btn:not(.assess-link):not(.later):is([aria-pressed="true"],[data-done="true"])').length,
           tab = document.querySelector('#chips button[data-topic="' + c.id + '"]'), tc = tab && tab.querySelector('.tc'),
           full = bs.length && d === bs.length;
       if (tc) tc.textContent = !bs.length ? 'Soon' : full ? '\u2713 Done' : d + '/' + bs.length;

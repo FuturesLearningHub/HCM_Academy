@@ -126,7 +126,8 @@ window.HCM_ASSESS = {
   var BANK = window.HCM_ASSESS || { pass:0.9, pre:[], final:[] }, main = document.querySelector('main'), kind = main.dataset.kind;
   BANK.topics = BANK.topics || {};
   var list = kind === 'pre' ? BANK.pre : BANK.final, PASS = BANK.pass, home = '../../index.html';
-  var store = {
+  /* in the SCORM package, scorm/bridge.js supplies HCM_STORE (results saved in the LMS) and HCM_REPORT */
+  var store = window.HCM_STORE || {
     get: function(k, d){ try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch(e){ return d; } },
     set: function(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
   };
@@ -146,7 +147,7 @@ window.HCM_ASSESS = {
       fs.appendChild(lg); fs.dataset.topic = q.topic;
       shuffle(q.o.map(function(o, j){ return j; })).forEach(function(j){
         var l = document.createElement('label'), r = document.createElement('input');
-        r.type = 'radio'; r.name = 'q' + i; r.value = j === q.a ? '1' : '0';
+        r.type = 'radio'; r.name = 'q' + i; r.value = j === q.a ? '1' : '0'; r.dataset.j = j;
         l.appendChild(r); l.appendChild(document.createTextNode(q.o[j])); fs.appendChild(l);
       });
       qs.appendChild(fs);
@@ -168,6 +169,8 @@ window.HCM_ASSESS = {
       return;
     }
     var pct = Math.round(right / sets.length * 100), ok = right / sets.length >= PASS, msg;
+    if (window.HCM_REPORT) window.HCM_REPORT({ kind: kind, right: right, total: sets.length, pct: pct, passed: ok, pass: PASS,
+      items: Array.prototype.map.call(sets, function(fs, i){ var c = fs.querySelector('input:checked'); return { n: i + 1, topic: fs.dataset.topic, q: list[i].q, chose: +c.dataset.j, answer: list[i].a, options: list[i].o.length, correct: c.value === '1' }; }) });
     if (kind === 'pre'){
       store.set('hcm-pre', true);
       msg = right + ' of ' + sets.length + ' correct. ' + (missed.length ? 'These topics are a good place to start:' : 'You know the basics across every topic. Take the courses in any order.');

@@ -3,7 +3,8 @@
 (function(){
   'use strict';
   var root = document.querySelector('main'), slug = root.dataset.slug, id = 'c-' + slug;
-  var store = {
+  /* in the SCORM package, scorm/bridge.js supplies HCM_STORE (progress saved in the LMS) */
+  var store = window.HCM_STORE || {
     get: function(k, d){ try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch(e){ return d; } },
     set: function(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
   };
