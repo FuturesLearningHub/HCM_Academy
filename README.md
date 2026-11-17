@@ -214,10 +214,14 @@ so reviewers edit one copy.
 Each video is a scripted scene in `tools/video/<process>.html`: Oracle HCM screens rebuilt in HTML (Vanderbilt header, Redwood pages), a cursor that clicks and types, a camera that zooms to the field in use, and on-brand captions. Names and data are fictional, and every frame carries a "Training simulation" tag. Steps, captions and watch-outs come only from the course's own content.
 
 ```
-node tools/video/render.cjs direct-reports courses/direct-reports/video/direct-reports.mp4
+node tools/video/render.cjs direct-reports /tmp/silent.mp4            # frames; also writes /tmp/silent.segs.json
+python3 tools/video/narrate.py direct-reports /tmp/silent.mp4 courses/direct-reports/video/direct-reports.mp4
+node tools/video/stills.cjs direct-reports /tmp/stills                # job aid screenshots, one per mark()
 python3 tools/build_courses.py
 ```
 
+Narration: one ElevenLabs read of the script in `tools/video/narration/<scene>.json`, saved as `<scene>.mp3` and cut at the pauses between paragraphs. Each clip plays when its step starts, and the scene holds each step until its clip ends (`NARR` in the scene file holds the clip lengths). Change the script and you record the read again and update the cut points.
+
 Open the scene file in a browser to preview it (space pauses). A course shows the video when its entry in the course data has `video` with an `.mp4` source and a poster.
 
-- Direct Reports (Assignment Changes): 82 seconds, no sound, captioned steps. The screens follow standard Oracle Redwood; check the labels against Vanderbilt's Oracle (see the course's Screen check).
+- Direct Reports (Assignment Changes): 101 seconds, narrated (voice: Sarah Explains), captioned steps, plus a 10-step detailed job aid with screenshots from the same scene (on the course page and in the Playbook). The screens follow standard Oracle Redwood; check the labels against Vanderbilt's Oracle (see the course's Screen check).

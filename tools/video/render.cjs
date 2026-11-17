@@ -12,6 +12,8 @@ const { chromium } = require('playwright'); const { spawn } = require('child_pro
     if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r));
     if (i % 300 === 0) console.log('frame', i, 'of', n);
   }
-  ff.stdin.end(); await new Promise(r => ff.on('close', r)); await b.close();
-  console.log('done', dur.toFixed(1) + 's');
+  ff.stdin.end(); await new Promise(r => ff.on('close', r));
+  const segs = await p.evaluate(() => window.__segs || null);
+  if (segs) require('fs').writeFileSync(out.replace(/\.mp4$/, '.segs.json'), JSON.stringify(segs));
+  await b.close(); console.log('done', dur.toFixed(1) + 's');
 })();

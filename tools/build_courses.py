@@ -109,7 +109,8 @@ def page(c, n, total):
         if v["src"].endswith(".mp4"):   # explainer video kept with the course (no sound; the captions are on screen)
             video = (f'<figure class="video"><div class="frame"><video controls playsinline preload="metadata" poster="{E(v["poster"])}" '
                      f'aria-label="Video: {E(v["title"])}"><source src="{E(v["src"])}" type="video/mp4" /></video></div>'
-                     '<figcaption>Watch first, then read the details below. No sound: the steps are captioned on screen. '
+                     '<figcaption>Watch first, then read the details below. '
+                     + ('Narrated, with the steps captioned on screen. ' if v.get("narrated") else 'No sound: the steps are captioned on screen. ') +
                      'A training simulation with fictional names, built from standard Oracle screens; Vanderbilt\'s screens may differ slightly.</figcaption></figure>')
         else:
           video = (f'<figure class="video"><div class="frame"><iframe src="{E(v["src"])}" title="Video: {E(v["title"])}" loading="lazy" '
