@@ -1,0 +1,14 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Rehires and eligibility for rehire. A rehire is someone who worked here before and is coming back. Oracle already has their person record, so the hire adds a new work relationship to that record, instead of creating a new person. Whether they can come back is decided by the rehire recommendation recorded when they were terminated.",
+    "The rehire field is set at termination. When an employee is terminated, the termination records whether the person is recommended for rehire. Yes means eligible. No means not eligible without review. Not specified is a flag: ask before moving forward.",
+    "Check the former employee's record before you commit. Go to Our Workforce, then Employment Info, and search the person, including inactive records. Review the terminated work relationship, and its rehire recommendation.",
+    "Let the recruiter review it. For hires through a requisition, recruiters review eligible for rehire during the candidate review. If the record says No, stop, and talk with the recruiter and your PCB consultant before anyone makes an offer.",
+    "Never create a second person record. Oracle matches the new hire to existing person records, including previous employees, by name and national identifier. Pick the existing record. A duplicate splits the person's history, pay, and tax records.",
+    "Convert the pending worker as you would any hire, after the background check clears and PEBC emails clear to start. Check that the new assignment, position, location, and pay reflect the new job, not the old one.",
+    "Then review costing on the new assignment. Old costing does not carry the right account for a new job automatically. Check Costing for Persons after the hire. Blank costing means the work unit default is used, which is not an error.",
+    "Two things to remember. The rehire field is only as good as the termination entry, so set it carefully when you terminate someone. And search inactive records before hiring a familiar name; a duplicate person record is hard to undo."
+  ]
+}

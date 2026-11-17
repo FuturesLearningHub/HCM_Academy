@@ -1,0 +1,14 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Update a position. Update a position when it changes: most often its name, and for a reclassification, its job code and maybe its assignment category. Some changes reach the incumbent's assignment automatically once approved. Others don't, so plan a second transaction for those.",
+    "Open the position. Go to Our Workforce, then Show More, then Positions, under Workforce Structures. Search for the position, and open it.",
+    "Choose Update, and enter the effective date: the date the change takes effect. For example, September first for a reclassification.",
+    "Pick the action reason that matches the change. Updates have more reasons than new positions, for example a reclassification to a higher range, or an assignment category change. The reason drives reporting.",
+    "Change the fields that changed. For a reclassification, enter the new six-digit job code from Compensation's reclass memo, the new name, and the new assignment category if it changed. Fix anything else that's wrong while you're there, such as headcount type.",
+    "Attach the reclass memo, add comments, and submit. Approval follows the same path as a new position.",
+    "After approval, update the incumbent's assignment for what didn't flow. Person type, location, working hours, and hourly salary don't sync from the position. Open the employee's Employment Info, and use Change Assignment to update them, and the business title.",
+    "Two things to remember. Position changes never reach an existing requisition; it keeps the position as it was when submitted. And reclassifications need Compensation's reclass memo before you update the position."
+  ]
+}

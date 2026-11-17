@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Rehires explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Steps shown as a branded process board.
+     Every line comes from the course "Rehires and eligibility for rehire". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script>
+VIDEO.set({ steps:6 });
+var ck = C.I('checkc'), info = C.I('info');
+VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Rehires and eligibility for ', em:'rehire', post:'.', rule:true,
+  p:'A rehire worked here before and is coming back. Oracle already has their person record, so the hire adds a new work relationship to it. Whether they can come back depends on the rehire recommendation recorded when they were terminated.', meta:'Process · Oracle HCM and Recruiting' }));
+VIDEO.addCard(C.board({ id:'board',
+  steps:['Set at termination', 'Check the record', 'Recruiter review', 'One person record', 'Convert', 'Costing'],
+  pages:[
+    { pre:'The rehire field is set at ', em:'termination', post:'.', lines:['The termination records whether the person is recommended for rehire.', 'Oracle can tie the allowed value to the termination reason, and records who made the recommendation and why.'],
+      art:C.doc({ kicker:'Rehire recommendation', title:'What each value means', rows:[['Yes', 'Eligible. The recruiter proceeds through the normal process.', 'st-1', .6], ['No', 'Not eligible without review. Talk to the recruiter and your PCB consultant.', 'st-1', 1.0], ['Not specified', 'Treat it as a flag. Ask before moving forward.', 'st-1', 1.4]] }) },
+    { pre:'Check the record ', em:'first', post:'.', lines:['Our Workforce, then Employment Info. Search the person, including inactive records.', 'Review the terminated work relationship and its rehire recommendation.'],
+      art:C.doc({ kicker:'Employment Info', title:'Before you commit', rows:[['Search', 'Include inactive records', 'st-2', .6], ['Open', 'The terminated work relationship', 'st-2', 1.0], ['Read', 'Its rehire recommendation', 'st-2', 1.4]] }) },
+    { pre:'Let the recruiter ', em:'review', post:'.', lines:['For hires through a requisition, recruiters review eligible for rehire during the candidate review.'],
+      art:'<div class="art"><div class="dk">If the record says No</div><b>Stop before any offer</b>' +
+          '<div class="ln no" data-in="st-3" data-d=".7">' + info + '<span>Talk with the recruiter and your PCB consultant before anyone makes an offer.</span></div></div>' },
+    { pre:'Never create a second ', em:'person record', post:'.', lines:['Oracle matches the new hire to existing person records, including previous employees, by name and national identifier.'],
+      art:'<div class="art"><div class="dk">When Oracle finds a match</div><b>Pick the existing record</b>' +
+          '<div class="ln" data-in="st-4" data-d=".6">' + ck + '<span>One person, one record, with all their history.</span></div>' +
+          '<div class="ln no" data-in="st-4" data-d="1.0">' + info + '<span>A duplicate splits the person\'s history, pay, and tax records.</span></div></div>' },
+    { pre:'Convert as you would any ', em:'hire', post:'.', lines:['After the background check clears and PEBC emails clear to start, convert the pending worker.'],
+      art:C.doc({ kicker:'Check the new job, not the old one', title:'On the new assignment', rows:[['Assignment', 'The new job', 'st-5', .6], ['Position', 'The new position', 'st-5', .9], ['Location', 'Where they will work now', 'st-5', 1.2], ['Pay', 'The new pay', 'st-5', 1.5]] }) },
+    { pre:'Review ', em:'costing', post:' on the new assignment.', lines:['Old costing does not carry the right account for a new job automatically.'],
+      art:C.doc({ kicker:'Costing for Persons', title:'After the hire', rows:[['Check', 'The account on the new assignment', 'st-6', .6], ['Blank costing', 'Uses the work unit default. Not an error.', 'st-6', 1.0]] }) }
+  ] }));
+VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Two things to ', em:'remember', post:'.', items:[
+  'The rehire field is only as good as the termination entry. Set it carefully when you terminate someone; recruiters rely on it later.',
+  'Search inactive records before hiring a familiar name. A duplicate person record is hard to undo.'], meta:'Questions: pcb@vanderbilt.edu' }));
+
+seg(); card('intro'); wait(3.5); hold(-.5);
+for (var k = 1; k <= 6; k++){
+  seg(); if (k === 1){ card('board'); wait(.6); card('intro', false); }
+  stepTo(k, 6); wait(3.2); mark(k); hold(-.7);
+}
+seg(); card('out'); wait(.6); card('board', false); wait(2); hold(-2.2);
+VIDEO.run();
+</script>
+</body>
+</html>

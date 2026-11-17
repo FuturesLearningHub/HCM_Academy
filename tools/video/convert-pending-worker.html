@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Convert a pending worker explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Our Workforce follows Vanderbilt's screens; Pending Workers and
+     Convert follow standard Oracle and the course text (see the course's Screen check). Names, numbers, and addresses are fictional.
+     Every caption and narration line comes from the course "Convert a pending worker". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script src="convert-pages.js"></script>
+<script>
+VIDEO.set({ H:2000, steps:14 });
+var person = { name:'Casey Rivera', wtype:'Employee', start:'12/7/2026', pos:'BIO-PC-01 Program Coordinator',
+  ban:{ ini:'CR', c:'#4A6FA5', name:'Casey Rivera', sub:'Pending worker · Program Coordinator · Proposed start 12/7/2026' } };
+var X = function(k){ return convertSection(k, { pos:person.pos, hours:'30', ptype:'Staff exempt', whySum:'Hire · Employment',
+  asgSum:'Staff exempt · Nashville Main Campus · Minors: No · Active - Payroll Eligible', mgrSum:'Manager Morgan Ellis · Include in the new hire report' }); };
+convertPages({ person:person, toast:'You submitted the hire of Casey Rivera for approval.',
+  sections:[['pay', 'Payroll Details (payroll relationship)'], ['sal', 'Salary'], ['comp', 'Compensation'], ['dr', 'Direct Reports']],
+  flow:['why', 'bu', 'bio', 'nid', 'addr', 'ovr', 'asg', 'mgr', 'pay', 'sal', 'att'].map(X) });
+
+VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Convert a pending ', em:'worker', post:'.', rule:true,
+  p:"Converting is the hire transaction. What you enter here becomes the person's assignment, pay, and manager, so this step decides whether the first paycheck is right.", meta:'Oracle HCM · Pending Workers' }));
+VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Three things to ', em:'remember', post:'.', items:[
+  'Never Quick Convert or Edit Pending Worker. Use Convert.', 'Active no payroll means no pay at all. Use it only for unpaid affiliates.',
+  'Not sure where a hire or transfer stands? Ask central recruiting before you create a direct hire.'], meta:'Questions: pcb@vanderbilt.edu' }));
+
+var cont = function(k, after){ press('#c-x' + k, function(){ flag('x' + k + '-done'); if (after) after(); }); };
+var cam = function(k, dy){ camTo('#x' + k, 1.15, .9, 55, dy === undefined ? 120 : dy); wait(.3); };
+seg(); card('intro'); scene('home'); wait(3.5); hold(-.5);
+card('intro', false);
+capS(1, 'Our Workforce, then Pending Workers. Everyone ready to convert is listed.');
+wait(.4); press('#tab-wf', function(){ flag('tab-wf'); }, .9); press('#qa-pending span', null, .9); scene('pw'); wait(.4); hl('#r-p'); wait(.8); mark(1, '#r-p'); hold(-.2); hl(null);
+capS(2, 'Select the three dots next to the person, then Convert. Never Quick Convert or Edit Pending Worker.');
+press('#kb', function(){ flag('m-kb'); }); wait(.3); move('#m-conv', .6); hl('#m-conv'); wait(.5); mark(2); hold(.2); click(function(){ hl(null); flag('m-kb', false); }); scene('pick'); hold(-.2);
+capS(3, 'Check Payroll details and Salary. Add Compensation for a bonus, and Direct reports if they manage people.');
+press('#k-pay', function(){ flag('k-pay'); }); press('#k-sal', function(){ flag('k-sal'); }, .5); wait(.4); mark(3); hold(.6);
+press('#b-pick', function(){ flag('conv'); }); scene('conv'); hold(-.2);
+capS(4, 'When and why: action Hire, reason Employment.');
+cam('why', 80); pick('#f-act', 'dd-act', '#o-hire', 'act', 'Hire'); pick('#f-rsn', 'dd-rsn', '#o-emp', 'rsn', 'Employment'); mark(4, '#f-rsn'); hold(.8); cont('why'); hold(-.2);
+capS(5, 'Check the business unit and position. Make any pre-hire corrections here.');
+cam('bu'); hl('#f-pos'); wait(1.2); mark(5, '#f-pos'); hold(.8); hl(null); cont('bu'); hold(-.2);
+capS(6, 'Biographical info: confirm date of birth, and set US citizen or permanent resident.');
+cam('bio'); hl('#f-dob'); wait(.8); hl(null); press('#f-cit', function(){ flag('dd-cit'); }); press('#o-yes', function(){ flag('dd-cit', false); val('cit', 'Yes'); }, .5); mark(6, '#f-cit'); hold(.8); cont('bio'); hold(-.2);
+capS(7, 'National ID: the Social Security number, or a placeholder from the International Tax Office.');
+cam('nid'); hl('#f-ssn'); wait(1.0); mark(7, '#f-ssn'); hold(.8); hl(null); cont('nid'); hold(-.2);
+capS(8, 'The home address must be in the United States.');
+cam('addr'); hl('#f-ctry'); wait(1.0); mark(8, '#f-ctry'); hold(.8); hl(null); cont('addr'); hold(-.2);
+capS(9, 'Position overrides: shaded fields like location and working hours can change. Review and continue.');
+cam('ovr'); hl('#f-owh'); wait(1.0); hl('#f-me'); wait(1.0); mark(9); hold(.8); hl(null); cont('ovr'); hold(-.2);
+capS(10, 'Assignment: person type, location, working with minors, expense account, and status.');
+cam('asg', 150); pick('#f-ptype', 'dd-ptype', '#o-ptype', 'ptype', 'Staff exempt'); pick('#f-min', 'dd-min', '#o-no', 'min', 'No');
+press('#f-exp', function(){ val('exp', '11-2400-560100 Biological Sciences'); }, .7); pick('#f-stat', 'dd-stat', '#o-pe', 'stat', 'Active - Payroll Eligible'); mark(10); hold(.8); cont('asg'); hold(-.2);
+capS(11, 'Set the manager. For a paid hire, include them in the new hire report.');
+cam('mgr', 80); press('#f-mgr', function(){ val('mgr', 'Morgan Ellis'); }); pick('#f-nhr', 'dd-nhr', '#o-inc', 'nhr', 'Include'); mark(11); hold(.8); cont('mgr'); hold(-.2);
+capS(12, 'Payroll details: Monthly pays an annual salary. Biweekly is hourly.');
+cam('pay', 80); pick('#f-pay', 'dd-pay', '#o-mon', 'pay', 'Monthly'); mark(12, '#f-pay'); hold(.8); cont('pay'); hold(-.2);
+capS(13, "Salary: enter what they'll actually be paid. For 0.75 FTE at $58,000, enter $58,000.");
+cam('sal', 80); fill('#f-sal', 'sal', '58,000', .6); val('fte', '77,333.33'); wait(.3); hl('#f-sal'); wait(.8); mark(13); hold(.8); hl(null); cont('sal'); hold(-.2);
+capS(14, 'Review compensation, attach the offer letter, and Submit.');
+cam('att', 120); press('#f-att', function(){ flag('att1'); }); wait(.4); mark(14); cont('att', function(){ flag('can-submit'); }); camTo(null, 1, .8); wait(.5);
+move('#b-submit', .8); hl('#b-submit'); wait(.3); hold(.3); click(function(){ hl(null); }); scene('home'); flag('tab-wf'); flag('toast'); wait(.8); hold(-.6);
+seg(); card('out'); wait(2); hold(-2.2);
+VIDEO.run();
+</script>
+</body>
+</html>

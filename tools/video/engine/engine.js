@@ -56,6 +56,26 @@ var C = {
     return '<div class="art doc"' + (o.id ? ' id="' + o.id + '"' : '') + '><div class="dk">' + esc(o.kicker || '') + '</div><b>' + esc(o.title) + '</b>' +
       (o.rows || []).map(function(r){ return '<div class="dr"' + (r[2] ? ' data-in="' + r[2] + '" data-d="' + (r[3] || 0) + '"' : '') + '><span>' + esc(r[0]) + '</span><span>' + esc(r[1]) + '</span></div>'; }).join('') +
       (o.foot ? '<div class="df">' + o.foot + '</div>' : '') + '</div>'; },
+  /* Our Workforce > Show More, as on Vanderbilt's screens (groups in their order). ids: more-<slug of item> */
+  more: function(){
+    var G2 = [
+      ['New Person', ['Add a Contingent Worker', 'Add a Nonworker', 'Add a Pending Worker', 'Hire an Employee', 'Pending Workers']],
+      ['Document Records', ['Archived Document Records', 'Document Delivery Preferences', 'Document Records', 'Mass Download of Document Records']],
+      ['Employment', ['Add Assignment', 'Additional Assignment Info', 'Additional Person Info', 'Allocate Checklists', 'Areas of Responsibility', 'Assigned Journeys', 'Assignment Flexfields Mapping', 'Cancel Work Relationship', 'Change Assignment', 'Change Legal Employer Dashboard', 'Change Location', 'Change Manager', 'Change Photo', 'Change Worker Type', 'Change Working Hours', 'Contact Info', 'Create Work Relationship', 'Direct Reports', 'Eligible Jobs', 'Employment Contracts', 'Employment Info', 'Employment Start Dates', 'Family and Emergency Contacts', 'HCM Professional Activity Center', 'Identification Info', 'Local and Global Transfer', 'Manage Job Offers', 'Manage User Account', 'Mass Legal Employer Change', 'Nudge Configuration', 'Person', 'Person Identifiers for External Applications', 'Personal Details', 'Promote', 'Seniority Dates', 'Share Data Access', 'Terminate Employment', 'Transfer', 'Work Relationship', 'Work Relationship Info', 'Workforce Modeling']],
+      ['Compensation', ['Act as Proxy Manager', 'Administer Compensation', 'Administer Workers', 'Balance Definitions', 'Change Salary', 'Compensation Info', 'Derived Factors', 'Download Salaries', 'Elements', 'Eligibility Profiles', 'Fast Formulas', 'Grade Ladders', 'Grade Rates', 'Grades', 'Individual Compensation', 'Rate Definitions', 'Review Proposed Progressions and Salary Updates', 'Salary History', 'Simulate Salary Range', 'User-Defined Tables', 'Values Defined by Criteria', 'View Administration Reports', 'View Compensation History', 'View Generated Statements']],
+      ['Learning', ['Learning Assignments', 'Organization New Recommendation Profile', 'Recommendation Profiles', 'Recommendations']],
+      ['Journeys Setup', ['Category Security', 'Guided Journey', 'Journey Configurations', 'Journey Integrations', 'Journey Scheduled Allocations', 'Journey Templates', 'Journeys Setup', 'Task Groups', 'Task Library']],
+      ['Hiring', ['Create Job Requisition', 'Job Offers', 'Job Requisitions', 'Manage Shared Interview Schedules', 'Recruiting Activity Center']],
+      ['Time', ['Team Time Cards', 'View Published Schedule']],
+      ['Workforce Structures', ['Area of Responsibility Templates', 'Collective Agreements', 'Disability Organizations', 'Divisions', 'Enterprise HCM Information', 'Grade Ladders', 'Grade Rates', 'Grades', 'Job Families', 'Jobs', 'Legislative Data Groups', 'Locations', 'Maintain Areas of Responsibility', 'Manage Departments - Oracle Search', 'Manage Organization Trees', 'Manage Position Trees', 'Manage Work Unit Trees', 'Manage Work Units', 'Positions', 'Reporting Establishments', 'Worker Unions']]
+    ];
+    var icon = function(g){ return { 'New Person':'person', 'Document Records':'cloud', 'Employment':'skill', 'Compensation':'wallet', 'Learning':'book', 'Journeys Setup':'doc', 'Hiring':'doc', 'Time':'doc', 'Workforce Structures':'net' }[g]; };
+    var slug = function(t){ return t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); };
+    return C.page('more', '<nav class="tabs"><span>Me</span><span>My Team</span><span class="on">Our Workforce</span><span>Help Desk</span><span>Reporting</span><span>Knowledge</span><span>Tools</span><span>Others</span></nav>' +
+      '<div class="more"><div class="less">&larr; Show Less</div>' + G2.map(function(g){
+        return '<h4 id="more-g-' + slug(g[0]) + '">' + esc(g[0]) + '</h4><div class="mg">' + g[1].map(function(t){ return '<div class="mi" id="more-' + slug(g[0]) + '-' + slug(t) + '">' + I(icon(g[0])) + '<span>' + esc(t) + '</span></div>'; }).join('') + '</div>';
+      }).join('') + '</div>', true);
+  },
   home: function(o){ /* Vanderbilt home page, Me and Our Workforce tabs. o.toast, o.notif */
     o = o || {};
     var qa = function(list, id){ return '<ul class="qa"' + (id ? ' id="' + id + '"' : '') + '>' + list.map(function(x){ return '<li' + (x[2] ? ' id="' + x[2] + '"' : '') + '>' + (x[0] ? I(x[0]) : '') + '<span>' + esc(x[1]) + '</span></li>'; }).join('') + '</ul>'; };
@@ -97,6 +117,12 @@ var G = {
   /* hold until this segment's narration has played (less `early` seconds) */
   hold: function(early){ var i = SEGS.length - 1, n = NARR[i] || 0, end = SEGS[i] + n - (early || 0); if (n && T < end) T = end; },
   capS: function(n, text){ G.seg(); G.cap(n, text); },
+  /* click a field and type into it */
+  fill: function(sel, bind, text, d){ G.move(sel, .85); G.click(function(){ G.fset(bind); }); G.type(bind, text, d); G.wait(.25); G.fset(null); },
+  /* open a dropdown (flag dd) and choose an option */
+  pick: function(sel, dd, opt, bind, value){ G.move(sel, .85); G.click(function(){ G.fset(null); G.flag(dd); }); G.wait(.3); G.move(opt, .55); G.click(function(){ G.flag(dd, false); G.val(bind, value); }); G.wait(.25); },
+  /* click something, then run `after` (flags) */
+  press: function(sel, after, d){ G.move(sel, d || .85); G.click(after); G.wait(.25); },
   stepTo: function(k, n){ for (var i = 1; i <= n; i++){ G.flag('st-' + i, i === k); G.flag('dn-' + i, i < k); } },
   mark: function(n, sel){ MARKS[n] = { t:T - .05, hl:sel || null }; },
   now: function(){ return T; }

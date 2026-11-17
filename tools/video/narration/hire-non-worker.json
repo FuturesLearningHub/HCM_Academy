@@ -1,0 +1,33 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Non-workers. Affiliates, such as observers and contractors, need Oracle access but aren't paid. They're converted like other hires, with three settings that keep them out of payroll.",
+    "In When and why, pick the non-employment reason for affiliates, not Hire employment.",
+    "Set the assignment status to Active no payroll. This keeps them out of payroll, even if a salary or payroll relationship is on the record.",
+    "In the work relationship info, exclude them from the new hire report. Paid hires are included. Affiliates, observers, and contractors are excluded.",
+    "Before you submit: never use Active no payroll for someone who should be paid; they won't be. Affiliates on campus need a background check, but not an I-9. And there's an open item: HRIS will confirm when to use Add a Nonworker or Add a Contingent Worker instead."
+  ],
+  "clips": [
+    [
+      0.0,
+      12.8
+    ],
+    [
+      13.36,
+      19.5
+    ],
+    [
+      20.02,
+      28.97
+    ],
+    [
+      29.54,
+      39.55
+    ],
+    [
+      40.19,
+      60.66
+    ]
+  ]
+}

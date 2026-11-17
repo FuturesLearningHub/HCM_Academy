@@ -1,0 +1,89 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts. Cut points checked by hand against each sentence's pauses (the automatic cut drifted in steps 1, 2, and 9 to 13).",
+  "script": [
+    "Convert a pending worker. When a candidate's background check clears, the PEBC team emails you that they're clear to start, and the person appears as a pending worker. Converting them is the hire transaction. What you enter here becomes their assignment, pay, and manager, so this is the step that decides whether the first paycheck is right.",
+    "Go to Our Workforce, then Pending Workers. Everyone in your business unit who is ready to convert is listed.",
+    "Select the three dots next to the person, then Convert. Don't use Quick Convert or Edit Pending Worker. Make every change inside Convert.",
+    "Select the sections you'll update. Check Payroll details, which Vanderbilt calls payroll relationship, and Salary. Add Compensation if there's a bonus or other payment, and Direct reports if they'll manage people. Then select Continue.",
+    "In When and why, use the action Hire, and the reason Employment. Hire employment is almost always right.",
+    "Check the business unit and position. If the position changed after the offer, select the correct position here. Make any pre-hire corrections at this step.",
+    "In biographical info, confirm the date of birth. It comes from the background check. For US citizen or permanent resident, select the pencil and pick Yes or No.",
+    "For the national ID, enter the Social Security number. No number? Email the International Tax Office for a placeholder, then select the pencil, choose placeholder number, and enter it.",
+    "The home address must be in the United States. Anyone being paid needs a US address. If you see another country, cancel, and contact central HR to correct it.",
+    "Review the position overrides. Shaded fields, such as location and working hours, can be changed. Check yourself as manager here only if you are their manager.",
+    "In Assignment, set the person type to match the assignment category. Override the location if they'll work remotely. Working with minors is required. Set the default expense account, and use the status Active payroll eligible for anyone paid.",
+    "Select the pencil to set the manager. In the work relationship info, include paid hires in the new hire report.",
+    "In payroll details, Monthly pays an annual salary. Biweekly is hourly: set overtime to biweekly, and time card required to Yes.",
+    "For salary, enter what they'll actually be paid. For a point seven five F T E at fifty-eight thousand dollars, enter fifty-eight thousand. Oracle shows the full-time equivalent for reference.",
+    "Review any compensation, such as a relocation or sign-on bonus. Attach the offer letter for your business unit approver, and submit. Approval goes to the business unit approver, then PEBC, then central HR.",
+    "Three things to remember. Never Quick Convert or Edit Pending Worker; use Convert. Active no payroll means no pay at all; use it only for unpaid affiliates. And if you're not sure where a hire or transfer stands, ask central recruiting before you create a direct hire."
+  ],
+  "clips": [
+    [
+      0.0,
+      21.85
+    ],
+    [
+      22.29,
+      29.54
+    ],
+    [
+      29.86,
+      39.68
+    ],
+    [
+      40.18,
+      58.05
+    ],
+    [
+      58.27,
+      64.75
+    ],
+    [
+      65.18,
+      74.97
+    ],
+    [
+      75.45,
+      86.27
+    ],
+    [
+      86.68,
+      101.78
+    ],
+    [
+      102.08,
+      112.39
+    ],
+    [
+      112.73,
+      121.31
+    ],
+    [
+      121.77,
+      137.35
+    ],
+    [
+      137.73,
+      145.08
+    ],
+    [
+      145.49,
+      155.63
+    ],
+    [
+      156.05,
+      168.2
+    ],
+    [
+      168.59,
+      185.32
+    ],
+    [
+      185.79,
+      204.36
+    ]
+  ],
+  "locked": true
+}

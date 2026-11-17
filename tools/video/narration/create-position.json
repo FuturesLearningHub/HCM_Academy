@@ -1,0 +1,18 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Create a position. Every hire starts with a position. The requisition is built from it, and the new hire's assignment inherits from it, so a mistake here follows the person all the way through. Before you start, have the approved position description from your engagement consultant, and the pre-search memo from Compensation.",
+    "On the Home page, open Our Workforce, and select Show More. Scroll to Workforce Structures, and select Positions.",
+    "Search with the status filter set to Active, to see every active position in your business unit. The Incumbents column shows who sits in each one.",
+    "Select Add. A new position opens at the When and Why section.",
+    "Make the effective date today, not the start date. The position must be approved and active before it can be posted. New positions always use status Active, and action reason New Position.",
+    "Pick your business unit. The name is what you call the position, and the code identifies it, so note it to find the position later. Where Oracle says work unit, it means department.",
+    "For Job, enter the six-digit job code from the pre-search memo. Search by code, not by name, so you get the exact job. Don't use four- or five-digit codes. Leave Manager blank. Managers change, and the manager belongs on the assignment.",
+    "Location is where the person would sit on site. It decides whether the posting must show a pay range, so don't assume Nashville. For assignment category, use the one on the memo. Never Professional salaried non-exempt.",
+    "Keep standard working hours at forty, and set working hours to the actual hours. For a twenty-hour position: standard forty, working twenty, F T E point five. This is the most common position error.",
+    "Headcount one is single incumbent. More than one is pool. Set overlap allowed to Yes, so you can recruit while the current incumbent is still on payroll. Then set Term or Flex, if it applies.",
+    "Attach the pre-search memo and the position description, add comments, and submit. Central HR approves only with the memo attached. Approval goes to your business unit approver, then to the central HR approval group.",
+    "Three things to remember. Don't reactivate an inactive position; create a new one. Don't repurpose a position built for a different worker type. And the requisition copies the position when it's submitted, so fix the position first."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Create a requisition. A requisition is the request to recruit. It's built from a position, and it copies that position the moment you submit. Vanderbilt's recruiting is outsourced to Cielo, which bills for every opening and every fill, so open only what you'll actually fill.",
+    "Check the position first. Confirm it has a six-digit job code, and the right location and category. The requisition snapshots the position at submission, and bad data flows on to the new hire.",
+    "Go to Our Workforce, then Hiring, then Job Requisitions, and select Create at the top.",
+    "Choose Standard, and select the position. Pipeline is for recruiters only. The position's job details fill in, and the position can't be changed after this.",
+    "The requisition title is the posting title. Change it to something candidates understand, for example add Senior, or Hybrid.",
+    "Choose the justification: new to the department, or replacing someone. For openings, choose Limited and the exact number of seats. Never Unlimited. Each opening is billed.",
+    "Add the hiring manager, not you, unless you are. Add collaborators who should see candidates or interview, including any HCM you work with.",
+    "For requisition type, Standard is the full recruiting process. Abbreviated means you already have a candidate, usually internal, and it must still be posted internally for five business days.",
+    "Organization is always Vanderbilt. Pick the specific location, never United States. Location tells recruiting whether pay transparency applies.",
+    "Fill in the required details: funding source, driving, replacing a RIF role, fingerprinting, motor vehicle record, and work with minors. Salary range is optional. Skip Tier; it's for billing.",
+    "Paste the position description into the description, so the recruiter can post it. They can't post from an attachment. You can write different internal and external versions.",
+    "In offer info, pick On site, Hybrid, or Remote. Skip Grades, and leave Primary work location as it is.",
+    "Attach the position description and the pre-search memo. Central recruiting checks the memo exists, is from the last twelve months, and has the same job code as the requisition.",
+    "In Configuration, New York requisitions must use the New York candidate selection process. Everything else uses Standard. The background check vendor is HireRight. The account is V A N zero zero zero for anywhere except New York, and V A N zero nine for New York.",
+    "Select Save, then Submit. Ignore the background check packages pop-up; the recruiter picks packages at the offer. Approval goes to the hiring line manager, your business unit's financial approver, then central recruiting.",
+    "Three things to remember. Never select Unlimited openings. Never use United States as the location. And for New York, use the New York candidate selection process and account V A N zero nine, every time."
+  ]
+}

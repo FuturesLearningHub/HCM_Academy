@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Update a position explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Our Workforce and Show More follow Vanderbilt's screens;
+     the Positions pages follow standard Oracle and the course text (see the course's Screen check). Names and codes are fictional.
+     Every caption and narration line comes from the course "Update a position". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script>
+VIDEO.set({ H:2000, steps:6 });
+var F = C.field;
+VIDEO.add(C.home());
+VIDEO.add(C.more());
+VIDEO.add(C.page('positions', C.title('Positions') + C.btns([{ t:'Add', cta:true }]) +
+  '<div class="lp" style="top:160px"><div class="bar"><div class="field" id="p-search" data-focus="ps">' + C.I('search') + '<span class="grow"><span data-bind="ps"></span><span class="caret" data-caret="ps"></span><span class="ph" data-ph="ps">Search by name or code</span></span></div>' +
+  '<span class="chip">Business Unit: Arts and Science</span><span class="chip on">Status: Active</span><span class="btn sec">Search</span></div>' +
+  C.table({ cols:'1.4fr .8fr 1.5fr 1.2fr 1.2fr .7fr .7fr', head:['Name', 'Code', 'Job', 'Work Unit', 'Location', 'Status', 'Incumbents'], rows:[
+    { id:'r-pc', cells:['<b style="color:#2a6bb1">Program Coordinator</b>', 'BIO-PC-01', '104221 Program Coordinator', 'Biological Sciences', 'Nashville Main Campus', 'Active', '1'] },
+    { cells:['Lab Manager', 'BIO-LM-01', '104118 Lab Manager', 'Biological Sciences', 'Nashville Main Campus', 'Active', '1'], if:'!pfilter' },
+    { cells:['Research Analyst', 'BIO-RA-03', '104305 Research Analyst', 'Biological Sciences', 'Nashville Main Campus', 'Active', '2'], if:'!pfilter' } ] }) + '</div>'));
+
+/* the position, then the update */
+var view = '<div class="ecard" style="width:520px"><h4>Position Details</h4><dl>' +
+  '<dt>Name</dt><dd><span data-if="!upd">Program Coordinator</span><span data-if="upd">Senior Program Coordinator</span></dd>' +
+  '<dt>Job</dt><dd><span data-if="!upd">104221 Program Coordinator</span><span data-if="upd">104226 Senior Program Coordinator</span></dd>' +
+  '<dt>Assignment Category</dt><dd>Professional exempt</dd><dt>Position Type</dt><dd>Single incumbent</dd><dt>Headcount</dt><dd>1</dd></dl></div>';
+VIDEO.add(C.page('pos', C.title('Program Coordinator', { id:'pos-top' }) +
+  '<div class="fbtns" data-if="!editing"><span class="btn sec" id="b-edit">Edit' + C.I('down', 'width:16px;height:16px;margin-left:6px') + '</span></div>' +
+  '<div class="fbtns" data-if="editing">' + '<span class="btn sec">Cancel</span><span class="btn cta off" id="b-submit" data-cls="can-submit:on">Submit</span></div>' +
+  '<div class="omenu" style="right:150px;top:146px" data-if="m-edit"><div id="m-upd" class="hov">Update</div><div>Correct</div></div>' +
+  '<div style="position:absolute;left:150px;top:160px" data-if="!editing">' + view + '</div>' +
+  '<div class="secs" style="top:160px" data-if="editing">' +
+  C.sec({ id:'s1', n:1, title:'Position Details', done:'s1-done', open:'!s1-done', sum:'104226 Senior Program Coordinator · Professional exempt', body:
+    '<div class="fld3">' + F({ id:'f-name', label:'Name', bind:'name' }) +
+    F({ id:'f-job', label:'Job', bind:'job', icon:'search', ddIf:'dd-job', dd:[{ id:'o-job', t:'104226 Senior Program Coordinator', s:'Six-digit code from the reclass memo' }] }) +
+    F({ id:'f-cat', label:'Assignment Category', bind:'cat', icon:'down' }) + F({ id:'f-hc', label:'Headcount', bind:'hc' }) +
+    F({ id:'f-type', label:'Position Type', bind:'ptype', icon:'down' }) + '</div>' + C.cont('c1') }) +
+  C.sec({ id:'s2', n:2, title:'Comments and Attachments', done:'s2-done', open:'s1-done !s2-done', later:'!s1-done', sum:'Reclass memo attached', body:
+    '<p class="flabel">Comments</p><div class="ta" id="f-com" data-focus="com"><span data-bind="com"></span><span class="caret" data-caret="com"></span></div>' +
+    '<p class="flabel" style="margin-top:16px">Attachments</p><div class="drop" id="f-att" style="margin-top:0">' + C.I('up') + 'Drag and drop files here or <u>add a file</u></div>' +
+    '<div class="att" data-in="att1">' + C.I('clip') + 'Reclass memo.pdf</div>' + C.cont('c2') }) + '</div>' +
+  '<div class="scrim" data-if="dlg"></div><div class="modal" data-if="dlg" id="dlg"><h3>Update Position</h3><div class="fld2" style="grid-template-columns:260px 260px">' +
+    F({ id:'f-date', label:'Effective Start Date', bind:'date', ph:'m/d/yyyy', icon:'cal' }) +
+    F({ id:'f-reason', label:'Action Reason', bind:'reason', ph:'Select a value', icon:'down', ddIf:'dd-reason', dd:[{ id:'o-reclass', t:'Reclassification to a higher range' }, { t:'Assignment category change' }, { t:'Name change' }] }) +
+    '</div><div style="margin-top:22px;text-align:right"><span class="btn sec" style="margin-right:8px">Cancel</span><span class="btn cta" id="b-ok">OK</span></div></div>'));
+VIDEO.add(C.home({ toast:'You submitted the update to Senior Program Coordinator.' }).replace('data-screen="home"', 'data-screen="done"'));
+
+VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Update a ', em:'position', post:'.', rule:true,
+  p:"Most often the name changes, and for a reclassification the job code and maybe the assignment category. Some changes reach the incumbent's assignment once approved. Others don't.", meta:'Oracle HCM · Workforce Structures' }));
+VIDEO.addCard(C.card({ id:'sync', theme:'cream', eyebrow:'Step 6 of 6 · After approval', pre:"What doesn't ", em:'flow', post:' to the assignment.', top:220,
+  items:['Person type', 'Location', 'Working hours', 'Hourly salary'],
+  p:"Open the employee's Employment Info and use Change Assignment (position change within business unit) to update these and the business title.", meta:'Then Change Assignment' }));
+VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Two things to ', em:'remember', post:'.', items:[
+  'Position changes never reach an existing requisition. The requisition keeps the position as it was when submitted.',
+  "Reclassifications need Compensation's reclass memo before you update the position."], meta:'Questions: pcb@vanderbilt.edu' }));
+
+seg(); card('intro'); scene('home'); wait(3.5); hold(-.5);
+card('intro', false);
+capS(1, 'Open the position: Our Workforce, Show More, Positions. Search for it and open it.');
+wait(.5); press('#tab-wf', function(){ flag('tab-wf'); }, 1.0); wait(.3);
+camTo('#qa-more', 1.3, .8, 120, -120); wait(.4); press('#qa-more span', null, .9); camTo(null, 1, 0); scene('more'); wait(.3);
+camTo('#more-workforce-structures-positions', 1.3, 1.2, 120, -40); wait(1.3); press('#more-workforce-structures-positions span', null, .8); camTo(null, 1, 0); scene('positions'); wait(.3);
+fill('#p-search', 'ps', 'Program Coordinator', .9); flag('pfilter'); wait(.4); press('#r-pc b', null, .8); scene('pos'); wait(.5); mark(1); hold(-.2);
+capS(2, 'Choose Update and enter the date the change takes effect.');
+press('#b-edit', function(){ flag('m-edit'); }); wait(.2); press('#m-upd', function(){ flag('m-edit', false); flag('dlg'); }, .6); wait(.3);
+fill('#f-date', 'date', '9/1/2027', .9); mark(2, '#f-date'); hold(-.2);
+capS(3, 'Pick the action reason that matches the change. The reason drives reporting.');
+pick('#f-reason', 'dd-reason', '#o-reclass', 'reason', 'Reclassification to a higher range'); wait(.3); mark(3, '#f-reason'); hold(.8);
+press('#b-ok', function(){ flag('dlg', false); flag('editing'); val('name', 'Program Coordinator'); val('job', '104221 Program Coordinator'); val('cat', 'Professional exempt'); val('hc', '1'); val('ptype', 'Single incumbent'); }); hold(-.3);
+capS(4, "Change the fields that changed: the new job code from the reclass memo, the new name, and the category if it changed.");
+camTo('#s1', 1.15, .9, 55, 80); wait(.5);
+move('#f-job', .8); click(function(){ fset('job'); val('job', ''); }); type('job', '104226', .6); flag('dd-job'); wait(.3); press('#o-job', function(){ flag('dd-job', false); val('job', '104226 Senior Program Coordinator'); fset(null); }, .5);
+move('#f-name', .7); click(function(){ fset('name'); val('name', ''); }); type('name', 'Senior Program Coordinator', 1.0); wait(.2); fset(null); mark(4); hl('#f-type'); wait(1.2); hl(null); hold(1.0);
+press('#c1', function(){ flag('s1-done'); }); hold(-.3);
+capS(5, 'Attach the reclass memo, add comments, and Submit. Approval follows the same path as a new position.');
+camTo('#s2', 1.15, .9, 55, 150); wait(.4); press('#f-att', function(){ flag('att1'); });
+fill('#f-com', 'com', 'Reclassification per the attached reclass memo, effective 9/1/2027.', 1.6); mark(5);
+press('#c2', function(){ flag('s2-done'); flag('can-submit'); flag('upd'); }); camTo(null, 1, .8); wait(.5);
+move('#b-submit', .8); hl('#b-submit'); wait(.3); hold(.3); click(function(){ hl(null); }); scene('done'); flag('tab-wf'); flag('toast'); wait(.6); hold(-.3);
+capS(6, "After approval, use Change Assignment for what didn't flow to the assignment.");
+wait(.3); flag('toast', false); move('#qa-ca span', 1.0); hl('#qa-ca'); wait(.8); mark(6); wait(.6); card('sync'); wait(1.0); hold(-.6); hl(null);
+seg(); card('out'); wait(.6); card('sync', false); wait(1.4); hold(-2.2);
+VIDEO.run();
+</script>
+</body>
+</html>

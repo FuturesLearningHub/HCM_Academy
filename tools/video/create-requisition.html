@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Create a requisition explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Our Workforce follows Vanderbilt's screens; the Hiring and
+     requisition pages follow standard Oracle Recruiting and the course text (see the course's Screen check). Names are fictional.
+     Every caption and narration line comes from the course "Create a requisition". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script>
+VIDEO.set({ H:2000, steps:14 });
+var F = C.field;
+var yn = function(id, label, bind){ return F({ id:id, label:label, bind:bind, ph:'Select a value', icon:'down' }); };
+VIDEO.add(C.home());
+VIDEO.add(C.page('positions', C.title('Positions') +
+  '<div class="lp" style="top:160px">' + C.table({ id:'ptab', cols:'1.4fr .8fr 1.6fr 1.2fr 1.3fr 1.2fr', head:['Name', 'Code', 'Job', 'Work Unit', 'Location', 'Assignment Category'], rows:[
+    { id:'r-pc', cells:['Program Coordinator', 'BIO-PC-01', '104221 Program Coordinator', 'Biological Sciences', 'Nashville Main Campus', 'Professional exempt'] } ] }) + '</div>'));
+VIDEO.add(C.page('hiring', C.title('Hiring') + '<div class="lp" style="top:160px;width:520px"><div class="otab">' +
+  ['Create Job Requisition', 'Job Offers', 'Job Requisitions', 'Manage Shared Interview Schedules', 'Recruiting Activity Center'].map(function(t){
+    return '<div class="tr" style="grid-template-columns:28px 1fr"' + (t === 'Job Requisitions' ? ' id="h-reqs"' : '') + '>' + C.I('doc') + '<span>' + t + '</span></div>'; }).join('') + '</div></div>'));
+VIDEO.add(C.page('reqs', C.title('Job Requisitions') + C.btns([{ t:'Create', cta:true, id:'b-create' }]) + '<div class="lp" style="top:160px">' +
+  C.table({ cols:'.8fr 1.6fr 1fr 1.3fr .8fr', head:['Requisition', 'Title', 'Status', 'Hiring Manager', 'Openings'], rows:[
+    { cells:['2611', 'Lab Manager', 'Open', 'Morgan Ellis', '1'] }, { cells:['2598', 'Research Analyst', 'Filled', 'Morgan Ellis', '1'] } ] }) + '</div>'));
+VIDEO.add(C.page('create', C.title('Create Job Requisition') + '<div class="lp" style="top:160px"><p class="flabel">How do you want to create it?</p>' +
+  '<div class="radio" id="r-std" data-cls="std:on"><span class="rd"></span><div>Standard<small>Recruit for a position.</small></div></div>' +
+  '<div class="radio"><span class="rd"></span><div>Pipeline<small>For recruiters only.</small></div></div><div style="margin-top:18px">' +
+  F({ id:'f-pos', label:'Position', bind:'pos', ph:'Search', icon:'search', w:520, ddIf:'dd-pos', dd:[{ id:'o-pos', t:'BIO-PC-01 Program Coordinator', s:'Biological Sciences · Nashville Main Campus' }] }) +
+  '</div><div style="margin-top:20px"><span class="btn cta" id="b-cont">Continue</span></div></div>'));
+
+var secs = [
+  { id:'s1', title:'Basic Information', sum:'Program Coordinator (Hybrid) · New to the department · Limited, 1 opening', body:'<div class="fld3">' +
+    F({ id:'f-title', label:'Requisition Title', bind:'title' }) +
+    F({ id:'f-just', label:'Justification', bind:'just', ph:'Select a value', icon:'down', ddIf:'dd-just', dd:[{ id:'o-new', t:'New to the department' }, { t:'Replacement' }] }) +
+    '<div class="fw"><p class="flabel">Number of Openings</p><div class="seg2" id="f-open"><span data-cls="lim:on">Limited</span><span>Unlimited</span></div> <div class="field" style="display:inline-flex;width:80px;vertical-align:top;margin-left:8px" id="f-n" data-focus="n"><span class="grow"><span data-bind="n"></span><span class="caret" data-caret="n"></span></span></div></div></div>' + C.cont('c1') },
+  { id:'s2', title:'Hiring Team', sum:'Hiring manager Morgan Ellis · Collaborator Jordan Avery', body:'<div class="fld2">' +
+    F({ id:'f-hm', label:'Hiring Manager', bind:'hm', ph:'Search', icon:'search', ddIf:'dd-hm', dd:[{ id:'o-hm', t:'Morgan Ellis', s:'Director · Biological Sciences' }] }) +
+    F({ id:'f-col', label:'Collaborators', bind:'col', ph:'Search', icon:'search', ddIf:'dd-col', dd:[{ id:'o-col', t:'Jordan Avery', s:'HCM · Biological Sciences' }] }) + '</div>' + C.cont('c2') },
+  { id:'s3', title:'Requisition Type and Location', sum:'Standard · Vanderbilt · Nashville', body:'<div class="fld3">' +
+    F({ id:'f-type', label:'Requisition Type', bind:'rtype', ph:'Select a value', icon:'down', ddIf:'dd-type', dd:[{ id:'o-std', t:'Standard', s:'The full recruiting process' }, { t:'Abbreviated', s:'You already have a candidate' }, { t:'Executive search', s:"Cielo's executive search program only" }] }) +
+    F({ id:'f-org', label:'Organization', bind:'org', icon:'down' }) +
+    F({ id:'f-loc', label:'Primary Location', bind:'loc', ph:'Search', icon:'search', ddIf:'dd-loc', dd:[{ id:'o-loc', t:'Nashville' }, { t:'New York' }, { t:'California' }, { t:'West Palm Beach' }] }) + '</div>' + C.cont('c3') },
+  { id:'s4', title:'Required Details', sum:'Funding internal · No driving · Not replacing a RIF role · No fingerprinting, MVR, or work with minors', body:'<div class="fld3">' +
+    F({ id:'f-fund', label:'Funding Source', bind:'fund', ph:'Select a value', icon:'down', ddIf:'dd-fund', dd:[{ id:'o-int', t:'Internal' }, { t:'External' }, { t:'Both' }] }) +
+    yn('f-drive', 'Driving', 'drive') + yn('f-rif', 'Replacing a RIF Role', 'rif') + yn('f-fp', 'Fingerprinting', 'fp') + yn('f-mvr', 'Motor Vehicle Record', 'mvr') + yn('f-min', 'Work With Minors', 'min') +
+    F({ id:'f-sal', label:'Salary Range (optional)', bind:'sal', ph:'Optional' }) + '</div>' + C.cont('c4') },
+  { id:'s5', title:'Description', sum:'Internal and external descriptions added', body:
+    '<p class="flabel">Internal Description</p><div class="ta" id="f-int" style="height:64px"><span data-bind="int"></span></div>' +
+    '<p class="flabel" style="margin-top:14px">External Description</p><div class="ta" id="f-ext" style="height:64px"><span data-bind="ext"></span></div>' + C.cont('c5') },
+  { id:'s6', title:'Offer Information', sum:'Hybrid', body:'<div class="fld2"><div class="fw"><p class="flabel">Workplace Type</p><div class="seg2" id="f-wp"><span>On site</span><span id="wp-h" data-cls="hyb:on">Hybrid</span><span>Remote</span></div></div>' +
+    F({ label:'Primary Work Location', ro:'Nashville Main Campus' }) + '</div>' + C.cont('c6') },
+  { id:'s7', title:'Attachments', sum:'Position description and pre-search memo', body:'<div class="drop" id="f-att" style="margin-top:0">' + C.I('up') + 'Drag and drop files here or <u>add a file</u></div>' +
+    '<div class="att" data-in="att1">' + C.I('clip') + 'Position description.pdf</div><div class="att" data-in="att2">' + C.I('clip') + 'Pre-search memo.pdf</div>' + C.cont('c7') },
+  { id:'s8', title:'Configuration', sum:'Standard process · HireRight · VAN000', body:'<div class="fld3">' +
+    F({ id:'f-csp', label:'Candidate Selection Process', bind:'csp', ph:'Select a value', icon:'down', ddIf:'dd-csp', dd:[{ id:'o-csp', t:'Standard' }, { t:'New York' }] }) +
+    F({ id:'f-ven', label:'Background Check Vendor', bind:'ven', icon:'down' }) +
+    F({ id:'f-acct', label:'Background Check Account', bind:'acct', ph:'Select a value', icon:'down', ddIf:'dd-acct', dd:[{ id:'o-acct', t:'VAN000', s:'Anywhere except New York' }, { t:'VAN09', s:'New York' }] }) + '</div>' + C.cont('c8') }
+];
+var html = '<div class="secs" style="top:160px">' + secs.map(function(x, i){
+  return C.sec({ id:x.id, n:i + 1, title:x.title, sum:x.sum, done:x.id + '-done', open:(i ? secs[i - 1].id + '-done ' : '') + '!' + x.id + '-done', later:i ? '!' + secs[i - 1].id + '-done' : null, body:x.body });
+}).join('') + '</div>';
+VIDEO.add(C.page('req', C.title('Create Job Requisition: Program Coordinator') + C.btns([{ t:'Save', id:'b-save' }, { t:'Submit', cta:true, id:'b-submit', off:'can-submit' }]) + html +
+  '<div class="scrim" data-if="pkg"></div><div class="modal" data-if="pkg" id="pkg"><h3>Background Check Packages</h3><p style="font-size:14.5px;color:rgba(22,21,19,.7);margin:0 0 18px">Select packages for this requisition.</p>' +
+  '<div style="text-align:right"><span class="btn sec" id="b-pkg">Close</span></div></div>'));
+VIDEO.add(C.home({ toast:'You submitted requisition Program Coordinator (Hybrid) for approval.' }).replace('data-screen="home"', 'data-screen="done"'));
+
+VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Create a ', em:'requisition', post:'.', rule:true,
+  p:"A requisition is the request to recruit. It's built from a position, and it copies that position the moment you submit. Cielo bills for every opening and every fill, so open only what you'll fill.", meta:'Oracle Recruiting · Job Requisitions' }));
+VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Three things to ', em:'remember', post:'.', items:[
+  'Never select Unlimited openings.', 'Never use United States as the location.', 'New York: the New York candidate selection process and account VAN09, every time.'], meta:'Questions: pcb@vanderbilt.edu' }));
+
+var cont = function(n){ press('#c' + n, function(){ flag('s' + n + '-done'); }); };
+seg(); card('intro'); scene('positions'); wait(3.5); hold(-.5);
+card('intro', false);
+capS(1, 'Check the position first: six-digit job code, the right location, and the right category.');
+wait(.6); hl('#r-pc'); wait(1.4); mark(1, '#r-pc'); hold(-.2); hl(null);
+capS(2, 'Our Workforce, Hiring, Job Requisitions, then Create.');
+scene('home'); wait(.3); press('#tab-wf', function(){ flag('tab-wf'); }, .9); press('#app-hiring', null, .9); scene('hiring'); wait(.3);
+press('#h-reqs span', null, .8); scene('reqs'); wait(.3); move('#b-create', .8); hl('#b-create'); wait(.4); mark(2); hold(.2); click(function(){ hl(null); }); scene('create'); hold(-.2);
+capS(3, 'Choose Standard and select the position. Pipeline is for recruiters only.');
+press('#r-std', function(){ flag('std'); }); move('#f-pos', .8); click(function(){ fset('pos'); }); type('pos', 'BIO-PC', .5); flag('dd-pos'); wait(.3);
+press('#o-pos', function(){ flag('dd-pos', false); val('pos', 'BIO-PC-01 Program Coordinator'); fset(null); }, .5); mark(3); hold(.6);
+press('#b-cont', function(){ val('title', 'Program Coordinator'); val('org', 'Vanderbilt'); val('ven', 'HireRight'); }); scene('req'); hold(-.2);
+capS(4, 'Requisition title: the posting title. Make it something candidates understand.');
+camTo('#s1', 1.15, .9, 55, 80); wait(.4);
+move('#f-title', .8); click(function(){ fset('title'); }); type('title', 'Program Coordinator (Hybrid)', .5); wait(.2); fset(null); mark(4, '#f-title'); hold(-.2);
+capS(5, 'Justification, and openings: Limited, with the exact number. Never Unlimited.');
+pick('#f-just', 'dd-just', '#o-new', 'just', 'New to the department'); press('#f-open span', function(){ flag('lim'); }); fill('#f-n', 'n', '1', .3); mark(5); hold(.8); cont(1); hold(-.2);
+capS(6, 'Add the hiring manager and collaborators, including any HCM you work with.');
+camTo('#s2', 1.15, .9, 55, 60); wait(.3);
+move('#f-hm', .8); click(function(){ fset('hm'); }); type('hm', 'Morgan', .5); flag('dd-hm'); wait(.3); press('#o-hm', function(){ flag('dd-hm', false); val('hm', 'Morgan Ellis'); fset(null); }, .5);
+move('#f-col', .8); click(function(){ fset('col'); }); type('col', 'Jordan', .5); flag('dd-col'); wait(.3); press('#o-col', function(){ flag('dd-col', false); val('col', 'Jordan Avery'); fset(null); }, .5); mark(6); hold(.8); cont(2); hold(-.2);
+capS(7, 'Requisition type: Standard is the full process. Abbreviated means you already have a candidate.');
+camTo('#s3', 1.15, .9, 55, 100); wait(.3);
+pick('#f-type', 'dd-type', '#o-std', 'rtype', 'Standard'); mark(7, '#f-type'); hold(-.2);
+capS(8, 'Organization is always Vanderbilt. Pick the specific location, never United States.');
+hl('#f-org'); wait(.8); hl(null); pick('#f-loc', 'dd-loc', '#o-loc', 'loc', 'Nashville'); mark(8, '#f-loc'); hold(.8); cont(3); hold(-.2);
+capS(9, 'Fill in the required details. Salary range is optional. Skip Tier.');
+camTo('#s4', 1.15, .9, 55, 120); wait(.3);
+pick('#f-fund', 'dd-fund', '#o-int', 'fund', 'Internal'); press('#f-drive', function(){ val('drive', 'No'); }, .6); press('#f-rif', function(){ val('rif', 'No'); }, .5);
+press('#f-fp', function(){ val('fp', 'No'); }, .5); press('#f-mvr', function(){ val('mvr', 'No'); }, .5); press('#f-min', function(){ val('min', 'No'); }, .5); mark(9); hold(.8); cont(4); hold(-.2);
+capS(10, 'Paste the position description into the description so the recruiter can post it.');
+camTo('#s5', 1.15, .9, 55, 120); wait(.3);
+press('#f-int', function(){ val('int', 'Coordinates lab programs, schedules, and events for the department. (Pasted from the position description.)'); }, .8);
+press('#f-ext', function(){ val('ext', 'Join our lab team as Program Coordinator. Hybrid. (Pasted from the position description.)'); }, .6); mark(10); hold(.8); cont(5); hold(-.2);
+capS(11, 'Offer info: pick On site, Hybrid, or Remote. Leave Primary work location as it is.');
+camTo('#s6', 1.15, .9, 55, 120); wait(.3);
+press('#wp-h', function(){ flag('hyb'); }); mark(11, '#f-wp'); hold(.8); cont(6); hold(-.2);
+capS(12, 'Attach the position description and the pre-search memo.');
+camTo('#s7', 1.15, .9, 55, 120); wait(.3);
+press('#f-att', function(){ flag('att1'); }); wait(.2); press('#f-att', function(){ flag('att2'); }, .4); mark(12); hold(.8); cont(7); hold(-.2);
+capS(13, 'Configuration: Standard process, HireRight, VAN000. New York uses its own process and VAN09.');
+camTo('#s8', 1.15, .9, 55, 120); wait(.3);
+pick('#f-csp', 'dd-csp', '#o-csp', 'csp', 'Standard'); hl('#f-ven'); wait(.6); hl(null); pick('#f-acct', 'dd-acct', '#o-acct', 'acct', 'VAN000'); mark(13); hold(.8); cont(8); hold(-.2);
+capS(14, 'Save, then Submit. Ignore the background check packages pop-up.');
+camTo(null, 1, .8); wait(.4); press('#b-save', function(){ flag('can-submit'); }); press('#b-submit', function(){ flag('pkg'); }); wait(.4); mark(14, '#pkg');
+press('#b-pkg', function(){ flag('pkg', false); }); wait(.2); scene('done'); flag('tab-wf'); flag('toast'); wait(.8); hold(-.6);
+seg(); card('out'); wait(2); hold(-2.2);
+VIDEO.run();
+</script>
+</body>
+</html>

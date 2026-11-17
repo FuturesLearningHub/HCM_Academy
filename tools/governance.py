@@ -329,10 +329,12 @@ _VIDEO = "Added a narrated video and a detailed job aid with a picture for each 
 EXTRA_CHANGES = {
     # slug: [(date, text)] for hand-written entries. Newest first.
     "direct-reports": [(SCREENS, "Steps now follow Vanderbilt's Our Workforce screens: open Direct Reports from Show More, then search for the manager. " + _VIDEO)],
-    "create-requisition": [(SCREENS, "Path corrected from Vanderbilt's Our Workforce screens: Hiring > Job Requisitions, or the Create Job Requisition quick action.")],
-    "hire-non-worker": [(SCREENS, "Added an open item: when to use Add a Nonworker or Add a Contingent Worker, which Vanderbilt's Our Workforce screens list under New Person.")],
+    "create-requisition": [(SCREENS, "Path corrected from Vanderbilt's Our Workforce screens: Hiring > Job Requisitions, or the Create Job Requisition quick action. " + _VIDEO)],
+    "hire-non-worker": [(SCREENS, "Added an open item: when to use Add a Nonworker or Add a Contingent Worker, which Vanderbilt's Our Workforce screens list under New Person. " + _VIDEO)],
     "compensation-memo": [(SCREENS, _VIDEO)], "background-checks": [(SCREENS, _VIDEO)],
     "executive-search": [(SCREENS, _VIDEO)], "hire-staff": [(SCREENS, _VIDEO)],
+    "create-position": [(SCREENS, _VIDEO)], "update-position": [(SCREENS, _VIDEO)], "convert-pending-worker": [(SCREENS, _VIDEO)],
+    "rehire-eligibility": [(SCREENS, _VIDEO)],
 }
 
 # Changes made on Nov 13, 2026 from Vanderbilt's own published pages: the HR/Payroll Calendar for 2026 and 2027

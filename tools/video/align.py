@@ -55,8 +55,8 @@ def align(mp3, paras):
 if __name__ == "__main__":
     scene = sys.argv[1]
     jp = os.path.join(HERE, "narration", scene + ".json"); cfg = json.load(open(jp, encoding="utf-8"))
-    if any(len(c) > 2 for c in cfg.get("clips", [])):
-        print("clips include lines recorded separately; keeping the saved cut points"); sys.exit(0)
+    if cfg.get("locked") or any(len(c) > 2 for c in cfg.get("clips", [])):
+        print("cut points were set by hand or include a separate line; keeping them"); sys.exit(0)
     clips, rates = align(os.path.join(HERE, "narration", scene + ".mp3"), cfg["script"])
     avg = sum(rates) / len(rates)
     for c, r, p in zip(clips, rates, cfg["script"]):

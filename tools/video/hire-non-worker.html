@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Non-workers explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Pending Workers and Convert follow standard Oracle and the course
+     text (see the course's Screen check). Names are fictional. Every caption and narration line comes from the course "Non-Workers". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script src="convert-pages.js"></script>
+<script>
+VIDEO.set({ H:2000, steps:3 });
+var person = { name:'Avery Lane', wtype:'Affiliate', start:'12/14/2026', pos:'BIO-OB-02 Visiting Observer',
+  ban:{ ini:'AL', c:'#6B5B95', name:'Avery Lane', sub:'Pending worker · Visiting Observer · Proposed start 12/14/2026' } };
+var X = function(k){ return convertSection(k, { pos:person.pos, hours:'0', ptype:'Affiliate', whySum:'Hire · Non-employment',
+  asgSum:'Affiliate · Active - No Payroll', mgrSum:'Exclude from the new hire report' }); };
+convertPages({ person:person, toast:'You submitted the conversion of Avery Lane.', sections:[], flow:['why', 'bu', 'bio', 'nid', 'addr', 'ovr', 'asg', 'mgr'].map(X) });
+VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Add a ', em:'non-worker', post:'.', rule:true,
+  p:"Affiliates such as observers and contractors need Oracle access but aren't paid. They're converted like other hires, with three settings that keep them out of payroll.", meta:'Oracle HCM · Convert' }));
+VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Before you ', em:'submit', post:'.', items:[
+  "Never use Active no payroll for someone who should be paid. They won't be.", 'Affiliates on campus need a background check but not an I-9.',
+  'Open item: confirm with HRIS when to use Add a Nonworker or Add a Contingent Worker instead.'], meta:'Questions: pcb@vanderbilt.edu' }));
+
+var cont = function(k){ press('#c-x' + k, function(){ flag('x' + k + '-done'); }); };
+seg(); card('intro'); scene('pw'); wait(3.5); hold(-.5);
+card('intro', false);
+capS(1, 'Hire reason: Non-employment, not Hire employment.');
+wait(.4); press('#kb', function(){ flag('m-kb'); }); press('#m-conv', function(){ flag('m-kb', false); flag('conv'); }, .6); scene('conv'); wait(.3);
+camTo('#xwhy', 1.15, .9, 55, 80); wait(.3); pick('#f-act', 'dd-act', '#o-hire', 'act', 'Hire'); pick('#f-rsn', 'dd-rsn', '#o-nonemp', 'rsn', 'Non-employment'); mark(1, '#f-rsn'); hold(.8);
+cont('why'); flag('xbu-done'); flag('xbio-done'); flag('xnid-done'); flag('xaddr-done'); flag('xovr-done'); hold(-.2);
+capS(2, 'Assignment status: Active no payroll. It keeps them out of payroll.');
+camTo('#xasg', 1.15, .9, 55, 150); wait(.4); pick('#f-ptype', 'dd-ptype', '#o-ptype', 'ptype', 'Affiliate'); pick('#f-stat', 'dd-stat', '#o-np', 'stat', 'Active - No Payroll'); mark(2, '#f-stat'); hold(.8); cont('asg'); hold(-.2);
+capS(3, 'Work relationship: Exclude from the new hire report.');
+camTo('#xmgr', 1.15, .9, 55, 80); wait(.4); pick('#f-nhr', 'dd-nhr', '#o-exc', 'nhr', 'Exclude'); mark(3, '#f-nhr'); hold(-.4);
+seg(); card('out'); wait(2); hold(-2.2);
+VIDEO.run();
+</script>
+</body>
+</html>

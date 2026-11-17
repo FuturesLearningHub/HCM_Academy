@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Create a position explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Our Workforce and Show More follow Vanderbilt's screens;
+     the Positions pages follow standard Oracle and the course text (see the course's Screen check). Names and codes are fictional.
+     Every caption and narration line comes from the course "Create a position". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script>
+VIDEO.set({ H:2000, steps:10 });
+var F = C.field;
+VIDEO.add(C.home());
+VIDEO.add(C.more());
+VIDEO.add(C.page('positions', C.title('Positions') + C.btns([{ t:'Add', cta:true, id:'b-add' }]) +
+  '<div class="lp" style="top:160px"><div class="bar"><div class="field">' + C.I('search') + '<span class="grow ph">Search by name or code</span></div>' +
+  '<span class="chip">Business Unit: Arts and Science</span><span class="chip on" id="f-status">Status: Active</span><span class="btn sec" id="b-search">Search</span></div>' +
+  '<div data-if="searched">' + C.table({ id:'ptab', cols:'1.4fr .8fr 1.5fr 1.2fr 1.2fr .7fr .7fr', head:['Name', 'Code', 'Job', 'Work Unit', 'Location', 'Status', 'Incumbents'], rows:[
+    { cells:['Lab Manager', 'BIO-LM-01', '104118 Lab Manager', 'Biological Sciences', 'Nashville Main Campus', 'Active', '1'] },
+    { cells:['Research Analyst', 'BIO-RA-03', '104305 Research Analyst', 'Biological Sciences', 'Nashville Main Campus', 'Active', '2'] },
+    { cells:['Office Manager', 'BIO-OM-01', '103990 Office Manager', 'Biological Sciences', 'Nashville Main Campus', 'Active', '1'] },
+    { cells:['Administrative Assistant', 'BIO-AA-02', '102877 Administrative Assistant', 'Biological Sciences', 'Nashville Main Campus', 'Active', '0'], id:'r-inc' } ] }) + '</div></div>'));
+
+var s1 = '<div class="fld3">' + F({ id:'f-date', label:'Effective Start Date', bind:'date', ph:'m/d/yyyy', icon:'cal' }) +
+  F({ id:'f-status2', label:'Status', bind:'status', ph:'Select a value', icon:'down', ddIf:'dd-status', dd:[{ id:'o-active', t:'Active' }, { t:'Inactive' }] }) +
+  F({ id:'f-reason', label:'Action Reason', bind:'reason', ph:'Select a value', icon:'down', ddIf:'dd-reason', dd:[{ id:'o-new', t:'New Position' }, { t:'Reorganization' }] }) + '</div>' + C.cont('c1');
+var s2 = '<div class="fld3">' +
+  F({ id:'f-bu', label:'Business Unit', bind:'bu', ph:'Select a value', icon:'down', ddIf:'dd-bu', dd:[{ id:'o-bu', t:'Arts and Science' }] }) +
+  F({ id:'f-name', label:'Name', bind:'name', ph:'' }) + F({ id:'f-code', label:'Code', bind:'code', ph:'' }) +
+  F({ id:'f-wu', label:'Work Unit', bind:'wu', ph:'Search', icon:'search', ddIf:'dd-wu', dd:[{ id:'o-wu', t:'Biological Sciences' }] }) +
+  F({ id:'f-job', label:'Job', bind:'job', ph:'Search', icon:'search', ddIf:'dd-job', dd:[{ id:'o-job', t:'104221 Program Coordinator', s:'Six-digit code from the memo' }] }) +
+  F({ id:'f-mgr', label:'Manager', bind:'mgr', ph:'Leave blank', icon:'search' }) +
+  F({ id:'f-loc', label:'Location', bind:'loc', ph:'Search', icon:'search', ddIf:'dd-loc', dd:[{ id:'o-loc', t:'Nashville Main Campus' }] }) +
+  F({ id:'f-cat', label:'Assignment Category', bind:'cat', ph:'Select a value', icon:'down', ddIf:'dd-cat', dd:[{ id:'o-cat', t:'Professional exempt' }, { t:'Staff non-exempt' }, { t:'VTS (Vanderbilt Temporary Services)' }] }) + '<div></div>' +
+  F({ id:'f-std', label:'Standard Working Hours', bind:'std', ph:'' }) + F({ id:'f-wh', label:'Working Hours', bind:'wh', ph:'' }) +
+  F({ id:'f-fte', label:'FTE', bind:'fte', ph:'Calculated' }) +
+  F({ id:'f-hc', label:'Headcount', bind:'hc', ph:'' }) +
+  F({ id:'f-type', label:'Position Type', bind:'ptype', ph:'Select a value', icon:'down', ddIf:'dd-type', dd:[{ id:'o-single', t:'Single incumbent' }, { t:'Pool' }] }) +
+  '<div class="fw"><p class="flabel">Overlap Allowed</p><div class="seg2" id="f-ovl"><span data-cls="ovl:on">Yes</span><span>No</span></div></div>' +
+  F({ id:'f-tf', label:'Term or Flex', bind:'tf', ph:'Only if it applies', icon:'down' }) + '</div>' + C.cont('c2');
+var s3 = '<p class="flabel">Comments</p><div class="ta" id="f-com" data-focus="com"><span data-bind="com"></span><span class="caret" data-caret="com"></span></div>' +
+  '<p class="flabel" style="margin-top:16px">Attachments</p><div class="drop" id="f-att" style="margin-top:0">' + C.I('up') + 'Drag and drop files here or <u>add a file</u></div>' +
+  '<div class="att" data-in="att1">' + C.I('clip') + 'Pre-search memo.pdf</div><div class="att" data-in="att2">' + C.I('clip') + 'Position description.pdf</div>' + C.cont('c3');
+VIDEO.add(C.page('form', C.title('Create Position', { id:'form-top' }) + C.btns([{ t:'Cancel' }, { t:'Submit', cta:true, id:'b-submit', off:'can-submit' }]) +
+  '<div class="secs" style="top:160px">' +
+  C.sec({ id:'s1', n:1, title:'When and Why', done:'s1-done', open:'!s1-done', sum:'Starts 11/17/2026 · Active · New Position', body:s1 }) +
+  C.sec({ id:'s2', n:2, title:'Position Details', done:'s2-done', open:'s1-done !s2-done', later:'!s1-done', sum:'Program Coordinator · 104221 · Standard 40, Working 20, FTE 0.5 · Single incumbent', body:s2 }) +
+  C.sec({ id:'s3', n:3, title:'Comments and Attachments', done:'s3-done', open:'s2-done !s3-done', later:'!s2-done', sum:'Pre-search memo and position description attached', body:s3 }) +
+  '</div>'));
+VIDEO.add(C.home({ toast:'You submitted the position Program Coordinator for approval.' }).replace('data-screen="home"', 'data-screen="done"'));
+
+VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Create a ', em:'position', post:'.', rule:true,
+  p:"Every hire starts with a position. The requisition is built from it, and the new hire's assignment inherits from it. Have the position description and the pre-search memo ready.", meta:'Oracle HCM · Workforce Structures' }));
+VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Three things to ', em:'remember', post:'.', items:[
+  "Don't reactivate an inactive position. Old job codes on it can block updates and approval. Create a new one.",
+  "Don't repurpose an unused position built for a different worker type. Create a new one.",
+  'The requisition copies the position when it is submitted. Fix the position before you create the requisition.'], meta:'Questions: pcb@vanderbilt.edu' }));
+
+/* ---------- timeline: one segment per narration paragraph ---------- */
+seg(); card('intro'); scene('home'); wait(3.5); hold(-.5);
+card('intro', false);
+capS(1, 'Open Positions: Our Workforce, Show More, then Positions under Workforce Structures.');
+wait(.5); press('#tab-wf', function(){ flag('tab-wf'); }, 1.0); wait(.5);
+camTo('#qa-more', 1.3, .8, 120, -120); wait(.4); press('#qa-more span', null, .9); camTo(null, 1, 0); scene('more'); wait(.3);
+camTo('#more-workforce-structures-positions', 1.3, 1.4, 120, -40); wait(1.5); move('#more-workforce-structures-positions span', .9); hl('#more-workforce-structures-positions'); wait(.3); hold(.6);
+click(function(){ hl(null); }); camTo(null, 1, 0); scene('positions'); wait(.4);
+capS(2, 'Search with Status set to Active. Incumbents shows who sits in each position.');
+wait(.3); hl('#f-status'); wait(.8); hl(null); press('#b-search', function(){ flag('searched'); }); wait(.6); hl('#ptab'); wait(.6); mark(1, '#ptab'); hold(-.2); hl(null);
+capS(3, 'Select Add. The new position opens at When and Why.');
+wait(.3); move('#b-add', .9); hl('#b-add'); wait(.3); click(function(){ hl(null); }); scene('form'); wait(.5); mark(2, '#s1'); hold(-.2);
+capS(4, 'Effective date: today, not the start date. Status Active, action reason New Position.');
+camTo('#s1', 1.15, .9, 55, 60); wait(.5); fill('#f-date', 'date', '11/17/2026', 1.0); mark(3, '#f-date');
+pick('#f-status2', 'dd-status', '#o-active', 'status', 'Active'); pick('#f-reason', 'dd-reason', '#o-new', 'reason', 'New Position'); mark(4);
+hold(1.2); press('#c1', function(){ flag('s1-done'); }); hold(-.3);
+capS(5, 'Business unit, name, and code. Work unit means department.');
+camTo('#f-name', 1.15, .9, 0, 150); wait(.4);
+pick('#f-bu', 'dd-bu', '#o-bu', 'bu', 'Arts and Science'); fill('#f-name', 'name', 'Program Coordinator', .9); fill('#f-code', 'code', 'BIO-PC-01', .7); mark(5);
+move('#f-wu', .8); click(function(){ fset('wu'); }); type('wu', 'Biological', .6); flag('dd-wu'); wait(.3); press('#o-wu', function(){ flag('dd-wu', false); val('wu', 'Biological Sciences'); fset(null); }, .5); mark(6, '#f-wu'); hold(-.2);
+capS(6, 'Job: search by the six-digit code from the memo. Leave Manager blank.');
+move('#f-job', .8); click(function(){ fset('job'); }); type('job', '104221', .7); flag('dd-job'); wait(.4); press('#o-job', function(){ flag('dd-job', false); val('job', '104221 Program Coordinator'); fset(null); }, .6); mark(7, '#f-job');
+wait(.4); hl('#f-mgr'); wait(1.4); hold(.2); hl(null);
+capS(7, 'Location: where the person would sit. Assignment category: the one on the memo.');
+camTo('#f-cat', 1.15, .9, 0, 110); wait(.4);
+move('#f-loc', .8); click(function(){ fset('loc'); }); type('loc', 'Nashville', .6); flag('dd-loc'); wait(.3); press('#o-loc', function(){ flag('dd-loc', false); val('loc', 'Nashville Main Campus'); fset(null); }, .5); mark(8, '#f-loc');
+pick('#f-cat', 'dd-cat', '#o-cat', 'cat', 'Professional exempt'); mark(9, '#f-cat'); hold(-.2);
+capS(8, 'Standard working hours: always 40. Working hours: the actual hours.');
+camTo('#f-wh', 1.15, .8, 0, 90); fill('#f-std', 'std', '40', .4); fill('#f-wh', 'wh', '20', .4); val('fte', '0.5'); wait(.3); hl('#f-fte'); wait(1.0); mark(10, '#f-fte'); hold(-.2); hl(null);
+capS(9, 'Headcount 1 is Single incumbent. Overlap allowed: Yes.');
+camTo('#f-type', 1.15, .8, 0, 90); fill('#f-hc', 'hc', '1', .3); pick('#f-type', 'dd-type', '#o-single', 'ptype', 'Single incumbent'); mark(11, '#f-type');
+press('#f-ovl span', function(){ flag('ovl'); }); wait(.3); mark(12, '#f-ovl'); hold(1.0);
+press('#c2', function(){ flag('s2-done'); }); hold(-.3);
+capS(10, 'Attach the memo and position description, add comments, and Submit.');
+camTo('#s3', 1.15, .9, 55, 150); wait(.4);
+press('#f-att', function(){ flag('att1'); }); wait(.3); press('#f-att', function(){ flag('att2'); }, .4);
+fill('#f-com', 'com', 'New Program Coordinator position for the lab. Pre-search memo attached.', 1.8); mark(13);
+press('#c3', function(){ flag('s3-done'); flag('can-submit'); }); camTo(null, 1, .9); wait(.6);
+move('#b-submit', .9); hl('#b-submit'); wait(.3); hold(.4); click(function(){ hl(null); }); scene('done'); flag('tab-wf'); flag('toast'); wait(.8); hold(-.6);
+seg(); card('out'); wait(2); hold(-2.2);
+VIDEO.run();
+</script>
+</body>
+</html>
