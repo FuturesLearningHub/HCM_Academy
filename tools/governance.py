@@ -333,15 +333,17 @@ def who_rows():
 NEW_IN_V02 = {"what-to-attach", "who-owns-what", "shared-calendar", "pay-rules", "common-pay-errors"}
 TIME_CARD_RULE = {"weekly-time-card-check", "ukg-time-cards"}
 _VIDEO = "Added a narrated video and a detailed job aid with a picture for each step."
+_ORACLE = "Video and job aid rebuilt on the Oracle screens, from Oracle's documentation; steps outside Oracle stay as cards."
 EXTRA_CHANGES = {
     # slug: [(date, text)] for hand-written entries. Newest first.
     "direct-reports": [(SCREENS, "Steps now follow Vanderbilt's Our Workforce screens: open Direct Reports from Show More, then search for the manager. " + _VIDEO)],
     "create-requisition": [(SCREENS, "Path corrected from Vanderbilt's Our Workforce screens: Hiring > Job Requisitions, or the Create Job Requisition quick action. " + _VIDEO)],
     "hire-non-worker": [(SCREENS, "Added an open item: when to use Add a Nonworker or Add a Contingent Worker, which Vanderbilt's Our Workforce screens list under New Person. " + _VIDEO)],
-    "compensation-memo": [(SCREENS, _VIDEO)], "background-checks": [(SCREENS, _VIDEO)],
-    "executive-search": [(SCREENS, _VIDEO)], "hire-staff": [(SCREENS, _VIDEO)],
+    "compensation-memo": [(SCREENS, _VIDEO)], "hire-staff": [(SCREENS, _VIDEO)],
+    "background-checks": [(REVIEWED_ON, _ORACLE), (SCREENS, _VIDEO)],
+    "executive-search": [(REVIEWED_ON, _ORACLE), (SCREENS, _VIDEO)],
     "create-position": [(SCREENS, _VIDEO)], "update-position": [(SCREENS, _VIDEO)], "convert-pending-worker": [(SCREENS, _VIDEO)],
-    "rehire-eligibility": [(SCREENS, _VIDEO)],
+    "rehire-eligibility": [(REVIEWED_ON, _ORACLE + " Field names in steps 1 and 2 now follow Oracle's documentation: Recommended for Rehire (Yes, No, Not Specified), and the search option to include terminated work relationships."), (SCREENS, _VIDEO)],
 }
 
 # Changes made on Nov 13, 2026 from Vanderbilt's own published pages: the HR/Payroll Calendar for 2026 and 2027

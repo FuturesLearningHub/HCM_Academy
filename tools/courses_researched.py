@@ -541,7 +541,8 @@ COURSES_R = [{'slug': 'hcm-structure',
   'name': 'Rehires and eligibility for rehire',
   'system': 'Oracle Recruiting',
   'time': '5 min',
-  'sources': ['Oracle: Rehire a Worker', 'Oracle: Attributes for Worker Work Relationship'],
+  'sources': ['Oracle: Rehire a Worker', 'Oracle: Attributes for Worker Work Relationship', 'Oracle: How can I access inactive assignments?',
+              'Oracle: Redwood Terminate Employment page'],
   'intro': ['A rehire is someone who worked here before and is coming back. Oracle already has their person record, so the hire adds a new '
             'work relationship to that record instead of creating a new person.',
             'Whether they can come back is decided by the rehire recommendation recorded when they were terminated. Recruiters review it, '
@@ -549,12 +550,13 @@ COURSES_R = [{'slug': 'hcm-structure',
   'use_when': 'A candidate you want to hire used to work at Vanderbilt, or you are terminating someone and need to set the rehire field.',
   'steps_title': 'How rehires work',
   'steps': [{'t': 'Know that the rehire field is set at termination.',
-             'd': 'When an employee is terminated, the termination records whether the person is recommended for rehire (Yes or No in '
-                  'Oracle). Oracle can tie the allowed value to the termination reason and records who made the recommendation and why.',
+             'd': 'When an employee is terminated, the termination records whether the person is recommended for rehire. In Oracle the '
+                  'field is Recommended for Rehire: Yes, No, or Not Specified. Oracle can tie the allowed value to the termination reason '
+                  'and records who made the recommendation and why.',
              'sub': ['Misconduct: No or Not specified, per your PCB consultant.']},
             {'t': "Check the former employee's record before you commit.",
-             'd': 'Go to Our Workforce > Employment Info and search the person, including inactive records. Review the terminated work '
-                  'relationship and its rehire recommendation.'},
+             'd': 'Go to Our Workforce > Employment Info and search the person with the option to include terminated work relationships. '
+                  'Review the terminated work relationship and its rehire recommendation.'},
             {'t': 'Let the recruiter review eligible for rehire.',
              'd': 'For hires through a requisition, recruiters review eligible for rehire during the candidate review. If the record says '
                   'No, stop and talk with the recruiter and your PCB consultant before anyone makes an offer.'},
@@ -579,7 +581,11 @@ COURSES_R = [{'slug': 'hcm-structure',
             'handled.'],
   'docs': [('Oracle: Rehire a Worker', 'https://docs.oracle.com/en/cloud/saas/human-resources/25b/fawhr/rehire-a-worker.html'),
            ('Oracle: Attributes for Worker Work Relationship',
-            'https://docs.oracle.com/en/cloud/saas/human-resources/faiau/attributes-for-worker-work-relationship.html')],
+            'https://docs.oracle.com/en/cloud/saas/human-resources/faiau/attributes-for-worker-work-relationship.html'),
+           ('Oracle: How can I access inactive assignments?',
+            'https://docs.oracle.com/en/cloud/saas/human-resources/fawhr/how-can-i-access-inactive-assignments.html'),
+           ('Oracle: Redwood Terminate Employment page',
+            'https://docs.oracle.com/en/cloud/saas/readiness/hcm/24c/hure-24c/24C-hr-wn-f31966.htm')],
   'quiz': [{'q': "Where does a former employee's eligibility for rehire come from?",
             'o': ['The new requisition', 'The rehire recommendation set at termination', 'The background check vendor'],
             'a': 1,
@@ -2761,8 +2767,10 @@ VERIFY_R = {'hcm-structure': ['Which person types and work relationship types Va
  'data-integrity': ['Which position attributes Vanderbilt synchronizes to assignments',
                     'Most common data errors and the correction contact',
                     'Which Departmental Playbook reports HCMs should run before payroll'],
- 'rehire-eligibility': ["Exact label of the rehire field on Vanderbilt's Terminate Employment page (Recommended for rehire or Eligible for "
-                        'rehire) and its values (Yes, No, Not specified)',
+ 'rehire-eligibility': ["Whether Vanderbilt's Terminate Employment page uses Oracle's Recommended for Rehire field as delivered (Yes, No, "
+                        'Not Specified)',
+                        'Whether the option to include terminated work relationships shows on Vanderbilt\'s Employment Info search',
+                        'Where Oracle shows a possible matching person during a rehire, and the labels on that screen',
                         'Who can approve rehiring someone marked No, and how Not specified is treated',
                         'Where recruiters see the rehire recommendation in Oracle Recruiting',
                         'Whether rehires through a requisition need any extra step before conversion'],

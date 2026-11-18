@@ -3,47 +3,95 @@
 <head>
 <meta charset="UTF-8" />
 <title>Rehires explainer</title>
-<!-- Explainer video source (HCM Academy kit, tools/video/engine). Steps shown as a branded process board.
-     Every line comes from the course "Rehires and eligibility for rehire". -->
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Our Workforce follows Vanderbilt's screens. Terminate Employment,
+     the person search, the possible-match check, Convert, and Costing for Persons follow standard Oracle documentation and the course
+     text (see the course's Screen check). Names and numbers are fictional. Where recruiters see the recommendation is an open item,
+     so that step is a card. Every caption and narration line comes from the course "Rehires and eligibility for rehire". -->
 <link rel="stylesheet" href="engine/engine.css" />
+<style>.mrd{ display:inline-block; width:18px; height:18px; border-radius:50%; border:1.5px solid #8F8A85; box-sizing:border-box; vertical-align:middle; } .mrd.on{ border:6px solid var(--o-cta); }</style>
 </head>
 <body>
 <div id="stage"><div id="cam"></div></div>
 <script src="engine/engine.js"></script>
+<script src="convert-pages.js"></script>
 <script>
-VIDEO.set({ steps:6 });
-var ck = C.I('checkc'), info = C.I('info');
+VIDEO.set({ H:2000, steps:6 });
+var F = C.field;
+var ex = { ini:'JO', c:'#2F7D7A', name:'Jamie Ortiz', sub:'Ex-employee · Program Coordinator · Biological Sciences · Person Number 103915' };
+var person = { name:'Jamie Ortiz', wtype:'Employee', start:'1/11/2027', pos:'BIO-RA-03 Research Analyst',
+  ban:{ ini:'JO', c:'#2F7D7A', name:'Jamie Ortiz', sub:'Pending worker · Research Analyst · Proposed start 1/11/2027' } };
+convertPages({ person:person, toast:'',
+  sections:[['pay', 'Payroll Details (payroll relationship)'], ['sal', 'Salary']],
+  flow:['why', 'bu', 'ovr', 'att'].map(function(k){ return convertSection(k, { pos:person.pos, hours:'40', whySum:'Hire · Employment' }); }) });
+
+/* 1. Terminate Employment (earlier, when the person left) */
+VIDEO.add(C.page('term', C.title('Terminate Employment', { sub:'Example: when Jamie Ortiz left in June 2025' }) + C.pban(ex) +
+  '<div class="secs" style="top:262px">' +
+  C.sec({ id:'t1', n:1, title:'When and Why', sum:'Notified 6/2/2025 · Terminated 6/30/2025 · Work relationship · Resignation', done:'t-on', open:'t-never', later:'t-never', body:'' }) +
+  C.sec({ id:'t2', n:2, title:'Work Relationship Termination Info', sum:'Recommended for rehire: Yes', done:'t2-done', open:'!t2-done', later:'t-never', body:'<div class="fld3">' +
+    F({ label:'Last Day Worked', ro:'6/30/2025' }) +
+    F({ id:'f-rr', label:'Recommended for Rehire', bind:'rr', ph:'Not Specified', icon:'down', ddIf:'dd-rr', dd:[{ id:'o-ry', t:'Yes', s:'Eligible' }, { id:'o-rn', t:'No', s:'Not eligible without review' }, { id:'o-rs', t:'Not Specified', s:'A flag: ask before moving forward' }] }) +
+    '</div>' + C.cont('c-t2') }) + '</div>'));
+
+/* 2. Employment Info: search with terminated work relationships, then the terminated work relationship */
+VIDEO.add(C.page('select', C.title('Employment Info', { sub:'Select a person' }) +
+  '<div class="ssearch"><div class="field" id="sel-search" data-focus="search">' + C.I('search') + '<span class="grow"><span data-bind="search"></span><span class="caret" data-caret="search"></span><span class="ph" data-ph="search">Search by name or person number</span></span></div>' +
+  '<div class="chk" id="k-term" data-cls="k-term:on" style="margin-top:14px"><span class="cb">' + C.I('check') + '</span>Include terminated work relationships</div></div>' +
+  '<div class="slist" style="top:330px"><h3 data-if="!res">Recent (2)</h3><h3 data-if="res">Results (1)</h3>' +
+  '<div class="prow" data-if="!res"><div class="av" style="background:#7A5C2E">ME</div><div><b>Morgan Ellis</b><small>Director · Biological Sciences · Person Number 104402</small></div></div>' +
+  '<div class="prow" data-if="!res"><div class="av" style="background:#9C5B3B">SP</div><div><b>Sam Patel</b><small>Research Analyst · Biological Sciences · Person Number 104531</small></div></div>' +
+  '<div class="prow" id="row-jo" data-if="res"><div class="av" style="background:#2F7D7A">JO</div><div><b>Jamie Ortiz</b><small>Ex-employee · Program Coordinator · Biological Sciences · Person Number 103915</small></div></div></div>'));
+VIDEO.add(C.page('emp', C.title('Employment Info') + C.pban(ex) +
+  '<div style="position:absolute;left:150px;top:262px;width:520px">' + F({ id:'f-bt', label:'Business Title', value:'Program Coordinator (Inactive)', icon:'down' }) + '</div>' +
+  '<div class="einfo" style="top:370px"><div class="ecard"><h4>Work Relationship</h4><dl><dt>Status</dt><dd>Inactive</dd><dt>Termination Date</dt><dd>6/30/2025</dd><dt>Action</dt><dd>Termination · Resignation</dd>' +
+  '<dt>Recommended for Rehire</dt><dd id="v-rr"><b>Yes</b></dd></dl></div>' +
+  '<div class="ecard"><h4>Assignment</h4><dl><dt>Job</dt><dd>Program Coordinator</dd><dt>Department</dt><dd>Biological Sciences</dd><dt>Assignment Status</dt><dd>Inactive - Payroll Eligible</dd><dt>Location</dt><dd>Nashville Main Campus</dd></dl></div></div>'));
+
+/* 4. Possible matching person during the hire */
+VIDEO.add(C.page('match', C.title('Hire an Employee', { sub:'Jamie Ortiz · Research Analyst' }) +
+  '<div class="scrim" data-if="mm"></div><div class="modal" data-if="mm" id="mm" style="width:820px"><h3>Possible Matching Person</h3>' +
+  '<p style="font-size:14.5px;color:rgba(22,21,19,.7);margin:0 0 16px">This person may already exist. Matches are based on name and national identifier.</p>' +
+  C.table({ cols:'40px 1.3fr 1fr 1fr 1.2fr', head:['', 'Name', 'Person Type', 'Person Number', 'National ID'], rows:[
+    { id:'r-m', cells:['<span class="mrd" data-cls="m-sel:on"></span>', '<b>Jamie Ortiz</b>', 'Ex-employee', '103915', 'XXX-XX-4417'] } ] }) +
+  '<div style="margin-top:20px;text-align:right"><span class="btn sec" style="margin-right:8px">Not a Match</span><span class="btn cta" id="b-use">Use Selected Person</span></div></div>'));
+
+/* 6. Costing for Persons */
+VIDEO.add(C.page('cost', C.title('Costing for Persons') + C.pban({ ini:'JO', c:'#2F7D7A', name:'Jamie Ortiz', sub:'Research Analyst · Biological Sciences · Person Number 103915' }) +
+  C.btns([{ t:'Actions', id:'b-act' }]) + '<div class="lp" style="top:262px">' +
+  C.table({ id:'ctab', cols:'1.4fr 1fr 2fr .8fr', head:['Assignment', 'Effective Start', 'Costing', 'Percentage'], rows:[
+    { id:'r-c', cells:['Research Analyst', '1/11/2027', '<span style="color:rgba(22,21,19,.55)">No costing entered. The work unit default is used.</span>', ''] } ] }) + '</div>'));
+
 VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Rehires and eligibility for ', em:'rehire', post:'.', rule:true,
-  p:'A rehire worked here before and is coming back. Oracle already has their person record, so the hire adds a new work relationship to it. Whether they can come back depends on the rehire recommendation recorded when they were terminated.', meta:'Process · Oracle HCM and Recruiting' }));
-VIDEO.addCard(C.board({ id:'board',
-  steps:['Set at termination', 'Check the record', 'Recruiter review', 'One person record', 'Convert', 'Costing'],
-  pages:[
-    { pre:'The rehire field is set at ', em:'termination', post:'.', lines:['The termination records whether the person is recommended for rehire.', 'Oracle can tie the allowed value to the termination reason, and records who made the recommendation and why.'],
-      art:C.doc({ kicker:'Rehire recommendation', title:'What each value means', rows:[['Yes', 'Eligible. The recruiter proceeds through the normal process.', 'st-1', .6], ['No', 'Not eligible without review. Talk to the recruiter and your PCB consultant.', 'st-1', 1.0], ['Not specified', 'Treat it as a flag. Ask before moving forward.', 'st-1', 1.4]] }) },
-    { pre:'Check the record ', em:'first', post:'.', lines:['Our Workforce, then Employment Info. Search the person, including inactive records.', 'Review the terminated work relationship and its rehire recommendation.'],
-      art:C.doc({ kicker:'Employment Info', title:'Before you commit', rows:[['Search', 'Include inactive records', 'st-2', .6], ['Open', 'The terminated work relationship', 'st-2', 1.0], ['Read', 'Its rehire recommendation', 'st-2', 1.4]] }) },
-    { pre:'Let the recruiter ', em:'review', post:'.', lines:['For hires through a requisition, recruiters review eligible for rehire during the candidate review.'],
-      art:'<div class="art"><div class="dk">If the record says No</div><b>Stop before any offer</b>' +
-          '<div class="ln no" data-in="st-3" data-d=".7">' + info + '<span>Talk with the recruiter and your PCB consultant before anyone makes an offer.</span></div></div>' },
-    { pre:'Never create a second ', em:'person record', post:'.', lines:['Oracle matches the new hire to existing person records, including previous employees, by name and national identifier.'],
-      art:'<div class="art"><div class="dk">When Oracle finds a match</div><b>Pick the existing record</b>' +
-          '<div class="ln" data-in="st-4" data-d=".6">' + ck + '<span>One person, one record, with all their history.</span></div>' +
-          '<div class="ln no" data-in="st-4" data-d="1.0">' + info + '<span>A duplicate splits the person\'s history, pay, and tax records.</span></div></div>' },
-    { pre:'Convert as you would any ', em:'hire', post:'.', lines:['After the background check clears and PEBC emails clear to start, convert the pending worker.'],
-      art:C.doc({ kicker:'Check the new job, not the old one', title:'On the new assignment', rows:[['Assignment', 'The new job', 'st-5', .6], ['Position', 'The new position', 'st-5', .9], ['Location', 'Where they will work now', 'st-5', 1.2], ['Pay', 'The new pay', 'st-5', 1.5]] }) },
-    { pre:'Review ', em:'costing', post:' on the new assignment.', lines:['Old costing does not carry the right account for a new job automatically.'],
-      art:C.doc({ kicker:'Costing for Persons', title:'After the hire', rows:[['Check', 'The account on the new assignment', 'st-6', .6], ['Blank costing', 'Uses the work unit default. Not an error.', 'st-6', 1.0]] }) }
-  ] }));
+  p:'A rehire worked here before and is coming back. Oracle already has their person record, so the hire adds a new work relationship to it. Whether they can come back depends on the rehire recommendation recorded when they were terminated.', meta:'Oracle HCM · Oracle Recruiting' }));
+VIDEO.addCard(C.card({ id:'rec', theme:'cream', eyebrow:'Step 3 of 6 · Hires through a requisition', pre:'Let the recruiter ', em:'review', post:'.', top:220,
+  items:['Recruiters review eligible for rehire during the candidate review.', 'If the record says No, stop. Talk with the recruiter and your PCB consultant before anyone makes an offer.'], meta:'Oracle Recruiting · Candidate review' }));
 VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Two things to ', em:'remember', post:'.', items:[
   'The rehire field is only as good as the termination entry. Set it carefully when you terminate someone; recruiters rely on it later.',
   'Search inactive records before hiring a familiar name. A duplicate person record is hard to undo.'], meta:'Questions: pcb@vanderbilt.edu' }));
 
-seg(); card('intro'); wait(3.5); hold(-.5);
-for (var k = 1; k <= 6; k++){
-  seg(); if (k === 1){ card('board'); wait(.6); card('intro', false); }
-  stepTo(k, 6); wait(3.2); mark(k); hold(-.7);
-}
-seg(); card('out'); wait(.6); card('board', false); wait(2); hold(-2.2);
+seg(); card('intro'); scene('home'); wait(3.5); hold(-.5);
+card('intro', false);
+capS(1, 'The rehire field is set at termination: Recommended for Rehire. Yes is eligible, No needs review, Not Specified is a flag.');
+scene('term'); flag('t-on'); wait(.4); camTo('#t2', 1.15, .9, 55, 100); wait(.4);
+move('#f-rr', .8); click(function(){ flag('dd-rr'); }); wait(.4); hl('#o-ry'); wait(1.0); hl('#o-rn'); wait(1.0); hl('#o-rs'); wait(1.0); hl(null);
+move('#o-ry', .5); click(function(){ flag('dd-rr', false); val('rr', 'Yes'); }); wait(.3); mark(1, '#f-rr'); hold(-.3);
+capS(2, 'Our Workforce, Employment Info. Search with terminated work relationships included, then review the rehire recommendation.');
+camTo(null, 1, 0); scene('home'); wait(.3); press('#tab-wf', function(){ flag('tab-wf'); }, .9); press('#qa-ei span', null, .9); scene('select'); wait(.3);
+press('#k-term', function(){ flag('k-term'); }, .7); fill('#sel-search', 'search', 'Jamie Ortiz', .8); flag('res'); wait(.5);
+press('#row-jo', null, .7); scene('emp'); wait(.4); hl('#f-bt'); wait(1.0); hl('#v-rr'); wait(1.2); mark(2, '#v-rr'); hold(-.3); hl(null);
+capS(3, 'For hires through a requisition, the recruiter reviews eligible for rehire. If it says No, stop before any offer.');
+card('rec'); wait(2.8); mark(3); hold(-.6);
+capS(4, 'Oracle checks for an existing person by name and national identifier. Pick the existing record. Never create a second one.');
+card('rec', false); scene('match'); wait(.3); flag('mm'); wait(.8); hl('#r-m'); wait(.8); press('#r-m .mrd', function(){ flag('m-sel'); }, .7); hl(null);
+move('#b-use', .7); hl('#b-use'); wait(.5); mark(4, '#mm'); hold(-.4); hl(null); click(function(){ flag('mm', false); });
+capS(5, 'Convert the pending worker as you would any hire. Check the new position, location, and pay, not the old ones.');
+scene('home'); flag('tab-wf'); wait(.3); press('#qa-pending span', null, .9); scene('pw'); wait(.3);
+press('#kb', function(){ flag('m-kb'); }); wait(.2); press('#m-conv', function(){ flag('m-kb', false); }, .6); scene('pick'); wait(.3);
+press('#b-pick', function(){ flag('conv'); flag('xwhy-done'); }); scene('conv'); wait(.3); camTo('#xbu', 1.15, .9, 55, 120); wait(.4);
+hl('#f-pos'); wait(1.2); mark(5, '#f-pos'); hold(-.3); hl(null);
+capS(6, 'Then open Costing for Persons. Old costing does not carry over to a new job. Blank costing uses the work unit default.');
+camTo(null, 1, 0); scene('home'); flag('tab-wf'); wait(.3); press('#qa-cost span', null, .9); scene('cost'); wait(.4); hl('#r-c'); wait(1.4); mark(6, '#r-c'); hold(-.3); hl(null);
+seg(); card('out'); wait(2); hold(-2.2);
 VIDEO.run();
 </script>
 </body>

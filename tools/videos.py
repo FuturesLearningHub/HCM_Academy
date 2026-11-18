@@ -6,15 +6,15 @@ BOARD = "Diagrams from the HCM Academy explainer video. The steps are the course
 
 VIDEOS = {
     "compensation-memo": dict(title="Getting the compensation memo", aid="Getting the compensation memo, step by step", source=BOARD),
-    "background-checks": dict(title="Background checks", aid="Background checks, step by step", source=BOARD),
-    "executive-search": dict(title="Executive or external search", aid="Executive or external search, step by step", source=BOARD),
+    "background-checks": dict(title="Background checks in Oracle Recruiting", aid="Background checks, step by step", source=SIM),
+    "executive-search": dict(title="Executive or external search in Oracle Recruiting", aid="Executive or external search, step by step", source=SIM),
     "hire-staff": dict(title="Hiring staff: the whole chain", aid="Hiring staff, from memo to day one", source=BOARD),
     "create-position": dict(title="Create a position in Oracle HCM", aid="Creating a position, step by step", source=SIM),
     "update-position": dict(title="Update a position in Oracle HCM", aid="Updating a position, step by step", source=SIM),
     "create-requisition": dict(title="Create a requisition in Oracle Recruiting", aid="Creating a requisition, step by step", source=SIM),
     "convert-pending-worker": dict(title="Convert a pending worker in Oracle HCM", aid="Converting a pending worker, step by step", source=SIM),
     "hire-non-worker": dict(title="Add a non-worker in Oracle HCM", aid="Converting a non-worker, step by step", source=SIM),
-    "rehire-eligibility": dict(title="Rehires and eligibility for rehire", aid="Rehires, step by step", source=BOARD),
+    "rehire-eligibility": dict(title="Rehires in Oracle HCM", aid="Rehires, step by step", source=SIM),
 }
 
 def apply(courses):

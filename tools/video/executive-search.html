@@ -2,40 +2,43 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Executive search explainer</title>
-<!-- Explainer video source (HCM Academy kit, tools/video/engine). Steps shown as a branded process board.
-     Every line comes from the course "Executive or External Search" (and, for Standard and Abbreviated, "Create a requisition"). -->
+<title>Executive or external search explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Our Workforce follows Vanderbilt's screens; the requisition
+     follows standard Oracle Recruiting and the course text (see the course's Screen check). Names are fictional.
+     A PO requisition for an outside firm is not in Oracle Recruiting, so that step is a card.
+     Every caption and narration line comes from the course "Executive or External Search". -->
 <link rel="stylesheet" href="engine/engine.css" />
 </head>
 <body>
 <div id="stage"><div id="cam"></div></div>
 <script src="engine/engine.js"></script>
+<script src="req-pages.js"></script>
 <script>
-VIDEO.set({ steps:3 });
-var ck = C.I('checkc'), no = C.I('info');
+VIDEO.set({ H:2000, steps:3 });
+VIDEO.add(C.home());
+reqCommon();
+reqPage({ id:'a', title:'Associate Dean', loc:'Nashville', sum3:'Executive search · Vanderbilt · Nashville', csp:'Standard', acct:'VAN000' });
+
 VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Executive or external ', em:'search', post:'.', rule:true,
-  p:"Most staff recruiting runs through Cielo, Vanderbilt's recruiting partner, which focuses on roles at M4 and below. Executive roles usually go to a search firm, and that changes how the requisition is created.", meta:'Process · Recruiting' }));
-VIDEO.addCard(C.board({ id:'board',
-  steps:["Cielo's executive search program", 'Any other search firm', 'Every other role'],
-  pages:[
-    { pre:"Cielo's executive search ", em:'program', post:'.', lines:['Create a recruiting requisition and pick Executive search as the requisition type.', 'A Cielo liaison takes the requisition, and a separate Cielo team recruits.'],
-      art:C.doc({ kicker:'Recruiting requisition', title:'Requisition type', rows:[['Type', 'Executive search', 'st-1', .6], ['Taken by', 'A Cielo liaison', 'st-1', 1.0], ['Recruited by', 'A separate Cielo team', 'st-1', 1.4]] }) },
-    { pre:'Any other firm: a PO ', em:'requisition', post:'.', lines:['For example, Korn Ferry.', "Outside firms are paid differently, so the search can't be a requisition in Oracle Recruiting."],
-      art:'<div class="art"><div class="dk">Outside search firm</div><b>A PO requisition</b>' +
-          '<div class="ln no" data-in="st-2" data-d=".6">' + no + '<span>Not a recruiting requisition</span></div>' +
-          '<div class="ln" data-in="st-2" data-d="1.0">' + ck + '<span>Work with your procurement contact on the PO.</span></div></div>' },
-    { pre:'Everything else: Standard or ', em:'Abbreviated', post:'.', lines:["Executive search isn't for regular roles.", 'See Create a requisition.'],
-      art:C.doc({ kicker:'Requisition type', title:'For regular roles', rows:[['Standard', 'The full recruiting process', 'st-3', .6], ['Abbreviated', 'You already have a candidate, usually internal. Still posted internally for five business days.', 'st-3', 1.0]] }) }
-  ] }));
+  p:"Most staff recruiting runs through Cielo, Vanderbilt's recruiting partner, which focuses on roles at M4 and below. Executive roles usually go to a search firm, and that changes how the requisition is created.", meta:'Oracle Recruiting · Job Requisitions' }));
+VIDEO.addCard(C.card({ id:'po', theme:'cream', eyebrow:'Step 2 of 3 · Any other search firm', pre:'Any other firm: a PO ', em:'requisition', post:'.', top:220,
+  items:['For example, Korn Ferry.', "Outside firms are paid differently, so the search can't be a requisition in Oracle Recruiting.", 'Work with your procurement contact on the PO.'], meta:'Not a recruiting requisition' }));
 VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-out', pre:'Before you ', em:'start', post:'.',
   items:['Confirm with central recruiting before you start an executive search.'], meta:'Questions: pcb@vanderbilt.edu' }));
 
-seg(); card('intro'); wait(3.5); hold(-.5);
-for (var k = 1; k <= 3; k++){
-  seg(); if (k === 1){ card('board'); wait(.6); card('intro', false); }
-  stepTo(k, 3); wait(3.2); mark(k); hold(-.7);
-}
-seg(); card('out'); wait(.6); card('board', false); wait(2); hold(-2.2);
+seg(); card('intro'); scene('home'); wait(3.5); hold(-.5);
+card('intro', false);
+capS(1, "Cielo's executive search program: create a recruiting requisition and pick Executive search as the requisition type.");
+wait(.3); press('#tab-wf', function(){ flag('tab-wf'); }, .9); press('#app-hiring', null, .9); scene('hiring'); wait(.3);
+press('#h-reqs span', null, .8); scene('reqs'); wait(.3); press('#b-create', function(){ reqAt('a', 3); }, .8); scene('a'); wait(.3);
+camTo('#as3', 1.15, .9, 55, 100); wait(.4);
+move('#af-type', .8); click(function(){ flag('add-type'); }); wait(.8); move('#ao-exe', .6); hl('#ao-exe'); wait(.6); click(function(){ hl(null); flag('add-type', false); val('artype', 'Executive search'); }); wait(.3);
+mark(1, '#af-type'); hold(-.3);
+capS(2, 'Any other firm, for example Korn Ferry: a PO requisition, not a recruiting requisition.');
+card('po'); wait(2.8); mark(2); hold(-.6);
+capS(3, "Everything else: Standard or Abbreviated. Executive search isn't for regular roles.");
+card('po', false); wait(.4); move('#af-type', .8); click(function(){ flag('add-type'); }); wait(.5); hl('#ao-std'); wait(.9); hl('#ao-abb'); wait(.9); hl(null); mark(3); hold(-.8);
+seg(); flag('add-type', false); card('out'); wait(2); camTo(null, 1, 0); hold(-2.2);
 VIDEO.run();
 </script>
 </body>

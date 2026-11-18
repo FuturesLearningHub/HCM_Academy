@@ -3,46 +3,65 @@
 <head>
 <meta charset="UTF-8" />
 <title>Background checks explainer</title>
-<!-- Explainer video source (HCM Academy kit, tools/video/engine). Steps shown as a branded process board.
-     Every line comes from the course "Background checks" (and, for the New York process, "Create a requisition"). -->
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Our Workforce follows Vanderbilt's screens; the requisition,
+     Pending Workers, and Convert pages follow standard Oracle and the course text (see the course's Screen check).
+     Names are fictional. Formstack is outside Oracle, so that step is a card. Every caption and narration line comes
+     from the course "Background checks". -->
 <link rel="stylesheet" href="engine/engine.css" />
 </head>
 <body>
 <div id="stage"><div id="cam"></div></div>
 <script src="engine/engine.js"></script>
+<script src="req-pages.js"></script>
+<script src="convert-pages.js"></script>
 <script>
-VIDEO.set({ steps:6 });
-var ck = C.I('checkc'), info = C.I('info');
+VIDEO.set({ H:2000, steps:6 });
+var person = { name:'Casey Rivera', wtype:'Employee', start:'12/7/2026', pos:'BIO-PC-01 Program Coordinator',
+  ban:{ ini:'CR', c:'#4A6FA5', name:'Casey Rivera', sub:'Pending worker · Program Coordinator · Proposed start 12/7/2026' } };
+var X = function(k){ return convertSection(k, { pos:person.pos, hours:'30', ptype:'Staff exempt', whySum:'Hire · Employment',
+  asgSum:'', mgrSum:'' }); };
+convertPages({ person:person, toast:'',
+  sections:[['pay', 'Payroll Details (payroll relationship)'], ['sal', 'Salary']], flow:['why', 'bio', 'att'].map(X) });
+reqCommon();
+reqPage({ id:'a', title:'Program Coordinator', loc:'Nashville', sum3:'Standard · Vanderbilt · Nashville', csp:'Standard', acct:'VAN000' });
+reqPage({ id:'n', title:'Research Coordinator (New York)', loc:'New York', sum3:'Standard · Vanderbilt · New York', csp:'New York', acct:'VAN09' });
+
 VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Clear the background ', em:'check', post:' first.', rule:true,
-  p:'Most hires need a background check before they can start. For staff on a requisition, it runs through recruiting automatically. Your part: set it up right, and wait for clearance before you convert.', meta:'Process · Background checks' }));
-VIDEO.addCard(C.board({ id:'board',
-  steps:['Set up the requisition', 'New York', 'Packages at the offer', 'PEBC clears', 'Convert', 'No requisition'],
-  pages:[
-    { pre:'Set it up on the ', em:'requisition', post:'.', lines:['In Configuration, choose the background check vendor and the account.', 'Mark the extra checks if the role needs them.'],
-      art:C.doc({ kicker:'Requisition configuration', title:'Background check', rows:[['Vendor', 'HireRight', 'st-1', .5], ['Account, not New York', 'VAN000', 'st-1', .8], ['Account, New York', 'VAN09', 'st-1', 1.1], ['If the role needs them', 'Work with minors, Fingerprinting, Motor vehicle record', 'st-1', 1.4]] }) },
-    { pre:'New York has its own ', em:'order', post:'.', lines:['New York requires non-criminal checks before any conditional offer.', "New York requisitions use the New York candidate selection process. It sends the candidate to HireRight when they're selected for offer."],
-      art:C.doc({ kicker:'Candidate selection process', title:'Pick by location', rows:[['New York', 'New York process', 'st-2', .6], ['Everywhere else', 'Standard', 'st-2', 1.0]], foot:'<span data-in="st-2" data-d="1.5">The wrong process breaks the New York law.</span>' }) },
-    { pre:'The recruiter picks the ', em:'packages', post:'.', lines:['Which checks run depends on the person.', 'For example, an existing employee may only need a motor vehicle record check.'],
-      art:'<div class="art"><div class="dk">Who picks the checks</div><b>The recruiter, at the offer</b>' +
-          '<div class="ln" data-in="st-3" data-d=".7">' + info + '<span>When you submit the requisition, ignore the background check packages pop-up.</span></div></div>' },
-    { pre:'PEBC clears the ', em:'candidate', post:'.', lines:['The pre-employment background check team marks the check cleared.', 'That creates the pending worker, and PEBC emails you that the person is clear to start.'],
-      art:C.doc({ kicker:'From PEBC', title:'Clear to start', rows:[['Check', 'Cleared', 'st-4', .6], ['Creates', 'The pending worker', 'st-4', 1.0], ['You get', 'The clear to start email', 'st-4', 1.4]] }) },
-    { pre:'Then convert the ', em:'pending worker', post:'.', lines:['Only convert after the clear to start email.', "PEBC also records citizenship on the application. You'll need it during conversion."],
-      art:'<div class="art"><div class="dk">In order</div><b>Clear first, then convert</b>' +
-          '<div class="ln" data-in="st-5" data-d=".6">' + ck + '<span>Clear to start email from PEBC</span></div>' +
-          '<div class="ln" data-in="st-5" data-d="1.0">' + ck + '<span>Convert the pending worker (see Convert a pending worker)</span></div></div>' },
-    { pre:'No requisition? Request it ', em:'manually', post:'.', lines:['For populations hired without a requisition, request the background check through Formstack.'],
-      art:C.doc({ kicker:'Formstack', title:'Manual background check request', rows:[['Use it for', 'Hires without a requisition', 'st-6', .6]] }) }
-  ] }));
+  p:'Most hires need a background check before they can start. For staff on a requisition, it runs through recruiting automatically. Your part: set it up right, and wait for clearance before you convert.', meta:'Oracle Recruiting · Background checks' }));
+VIDEO.addCard(C.card({ id:'form', theme:'cream', eyebrow:'Step 6 of 6 · Outside Oracle', pre:'No requisition? Request it ', em:'manually', post:'.', top:220,
+  p:'For populations hired without a requisition, there is no requisition to carry the check. Request the background check through Formstack.', meta:'Formstack · Manual background check request' }));
 VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Two things to ', em:'remember', post:'.',
   items:['Work with minors set to Yes adds a protection of minors check.', 'Not sure where a candidate stands? Ask central recruiting before you create a direct hire.'], meta:'Questions: pcb@vanderbilt.edu' }));
 
-seg(); card('intro'); wait(3.5); hold(-.5);
-for (var k = 1; k <= 6; k++){
-  seg(); if (k === 1){ card('board'); wait(.6); card('intro', false); }
-  stepTo(k, 6); wait(3.2); mark(k); hold(-.7);
-}
-seg(); card('out'); wait(.6); card('board', false); wait(2); hold(-2.2);
+seg(); card('intro'); scene('home'); wait(3.5); hold(-.5);
+card('intro', false);
+capS(1, 'On the requisition: mark Work with minors, Fingerprinting, or MVR if the role needs them. Configuration: HireRight and account VAN000.');
+wait(.3); press('#tab-wf', function(){ flag('tab-wf'); }, .9); press('#app-hiring', null, .9); scene('hiring'); wait(.3);
+press('#h-reqs span', null, .8); scene('reqs'); wait(.3); press('#b-create', function(){ reqAt('a', 4); }, .8); scene('a'); wait(.3);
+camTo('#as4', 1.15, .9, 55, 100); wait(.4);
+press('#af-fp', function(){ val('afp', 'No'); }, .6); press('#af-mvr', function(){ val('amvr', 'No'); }, .5); pick('#af-min', 'add-min', '#ao-miny', 'amin', 'Yes'); wait(.3);
+press('#ac4', function(){ reqAt('a', 8); }); camTo('#as8', 1.15, .9, 55, 120); wait(.4);
+pick('#af-csp', 'add-csp', '#ao-cstd', 'acsp', 'Standard'); hl('#af-ven'); wait(.7); hl(null);
+move('#af-acct', .8); click(function(){ flag('add-acct'); }); wait(.9); move('#ao-a0', .5); click(function(){ flag('add-acct', false); val('aacct', 'VAN000'); }); wait(.2);
+mark(1); hold(-.3);
+capS(2, 'New York: the New York candidate selection process and account VAN09. It sends the candidate to HireRight when selected for offer.');
+camTo(null, 1, .5); scene('n'); reqAt('n', 8); wait(.3); camTo('#ns3', 1.15, .9, 55, 100); hl('#nf-loc'); wait(1.2); hl(null);
+camTo('#ns8', 1.15, .9, 55, 120); wait(.4);
+pick('#nf-csp', 'ndd-csp', '#no-cny', 'ncsp', 'New York'); pick('#nf-acct', 'ndd-acct', '#no-a9', 'nacct', 'VAN09'); mark(2); hold(-.3);
+capS(3, 'The recruiter picks the packages at the offer. When you submit, ignore the background check packages pop-up.');
+camTo(null, 1, .5); scene('a'); reqAt('a', 9); flag('acan-submit'); wait(.4);
+press('#ab-save'); press('#ab-submit', function(){ flag('apkg'); }); wait(.6); mark(3, '#apkg'); hold(-1.2);
+press('#ab-pkg', function(){ flag('apkg', false); }); hold(-.2);
+capS(4, 'PEBC clears the check. That creates the pending worker, and PEBC emails you clear to start.');
+scene('home'); flag('tab-wf'); wait(.6); press('#qa-pending span', null, .9); scene('pw'); wait(.4);
+hl('#r-p'); wait(1.2); mark(4, '#r-p'); hold(-.3); hl(null);
+capS(5, 'Then convert. PEBC records citizenship on the application: in Convert, click the pencil and confirm it.');
+press('#kb', function(){ flag('m-kb'); }); wait(.3); press('#m-conv', function(){ flag('m-kb', false); }, .6); scene('pick'); wait(.3);
+press('#b-pick', function(){ flag('conv'); flag('xwhy-done'); }); scene('conv'); wait(.3); camTo('#xbio', 1.15, .9, 55, 120); wait(.4);
+press('#f-cit', function(){ flag('dd-cit'); }); press('#o-yes', function(){ flag('dd-cit', false); val('cit', 'Yes'); }, .5); mark(5, '#f-cit'); hold(-.3);
+capS(6, 'Not on a requisition? Request the background check manually through Formstack.');
+card('form'); wait(2.8); mark(6); hold(-.6);
+seg(); card('out'); wait(.6); card('form', false); camTo(null, 1, 0); wait(1.4); hold(-2.2);
 VIDEO.run();
 </script>
 </body>
