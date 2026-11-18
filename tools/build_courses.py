@@ -370,7 +370,9 @@ def build_changes():
     lst = lambda cs: "".join(f"<li>{link(c)}</li>" for c in cs)
     new = [c for c in COURSES if c["slug"] in G.NEW_IN_V02]
     vids = [c for c in COURSES if c.get("video", {}).get("src", "").endswith(".mp4")]
-    bef = [c for c in COURSES if c["slug"] in G.BEFORE]
+    import reviews
+    revd = [c for c in COURSES if c["slug"] in reviews.NOTES]
+    bef = [c for c in COURSES if G.has_before(c["slug"])]
     rule = [c for c in COURSES if c["slug"] in G.TIME_CARD_RULE]
     counts = Counter(G.owner(c) for c in COURSES)
     owners = "".join(f'<tr><td data-th="Owner">{E(o)}</td><td data-th="Covers">{E(G.OWNER_SCOPE[o])}</td><td data-th="Courses">{counts[o]}</td></tr>' for o in (G.PAY, G.HIRE, G.TBD) if counts[o])
@@ -423,6 +425,22 @@ def build_changes():
       <p>The owning team keeps its courses current and confirms the open items. Owners are teams, not individuals.</p>
       <table class="ref tl"><caption>Course owners</caption><thead><tr><th scope="col">Owner</th><th scope="col">Covers</th><th scope="col">Courses</th></tr></thead><tbody>{owners}</tbody></table>
       {unowned}
+    </section>
+    <section class="part" aria-labelledby="c7">
+      <p class="mono num">{E(G.REVIEWED_ON)} &middot; {E(G.EDITION)}</p>
+      <h2 id="c7">What the SME <em>review</em> changed.</h2>
+      <p>Vanderbilt subject matter experts reviewed the courses in Start Here, Hiring, Payroll, Assignments, Costing, and Records. What they stated is now in the courses; what they asked is listed as an open item. Each course's record says what changed.</p>
+      <h3 class="rech">Reorganized</h3>
+      <ul class="plain">
+        <li><b>Job Architecture</b> is now two courses: Part 1, how talent is organized, and Part 2, how it is set up in Oracle.</li>
+        <li><b>When to create a new position or update one</b> is now part of Create a position.</li>
+        <li><b>Review and approve time cards, Enter PTO</b>, and the two <b>UKG courses</b> for managers and employees are now one course: UKG time cards and time off.</li>
+        <li><b>Change existing costing</b> is now part of Enter costing for a person.</li>
+        <li><b>Change salary</b> moved to Assignment Changes (Payroll still owns it), and <b>Add Assignment</b> moved to Students &amp; Faculty.</li>
+      </ul>
+      <p>Old links to merged courses take you to the course that absorbed them.</p>
+      <h3 class="rech">Courses changed ({len(revd)})</h3>
+      <ul class="chgl">{lst(revd)}</ul>
     </section>
     <section class="part" aria-labelledby="c6">
       <p class="mono num">{E(G.SCREENS)} &middot; {E(G.EDITION)}</p>

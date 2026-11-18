@@ -20,10 +20,10 @@
 </header>
 <section class="hero" aria-labelledby="t">
   <div class="wrap">
-    <p class="mono crumb">Costing Management &middot; Course 46 of 68</p>
+    <p class="mono crumb">Costing Management &middot; Course 42 of 64</p>
     <h1 id="t">Why accurate costing <em>matters</em>.</h1>
     <ul class="meta" aria-label="Course details"><li class="v">V.02 draft</li><li>Micro-learning</li><li>6 min</li><li>Oracle HCM</li><li>3-question check</li><li>Printable job aid</li></ul>
-    <p class="rec"><span>Owner: <b>Payroll</b></span><span>Updated Nov 13, 2026</span><a href="#record">What changed</a></p>
+    <p class="rec"><span>Owner: <b>Payroll</b></span><span>Updated Nov 18, 2026</span><a href="#record">What changed</a></p>
   </div>
   <nav class="parts" aria-label="Course parts"><ol>
     <li><a href="#intro"><span>1</span>Intro</a></li><li><a href="#steps"><span>2</span>Walk through</a></li><li><a href="#check"><span>3</span>Check</a></li><li><a href="#jobaid"><span>4</span>Job aid</a></li>
@@ -37,12 +37,12 @@
       <p>Courses unlock once you've taken the pre-assessment. It takes about 5 minutes, it's not graded, and your results show which topics to start with.</p>
       <div class="acts"><a class="btn" href="../../assessment/pre/">Take the pre-assessment</a><a class="btn ghost" href="../../index.html#costing">Back to all courses</a></div>
     </section>
-    <p class="draft"><b>V.02 draft</b>Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before release.</p><p class="draft"><b>Screen check</b>Confirm in Vanderbilt's Oracle or UKG during a recorded demo: Where Costing for Persons sits in Vanderbilt navigation; How Vanderbilt distributes grant labor costs (labor schedules or payroll costing); Deadline to correct costing before a payroll run and who runs cost adjustments or retroactive costing.</p>
+    <p class="draft"><b>V.02 draft</b>Reviewed by a Vanderbilt SME in November 2026, and the review&#x27;s changes are in. Confirm the open items before release.</p><p class="draft"><b>Screen check</b>Confirm in Vanderbilt's Oracle or UKG during a recorded demo: Where Costing for Persons sits in Vanderbilt navigation; How Vanderbilt distributes grant labor costs (labor schedules or payroll costing); Deadline to correct costing before a payroll run and who runs cost adjustments or retroactive costing.</p>
     <section class="part" id="intro" aria-labelledby="h1">
       <p class="mono num">1 &middot; Intro</p>
       <h2 id="h1">When to <em>use</em> it.</h2>
       
-      <p>Costing tells Oracle which accounts pay for a person&#x27;s salary. Each payroll run turns pay into costing results that move to the General Ledger, so wrong costing means wrong department and grant financials.</p><p>Fixing costing after payroll runs takes extra processing, so getting it right up front saves everyone time.</p>
+      <p>Costing tells Oracle which costing strings pay for a person&#x27;s salary. Each payroll run turns pay into costing results that move to the General Ledger, so wrong costing means wrong department, grant, and project financials.</p><p>Fixing costing after payroll runs takes a retro cost transfer, so getting it right up front saves everyone time.</p>
       <p class="use"><b>Use this when</b>You set up or review costing for a hire, transfer, or funding change, or a finance partner questions where salary was charged.</p>
     </section>
     <section class="part" id="steps" aria-labelledby="h2">
@@ -50,25 +50,25 @@
       <h2 id="h2">How costing <em>flows</em>.</h2>
       <p>Check off each item as you read.</p>
       <ol class="steps">
-<li><label><input type="checkbox" /><span class="st"><strong>Costing is set in Costing for Persons.</strong><span class="sd">Costing for Persons holds the account split for a person. You review and update it when someone is hired, transfers, or changes funding.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Costing is set in Costing for Persons.</strong><span class="sd">Costing for Persons holds the costing for a person. Review and update it when someone is hired or transfers, when funding changes (including new projects), when effort allocation or task numbers change, or when costing was wrong.</span></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Oracle uses the most specific level first: element, then assignment, then work unit default.</strong><span class="sd">Costing on an element overrides the assignment, and the assignment overrides the work unit default. Blank costing means the work unit default is used; that is not an error.</span><ul><li>Element &gt; Assignment &gt; Work unit default</li></ul></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Payroll creates costing results, then transfers them to the General Ledger.</strong><span class="sd">After payroll calculates, costing results go through Transfer to Subledger Accounting and Create Accounting, and post to the General Ledger. That is what department and grant reports show.</span></span></label></li>
-<li><label><input type="checkbox" /><span class="st"><strong>Grant-funded salary depends on correct splits.</strong><span class="sd">If part of a salary should be charged to a grant or project, the split must be right before payroll. Splits under 100 percent send the rest to the default account.</span></span></label></li>
-<li><label><input type="checkbox" /><span class="st"><strong>Costing follows a person who transfers business units; review it.</strong><span class="sd">When an employee transfers to another BU, the old costing follows them. The HCM must review and update it so the new area pays.</span></span></label></li>
-<li><label><input type="checkbox" /><span class="st"><strong>Late fixes go through cost adjustments or retroactive costing.</strong><span class="sd">Payroll can correct a few records with a cost adjustment, or run Calculate Retroactive Costing to reverse and repost past results. Both add work, so catch errors before cutoff.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Costing must be right before payroll runs.</strong><span class="sd">This covers everything costed to a POET string, not only grants. The costing has to be right before payroll starts the run that moves the dollars to the ledger. Costing lines must total 100%; Oracle won&#x27;t let you leave the costing screen with less.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Costing follows a person who transfers business units (BUs).</strong><span class="sd">The old costing follows the employee to the new business unit. The HCM in the new business unit updates the costing so pay is charged correctly from the transfer date, and HCMs in both areas confirm it was updated.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>After payroll runs, a retro cost transfer (RCT) is needed.</strong><span class="sd">If costing has to change for pay already processed, start a retro cost transfer. RCTs must meet certain criteria, and they need two things: the costing updated in Oracle, and the RCT form that moves the actual dollars.</span></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Check your area with the Departmental Playbook reports.</strong><span class="sd">Use HCM Assignment Cost Allocation Plan, HCM Element Cost Allocation Plan, and HCM Cost Allocation Verification Plan to confirm costing for your people.</span></span></label></li>
       </ol>
       <p class="stepcount" id="stepcount" aria-live="polite"></p>
       
       
-      <div class="watch"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>Watch-outs</h3><ul><li>After a BU transfer, costing does not reset on its own. Review it every time.</li><li>Blank costing is not wrong by itself; it means the work unit default applies. Confirm the default is the account you want.</li><li>Open item: confirm how Vanderbilt handles grant labor distribution and the deadline to fix costing before a payroll run.</li></ul></div>
+      <div class="watch"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>Watch-outs</h3><ul><li>After a business unit transfer, costing does not reset on its own. Review it every time.</li><li>Blank costing on an assignment is not wrong by itself; the work unit default applies. Confirm the default is where the pay should go.</li><li>Open item: confirm the criteria for retro cost transfers and the deadline to fix costing before a payroll run. This covers more than grant labor.</li></ul></div>
       <div class="docs"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>Official documentation</h3><p>Vendor documentation describes the standard process. Vanderbilt's setup, codes, and rules in this course take priority.</p><ul><li><a href="https://docs.oracle.com/en/cloud/saas/human-resources/faipc/cost-hierarchy.html" target="_blank" rel="noopener">Oracle: Administering Global Payroll Costing, Cost Hierarchy<span class="sr"> (opens in a new tab)</span></a></li><li><a href="https://docs.oracle.com/en/cloud/saas/human-resources/25a/faipc/correct-costing-for-payroll-run-results.html" target="_blank" rel="noopener">Oracle: Correct Costing for Payroll Run Results<span class="sr"> (opens in a new tab)</span></a></li></ul></div>
     </section>
     <section class="part quiz" id="check" aria-labelledby="h3">
       <p class="mono num">3 &middot; Knowledge check</p>
       <h2 id="h3">Check your <em>understanding</em>.</h2>
       <p>Three questions. You get feedback on each answer. All three right completes the course.</p>
-      <fieldset data-a="1" data-why="Costing follows a person who transfers BUs, and the HCM must review it." data-hint="Look back at the walkthrough."><legend><span class="qn">Q1</span>An employee transferred from another BU. What should you do with costing?</legend><label><input type="radio" name="q0" value="0" />Nothing; it resets automatically</label><label><input type="radio" name="q0" value="1" />Review and update it, because it followed the person</label><label><input type="radio" name="q0" value="2" />Delete it so the default applies</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="2" data-why="Blank costing means the work unit default is used; it is not an error." data-hint="Look back at the walkthrough."><legend><span class="qn">Q2</span>An assignment has no costing entered. What does Oracle charge?</legend><label><input type="radio" name="q1" value="0" />Nothing; payroll errors out</label><label><input type="radio" name="q1" value="1" />The suspense account</label><label><input type="radio" name="q1" value="2" />The work unit default</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="0" data-why="The order is element, then assignment, then work unit default." data-hint="Look back at the walkthrough."><legend><span class="qn">Q3</span>Element costing and assignment costing disagree. Which wins?</legend><label><input type="radio" name="q2" value="0" />Element</label><label><input type="radio" name="q2" value="1" />Assignment</label><label><input type="radio" name="q2" value="2" />Work unit default</label><p class="fb" aria-live="polite"></p></fieldset>
+      <fieldset data-a="1" data-why="Costing follows the person; the HCM in the new area updates it." data-hint="Look back at the walkthrough."><legend><span class="qn">Q1</span>An employee transferred from another BU. Who updates their costing?</legend><label><input type="radio" name="q0" value="0" />Nobody; it resets automatically</label><label><input type="radio" name="q0" value="1" />The HCM in the new business unit, and both HCMs confirm it</label><label><input type="radio" name="q0" value="2" />Payroll</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="1" data-why="An RCT needs both the costing update and the form that moves the dollars." data-hint="Look back at the walkthrough."><legend><span class="qn">Q2</span>Costing needs to change for a pay period already paid. What is needed?</legend><label><input type="radio" name="q1" value="0" />Nothing; Oracle recalculates</label><label><input type="radio" name="q1" value="1" />A retro cost transfer: the Oracle costing update and the RCT form</label><label><input type="radio" name="q1" value="2" />An off-cycle payment</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="0" data-why="The order is element, then assignment, then work unit default." data-hint="Look back at the walkthrough."><legend><span class="qn">Q3</span>Element costing and assignment costing disagree. Which wins?</legend><label><input type="radio" name="q2" value="0" />Element</label><label><input type="radio" name="q2" value="1" />Assignment</label><label><input type="radio" name="q2" value="2" />Work unit default</label><p class="fb" aria-live="polite"></p></fieldset>
       <p class="score" id="score" hidden></p>
     </section>
     <section class="part" id="jobaid" aria-labelledby="h4">
@@ -85,16 +85,16 @@
 <li>Costing is set in Costing for Persons.</li>
 <li>Oracle uses the most specific level first: element, then assignment, then work unit default.<ul><li>Element &gt; Assignment &gt; Work unit default</li></ul></li>
 <li>Payroll creates costing results, then transfers them to the General Ledger.</li>
-<li>Grant-funded salary depends on correct splits.</li>
-<li>Costing follows a person who transfers business units; review it.</li>
-<li>Late fixes go through cost adjustments or retroactive costing.</li>
+<li>Costing must be right before payroll runs.</li>
+<li>Costing follows a person who transfers business units (BUs).</li>
+<li>After payroll runs, a retro cost transfer (RCT) is needed.</li>
 <li>Check your area with the Departmental Playbook reports.</li>
           </ol>
           
           
           <h3>Watch-outs</h3>
-          <ul class="jw"><li>After a BU transfer, costing does not reset on its own. Review it every time.</li><li>Blank costing is not wrong by itself; it means the work unit default applies. Confirm the default is the account you want.</li><li>Open item: confirm how Vanderbilt handles grant labor distribution and the deadline to fix costing before a payroll run.</li></ul>
-          <div class="ja-foot"><span>V.02 draft, updated Nov 13, 2026. Owner: Payroll. Sources: Oracle: Administering Global Payroll Costing, Cost Hierarchy; Oracle: Payroll Setup Tasks to Transfer Costs to General Ledger; Oracle: Correct Costing for Payroll Run Results; Oracle: Labor Schedules.</span><span>Questions: pcb@vanderbilt.edu</span></div>
+          <ul class="jw"><li>After a business unit transfer, costing does not reset on its own. Review it every time.</li><li>Blank costing on an assignment is not wrong by itself; the work unit default applies. Confirm the default is where the pay should go.</li><li>Open item: confirm the criteria for retro cost transfers and the deadline to fix costing before a payroll run. This covers more than grant labor.</li></ul>
+          <div class="ja-foot"><span>V.02 draft, updated Nov 18, 2026. Owner: Payroll. Sources: Oracle: Administering Global Payroll Costing, Cost Hierarchy; Oracle: Payroll Setup Tasks to Transfer Costs to General Ledger; Oracle: Correct Costing for Payroll Run Results; Oracle: Labor Schedules.</span><span>Questions: pcb@vanderbilt.edu</span></div>
         </article>
         
       </div>
@@ -104,11 +104,11 @@
       <h2 id="h5">Owner and <em>changes</em>.</h2>
       <dl class="recl">
         <div><dt>Owner</dt><dd>Payroll<span>All payroll and financial topics: payroll, time cards, pay changes, the payroll calendar, and costing.</span></dd></div>
-        <div><dt>Version</dt><dd>V.02 draft<span>Updated Nov 13, 2026</span></dd></div>
-        <div><dt>Review</dt><dd>Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before release.</dd></div>
+        <div><dt>Version</dt><dd>V.02 draft<span>Updated Nov 18, 2026</span></dd></div>
+        <div><dt>Review</dt><dd>Reviewed by a Vanderbilt SME in November 2026, and the review&#x27;s changes are in. Confirm the open items before release.</dd></div>
       </dl>
       <h3 class="rech">What changed</h3>
-      <ul class="chg"><li><b>Nov 13, 2026</b>Owner is now Payroll. It was shown as Payroll and Finance.</li><li><b>Nov 12, 2026</b>Owner shown: Payroll and Finance.</li><li><b>October 2026</b>First draft (V.01).</li></ul>
+      <ul class="chg"><li><b>Nov 18, 2026</b>From the SME review: costing strings rather than accounts, every POET-funded item, 100% before payroll, who updates costing after a transfer, and retro cost transfers.</li><li><b>Nov 13, 2026</b>Owner is now Payroll. It was shown as Payroll and Finance.</li><li><b>Nov 12, 2026</b>Owner shown: Payroll and Finance.</li><li><b>October 2026</b>First draft (V.01).</li></ul>
       <p class="recf"><a href="../../changes/">See changes across all courses</a>. Something out of date? Email <a href="mailto:pcb@vanderbilt.edu">pcb@vanderbilt.edu</a>.</p>
     </section>
   </div>

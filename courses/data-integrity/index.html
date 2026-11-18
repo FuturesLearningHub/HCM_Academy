@@ -20,10 +20,10 @@
 </header>
 <section class="hero" aria-labelledby="t">
   <div class="wrap">
-    <p class="mono crumb">Start Here &middot; Course 39 of 68</p>
+    <p class="mono crumb">Start Here &middot; Course 37 of 64</p>
     <h1 id="t">Bad data in, bad data <em>out</em>.</h1>
     <ul class="meta" aria-label="Course details"><li class="v">V.02 draft</li><li>Micro-learning</li><li>5 min</li><li>Overview</li><li>3-question check</li><li>Printable job aid</li></ul>
-    <p class="rec"><span>Owner: <b>HRIS</b></span><span>Updated Nov 13, 2026</span><a href="#record">What changed</a></p>
+    <p class="rec"><span>Owner: <b>HRIS</b></span><span>Updated Nov 18, 2026</span><a href="#record">What changed</a></p>
   </div>
   <nav class="parts" aria-label="Course parts"><ol>
     <li><a href="#intro"><span>1</span>Intro</a></li><li><a href="#steps"><span>2</span>Walk through</a></li><li><a href="#check"><span>3</span>Check</a></li><li><a href="#jobaid"><span>4</span>Job aid</a></li>
@@ -37,7 +37,7 @@
       <p>Courses unlock once you've taken the pre-assessment. It takes about 5 minutes, it's not graded, and your results show which topics to start with.</p>
       <div class="acts"><a class="btn" href="../../assessment/pre/">Take the pre-assessment</a><a class="btn ghost" href="../../index.html#start">Back to all courses</a></div>
     </section>
-    <p class="draft"><b>V.02 draft</b>Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before release.</p><p class="draft"><b>Screen check</b>Confirm in Vanderbilt's Oracle or UKG during a recorded demo: Which position attributes Vanderbilt synchronizes to assignments; Most common data errors and the correction contact; Which Departmental Playbook reports HCMs should run before payroll.</p>
+    <p class="draft"><b>V.02 draft</b>Reviewed by a Vanderbilt SME in November 2026, and the review&#x27;s changes are in. Confirm the open items before release.</p><p class="draft"><b>Screen check</b>Confirm in Vanderbilt's Oracle or UKG during a recorded demo: Which position attributes Vanderbilt synchronizes to assignments; Most common data errors and the correction contact; Which Departmental Playbook reports HCMs should run before payroll.</p>
     <section class="part" id="intro" aria-labelledby="h1">
       <p class="mono num">1 &middot; Intro</p>
       <h2 id="h1">When to <em>use</em> it.</h2>
@@ -52,15 +52,15 @@
       <ol class="steps">
 <li><label><input type="checkbox" /><span class="st"><strong>Follow the chain from position to pay.</strong><span class="sd">Positions feed requisitions, requisitions feed pending worker conversion, and conversion creates the assignment that drives pay. An error at the start repeats at every step.</span></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Know that positions push values to assignments.</strong><span class="sd">With position synchronization, values on the position (such as department, job, location, grade) flow to incumbents&#x27; assignments and lock those fields. A wrong position value lands on every person in it.</span></span></label></li>
-<li><label><input type="checkbox" /><span class="st"><strong>Check dates as carefully as values.</strong><span class="sd">Oracle records are date effective. A wrong effective date can pay someone too early or too late, or create retro pay. An update adds history; a correction overwrites the old value with no history.</span></span></label></li>
-<li><label><input type="checkbox" /><span class="st"><strong>Remember costing follows the data.</strong><span class="sd">Blank costing defaults to the work unit. If the department is wrong, pay is charged to the wrong account, and costing follows a person who transfers business units until you review it.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Check dates as carefully as values.</strong><span class="sd">Oracle records are date effective. Every transaction that affects pay needs the right effective date: the date the change takes effect for pay. That includes hires, salary changes, working hours changes, transfers, terminations, one-time payments, and costing changes. A wrong date can pay someone too early or too late, or create retro pay.</span><ul><li>An update adds history; a correction overwrites the old value with no history.</li></ul></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Remember costing follows the data.</strong><span class="sd">Pay is charged to the costing on the assignment. Left blank, it uses the work unit&#x27;s default costing, so a wrong work unit means pay is charged to the wrong place. A mistyped costing string does not default: it goes to suspense. When someone transfers to a new business unit, the HCM in the new area reviews and updates their costing.</span></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Confirm what the position does not set.</strong><span class="sd">After a position reclassification, person type, location, working hours, and hourly salary do not flow from the position. Check and update them on the assignment yourself.</span></span></label></li>
-<li><label><input type="checkbox" /><span class="st"><strong>Review before you submit.</strong><span class="sd">Read every field back against the source document. Use the Departmental Playbook costing reports to catch errors before payroll.</span><ul><li>Check: person, effective date, position, hours, pay, costing.</li></ul></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Review before you submit.</strong><span class="sd">Read every field back against the source document, then check the costing reports before the payroll cutoff. The Cost Allocation Verification Report flags mismatched data.</span><ul><li>Check: person, effective date, position, hours, pay, costing.</li></ul></span></label></li>
       </ol>
       <p class="stepcount" id="stepcount" aria-live="polite"></p>
       
       
-      <div class="watch"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>Watch-outs</h3><ul><li>Fixes after payroll runs become retro adjustments in a later payroll and may mean a late or incorrect paycheck.</li><li>Never reactivate an inactive position or repurpose one across worker types to save time.</li><li>Open item: confirm which data errors Vanderbilt sees most often and who to contact for corrections.</li></ul></div>
+      <div class="watch"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>Watch-outs</h3><ul><li>Fixes after payroll runs become retro adjustments in a later payroll and may mean a late or incorrect paycheck.</li><li>Never reactivate an inactive position or repurpose one across worker types to save time.</li><li>Open item: confirm which data errors Vanderbilt sees most often and who to contact for corrections.</li><li>Open item: add a walkthrough of the Departmental Playbook costing report.</li></ul></div>
       <div class="docs"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>Official documentation</h3><p>Vendor documentation describes the standard process. Vanderbilt's setup, codes, and rules in this course take priority.</p><ul><li><a href="https://docs.oracle.com/en/cloud/saas/human-resources/fawhr/how-position-synchronization-impacts-assignments.html" target="_blank" rel="noopener">Oracle: How Position Synchronization Impacts Assignments<span class="sr"> (opens in a new tab)</span></a></li><li><a href="https://docs.oracle.com/en/cloud/saas/human-resources/24a/faucf/examples-of-updating-date-effective-objects.html" target="_blank" rel="noopener">Oracle: Examples of Updating Date-Effective Objects<span class="sr"> (opens in a new tab)</span></a></li></ul></div>
     </section>
     <section class="part quiz" id="check" aria-labelledby="h3">
@@ -83,7 +83,7 @@
           <ol>
 <li>Follow the chain from position to pay.</li>
 <li>Know that positions push values to assignments.</li>
-<li>Check dates as carefully as values.</li>
+<li>Check dates as carefully as values.<ul><li>An update adds history; a correction overwrites the old value with no history.</li></ul></li>
 <li>Remember costing follows the data.</li>
 <li>Confirm what the position does not set.</li>
 <li>Review before you submit.<ul><li>Check: person, effective date, position, hours, pay, costing.</li></ul></li>
@@ -91,8 +91,8 @@
           
           
           <h3>Watch-outs</h3>
-          <ul class="jw"><li>Fixes after payroll runs become retro adjustments in a later payroll and may mean a late or incorrect paycheck.</li><li>Never reactivate an inactive position or repurpose one across worker types to save time.</li><li>Open item: confirm which data errors Vanderbilt sees most often and who to contact for corrections.</li></ul>
-          <div class="ja-foot"><span>V.02 draft, updated Nov 13, 2026. Owner: HRIS. Sources: Oracle: How Position Synchronization Impacts Assignments; Oracle: Examples of Updating Date-Effective Objects; Oracle: Recalculate Payroll for Retroactive Changes.</span><span>Questions: pcb@vanderbilt.edu</span></div>
+          <ul class="jw"><li>Fixes after payroll runs become retro adjustments in a later payroll and may mean a late or incorrect paycheck.</li><li>Never reactivate an inactive position or repurpose one across worker types to save time.</li><li>Open item: confirm which data errors Vanderbilt sees most often and who to contact for corrections.</li><li>Open item: add a walkthrough of the Departmental Playbook costing report.</li></ul>
+          <div class="ja-foot"><span>V.02 draft, updated Nov 18, 2026. Owner: HRIS. Sources: Oracle: How Position Synchronization Impacts Assignments; Oracle: Examples of Updating Date-Effective Objects; Oracle: Recalculate Payroll for Retroactive Changes.</span><span>Questions: pcb@vanderbilt.edu</span></div>
         </article>
         
       </div>
@@ -102,11 +102,11 @@
       <h2 id="h5">Owner and <em>changes</em>.</h2>
       <dl class="recl">
         <div><dt>Owner</dt><dd>HRIS<span>Recruiting and hiring, assignment changes, offboarding, leave, records and reporting, and the HCM foundations.</span></dd></div>
-        <div><dt>Version</dt><dd>V.02 draft<span>Updated Nov 13, 2026</span></dd></div>
-        <div><dt>Review</dt><dd>Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before release.</dd></div>
+        <div><dt>Version</dt><dd>V.02 draft<span>Updated Nov 18, 2026</span></dd></div>
+        <div><dt>Review</dt><dd>Reviewed by a Vanderbilt SME in November 2026, and the review&#x27;s changes are in. Confirm the open items before release.</dd></div>
       </dl>
       <h3 class="rech">What changed</h3>
-      <ul class="chg"><li><b>Nov 13, 2026</b>Owner is now HRIS. It had no owner yet.</li><li><b>Nov 12, 2026</b>Owner still to be named.</li><li><b>October 2026</b>First draft (V.01).</li></ul>
+      <ul class="chg"><li><b>Nov 18, 2026</b>From the SME review: which transactions need an effective date, what costing follows (including suspense), and the Cost Allocation Verification Report.</li><li><b>Nov 13, 2026</b>Owner is now HRIS. It had no owner yet.</li><li><b>Nov 12, 2026</b>Owner still to be named.</li><li><b>October 2026</b>First draft (V.01).</li></ul>
       <p class="recf"><a href="../../changes/">See changes across all courses</a>. Something out of date? Email <a href="mailto:pcb@vanderbilt.edu">pcb@vanderbilt.edu</a>.</p>
     </section>
   </div>

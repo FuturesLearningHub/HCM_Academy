@@ -886,5 +886,9 @@ VERIFY.update(VERIFY_R)
 import courses_v02  # noqa: E402
 COURSES += courses_v02.build({c["slug"]: c for c in COURSES})
 VERIFY.update(courses_v02.VERIFY_A)
+import reviews
+reviews.apply(COURSES)          # SME review, November 2026: corrections, merges, splits, moves
+VERIFY.update(reviews.VERIFY)
+for _gone in reviews.REMOVED: VERIFY.pop(_gone, None)
 import videos
 videos.apply(COURSES)

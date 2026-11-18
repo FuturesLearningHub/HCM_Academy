@@ -18,7 +18,8 @@ EDITION_MONTH = "November 2026"
 UPDATED = "Nov 12, 2026"        # when the V.02 draft was first published
 OWNERS_SET = "Nov 13, 2026"     # when owners were set to the teams: Payroll and HRIS
 SCREENS = "Nov 17, 2026"       # videos added; corrections from Vanderbilt's Our Workforce screens
-LATEST = SCREENS                # the newest change across all courses
+REVIEWED_ON = "Nov 18, 2026"   # Vanderbilt SME review applied (tools/reviews.py)
+LATEST = REVIEWED_ON            # the newest change across all courses
 FIRST = "October 2026"          # when the V.01 courses were first drafted
 
 # ───────────── Owners ─────────────
@@ -31,7 +32,8 @@ OWNER_SCOPE = {
     TBD: "No owner yet.",
 }
 _BY_TOPIC = {"payroll": PAY, "costing": PAY}
-_BY_SLUG = {"shared-calendar": PAY}   # payroll dates, listed under Start Here
+_BY_SLUG = {"shared-calendar": PAY,   # payroll dates, listed under Start Here
+            "change-salary": PAY}    # a pay topic, listed under Assignment Changes since the SME review
 
 def owner(c):
     """The team that owns a course: Payroll for payroll and financial topics, HRIS for everything else."""
@@ -252,7 +254,7 @@ BEFORE = {
             "The COA or POET string came from your finance partner.",
             "You ran the HCM Cost Allocation Verification Plan report afterward."],
     confirm="Where the Retro Change Cutoff is published. It is not on the HR/Payroll Calendar.",
-    cutoff="costing", submits="You or your finance partner. Confirm who owns it in your department", approves=CHAIN,
+    cutoff="costing", submits="You. Entering costing needs the HCM role in Oracle; get the costing string from your FUM", approves=CHAIN,
     then="Oracle uses the costing in effect on the Pay Period End Date and does not prorate."),
  "change-existing-costing": dict(tx="Change existing costing",
     docs=[("Prior periods: the Retro Costing Request Form (Salary), sent to the Research Finance Team", "Required"),
@@ -262,12 +264,11 @@ BEFORE = {
             "End Date ends everything from that date forward.",
             "The lines total 100%, and you ran the verification report afterward."],
     confirm="Where the Retro Change Cutoff is published. It is not on the HR/Payroll Calendar.",
-    cutoff="costing", submits="You or your finance partner. Confirm who owns it in your department", approves=CHAIN,
+    cutoff="costing", submits="You. Entering costing needs the HCM role in Oracle; get the costing string from your FUM", approves=CHAIN,
     then="Costing results post to the General Ledger after payroll runs."),
  "fmla-tmla-transactions": dict(tx="FMLA or TMLA absence",
-    docs=[("The leave approval letter, filed as a Leave and Accommodation Documentation document record", "Attach"),
-          ("Supporting documents, if the absence type asks for them", "Attach")],
-    docs_gap="Which absence types Vanderbilt uses and who enters intermittent occurrences.",
+    docs=[("Supporting documents, if the absence type asks for them", "Attach")],
+    docs_gap="Which absence types Vanderbilt uses, who enters intermittent occurrences, and where leave approval letters are stored (outside Oracle Document Records).",
     checks=["The absence type matches the approval.",
             "Continuous leave: one absence with the approved start and end dates.",
             "Intermittent or reduced schedule: only the time actually taken."],
@@ -293,8 +294,14 @@ WHO_EXTRA = [
     ("Running payroll", "Never you. Do not try to run or rerun payroll.", "None.", "Payroll."),
 ]
 
+# courses merged by the SME review keep the block of the course they absorbed
+BEFORE_ALIAS = {"ukg-time-cards": "review-approve-time-cards"}
+
 def before(slug):
-    return BEFORE.get(slug)
+    return BEFORE.get(slug) or BEFORE.get(BEFORE_ALIAS.get(slug, ""))
+
+def has_before(slug):
+    return before(slug) is not None
 
 def sentence(s):
     return s if s.endswith(".") else s + "."
@@ -324,7 +331,7 @@ def who_rows():
 
 # ───────────── Change log ─────────────
 NEW_IN_V02 = {"what-to-attach", "who-owns-what", "shared-calendar", "pay-rules", "common-pay-errors"}
-TIME_CARD_RULE = {"review-approve-time-cards", "weekly-time-card-check", "ukg-for-managers"}
+TIME_CARD_RULE = {"weekly-time-card-check", "ukg-time-cards"}
 _VIDEO = "Added a narrated video and a detailed job aid with a picture for each step."
 EXTRA_CHANGES = {
     # slug: [(date, text)] for hand-written entries. Newest first.
@@ -367,8 +374,11 @@ def fold_items(items):
 
 def changes(c):
     """What changed on a course, newest first: (date, text)."""
-    s = c["slug"]; own = owner(c); was = owner_first(c); out = list(EXTRA_CHANGES.get(s, []))
-    b = BEFORE.get(s)
+    import reviews
+    s = c["slug"]
+    if s in reviews.NEW: return [(REVIEWED_ON, reviews.NOTES.get(s, "New course."))]
+    own = owner(c); was = owner_first(c); out = ([(REVIEWED_ON, reviews.NOTES[s])] if s in reviews.NOTES else []) + list(EXTRA_CHANGES.get(s, []))
+    b = before(s)
     if s in PUBLISHED: out.append((OWNERS_SET, PUBLISHED[s] + (" " + _BLOCK_FIX if b and b.get("cutoff") in ("monthly", "term", "time", "offcycle") else "")))
     elif b and b.get("cutoff") in ("monthly", "term", "time", "offcycle"): out.append((OWNERS_SET, _BLOCK_FIX))
     out.append((OWNERS_SET, f"Owner is now {own}. " + (f"It was shown as {was}." if was else "It had no owner yet.")))

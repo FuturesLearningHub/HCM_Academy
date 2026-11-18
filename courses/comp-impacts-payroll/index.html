@@ -20,10 +20,10 @@
 </header>
 <section class="hero" aria-labelledby="t">
   <div class="wrap">
-    <p class="mono crumb">Compensation Management &middot; Course 45 of 68</p>
+    <p class="mono crumb">Compensation Management &middot; Course 41 of 64</p>
     <h1 id="t">How pay changes reach <em>payroll</em>.</h1>
     <ul class="meta" aria-label="Course details"><li class="v">V.02 draft</li><li>Micro-learning</li><li>7 min</li><li>Oracle HCM</li><li>3-question check</li><li>Printable job aid</li></ul>
-    <p class="rec"><span>Owner: <b>Payroll</b></span><span>Updated Nov 13, 2026</span><a href="#record">What changed</a></p>
+    <p class="rec"><span>Owner: <b>Payroll</b></span><span>Updated Nov 18, 2026</span><a href="#record">What changed</a></p>
   </div>
   <nav class="parts" aria-label="Course parts"><ol>
     <li><a href="#intro"><span>1</span>Intro</a></li><li><a href="#steps"><span>2</span>Walk through</a></li><li><a href="#check"><span>3</span>Check</a></li><li><a href="#jobaid"><span>4</span>Job aid</a></li>
@@ -37,7 +37,7 @@
       <p>Courses unlock once you've taken the pre-assessment. It takes about 5 minutes, it's not graded, and your results show which topics to start with.</p>
       <div class="acts"><a class="btn" href="../../assessment/pre/">Take the pre-assessment</a><a class="btn ghost" href="../../index.html#payroll">Back to all courses</a></div>
     </section>
-    <p class="draft"><b>V.02 draft</b>Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before release.</p><p class="draft"><b>Screen check</b>Confirm in Vanderbilt's Oracle or UKG during a recorded demo: Payroll confirms retro behavior and how retro lines appear on the payslip; Which Vanderbilt earnings are set to Process separately or pay separately; Vanderbilt action name and path for salary changes under Our Workforce &gt; Quick Actions.</p>
+    <p class="draft"><b>V.02 draft</b>Reviewed by a Vanderbilt SME in November 2026, and the review&#x27;s changes are in. Confirm the open items before release.</p><p class="draft"><b>Screen check</b>Confirm in Vanderbilt's Oracle or UKG during a recorded demo: Payroll confirms retro behavior and how retro lines appear on the payslip; Which Vanderbilt earnings are set to Process separately or pay separately; Vanderbilt action name and path for salary changes under Our Workforce &gt; Quick Actions.</p>
     <section class="part" id="intro" aria-labelledby="h1">
       <p class="mono num">1 &middot; Intro</p>
       <h2 id="h1">When to <em>use</em> it.</h2>
@@ -56,12 +56,13 @@
 <li><label><input type="checkbox" /><span class="st"><strong>Backdated changes pay through retroactive processing.</strong><span class="sd">If the effective date falls in a period already paid, payroll runs Recalculate Payroll for Retroactive Changes. It recalculates past periods for retro-enabled elements and pays the difference in a later run as retro element entries.</span></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Some earnings are set to Process separately.</strong><span class="sd">In Oracle US payroll, an earnings element can be set to Process separately (calculated in its own payroll action, often for tax treatment) or to pay separately. Payroll owns these settings; you only need to know a one-time payment may show as its own line or payment.</span></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Confirm the result before payday.</strong><span class="sd">Review the employee&#x27;s salary and the effective date in Employment Info. If timing matters (for example, a promotion the employee expects this month), confirm with payroll before cutoff.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Check costing with every pay change.</strong><span class="sd">Costing decides where the pay is charged. Review it whenever pay changes (see Costing Management).</span></span></label></li>
       </ol>
       <p class="stepcount" id="stepcount" aria-live="polite"></p>
       <table class="ref"><caption>Which paycheck will it hit?</caption><thead><tr><th scope="col">Situation</th><th scope="col">Typical result</th></tr></thead><tbody><tr><td data-th="Situation">Approved before cutoff, effective this period</td><td data-th="Typical result">Paid this period</td></tr><tr><td data-th="Situation">Approved after cutoff, effective this period</td><td data-th="Typical result">Paid next period with retro</td></tr><tr><td data-th="Situation">Effective date in a past, paid period</td><td data-th="Typical result">Retro difference paid in a later run</td></tr><tr><td data-th="Situation">Hourly rate change, non-exempt</td><td data-th="Typical result">Applies to approved UKG hours in the period</td></tr></tbody></table>
       
-      <div class="watch"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>Watch-outs</h3><ul><li>Pending approvals do not pay. A change still waiting in approvals at cutoff misses that payroll.</li><li>Retro only covers elements set up for retroactive pay. Do not promise a retro amount; payroll calculates it.</li><li>Open item: confirm with payroll which Vanderbilt earnings use Process separately and how retro shows on the payslip.</li></ul></div>
-      <div class="docs"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>Official documentation</h3><p>Vendor documentation describes the standard process. Vanderbilt's setup, codes, and rules in this course take priority.</p><ul><li><a href="https://docs.oracle.com/en/cloud/saas/human-resources/faucf/how-you-store-the-salary-amount-and-pass-it-to-payroll-for.html" target="_blank" rel="noopener">Oracle: How You Store the Salary Amount and Pass It to Payroll for Processing<span class="sr"> (opens in a new tab)</span></a></li><li><a href="https://docs.oracle.com/en/cloud/saas/human-resources/faakw/how-retroactive-pay-is-calculated.html" target="_blank" rel="noopener">Oracle: How Retroactive Pay Is Calculated<span class="sr"> (opens in a new tab)</span></a></li></ul></div>
+      <div class="watch"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>Watch-outs</h3><ul><li>Pending approvals do not pay. A change still waiting in approvals at cutoff misses that payroll.</li><li>Retro only covers elements set up for retroactive pay. Do not promise a retro amount; payroll calculates it.</li><li>Open item: confirm with payroll which Vanderbilt earnings use Process separately and how retro shows on the payslip.</li><li>Close to the payroll deadline, you can email payroll and ask them to put a payment on their watch list.</li></ul></div>
+      <div class="docs"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>Official documentation</h3><p>Vendor documentation describes the standard process. Vanderbilt's setup, codes, and rules in this course take priority.</p><ul><li><a href="https://hr.vanderbilt.edu/compensation/payroll-calendar/" target="_blank" rel="noopener">Vanderbilt: Pay Calendar (People Experience)<span class="sr"> (opens in a new tab)</span></a></li></ul></div>
     </section>
     <section class="part quiz" id="check" aria-labelledby="h3">
       <p class="mono num">3 &middot; Knowledge check</p>
@@ -87,12 +88,13 @@
 <li>Backdated changes pay through retroactive processing.</li>
 <li>Some earnings are set to Process separately.</li>
 <li>Confirm the result before payday.</li>
+<li>Check costing with every pay change.</li>
           </ol>
           <table class="ref"><caption>Which paycheck will it hit?</caption><thead><tr><th scope="col">Situation</th><th scope="col">Typical result</th></tr></thead><tbody><tr><td data-th="Situation">Approved before cutoff, effective this period</td><td data-th="Typical result">Paid this period</td></tr><tr><td data-th="Situation">Approved after cutoff, effective this period</td><td data-th="Typical result">Paid next period with retro</td></tr><tr><td data-th="Situation">Effective date in a past, paid period</td><td data-th="Typical result">Retro difference paid in a later run</td></tr><tr><td data-th="Situation">Hourly rate change, non-exempt</td><td data-th="Typical result">Applies to approved UKG hours in the period</td></tr></tbody></table>
           
           <h3>Watch-outs</h3>
-          <ul class="jw"><li>Pending approvals do not pay. A change still waiting in approvals at cutoff misses that payroll.</li><li>Retro only covers elements set up for retroactive pay. Do not promise a retro amount; payroll calculates it.</li><li>Open item: confirm with payroll which Vanderbilt earnings use Process separately and how retro shows on the payslip.</li></ul>
-          <div class="ja-foot"><span>V.02 draft, updated Nov 13, 2026. Owner: Payroll. Sources: Oracle: How You Store the Salary Amount and Pass It to Payroll for Processing; Oracle: How Retroactive Pay Is Calculated; Oracle: How do I define earnings elements for the US.</span><span>Questions: pcb@vanderbilt.edu</span></div>
+          <ul class="jw"><li>Pending approvals do not pay. A change still waiting in approvals at cutoff misses that payroll.</li><li>Retro only covers elements set up for retroactive pay. Do not promise a retro amount; payroll calculates it.</li><li>Open item: confirm with payroll which Vanderbilt earnings use Process separately and how retro shows on the payslip.</li><li>Close to the payroll deadline, you can email payroll and ask them to put a payment on their watch list.</li></ul>
+          <div class="ja-foot"><span>V.02 draft, updated Nov 18, 2026. Owner: Payroll. Sources: Oracle: How You Store the Salary Amount and Pass It to Payroll for Processing; Oracle: How Retroactive Pay Is Calculated; Oracle: How do I define earnings elements for the US.</span><span>Questions: pcb@vanderbilt.edu</span></div>
         </article>
         
       </div>
@@ -102,11 +104,11 @@
       <h2 id="h5">Owner and <em>changes</em>.</h2>
       <dl class="recl">
         <div><dt>Owner</dt><dd>Payroll<span>All payroll and financial topics: payroll, time cards, pay changes, the payroll calendar, and costing.</span></dd></div>
-        <div><dt>Version</dt><dd>V.02 draft<span>Updated Nov 13, 2026</span></dd></div>
-        <div><dt>Review</dt><dd>Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before release.</dd></div>
+        <div><dt>Version</dt><dd>V.02 draft<span>Updated Nov 18, 2026</span></dd></div>
+        <div><dt>Review</dt><dd>Reviewed by a Vanderbilt SME in November 2026, and the review&#x27;s changes are in. Confirm the open items before release.</dd></div>
       </dl>
       <h3 class="rech">What changed</h3>
-      <ul class="chg"><li><b>Nov 13, 2026</b>Cutoffs corrected from the published HR/Payroll Calendar: the 18th in most months for monthly pay, and the Friday a week before payday for weekly and biweekly pay.</li><li><b>Nov 13, 2026</b>Owner is now Payroll. It was shown as Payroll and Finance.</li><li><b>Nov 12, 2026</b>Owner shown: Payroll and Finance.</li><li><b>October 2026</b>First draft (V.01).</li></ul>
+      <ul class="chg"><li><b>Nov 18, 2026</b>From the SME review: a link to the payroll calendar, the payroll watch list, costing, and links replaced.</li><li><b>Nov 13, 2026</b>Cutoffs corrected from the published HR/Payroll Calendar: the 18th in most months for monthly pay, and the Friday a week before payday for weekly and biweekly pay.</li><li><b>Nov 13, 2026</b>Owner is now Payroll. It was shown as Payroll and Finance.</li><li><b>Nov 12, 2026</b>Owner shown: Payroll and Finance.</li><li><b>October 2026</b>First draft (V.01).</li></ul>
       <p class="recf"><a href="../../changes/">See changes across all courses</a>. Something out of date? Email <a href="mailto:pcb@vanderbilt.edu">pcb@vanderbilt.edu</a>.</p>
     </section>
   </div>

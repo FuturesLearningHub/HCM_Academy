@@ -26,7 +26,7 @@ def build(BY):
       {"t": "Read the status.", "d": "The status is what the course says now. It is not yet one confirmed standard for every area.",
        "sub": ["Required: the course says you need it.", "Attach: the course tells you to attach or file it.", "If finance asks: your finance approver decides.", "To confirm: no document is named yet."]},
       {"t": "Get the final, signed copy before you start.", "d": "Document records hold final, signed copies only. A draft or an unsigned letter is not the record."},
-      {"t": "Attach it to the transaction, and file it when the course says so.", "d": f"Letters about pay go on the employee's file as a Compensation Letters document record. Leave approvals go under Leave and Accommodation Documentation. See {n('add-document-record')} for the steps and the naming convention."},
+      {"t": "Attach it to the transaction, and file it when the course says so.", "d": f"Letters about pay go on the employee's file as a Compensation Letters document record. Leave and accommodation records are stored outside Oracle Document Records. See {n('add-document-record')} for the steps and the naming convention."},
       {"t": "Say what the change is for in the comments.", "d": "A short note on what is changing and why saves a send-back. Oracle needs little in comments and attachments, but many departmental finance approvers want more."},
       {"t": "When the table says To confirm, ask before you submit.", "d": "Ask your finance partner or your PCB consultant what they expect. Tell the course owner what you learn, so the table can be completed."},
      ],
