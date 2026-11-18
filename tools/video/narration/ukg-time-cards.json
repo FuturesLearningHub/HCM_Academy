@@ -1,0 +1,19 @@
+{
+ "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+ "note": "Recreation of the Guidde walkthrough Managing Time Cards and PTO in Kronos UKG, in HCM Academy style. One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+ "script": [
+  "UKG time cards: managing time cards and P T O. As the HCM, you check your non-exempt employees' time cards every week, and step in when an employee can't enter their own time. Entering time is the employee's job. Approving is the line manager's.",
+  "Start in Oracle. On the home page, on the Me tab, under Apps, select UKG, Kronos, Timesheets.",
+  "UKG opens on its home page. Scroll down to Links, and under Time, select By Pay Period. Timesheets, By Pay Period, opens on the most recently completed pay period.",
+  "Filter to your employees. Use the filter row under the column headings. In this example, type the business unit under Business Unit, then select Refresh to update the list.",
+  "Now choose the pay period you're reviewing or updating. Use the arrows on either side of Pay Period to move between periods. The date range shows the pay period for those employees.",
+  "To act on a time card, check the box next to the employee's name. You can submit a time card on their behalf, approve it, or reject it. Remember, entering time is the employee's responsibility. You step in when a system glitch keeps them from entering it, or they need a secondary time type, like P T O.",
+  "To enter time for them, select View. Their time card opens in Timesheet Edit, with a row for each day of the pay period.",
+  "Find the day, and click the plus sign to add a row. The new row shows the employee's assignment.",
+  "This employee requested four hours of P T O. Non-exempt P T O can be entered in four-hour increments, so enter From and To: eight a.m. to twelve p.m.",
+  "Raw Total shows four hours. In the Time Off column, open the list and select Browse. Find the pay code, P T O Vacation, and select it.",
+  "Scroll up and click Save. This is an open pay period, so don't click Submit; you'd have to edit, update, and resubmit the time card later. You can always come back, review the time, and make adjustments.",
+  "Two things to remember. In an open pay period, save, don't submit. And one person doesn't both submit and approve the same time card: if you submit for an employee, the line manager approves it."
+ ],
+ "clips": []
+}

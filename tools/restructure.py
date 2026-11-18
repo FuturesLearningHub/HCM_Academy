@@ -215,7 +215,11 @@ def apply(courses, verify):
         c.update({k: m[k] for k in ("slug", "name", "title_pre", "title_em", "system", "time", "intro", "use_when", "steps_title")})
         c["topic"], c["topic_label"] = parts[0]["topic"], parts[0]["topic_label"]
         c["steps"] = [s for p in parts for s in p["steps"]]
-        c["watch"] = [w for p in parts for w in p["watch"]]
+        c["watch"] = []
+        for w in (w for p in parts for w in p["watch"]):      # drop repeats, including the same watch-out reworded in two parts
+            same = [i for i, x in enumerate(c["watch"]) if w[:40] == x[:40] or w.startswith(x) or x.startswith(w)]
+            if not same: c["watch"].append(w)
+            elif len(w) > len(c["watch"][same[0]]): c["watch"][same[0]] = w
         c["quiz"] = [q for p in parts for q in p["quiz"]]
         c["sources"] = _uniq([s for p in parts for s in p["sources"]])
         c["docs"] = _uniq([d for p in parts for d in p.get("docs", [])])

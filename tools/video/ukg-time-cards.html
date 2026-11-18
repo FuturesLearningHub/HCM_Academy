@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>UKG time cards and PTO explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Rebuilt screen by screen from a recorded walkthrough of
+     Vanderbilt's Oracle home page and UKG (Kronos) Timesheets: layout, labels, buttons, columns, filters, the Time Off list,
+     and Browse and Select match the recording. Every person, ID, and username is fictional.
+     Every caption and narration line comes from the course "UKG time cards: the weekly check, edits, and time off". -->
+<link rel="stylesheet" href="engine/engine.css" />
+<style>
+@font-face{font-family:'DM Sans';font-weight:400;src:url(../../assets/fonts/dm-sans-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'DM Sans';font-weight:500;src:url(../../assets/fonts/dm-sans-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'DM Sans';font-weight:600;src:url(../../assets/fonts/dm-sans-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'DM Sans';font-weight:700;src:url(../../assets/fonts/dm-sans-latin-700-normal.woff2) format('woff2');}
+.u{ font-family:'DM Sans',Inter,Arial,sans-serif; color:#1f1f1f; background:#fff; }
+.u .uh{ position:absolute; left:0; top:0; width:1440px; height:55px; background:#000; color:#fff; }
+.u .uh .hb{ position:absolute; left:30px; top:17px; width:22px; height:16px; border-top:2.4px solid #fff; border-bottom:2.4px solid #fff; }
+.u .uh .hb::after{ content:''; position:absolute; left:0; right:0; top:4.4px; border-top:2.4px solid #fff; }
+.u .uh img{ position:absolute; left:68px; top:13px; height:28px; }
+.u .uh .tm{ position:absolute; left:183px; top:19px; font-size:13px; font-weight:500; }
+.u .uh .sr{ position:absolute; left:992px; top:10px; width:270px; height:34px; background:#fff; border-radius:17px; color:#777; font-size:14.5px; display:flex; align-items:center; padding:0 14px; box-sizing:border-box; justify-content:space-between; }
+.u .uh .sr svg{ width:16px; height:16px; color:#888; }
+.u .uh .i1, .u .uh .i2{ position:absolute; top:17px; width:20px; height:20px; color:#fff; }
+.u .uh .i1{ left:1296px; } .u .uh .i2{ left:1338px; }
+.u .uh .bdg{ position:absolute; left:1350px; top:12px; width:12px; height:12px; border-radius:50%; background:#E0382C; font-size:8.5px; display:flex; align-items:center; justify-content:center; font-weight:700; }
+.u .uh .av{ position:absolute; left:1377px; top:10px; width:34px; height:34px; border-radius:6px; background:#d9d9d9; color:#333; font-size:12.5px; font-weight:600; display:flex; align-items:center; justify-content:center; }
+/* UKG home */
+.u .band{ position:absolute; left:0; top:55px; width:1440px; height:134px; background:#000; }
+.u .band .bav{ position:absolute; left:65px; top:10px; width:76px; height:76px; border-radius:12px; background:#dcdcdc; color:#444; font-size:27px; display:flex; align-items:center; justify-content:center; }
+.u .band h2{ position:absolute; left:157px; top:22px; margin:0; font-size:23px; font-weight:500; color:#fff; }
+.u .band .tt{ position:absolute; left:156px; top:73px; height:29px; padding:0 15px; border-radius:15px; background:#fff; color:#333; font-size:13px; font-weight:500; display:flex; align-items:center; }
+.u .htabs{ position:absolute; left:44px; top:204px; width:1386px; height:30px; border-bottom:1px solid #e5e5e5; font-size:13.5px; font-weight:600; }
+.u .htabs b{ position:absolute; left:13px; top:4px; } .u .htabs i{ position:absolute; left:0; top:28px; width:64px; height:3px; background:#1f1f1f; }
+.u .htabs .gr{ position:absolute; left:104px; top:2px; color:#666; } .u .htabs .gr svg{ width:18px; height:18px; }
+.u .hc{ position:absolute; border:1px solid #ececec; border-radius:12px; background:#fff; }
+.u .hc h4{ margin:0; position:absolute; left:23px; top:20px; font-size:16.5px; font-weight:600; }
+.u .hc h4 small{ font-size:10px; color:#777; margin-left:4px; }
+.u .nd{ position:absolute; left:22px; top:60px; width:264px; height:42px; background:#EEF1FB; border:1px solid #dfe4f6; border-radius:3px; font-size:13.5px; display:flex; align-items:center; gap:11px; padding-left:14px; box-sizing:border-box; }
+.u .nd span.d{ width:15px; height:15px; border-radius:50%; background:#5A6FE0; color:#fff; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:700; }
+.u .mb .tdt{ position:absolute; left:42px; top:68px; font-size:13.5px; font-weight:600; } .u .mb .tdt em{ font-style:normal; display:inline-flex; width:16px; height:16px; border-radius:50%; background:#666; color:#fff; font-size:10px; align-items:center; justify-content:center; margin-left:6px; }
+.u .mb .tdl{ position:absolute; left:25px; top:96px; width:147px; height:3px; background:#1f1f1f; }
+.u .pillg{ position:absolute; height:29px; padding:0 20px; border-radius:15px; background:#e3e3e3; color:#fff; font-size:13px; font-weight:600; display:flex; align-items:center; }
+.u .lst{ position:absolute; left:23px; top:168px; width:434px; height:420px; border:1px solid #ececec; border-radius:8px; }
+.u .chipx{ position:absolute; height:25px; padding:0 9px; border:1px solid #dcdcdc; border-radius:4px; font-size:12px; color:#555; display:flex; align-items:center; gap:5px; background:#fff; }
+.u .cbx{ position:absolute; width:16px; height:16px; border:1.6px solid #8b8b8b; border-radius:3px; background:#fff; box-sizing:border-box; }
+.u .cbx.on{ background:#1f1f1f; border-color:#1f1f1f; } .u .cbx.on::after{ content:''; position:absolute; left:4px; top:0px; width:4px; height:8px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg); }
+.u .lnk{ position:absolute; left:44px; top:690px; width:309px; height:372px; }
+.u .lnk h4{ top:18px; }
+.u .lnk .ql{ position:absolute; left:22px; top:58px; color:#1d5ea8; font-size:13.5px; font-weight:600; text-decoration:underline; }
+.u .lnk .lg{ position:absolute; right:26px; top:56px; color:#555; } .u .lnk .lg svg{ width:18px; height:18px; }
+.u .lnk .sep{ position:absolute; left:22px; right:20px; top:84px; border-top:1px solid #e2e2e2; }
+.u .lnk .g{ position:absolute; left:22px; font-size:14.5px; font-weight:600; }
+.u .lnk .a{ position:absolute; left:22px; font-size:13.5px; font-weight:600; color:#1d5ea8; }
+.u .lnk .s{ position:absolute; left:22px; font-size:11px; color:#666; }
+.u .lnk .vs{ position:absolute; right:30px; top:96px; width:7px; height:56px; border-radius:4px; background:#9a9a9a; }
+/* Timesheets */
+.u .bc{ position:absolute; left:28px; top:66px; font-size:13px; color:#666; }
+.u .ttl{ position:absolute; left:28px; top:96px; font-size:21.5px; font-weight:600; display:flex; align-items:center; gap:14px; }
+.u .ttl svg{ width:20px; height:20px; color:#555; }
+.u .abt{ position:absolute; height:30px; width:80px; border-radius:15px; background:#d9d9db; color:#fff; font-size:13px; font-weight:600; display:flex; align-items:center; justify-content:center; }
+.u .abt.on{ background:#444; }
+.u .dots{ position:absolute; color:#555; font-size:20px; letter-spacing:1px; font-weight:700; }
+.u .tb{ position:absolute; left:29px; top:181px; width:1398px; border:1px solid #e4e4e4; border-radius:6px; overflow:hidden; background:#fff; }
+.u .tr{ position:relative; height:38px; border-bottom:1px solid #efefef; font-size:13.6px; color:#2a2a2a; }
+.u .tr.hd{ height:36px; background:#f3f3f3; font-weight:600; font-size:13.2px; color:#222; }
+.u .tr.ft{ height:76px; background:#fff; }
+.u .tr.two{ height:56px; }
+.u .tr > span{ position:absolute; top:10px; white-space:nowrap; }
+.u .tr.two > span.w{ white-space:normal; width:200px; line-height:1.3; top:9px; }
+.u .tr.sel{ background:#E8F1FB; }
+.u .op{ position:absolute; top:6px; height:26px; border:1px solid #b9b9b9; border-radius:3px; font-size:11px; color:#444; display:flex; align-items:center; padding:0 8px; box-sizing:border-box; justify-content:space-between; background:#fff; font-weight:400; }
+.u .ip{ position:absolute; top:42px; height:26px; border:1px solid #b9b9b9; border-radius:3px; font-size:11.5px; color:#333; display:flex; align-items:center; padding:0 8px; box-sizing:border-box; background:#fff; font-weight:400; }
+.u .ip.foc{ border-color:#1d5ea8; box-shadow:0 0 0 1px #1d5ea8; }
+.u .ti{ position:absolute; width:16px; height:16px; color:#666; }
+.u .pg{ position:absolute; font-size:13px; color:#555; display:flex; align-items:center; gap:12px; }
+.u .pg .bx{ border:1px solid #c9c9c9; border-radius:4px; padding:3px 10px; }
+.u .hs{ position:absolute; left:14px; right:14px; height:7px; border-radius:4px; background:#c8c8c8; }
+.u .hs i{ position:absolute; left:0; top:0; bottom:0; width:58%; border-radius:4px; background:#9f9f9f; }
+/* Timesheet Edit */
+.u .pl{ position:absolute; left:29px; top:146px; display:flex; align-items:center; gap:8px; font-size:13.5px; }
+.u .pl .pa{ width:21px; height:21px; border-radius:4px; background:#DCEFEC; color:#2F7D7A; font-size:9.5px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+.u .pl b{ color:#1d5ea8; font-weight:600; } .u .pl small{ color:#777; font-size:11.5px; }
+.u .pl .vr{ width:1px; height:22px; background:#ddd; margin:0 22px; }
+.u .etabs{ position:absolute; left:29px; top:186px; width:1400px; height:30px; border-bottom:1px solid #e4e4e4; font-size:13.5px; color:#777; }
+.u .etabs span{ position:absolute; top:4px; } .u .etabs .on{ color:#1f1f1f; font-weight:600; } .u .etabs i{ position:absolute; left:0; top:27px; width:95px; height:3px; background:#1f1f1f; }
+.u .tot{ position:absolute; top:230px; text-align:center; } .u .tot b{ font-size:23px; font-weight:500; } .u .tot b small{ font-size:11px; margin-left:3px; } .u .tot div{ font-size:9.5px; color:#777; }
+.u .grid{ position:absolute; left:14px; top:288px; width:1409px; }
+.u .gr{ position:relative; height:32px; background:#f1f1f1; border-bottom:1px solid #fff; font-size:12.4px; }
+.u .gr.hd{ height:34px; background:#f6f6f6; font-weight:600; font-size:12.8px; border-bottom:1px solid #e6e6e6; }
+.u .gr > span{ position:absolute; top:8px; white-space:nowrap; }
+.u .gr .z{ color:#bdbdbd; font-size:11.5px; }
+.u .gr .pls{ position:absolute; left:177px; top:5px; font-size:17px; color:#333; }
+.u .gr.ex{ height:34px; background:#fff; }
+.u .gr.ex2{ height:30px; background:#fff; }
+.u .cel{ position:absolute; top:4px; height:24px; border:1px solid #c6c6c6; border-radius:3px; background:#fff; font-size:12px; display:flex; align-items:center; padding:0 7px; box-sizing:border-box; gap:6px; }
+.u .cel .ph{ color:#aaa; } .u .cel .am{ color:#1d5ea8; font-weight:600; margin-left:auto; }
+.u .cel.foc{ border-color:#1d5ea8; box-shadow:0 0 0 1px #1d5ea8; }
+.u .cel svg{ width:13px; height:13px; color:#666; }
+.u .ddm{ position:absolute; width:116px; background:#fff; border:1px solid #c6c6c6; box-shadow:0 3px 10px rgba(0,0,0,.15); font-size:12px; z-index:4; }
+.u .ddm div{ height:21px; padding:0 8px; display:flex; align-items:center; } .u .ddm .hi{ background:#1F5FBF; color:#fff; }
+.u .bsm{ position:absolute; left:470px; top:420px; width:470px; height:318px; background:#fff; border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,.3); z-index:6; }
+.u .bsm h3{ position:absolute; left:22px; top:12px; margin:0; font-size:17px; font-weight:600; }
+.u .bsm .x{ position:absolute; right:18px; top:12px; font-size:18px; color:#444; }
+.u .bsm .pgr{ position:absolute; left:22px; top:58px; font-size:11px; color:#555; display:flex; gap:8px; align-items:center; } .u .bsm .pgr .bx{ border:1px solid #bbb; border-radius:3px; padding:1px 9px; }
+.u .bsm .srch{ position:absolute; right:24px; top:54px; width:110px; height:22px; border:1px solid #bbb; border-radius:11px; font-size:11px; color:#888; padding-left:9px; box-sizing:border-box; display:flex; align-items:center; }
+.u .bsm .bl{ position:absolute; left:22px; top:88px; width:426px; height:170px; border-top:1px solid #ddd; }
+.u .bsm .bw{ position:absolute; left:0; right:0; top:23px; bottom:0; overflow:hidden; }
+.u .bsm .bh{ height:22px; font-size:11.5px; font-weight:600; display:flex; align-items:center; border-bottom:1px solid #ddd; }
+.u .bsm .bi{ position:relative; height:17.4px; font-size:11.2px; display:flex; align-items:center; }
+.u .bsm .bi.hi{ background:#E8F1FB; }
+.u .bsm .bi .r{ width:11px; height:11px; border:1.3px solid #777; border-radius:50%; margin:0 16px 0 10px; box-sizing:border-box; }
+.u .bsm .bi .r.on{ border:4px solid #1F5FBF; }
+.u .bsm .bi span.n{ width:202px; } .u .bsm .bh span.n{ width:202px; margin-left:37px; }
+.u .bsm .cl{ position:absolute; right:22px; bottom:14px; height:26px; padding:0 18px; border-radius:13px; background:#f1f1f1; font-size:12px; display:flex; align-items:center; }
+.u .scrim2{ position:absolute; inset:0; background:rgba(0,0,0,.35); z-index:5; }
+</style>
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script>
+VIDEO.set({ H:1200, steps:10 });
+var I = C.I;
+/* Oracle home, Me tab, as on the recording */
+var qa = [['doc', 'My Payslips'], ['cal', 'Add Absence'], ['calc', 'Absence Balance'], ['calclock', 'Existing Absences'], ['bank', 'Payroll Payment Methods'], ['walk', 'Grow'], ['skill', 'Skills and Qualifications'], ['book', 'Current Learning'], ['search', 'Search Jobs'], ['person', 'Personal Details']];
+var apps = [['clock', 'UKG (Kronos)<br>Timesheets', 'u-app'], ['act', 'My Activity Center'], ['person', 'Personal<br>Information'], ['bank', 'Pay'], ['absence', 'Absences'],
+  ['plane', 'Concur Travel'], ['play', 'Learning Hub'], ['gift', 'Benefits'], ['jobs', 'Internal Jobs'], ['id', 'Roles and<br>Delegations'],
+  ['wallet', 'Expenses'], ['help', 'My Help'], ['help', 'VUIT Help Request'], ['badge', 'Kudos (Staff)'], ['review', 'Performance<br>Management'],
+  ['doc', 'ADP W-2s (2022 -<br>Current)'], ['gift', 'Commodore<br>Employee Perks']];
+VIDEO.add(C.page('home', '<h1 class="greet">Good morning, Jordan Avery</h1>' +
+  '<nav class="tabs" style="gap:30px;font-size:15px;white-space:nowrap;width:900px"><span class="on">Me</span><span>Our Workforce</span><span>ERP Agents</span><span>Projects</span><span>Grants Management</span><span>Intercompany Accounting</span><span>General Accounting</span><span>&rsaquo;</span></nav>' +
+  '<div class="lbl" style="left:284px">Quick Actions</div><div class="lbl" style="left:537px">Apps</div>' +
+  '<ul class="qa">' + qa.map(function(x){ return '<li>' + I(x[0]) + '<span>' + x[1] + '</span></li>'; }).join('') + '</ul>' +
+  '<div class="apps five" style="left:537px">' + apps.map(function(x){ return '<div class="tile"' + (x[2] ? ' id="' + x[2] + '"' : '') + '>' + I(x[0]) + x[1] + '</div>'; }).join('') + '<div class="tile plus">' + I('plus') + '</div></div>', true));
+
+/* the UKG header */
+var UH = '<div class="uh"><span class="hb"></span><img src="../../assets/img/vu-lockup-white.png" alt="" /><span class="tm">09:07 AM (CDT)</span>' +
+  '<div class="sr">Search' + I('search') + '</div><span class="i1">' + I('clock') + '</span><span class="i2">' + I('bell') + '</span><span class="bdg">1</span><span class="av">JA</span></div>';
+var U = function(id, inner){ return '<section class="scr u" data-screen="' + id + '">' + inner + UH + '</section>'; };
+
+/* UKG home */
+VIDEO.add(U('uhome', '<div class="band"><div class="bav">JA</div><h2>Good morning, Jordan</h2><span class="tt">Today\'s Tasks (0)</span></div>' +
+  '<div class="htabs"><b>Home</b><i></i><span class="gr">' + I('skill') + '</span></div>' +
+  '<div class="hc" style="left:44px;top:270px;width:309px;height:388px"><h4>Announcements <small>&#9656;</small></h4><div class="nd"><span class="d">i</span>No Data to Display</div></div>' +
+  '<div class="hc mb" style="left:382px;top:270px;width:1012px;height:740px"><h4>My mailbox <small>&#9656;</small></h4><span class="tdt">My to do items<em>0</em></span><span class="tdl"></span>' +
+  '<span class="pillg" style="left:819px;top:122px">Reject</span><span class="pillg" style="left:909px;top:122px">Approve</span>' +
+  '<div class="lst"><span class="chipx" style="left:15px;top:22px">1 of 1 &#9662;</span><span style="position:absolute;left:84px;top:27px;font-size:10px;color:#777">0 rows</span>' +
+  '<span class="cbx" style="left:20px;top:73px"></span><span style="position:absolute;left:66px;top:72px;font-size:13px">View:</span><span class="chipx" style="left:104px;top:67px">[ System ] &#9662;</span>' +
+  '<span style="position:absolute;left:384px;top:70px;color:#666">' + I('filter', 'width:15px;height:15px') + '</span><span class="dots" style="left:410px;top:62px">&middot;&middot;&middot;</span>' +
+  '<span style="position:absolute;left:180px;top:150px;color:#999">' + I('doc', 'width:66px;height:66px;stroke-width:1.2') + '</span>' +
+  '<span style="position:absolute;left:150px;top:250px;font-size:12px;color:#666;text-align:right;width:270px">You\'re all caught up!<br>Check back later for new messages</span></div>' +
+  '<span style="position:absolute;left:700px;top:430px;font-size:12.5px;color:#666">No message to preview</span></div>' +
+  '<div class="hc lnk" id="u-links"><h4>Links</h4><span class="ql">Quick Links (22) &#8964;</span><span class="lg">' + I('skill') + '</span><span class="sep"></span><span class="vs"></span>' +
+  '<span class="g" style="top:100px">My Reports</span><span class="a" style="top:130px">Report Hub</span><span class="a" style="top:152px">My Saved Reports</span>' +
+  '<span class="g" style="top:186px">Time</span><span class="s" style="top:217px">Timesheets</span><span class="a" style="top:236px">All Timesheets</span>' +
+  '<span class="a" id="u-bpp" style="top:257px">By Pay Period</span><span class="a" style="top:278px">Current</span><span class="s" style="top:306px">Time Entries</span></div>'));
+
+/* Timesheets (By Pay Period) */
+var X = [43, 89, 276, 453, 606, 746, 950, 1175, 1375];   // column left edges, from the recording
+var ops = ['not like', 'starts with', 'starts with', '=', '=', '=', '='];
+var hdr = ['Approval State', 'Last, First Name', 'Employee Id', 'Username', 'Assignment Number', 'Business Unit', 'Work Unit'];
+var W = [178, 148, 125, 112, 180, 200, 200];
+var row = function(cells, id, two){
+  return '<div class="tr' + (two ? ' two' : '') + '"' + (id ? ' id="' + id + '" data-cls="' + id + '-sel:sel"' : '') + '><span class="cbx"' + (id ? ' id="' + id + '-cb" data-cls="' + id + '-sel:on"' : '') + ' style="left:' + (X[0] - 29 + 6) + 'px;top:11px;position:absolute"></span>' +
+    cells.map(function(v, i){ return '<span class="' + (i === 6 ? 'w' : '') + '" style="left:' + (X[i + 1] - 29) + 'px">' + v + '</span>'; }).join('') + '</div>';
+};
+var all = [['Approved (PayPrep Ready)', 'Rivera, Casey', '0127415', 'riverac', 'E0127415', 'Communications', '41000 - Communications and Marketing: General'],
+  ['Open', 'Hollis, Dana', '0146213', 'hollisd', '', '', ''], ['Approved (PayPrep Ready)', 'Okafor, Lena', '3002914', 'okaforl', '', '', ''],
+  ['Open', 'Brandt, Micah', '3005870', 'brandtm', '', '', ''], ['Approved (PayPrep Ready)', 'Soto, Jalen', '3007126', 'sotoj', '', '', ''],
+  ['Submitted', 'Nakamura, Rae', '3007733', 'nakamurr', 'E3007733-3', 'College of Arts and Science', '12570 - Psychology'], ['Approved (PayPrep Ready)', 'Patel, Devi', '3008120', 'pateld', '', '', '']];
+var comm = function(state){ return [[state, 'Rivera, Casey', '0127415', 'riverac', 'E0127415', 'Communications', '41000 - Communications and Marketing: General'],
+  [state, 'Lin, Morgan', '3071184', 'linm', 'E3071184', 'Communications', '41000 - Communications and Marketing: General']]; };
+var tableHead = '<div class="tr hd"><span class="cbx" style="left:20px;top:10px;position:absolute"></span>' + hdr.map(function(h, i){
+    return '<span style="left:' + (X[i + 1] - 29) + 'px">' + (i === 5 ? '<span data-if="flt">&#8711; </span>' : '') + h + (i === 2 ? ' &uarr;' : '') + '</span><span style="left:' + (X[i + 1] - 29 + W[i] - 14) + 'px;font-size:10px">&#9660;</span>'; }).join('') +
+  '<span class="ti" style="left:' + (X[8] - 29 + 4) + 'px;top:10px">' + I('doc') + '</span></div>' +
+  '<div class="tr" style="height:76px;background:#fff">' + ops.map(function(o, i){
+    return '<span class="op" style="left:' + (X[i + 1] - 29) + 'px;width:' + W[i] + 'px">' + o + '<span style="font-size:9px">&#9660;</span></span>' +
+      '<span class="ip' + (i === 5 ? '" id="u-fbu" data-cls="fbu:foc' : '') + '" style="left:' + (X[i + 1] - 29) + 'px;width:' + W[i] + 'px">' + (i === 5 ? '<span data-bind="bu"></span><span class="caret" data-caret="bu"></span>' : '') + '</span>'; }).join('') +
+  '<span class="ti" id="u-ref" style="left:' + (X[8] - 29 + 4) + 'px;top:10px">&#8635;</span><span class="ti" style="left:' + (X[8] - 29 + 4) + 'px;top:44px">&#8855;</span></div>';
+var ts = U('ts', '<span class="bc">Time &nbsp;&rsaquo;&nbsp; Timesheets</span><div class="ttl">' + I('back') + 'Timesheets (By Pay Period)</div>' +
+  '<span class="ti" style="left:1002px;top:103px">' + I('up') + '</span>' +
+  ['View', 'Submit', 'Approve', 'Reject'].map(function(b, i){ return '<span class="abt" id="u-b' + i + '" data-cls="acts:on" style="left:' + (1033 + i * 90) + 'px;top:97px">' + b + '</span>'; }).join('') +
+  '<span class="dots" style="left:1399px;top:96px">&middot;&middot;&middot;</span>' +
+  '<span class="chipx" style="left:29px;top:146px">Current view &#9662;</span><span class="chipx" style="left:154px;top:146px">' + I('filter', 'width:13px;height:13px') + '<span data-if="!flt">2</span><span data-if="flt">3</span></span>' +
+  '<span class="chipx" id="u-pp" style="left:210px;top:146px">' + I('cal', 'width:13px;height:13px') + '<span id="u-prev">&#9666;</span><span data-if="!pp2">Pay Period: 09/27/2026 - 10/10/2026</span><span data-if="pp2">Pay Period: 10/11/2026 - 10/24/2026</span><span id="u-next">&#9656;</span></span>' +
+  '<span class="chipx" style="left:510px;top:146px">Show My Timesheets Only &#8855;</span><span class="chipx" data-if="flt" style="left:712px;top:146px">Columns (1) &#8855;</span>' +
+  '<span class="ti" style="left:1360px;top:150px">' + I('doc') + '</span><span class="dots" style="left:1398px;top:142px">&middot;&middot;&middot;</span>' +
+  '<div class="tb">' + tableHead +
+  '<div data-if="!flt">' + all.map(function(r, i){ return row(r, null, i === 0 || i === 5); }).join('') + '</div>' +
+  '<div data-if="flt !pp2">' + comm('Approved (PayPrep Ready)').map(function(r){ return row(r, null, true); }).join('') + '<div class="tr" style="font-weight:600"><span style="left:14px">Page Total</span></div></div>' +
+  '<div data-if="flt pp2">' + comm('Open').map(function(r, i){ return row(r, i ? null : 'u-r1', true); }).join('') + '</div>' +
+  '<div class="tr ft" style="height:70px;border:0"><span class="hs" style="top:8px"><i></i></span>' +
+  '<span class="pg" style="left:985px;top:36px"><span data-if="!flt">1&ndash;50 of 2505</span><span data-if="flt">1&ndash;2 of 2</span><span class="bx">50 per page &#9662;</span>Page <span class="bx">1</span> <span data-if="!flt">of 51</span><span data-if="flt">of 1</span> &nbsp;&#8676; &nbsp;&lsaquo; &nbsp;&rsaquo; &nbsp;&#8677;</span></div></div>');
+VIDEO.add(ts);
+
+/* Timesheet Edit */
+var days = ['SUN Oct 11', 'MON Oct 12', 'TUE Oct 13', 'WED Oct 14', 'THU Oct 15', 'FRI Oct 16', 'SAT Oct 17', 'SUN Oct 18', 'MON Oct 19', 'TUE Oct 20', 'WED Oct 21', 'THU Oct 22', 'FRI Oct 23', 'SAT Oct 24'];
+var GX = { date:16, plus:177, pa:211, from:760, to:882, raw:994, calc:1070, ind:1149, toff:1276, act:1404 };
+var z = function(){ return '<span class="z" style="left:' + (GX.raw - 14 + 9) + 'px">0.00 hrs</span><span class="z" style="left:' + (GX.calc - 14 + 9) + 'px">0.00 hrs</span>'; };
+var grid = '<div class="grid"><div class="gr hd"><span style="left:4px">&rsaquo;&nbsp; Date</span><span style="left:' + (GX.pa - 14 + 10) + 'px">Person Assignments</span><span style="left:' + (GX.from - 14 + 9) + 'px">From</span>' +
+  '<span style="left:' + (GX.to - 14 + 9) + 'px">To</span><span style="left:' + (GX.raw - 14 + 9) + 'px">Raw Total</span><span style="left:' + (GX.calc - 14 + 9) + 'px">Calc. Total</span>' +
+  '<span style="left:' + (GX.ind - 14 + 9) + 'px">In Date</span><span style="left:' + (GX.toff - 14 + 9) + 'px">Time Off</span><span style="left:' + (GX.act - 14 + 6) + 'px">Ac</span></div>' +
+  days.map(function(d, i){
+    if (i !== 9) return '<div class="gr"><span style="left:4px">&rsaquo;&nbsp; ' + d + '</span><span class="pls">+</span>' + z() + '</div>';
+    return '<div class="gr" data-if="!row"><span style="left:4px">&rsaquo;&nbsp; ' + d + '</span><span class="pls" id="u-plus">+</span>' + z() + '</div>' +
+      '<div data-if="row"><div class="gr ex"><span style="left:4px">&#8964;&nbsp; ' + d + '</span><span style="left:20px;top:22px;font-size:10px;color:#1d5ea8">No Schedule</span><span class="pls" style="font-size:13px;top:8px">' + I('doc', 'width:13px;height:13px') + '</span>' +
+      '<span class="cel" style="left:' + (GX.pa - 14 + 8) + 'px;width:520px">Communications/41000 - Communications and Marketing: General/E0127415<span style="margin-left:auto">&#8855;</span>' + I('search') + '</span>' +
+      '<span class="cel" id="u-from" data-cls="ffrom:foc" style="left:' + (GX.from - 14 + 6) + 'px;width:92px"><span class="ph" data-if="!vfrom">From</span><span data-if="vfrom">08:00</span><span class="am">am</span></span>' +
+      '<span class="cel" id="u-to" data-cls="fto:foc" style="left:' + (GX.to - 14 + 6) + 'px;width:88px"><span class="ph" data-if="!vto">To</span><span data-if="vto">12:00</span><span class="am"><span data-if="!vto">am</span><span data-if="vto">pm</span></span></span>' +
+      '<span class="cel" style="left:' + (GX.raw - 14 + 5) + 'px;width:66px"><span data-if="!vto" class="ph">0.00</span><span data-if="vto">4.00</span></span><span style="left:' + (GX.calc - 14 + 9) + 'px;top:8px;font-size:12px">0.00</span>' +
+      '<span class="cel" style="left:' + (GX.ind - 14 + 5) + 'px;width:116px">TUE Oct 20<span style="margin-left:auto;font-size:9px">&#9660;</span></span>' +
+      '<span class="cel" id="u-toff" data-cls="ftoff:foc" style="left:' + (GX.toff - 14 + 5) + 'px;width:116px"><span data-if="pto">PTO-Vacation</span><span style="margin-left:auto;font-size:9px">&#9660;</span></span>' +
+      '<div class="ddm" data-if="ddoff" style="left:' + (GX.toff - 14 + 5) + 'px;top:29px"><div class="hi"></div><div id="u-browse">Browse...</div><div>Holiday</div></div></div>' +
+      '<div class="gr ex2"><span class="pls" style="top:3px">+</span><span style="left:' + (GX.raw - 14 + 9) + 'px;font-size:12px;top:7px"><span data-if="!vto" class="z">0.00 hrs</span><span data-if="vto">4.00 hrs</span></span><span class="z" style="left:' + (GX.calc - 14 + 9) + 'px;top:7px">0.00 hrs</span></div></div>';
+  }).join('') + '</div>';
+var timeOff = ['Bereavement', 'FMLA', 'FMLA - Military Caregiver', 'Holiday', 'Holiday Alternative', 'Jury Duty', 'Legacy Sick', 'Military Leave', 'PTO-Sick', 'PTO-Vacation', 'Paid Administrative Leave', 'Paid Time Off', 'Parental Leave'];
+var bsm = '<div class="scrim2" data-if="bsm"></div><div class="bsm" data-if="bsm" id="u-bsm"><h3>Browse and Select</h3><span class="x">&times;</span>' +
+  '<span class="pgr">&lsaquo; <b style="color:#1d5ea8;font-weight:600">Page</b> <span class="bx">1</span> of 1 &rsaquo; &nbsp;1 - 18 of 18 Rows</span><span class="srch">Search</span>' +
+  '<div class="bl"><div class="bh"><span class="n">Name</span><span>Full Path</span></div><div class="bw"><div id="u-blist" data-cls="bscroll:sc">' +
+  timeOff.map(function(n){ var v = n === 'PTO-Vacation'; return '<div class="bi"' + (v ? ' id="u-ptov" data-cls="ptohl:hi"' : '') + '><span class="r"' + (v ? ' data-cls="ptosel:on"' : '') + '></span><span class="n">' + n + '</span><span>' + n + '</span></div>'; }).join('') +
+  '</div></div></div><span class="cl">Close</span></div>';
+VIDEO.add(U('edit', '<span class="bc" style="top:64px">Time</span><div class="ttl" style="top:92px">' + I('back') + 'Timesheet Edit</div>' +
+  '<span class="ti" style="left:1137px;top:99px;width:18px;height:18px">' + I('info') + '</span><span class="ti" style="left:1176px;top:99px;width:18px;height:18px">' + I('clip') + '</span>' +
+  '<span class="abt on" id="u-save" style="left:1226px;top:93px">Save</span><span class="abt on" style="left:1317px;top:93px">Submit</span><span class="dots" style="left:1395px;top:92px">&middot;&middot;&middot;</span>' +
+  '<div class="pl"><span class="pa">CR</span><b>Casey Rivera</b><small>(0127415)</small>' + I('person', 'width:14px;height:14px;color:#777') + '<span class="vr"></span>' + I('cal', 'width:16px;height:16px;color:#555') +
+  '<span style="margin-left:12px">&#9666; &nbsp;October 11, 2026 - October 24, 2026&nbsp; &#9656;</span><span style="margin-left:14px;color:#555">Open &#128275;</span></div>' +
+  '<div class="etabs"><span class="on" style="left:15px">Time Entry</span><i></i><span style="left:115px">Exceptions</span><span style="left:209px">Calc Detail</span><span style="left:302px">Calc Summary</span><span style="left:416px">Counters</span><span style="left:500px">Summary By Day</span></div>' +
+  '<div class="tot" style="left:368px"><b><span data-if="!vto">0.00</span><span data-if="vto">4.00</span><small>hrs</small></b><div>Raw</div></div><div class="tot" style="left:470px"><b>0.00<small>hrs</small></b><div>Calc</div></div>' +
+  grid + bsm));
+VIDEO.add('<style>#u-blist.sc{ transform:translateY(-87px); }</style>');
+
+VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Payroll & Timecards', pre:'Check, fix, and add time off on UKG ', em:'time cards', post:'.', rule:true,
+  p:"Your part as the HCM is to check, follow up, and step in when an employee can't enter their own time. Entering time is the employee's job. Approving is the line manager's.", meta:'UKG (Kronos) · Timesheets' }));
+VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Two things to ', em:'remember', post:'.', items:[
+  "In an open pay period, Save. Don't Submit. Submitting means you must edit, update, and resubmit later.",
+  'One person does not both submit and approve the same time card. If you submit for an employee, the line manager approves it.'], meta:'Questions: pcb@vanderbilt.edu' }));
+
+seg(); card('intro'); scene('home'); wait(3.5); hold(-.5);
+card('intro', false);
+capS(1, 'On the Oracle home page, on the Me tab, under Apps, select UKG (Kronos) Timesheets.');
+wait(.5); move('#u-app', 1.1); hl('#u-app'); wait(.8); mark(1, '#u-app'); hold(-.6); click(function(){ hl(null); }); scene('uhome'); wait(.2);
+capS(2, 'On the UKG home page, scroll down to Links and select By Pay Period.');
+wait(.4); camTo('#u-links', 1.15, 1.4, 0, 120); wait(1.2); move('#u-bpp', .8); hl('#u-bpp'); wait(.6); mark(2, '#u-bpp'); hold(-.3); click(function(){ hl(null); }); camTo(null, 1, 0); scene('ts');
+capS(3, 'Filter to your employees: type the business unit under Business Unit, then select Refresh.');
+wait(.6); move('#u-fbu', .9); click(function(){ flag('fbu'); fset('bu'); }); type('bu', 'Communications', .9); wait(.2); fset(null); flag('fbu', false);
+press('#u-ref', function(){ flag('flt'); }, .8); wait(.6); mark(3); hold(-.3);
+capS(4, 'Use the arrows beside Pay Period to choose the period. The date range shows the period you\'re reviewing.');
+move('#u-next', .9); hl('#u-pp'); wait(.4); click(function(){ flag('pp2'); }); wait(.9); mark(4, '#u-pp'); hold(-.3); hl(null);
+capS(5, 'Check the box next to the employee\'s name. Then Submit, Approve, or Reject. Entering time is the employee\'s job.');
+press('#u-r1-cb', function(){ flag('u-r1-sel'); flag('acts'); }, .9); wait(.5); hl('#u-b1'); wait(.5); hl('#u-b2'); wait(.5); hl('#u-b3'); wait(.5); hl(null); mark(5, '#u-r1'); hold(-.3);
+capS(6, 'To enter PTO for them, select View. Their time card opens in Timesheet Edit.');
+move('#u-b0', .8); hl('#u-b0'); wait(.4); click(function(){ hl(null); }); scene('edit'); wait(.8); mark(6); hold(-.3);
+capS(7, 'Find the day and click + to add a row. The new row shows the employee\'s assignment.');
+camTo('#u-plus', 1, 1.0, 0, 40); wait(1.0); press('#u-plus', function(){ flag('row'); }, .9); wait(.8); mark(7); hold(-.3);
+capS(8, 'Non-exempt PTO can be entered in 4-hour increments. Enter From and To: 8:00 am to 12:00 pm.');
+press('#u-from', function(){ flag('ffrom'); }, .9); wait(.4); flag('vfrom'); flag('ffrom', false); wait(.3); press('#u-to', function(){ flag('fto'); }, .8); wait(.4); flag('vto'); flag('fto', false); wait(.8); mark(8); hold(-.3);
+capS(9, 'Raw Total shows 4.00. In the Time Off column, click Browse and pick the pay code: PTO-Vacation.');
+press('#u-toff', function(){ flag('ftoff'); flag('ddoff'); }, .9); wait(.6); move('#u-browse', .5); click(function(){ flag('ddoff', false); flag('bsm'); }); wait(.6);
+flag('bscroll'); wait(.6); move('#u-ptov', .8); hl('#u-ptov'); wait(.4); click(function(){ hl(null); flag('ptosel'); flag('ptohl'); }); wait(.6); mark(9, '#u-bsm'); hold(-1.2);
+flag('bsm', false); flag('pto'); flag('ftoff', false); wait(.4); hold(-.3);
+capS(10, 'Scroll up and click Save. In an open pay period, leave it saved. Don\'t Submit.');
+camTo(null, 1, 1.0); wait(.8); move('#u-save', .9); hl('#u-save'); wait(.6); mark(10, '#u-save'); hold(-.4); click(function(){ hl(null); });
+seg(); card('out'); wait(2); hold(-2.2);
+VIDEO.run();
+</script>
+</body>
+</html>

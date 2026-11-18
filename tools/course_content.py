@@ -436,7 +436,7 @@ dict(slug="weekly-time-card-check", topic="payroll", topic_label="Payroll & Time
   dict(t="Filter to your employees.", d="Use the filter row under the column headings. In this example, type the business unit under Business Unit, then select Refresh (the circular arrow at the right) to update the list.", img="step-03.jpg"),
   dict(t="Choose the pay period.", d="Use the arrows to the left and right of Pay Period to move between periods. The date range shows the period you're reviewing.", img="step-04.jpg"),
   dict(t="Approve or edit time cards.", d="Entering time is the employee's job. To act on a time card, check the box next to the employee's name, then choose Submit, Approve, or Reject at the top. To enter time for them (a system glitch, or a secondary time type such as PTO), open the time card, enter the time, and click Save. In an open pay period, don't Submit; you'd have to edit, update, and resubmit it later.", img="step-05.jpg"),
-  dict(t="Open the time card to enter PTO.", d="Select the employee's name to open their time card.", img="step-06.jpg"),
+  dict(t="Open the time card to enter PTO.", d="With the box next to the employee's name checked, select View. Their time card opens in Timesheet Edit.", img="step-06.jpg"),
   dict(t="Add a row on the day.", d="Find the day and click + to add a row. The new row shows the employee's assignment.", img="step-07.jpg"),
   dict(t="Enter the hours.", d="Non-exempt PTO can be entered in 4-hour increments. Enter From and To, for example 8:00 am to 12:00 pm.", img="step-08.jpg"),
   dict(t="Choose the PTO type.", d="Raw Total shows 4.00. In the Time Off column, click Browse and pick the pay code, for example PTO-Vacation.", img="step-09.jpg"),
