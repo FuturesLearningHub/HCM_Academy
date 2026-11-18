@@ -46,8 +46,14 @@ def before_html(c):
     if b.get("cutoff"): lines.append(f"<li><b>Cutoff</b>{E(G.CUTOFF_SHORT[b['cutoff']])}</li>")
     return f'<div class="before"><p class="wh">{E(b.get("title", "Before you submit"))}</p><ul>{"".join(lines)}</ul></div>'
 
+GUIDE_CHARS = 2200  # a guide with more text than this moves its table to its own page
+
 def long_table(c):
-    return bool(c.get("table")) and len(c["table"]["rows"]) > TABLE_ROWS
+    """True when the table gets its own page(s): too many rows, or too much text to share the guide's page."""
+    if not c.get("table"): return False
+    text = sum(len(s["t"]) + sum(map(len, s.get("sub", []))) for s in c["steps"]) + sum(map(len, c["watch"]))
+    text += sum(len(" ".join(map(str, r))) for r in c["table"]["rows"])
+    return len(c["table"]["rows"]) > TABLE_ROWS or text > GUIDE_CHARS
 
 def chrome(topic, page, inner, cls=""):
     return (f'<section class="page guide {cls}"><header class="run"><span>HCM Playbook</span><span>{E(topic["no"])} &middot; {E(topic["short"])}</span></header>'
@@ -71,7 +77,7 @@ def table_pages(c, topic, start):
     pages = []
     for i, ch in enumerate(chunks, 1):
         head = f'<div class="head"><p class="eyebrow">{E(c["name"])}</p></div>'
-        pages.append(chrome(topic, start + len(pages), head + table_html(tb, ch, f" · {i} of {len(chunks)}"), "tablepage"))
+        pages.append(chrome(topic, start + len(pages), head + table_html(tb, ch, f" · {i} of {len(chunks)}" if len(chunks) > 1 else ""), "tablepage"))
     return pages
 
 def detail_pages(c, topic, start):
