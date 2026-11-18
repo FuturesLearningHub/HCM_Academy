@@ -295,7 +295,7 @@ WHO_EXTRA = [
 ]
 
 # courses merged by the SME review keep the block of the course they absorbed
-BEFORE_ALIAS = {"ukg-time-cards": "review-approve-time-cards"}
+BEFORE_ALIAS = {"ukg-time-cards": "review-approve-time-cards", "end-assignment-vs-terminate": "terminate-multiple-assignments"}
 
 def before(slug):
     return BEFORE.get(slug) or BEFORE.get(BEFORE_ALIAS.get(slug, ""))

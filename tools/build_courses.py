@@ -11,7 +11,7 @@ from course_content import COURSES, VERIFY  # noqa: E402
 import governance as G  # noqa: E402
 ROOT = os.path.dirname(HERE)
 E = lambda s: html.escape(s, quote=True)
-NUM = {1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six"}
+NUM = {1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten", 11: "Eleven", 12: "Twelve"}
 
 WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>'
 BOOK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>'
@@ -144,7 +144,7 @@ def page_rest(c, n, total, title_html, src, pending, intro, video):
     if det:
         items = "".join(
             f'<li class="dstep"><h3><span class="dn">{i:02d}</span>{E(x["t"])}</h3><p>{E(x["d"])}</p>'
-            f'<img src="img/{E(x["img"])}" alt="Screenshot: {E(x["t"].rstrip("."))}" width="1400" height="1138" loading="lazy" /></li>'
+            + (f'<img src="img/{E(x["img"])}" alt="Screenshot: {E(x["t"].rstrip("."))}" width="1400" height="1138" loading="lazy" />' if x.get("img") else "") + '</li>'
             for i, x in enumerate(det["steps"], 1))
         detailed_html = (f'<article class="jobaid ja-detail" aria-label="Detailed job aid">'
                          f'<div class="ja-head"><img src="../../assets/img/vu-lockup-black.png" alt="Vanderbilt University" width="100" height="26" /><span class="mono">HCM Academy detailed job aid &middot; {E(c["topic_label"])}</span></div>'
@@ -447,6 +447,7 @@ def build_changes():
         <li><b>Change existing costing</b> is now part of Enter costing for a person.</li>
         <li><b>Change salary</b> moved to Assignment Changes (Payroll still owns it), and <b>Add Assignment</b> moved to Students &amp; Faculty.</li>
         <li><b>Start Here</b> went from nine courses to six, with nothing dropped. A new course, <b>What is an HCM?</b>, explains the role and includes Who owns what. <b>Data integrity</b> is now part of Oracle HCM structure, <b>Workflow and worklists</b> part of Working in Oracle HCM, and <b>Employee or independent contractor?</b> part of Worker types, classification, and required checks. Each merged course shows both videos, as Part 1 and Part 2.</li>
+        <li><b>Awareness and best-practice courses folded in.</b> Steps and processes stay as their own courses. Position management best practices is now part of Create a position; Executive or external search part of Create a requisition. <b>Payroll essentials</b> combines The HCM's role in payroll, Pay rules, Compensation impacts on payroll, and Common pay errors. <b>UKG time cards</b> now includes the Weekly time card check. <b>Transfers and promotions</b> covers both, with or without a requisition. Ending an assignment and terminating employment now includes multiple assignments. <b>Costing essentials</b> combines Costing fundamentals, Costing impacts, and When costing must be updated. Add Assignment now starts with choosing it over a new work relationship. <b>Reporting basics</b> combines the BI introduction and Reporting 101.</li>
         <li><b>HCM means the role.</b> Where a course means the system, it now says Oracle HCM. Finance partner now reads <b>FUM</b> (financial unit manager), Vanderbilt's term.</li>
       </ul>
       <p>Old links to merged courses take you to the course that absorbed them.</p>

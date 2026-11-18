@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ending assignments vs. terminating employment · HCM Academy</title>
-<meta name="description" content="Someone is leaving a job and you need to decide whether they are leaving one job or leaving Vanderbilt employment." />
+<title>End an assignment or terminate employment, including multiple assignments · HCM Academy</title>
+<meta name="description" content="Someone is leaving a job, and you need to decide whether they leave one job or Vanderbilt employment, including when they hold more than one job." />
 <meta name="theme-color" content="#1C1C1C" />
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="../course.css?v=cd833b31" />
@@ -20,10 +20,10 @@
 </header>
 <section class="hero" aria-labelledby="t">
   <div class="wrap">
-    <p class="mono crumb">Offboarding &middot; Course 48 of 61</p>
-    <h1 id="t">End an assignment or <em>terminate</em>.</h1>
-    <ul class="meta" aria-label="Course details"><li class="v">V.02 draft</li><li>Micro-learning</li><li>4 min</li><li>Oracle HCM</li><li>3-question check</li><li>Printable job aid</li></ul>
-    <p class="rec"><span>Owner: <b>HRIS</b></span><span>Updated Nov 13, 2026</span><a href="#record">What changed</a></p>
+    <p class="mono crumb">Offboarding &middot; Course 40 of 49</p>
+    <h1 id="t">End one job, or end <em>employment</em>.</h1>
+    <ul class="meta" aria-label="Course details"><li class="v">V.02 draft</li><li>Micro-learning</li><li>8 min</li><li>Oracle HCM</li><li>6-question check</li><li>Printable job aid</li></ul>
+    <p class="rec"><span>Owner: <b>HRIS</b></span><span>Updated Nov 18, 2026</span><a href="#record">What changed</a></p>
   </div>
   <nav class="parts" aria-label="Course parts"><ol>
     <li><a href="#intro"><span>1</span>Intro</a></li><li><a href="#steps"><span>2</span>Walk through</a></li><li><a href="#check"><span>3</span>Check</a></li><li><a href="#jobaid"><span>4</span>Job aid</a></li>
@@ -37,17 +37,17 @@
       <p>Courses unlock once you've taken the pre-assessment. It takes about 5 minutes, it's not graded, and your results show which topics to start with.</p>
       <div class="acts"><a class="btn" href="../../assessment/pre/">Take the pre-assessment</a><a class="btn ghost" href="../../index.html#positions">Back to all courses</a></div>
     </section>
-    <p class="draft"><b>V.02 draft</b>Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before release.</p><p class="draft"><b>Screen check</b>Confirm in Vanderbilt's Oracle or UKG during a recorded demo: Which termination version Vanderbilt uses and where End Assignment lives (Change Assignment &gt; End Assignment or the termination page); Whether the cited facuk guide page matches US behavior (it is from a localized guide).</p>
+    <p class="draft"><b>V.02 draft</b>Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before release.</p><p class="draft"><b>Screen check</b>Confirm in Vanderbilt's Oracle or UKG during a recorded demo: Which termination version Vanderbilt uses and where End Assignment lives (Change Assignment &gt; End Assignment or the termination page); Whether the cited facuk guide page matches US behavior (it is from a localized guide); Who submits when the assignments are in different business units; Whether the primary flag change can be made in the same transaction as End Assignment.</p>
     <section class="part" id="intro" aria-labelledby="h1">
       <p class="mono num">1 &middot; Intro</p>
       <h2 id="h1">When to <em>use</em> it.</h2>
       
-      <p>Oracle has two ways to end work. End Assignment stops one job. Terminate Employment ends the whole work relationship and every assignment in it.</p><p>Picking the wrong one either leaves a job running that should have stopped, or stops a job the person is keeping.</p>
-      <p class="use"><b>Use this when</b>Someone is leaving a job and you need to decide whether they are leaving one job or leaving Vanderbilt employment.</p>
+      <p>Oracle has two ways to end work. End Assignment stops one job. Terminate Employment ends the whole work relationship and every assignment in it, including jobs in other areas.</p><p>Picking the wrong one either leaves a job running that should have stopped, or stops a job the person is keeping. When someone holds more than one job, check every job and talk to the other HCM before you submit.</p>
+      <p class="use"><b>Use this when</b>Someone is leaving a job, and you need to decide whether they leave one job or Vanderbilt employment, including when they hold more than one job.</p>
     </section>
     <section class="part" id="steps" aria-labelledby="h2">
       <p class="mono num">2 &middot; Walk through</p>
-      <h2 id="h2">How to <em>decide</em>.</h2>
+      <h2 id="h2">Decide which, then handle more than one <em>job</em>.</h2>
       <p>Check off each item as you read.</p>
       <ol class="steps">
 <li><label><input type="checkbox" /><span class="st"><strong>Count the person&#x27;s assignments in Employment Info.</strong><span class="sd">Go to Our Workforce &gt; Employment Info, search the person, and list their active assignments and which one is primary.</span></span></label></li>
@@ -55,18 +55,24 @@
 <li><label><input type="checkbox" /><span class="st"><strong>Keeping at least one job? End only the job that stops.</strong><span class="sd">Use End Assignment on the job that is ending. The work relationship and the other assignments keep going.</span></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Ending the only assignment? You must terminate.</strong><span class="sd">Oracle does not let you end the only assignment in a work relationship. You end the work relationship instead.</span></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Ending the primary assignment? Make another one primary first.</strong><span class="sd">Oracle does not let you end the primary assignment directly. Set the job the person keeps as primary, then end the old one.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>List every active assignment and find the primary one.</strong><span class="sd">In Our Workforce &gt; Employment Info, search the person and note each assignment, its business unit, manager, and which is primary.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Ask: is the person leaving all jobs or only yours?</strong><span class="sd">If they keep any job, you end only your assignment. If they are leaving all jobs, Terminate Employment ends them all.</span><ul><li>Keeps a job: End Assignment on yours</li><li>Leaves all: Terminate Employment</li></ul></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Coordinate with the HCM who owns the other assignment.</strong><span class="sd">Tell them the date and what you plan to submit. Agree on who submits a full termination and on the date, so both jobs end correctly.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>If your job is primary and they keep another, change primary first.</strong><span class="sd">Make the job they keep the primary assignment, effective on or before the end date. Oracle will not end a primary assignment otherwise.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Submit End Assignment or Terminate Employment with the right dates.</strong><span class="sd">For a termination, enter the notification date and the termination date, revoke access After termination (standard), and leave payroll eligibility as defaulted.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Confirm the result in Employment Info.</strong><span class="sd">After approval, check that only the intended assignments are inactive and the remaining one is primary and still active payroll eligible.</span></span></label></li>
       </ol>
       <p class="stepcount" id="stepcount" aria-live="polite"></p>
       <table class="ref"><caption>Quick compare</caption><thead><tr><th scope="col">Question</th><th scope="col">End Assignment</th><th scope="col">Terminate Employment</th></tr></thead><tbody><tr><td data-th="Question">Ends</td><td data-th="End Assignment">One assignment</td><td data-th="Terminate Employment">Work relationship and all assignments</td></tr><tr><td data-th="Question">Use when</td><td data-th="End Assignment">Person keeps another job</td><td data-th="Terminate Employment">Person leaves all jobs</td></tr><tr><td data-th="Question">Only assignment</td><td data-th="End Assignment">Not allowed</td><td data-th="Terminate Employment">Required</td></tr><tr><td data-th="Question">Rehire and access</td><td data-th="End Assignment">Not set here</td><td data-th="Terminate Employment">Set eligible for rehire; revoke access</td></tr></tbody></table>
-      
-      <div class="watch"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>Watch-outs</h3><ul><li>Terminating someone who keeps another job stops pay for that job too. Check assignments before you terminate.</li><li>Open item: confirm which End Assignment entry point Vanderbilt uses (Change Assignment &gt; End Assignment or the termination page), since it depends on the termination version configured.</li></ul></div>
+      <div class="before" id="before"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Before you submit</h3><p class="blede">The same four checks on every pay-impacting transaction. Draft: the owner for this area confirms anything marked To confirm.</p><div class="bgrid"><div><h4>Attach</h4><p>None named yet.</p><p class="tbc"><b>To confirm</b>No document is named yet, and who submits when the jobs sit in different business units is an open item.</p></div><div><h4>Check</h4><p>Read every field back against the source document: person, effective date, position, hours, pay, and costing.</p><ul><li>Every active assignment is listed and the primary one is found.</li><li>Leaving all jobs is Terminate Employment. Leaving only yours is End Assignment.</li><li>The HCM who owns the other assignment knows.</li><li>Primary is changed first if your job is primary and they keep another.</li></ul></div><div><h4>Cutoff</h4><p>Submit before the HCM Transaction Cutoff so pay stops on time. For monthly pay it is the 18th in most months; check the HR/Payroll Calendar.</p></div><div><h4>Who does what</h4><ul class="who"><li><b>Who starts it:</b> You, with the other assignment&#x27;s HCM.</li><li><b>Who approves:</b> <span class="tb">To confirm: the approval chain for this transaction.</span></li><li><b>What happens next:</b> Terminate Employment stops pay for every job. End Assignment stops only yours.</li></ul></div></div></div>
+      <div class="watch"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>Watch-outs</h3><ul><li>Terminating someone who keeps another job stops pay for that job too. Check assignments before you terminate.</li><li>Open item: confirm which End Assignment entry point Vanderbilt uses (Change Assignment &gt; End Assignment or the termination page), since it depends on the termination version configured.</li><li>Terminate Employment on a person who keeps another job stops pay for that job too.</li><li>Move any direct reports on the ending assignment to a new manager before it ends.</li><li>Open item: confirm Vanderbilt&#x27;s rule for who submits when the jobs sit in different business units.</li></ul></div>
       <div class="docs"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>Official documentation</h3><p>Vendor documentation describes the standard process. Vanderbilt's setup, codes, and rules in this course take priority.</p><ul><li><a href="https://docs.oracle.com/en/cloud/saas/human-resources/fawhr/terminations.html" target="_blank" rel="noopener">Oracle: Terminations<span class="sr"> (opens in a new tab)</span></a></li><li><a href="https://docs.oracle.com/en/cloud/saas/human-resources/25a/facuk/ending-assignments-and-terminating-work-relationships.html" target="_blank" rel="noopener">Oracle: Ending Assignments and Terminating Work Relationships<span class="sr"> (opens in a new tab)</span></a></li></ul></div>
     </section>
     <section class="part quiz" id="check" aria-labelledby="h3">
       <p class="mono num">3 &middot; Knowledge check</p>
       <h2 id="h3">Check your <em>understanding</em>.</h2>
-      <p>Three questions. You get feedback on each answer. All three right completes the course.</p>
-      <fieldset data-a="1" data-why="End Assignment stops one job and keeps the work relationship and the other job." data-hint="Look back at the walkthrough."><legend><span class="qn">Q1</span>A person with two jobs is leaving one and keeping the other. What do you do?</legend><label><input type="radio" name="q0" value="0" />Terminate Employment</label><label><input type="radio" name="q0" value="1" />End the assignment for the job that stops</label><label><input type="radio" name="q0" value="2" />Do nothing until both end</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="0" data-why="Only a termination ends the work relationship and all its assignments." data-hint="Look back at the walkthrough."><legend><span class="qn">Q2</span>What ends the work relationship?</legend><label><input type="radio" name="q1" value="0" />Terminate Employment only</label><label><input type="radio" name="q1" value="1" />End Assignment</label><label><input type="radio" name="q1" value="2" />Change Manager</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="2" data-why="Oracle will not end the primary assignment until another assignment is primary." data-hint="Look back at the walkthrough."><legend><span class="qn">Q3</span>The job that is ending is the primary assignment. What first?</legend><label><input type="radio" name="q2" value="0" />Terminate Employment</label><label><input type="radio" name="q2" value="1" />Delete the assignment</label><label><input type="radio" name="q2" value="2" />Make the remaining job primary</label><p class="fb" aria-live="polite"></p></fieldset>
+      <p>Six questions. You get feedback on each answer. All six right completes the course.</p>
+      <fieldset data-a="1" data-why="End Assignment stops one job and keeps the work relationship and the other job." data-hint="Look back at the walkthrough."><legend><span class="qn">Q1</span>A person with two jobs is leaving one and keeping the other. What do you do?</legend><label><input type="radio" name="q0" value="0" />Terminate Employment</label><label><input type="radio" name="q0" value="1" />End the assignment for the job that stops</label><label><input type="radio" name="q0" value="2" />Do nothing until both end</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="0" data-why="Only a termination ends the work relationship and all its assignments." data-hint="Look back at the walkthrough."><legend><span class="qn">Q2</span>What ends the work relationship?</legend><label><input type="radio" name="q1" value="0" />Terminate Employment only</label><label><input type="radio" name="q1" value="1" />End Assignment</label><label><input type="radio" name="q1" value="2" />Change Manager</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="2" data-why="Oracle will not end the primary assignment until another assignment is primary." data-hint="Look back at the walkthrough."><legend><span class="qn">Q3</span>The job that is ending is the primary assignment. What first?</legend><label><input type="radio" name="q2" value="0" />Terminate Employment</label><label><input type="radio" name="q2" value="1" />Delete the assignment</label><label><input type="radio" name="q2" value="2" />Make the remaining job primary</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="1" data-why="Terminating would also end the other department&#x27;s job; End Assignment stops only yours." data-hint="Look back at the walkthrough."><legend><span class="qn">Q4</span>Your employee also works for another department and is keeping that job. What do you submit?</legend><label><input type="radio" name="q3" value="0" />Terminate Employment</label><label><input type="radio" name="q3" value="1" />End Assignment on your job only</label><label><input type="radio" name="q3" value="2" />Nothing; the other HCM handles it</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="0" data-why="Terminating the work relationship ends every assignment in it." data-hint="Look back at the walkthrough."><legend><span class="qn">Q5</span>What does Terminate Employment do to a person with three assignments?</legend><label><input type="radio" name="q4" value="0" />Ends all three and the work relationship</label><label><input type="radio" name="q4" value="1" />Ends only the primary</label><label><input type="radio" name="q4" value="2" />Ends only the one you select</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="2" data-why="The other HCM must know so their job ends or continues as intended." data-hint="Look back at the walkthrough."><legend><span class="qn">Q6</span>Before you submit, who should you contact?</legend><label><input type="radio" name="q5" value="0" />The employee&#x27;s bank</label><label><input type="radio" name="q5" value="1" />No one</label><label><input type="radio" name="q5" value="2" />The HCM who owns the other assignment</label><p class="fb" aria-live="polite"></p></fieldset>
       <p class="score" id="score" hidden></p>
     </section>
     <section class="part" id="jobaid" aria-labelledby="h4">
@@ -75,22 +81,28 @@
       <p>A one-page version of the steps and watch-outs. Print it or save it as a PDF.</p>
       <div class="acts"><button type="button" class="btn" data-print><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg>Print job aid</button><a class="btn ghost" href="../../index.html#positions">Back to all courses</a></div>
       <div class="ja-preview">
-        <article class="jobaid" aria-label="Job aid preview">
+        <article class="jobaid ja-b" aria-label="Job aid preview">
           <div class="ja-head"><img src="../../assets/img/vu-lockup-black.png" alt="Vanderbilt University" width="100" height="26" /><span class="mono">HCM Academy job aid &middot; Offboarding</span></div>
-          <h2>Ending assignments vs. terminating employment</h2>
-          <p class="ja-use"><b>Use when:</b> Someone is leaving a job and you need to decide whether they are leaving one job or leaving Vanderbilt employment. &middot; <b>System:</b> Oracle HCM</p>
+          <h2>End an assignment or terminate employment, including multiple assignments</h2>
+          <p class="ja-use"><b>Use when:</b> Someone is leaving a job, and you need to decide whether they leave one job or Vanderbilt employment, including when they hold more than one job. &middot; <b>System:</b> Oracle HCM</p>
           <ol>
 <li>Count the person&#x27;s assignments in Employment Info.</li>
 <li>Leaving everything? Use Terminate Employment.</li>
 <li>Keeping at least one job? End only the job that stops.</li>
 <li>Ending the only assignment? You must terminate.</li>
 <li>Ending the primary assignment? Make another one primary first.</li>
+<li>List every active assignment and find the primary one.</li>
+<li>Ask: is the person leaving all jobs or only yours?<ul><li>Keeps a job: End Assignment on yours</li><li>Leaves all: Terminate Employment</li></ul></li>
+<li>Coordinate with the HCM who owns the other assignment.</li>
+<li>If your job is primary and they keep another, change primary first.</li>
+<li>Submit End Assignment or Terminate Employment with the right dates.</li>
+<li>Confirm the result in Employment Info.</li>
           </ol>
           <table class="ref"><caption>Quick compare</caption><thead><tr><th scope="col">Question</th><th scope="col">End Assignment</th><th scope="col">Terminate Employment</th></tr></thead><tbody><tr><td data-th="Question">Ends</td><td data-th="End Assignment">One assignment</td><td data-th="Terminate Employment">Work relationship and all assignments</td></tr><tr><td data-th="Question">Use when</td><td data-th="End Assignment">Person keeps another job</td><td data-th="Terminate Employment">Person leaves all jobs</td></tr><tr><td data-th="Question">Only assignment</td><td data-th="End Assignment">Not allowed</td><td data-th="Terminate Employment">Required</td></tr><tr><td data-th="Question">Rehire and access</td><td data-th="End Assignment">Not set here</td><td data-th="Terminate Employment">Set eligible for rehire; revoke access</td></tr></tbody></table>
-          
+          <h3>Before you submit</h3><ul class="jw"><li><b>Attach:</b> None named yet. <span class="tb">To confirm: No document is named yet, and who submits when the jobs sit in different business units is an open item.</span></li><li><b>Check:</b> Every active assignment is listed and the primary one is found. Leaving all jobs is Terminate Employment. Leaving only yours is End Assignment. The HCM who owns the other assignment knows. Primary is changed first if your job is primary and they keep another.</li><li><b>Cutoff:</b> Submitted before the HCM Transaction Cutoff, so pay stops on time.</li></ul>
           <h3>Watch-outs</h3>
-          <ul class="jw"><li>Terminating someone who keeps another job stops pay for that job too. Check assignments before you terminate.</li><li>Open item: confirm which End Assignment entry point Vanderbilt uses (Change Assignment &gt; End Assignment or the termination page), since it depends on the termination version configured.</li></ul>
-          <div class="ja-foot"><span>V.02 draft, updated Nov 13, 2026. Owner: HRIS. Sources: Oracle: Terminations; Oracle: Ending Assignments and Terminating Work Relationships; Oracle: Termination and Resignation Version 2 versus Version 3.</span><span>Questions: pcb@vanderbilt.edu</span></div>
+          <ul class="jw"><li>Terminating someone who keeps another job stops pay for that job too. Check assignments before you terminate.</li><li>Open item: confirm which End Assignment entry point Vanderbilt uses (Change Assignment &gt; End Assignment or the termination page), since it depends on the termination version configured.</li><li>Terminate Employment on a person who keeps another job stops pay for that job too.</li><li>Move any direct reports on the ending assignment to a new manager before it ends.</li><li>Open item: confirm Vanderbilt&#x27;s rule for who submits when the jobs sit in different business units.</li></ul>
+          <div class="ja-foot"><span>V.02 draft, updated Nov 18, 2026. Owner: HRIS. Sources: Oracle: Terminations; Oracle: Ending Assignments and Terminating Work Relationships; Oracle: Termination and Resignation Version 2 versus Version 3; Oracle: Using Global Human Resources, Work Relationships.</span><span>Questions: pcb@vanderbilt.edu</span></div>
         </article>
         
       </div>
@@ -100,11 +112,11 @@
       <h2 id="h5">Owner and <em>changes</em>.</h2>
       <dl class="recl">
         <div><dt>Owner</dt><dd>HRIS<span>Recruiting and hiring, assignment changes, offboarding, leave, records and reporting, and the HCM foundations.</span></dd></div>
-        <div><dt>Version</dt><dd>V.02 draft<span>Updated Nov 13, 2026</span></dd></div>
+        <div><dt>Version</dt><dd>V.02 draft<span>Updated Nov 18, 2026</span></dd></div>
         <div><dt>Review</dt><dd>Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before release.</dd></div>
       </dl>
       <h3 class="rech">What changed</h3>
-      <ul class="chg"><li><b>Nov 13, 2026</b>Owner is now HRIS. It had no owner yet.</li><li><b>Nov 12, 2026</b>Owner still to be named.</li><li><b>October 2026</b>First draft (V.01).</li></ul>
+      <ul class="chg"><li><b>Nov 18, 2026</b>How to handle a termination when an employee has multiple assignments is now part of this course.</li><li><b>Nov 13, 2026</b>Cutoff in Before you submit updated from the published HR/Payroll Calendar.</li><li><b>Nov 13, 2026</b>Owner is now HRIS. It had no owner yet.</li><li><b>Nov 12, 2026</b>Owner still to be named.</li><li><b>October 2026</b>First draft (V.01).</li></ul>
       <p class="recf"><a href="../../changes/">See changes across all courses</a>. Something out of date? Email <a href="mailto:pcb@vanderbilt.edu">pcb@vanderbilt.edu</a>.</p>
     </section>
   </div>
@@ -112,7 +124,7 @@
 <p id="live" class="sr" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></p>
 <footer>
   <div class="wrap">
-    <p>HCM Academy &middot; V.02 draft. Sources: Oracle: Terminations; Oracle: Ending Assignments and Terminating Work Relationships; Oracle: Termination and Resignation Version 2 versus Version 3.</p>
+    <p>HCM Academy &middot; V.02 draft. Sources: Oracle: Terminations; Oracle: Ending Assignments and Terminating Work Relationships; Oracle: Termination and Resignation Version 2 versus Version 3; Oracle: Using Global Human Resources, Work Relationships.</p>
     <p>An internal training prototype, not an official Vanderbilt University site. Questions or accessibility needs: <a href="mailto:pcb@vanderbilt.edu">pcb@vanderbilt.edu</a></p>
   </div>
 </footer>

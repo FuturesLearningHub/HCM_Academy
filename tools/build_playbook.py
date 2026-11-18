@@ -25,9 +25,9 @@ for m in re.finditer(r'<section class="card[^"]*" id="([a-z]+)" data-short="([^"
     TOPICS.append(dict(id=cid, short=html.unescape(short), name=name, blurb=blurb, no=no, slugs=slugs))
 BY = {c["slug"]: c for c in COURSES}
 
-def steps_html(steps):
+def steps_html(steps, start=1):
     out = []
-    for i, s in enumerate(steps, 1):
+    for i, s in enumerate(steps, start):
         sub = "".join(f"<li>{E(x)}</li>" for x in s.get("sub", []))
         out.append(f'<li><span class="n">{i}</span><div><p class="st">{E(s["t"])}</p>{f"<ul>{sub}</ul>" if sub else ""}</div></li>')
     return "\n".join(out)
@@ -59,17 +59,39 @@ def chrome(topic, page, inner, cls=""):
     return (f'<section class="page guide {cls}"><header class="run"><span>HCM Playbook</span><span>{E(topic["no"])} &middot; {E(topic["short"])}</span></header>'
             f'{inner}<footer class="foot"><span>{E(EDITION)} &middot; Questions: pcb@vanderbilt.edu</span><span class="pg">{page:02d}</span></footer></section>')
 
-def guide_page(c, topic, page):
+def _w(s):
+    """Rough height of a step on the page, in lines."""
+    return 1.2 + len(s["t"]) / 80 + sum(1 + len(x) / 95 for x in s.get("sub", []))
+
+STEP_LINES = (24, 40)   # lines of steps on a guide's first page, and on a continuation page
+
+def guide_pages(c, topic, start):
+    """A guide, continued onto extra pages when its steps don't fit on one."""
     draft = '<span class="tag">Pending SME review</span>' if c.get("pending", "").startswith("Built from") else ""
     watch = "".join(f"<li>{E(w)}</li>" for w in c["watch"])
     tb = "" if long_table(c) else table_html(c.get("table"))   # a long table gets its own pages
-    inner = (f'<div class="head"><p class="eyebrow">{E(c["topic_label"])}</p><h2>{E(c["name"])}</h2>'
-             f'<p class="meta"><span>{E(c["system"])}</span><span>{E(c["time"])} micro-learning</span><span>Owner: {E(G.owner(c))}</span>{draft}</p>'
-             f'<p class="use"><b>Use when</b>{E(c["use_when"])}</p></div>'
-             f'<ol class="steps">{steps_html(c["steps"])}</ol>{tb}{before_html(c)}'
-             f'<div class="watch"><p class="wh">Watch-outs</p><ul>{watch}</ul></div>'
-             f'<p class="src">Course: {SITE}/courses/{E(c["slug"])}/ &middot; Sources: {E("; ".join(c["sources"]))}</p>')
-    return chrome(topic, page, inner)
+    tail = (f'{tb}{before_html(c)}<div class="watch"><p class="wh">Watch-outs</p><ul>{watch}</ul></div>'
+            f'<p class="src">Course: {SITE}/courses/{E(c["slug"])}/ &middot; Sources: {E("; ".join(c["sources"]))}</p>')
+    head = (f'<div class="head"><p class="eyebrow">{E(c["topic_label"])}</p><h2>{E(c["name"])}</h2>'
+            f'<p class="meta"><span>{E(c["system"])}</span><span>{E(c["time"])} micro-learning</span><span>Owner: {E(G.owner(c))}</span>{draft}</p>'
+            f'<p class="use"><b>Use when</b>{E(c["use_when"])}</p></div>')
+    chunks, cur, room = [], [], STEP_LINES[0]
+    for s in c["steps"]:
+        if cur and sum(map(_w, cur)) + _w(s) > room:
+            chunks.append(cur); cur, room = [], STEP_LINES[1]
+        cur.append(s)
+    chunks.append(cur)
+    tail_lines = (len(c.get("table", {}).get("rows", [])) * 1.6 if tb else 0) + (6 if before_html(c) else 0) + sum(1 + len(w) / 95 for w in c["watch"]) + 3
+    split_tail = len(chunks) > 1 and sum(map(_w, chunks[-1])) + tail_lines > STEP_LINES[1] + 6
+    pages, n = [], 1
+    for k, ch in enumerate(chunks):
+        top = head if k == 0 else f'<div class="head"><p class="eyebrow">{E(c["name"])} &middot; continued</p></div>'
+        last = k == len(chunks) - 1
+        pages.append(chrome(topic, start + len(pages), f'{top}<ol class="steps">{steps_html(ch, n)}</ol>' + (tail if last and not split_tail else "")))
+        n += len(ch)
+    if split_tail:
+        pages.append(chrome(topic, start + len(pages), f'<div class="head"><p class="eyebrow">{E(c["name"])} &middot; continued</p></div>' + tail))
+    return pages
 
 def table_pages(c, topic, start):
     """Continuation pages for a table too long to share the guide's page."""
@@ -85,7 +107,7 @@ def detail_pages(c, topic, start):
     for k in range(0, len(st), 2):
         items = "".join(
             f'<li><p class="st"><span class="dn">{i:02d}</span>{E(x["t"])}</p><p class="dd">{E(x["d"])}</p>'
-            f'<img src="../courses/{E(c["slug"])}/img/{E(x["img"])}" alt="Screenshot: {E(x["t"].rstrip("."))}" /></li>'
+            + (f'<img src="../courses/{E(c["slug"])}/img/{E(x["img"])}" alt="Screenshot: {E(x["t"].rstrip("."))}" />' if x.get("img") else "") + '</li>'
             for i, x in enumerate(st[k:k + 2], k + 1))
         head = (f'<div class="head"><p class="eyebrow">Detailed job aid &middot; {E(c["name"])}</p><h2>{E(det["title"])}</h2>'
                 f'<p class="meta"><span>{E(det["source"])}</span></p></div>') if k == 0 else ""
@@ -98,7 +120,7 @@ for t in TOPICS:
     t["page"] = page; entries = []
     divider_at = page; page += 1; guides = []
     for sl in t["slugs"]:
-        c = BY[sl]; entries.append((c["name"], page)); guides.append(guide_page(c, t, page)); page += 1
+        c = BY[sl]; entries.append((c["name"], page)); d = guide_pages(c, t, page); guides += d; page += len(d)
         if long_table(c):
             d = table_pages(c, t, page); guides += d; page += len(d)
         if c.get("detailed"):

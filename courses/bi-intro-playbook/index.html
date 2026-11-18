@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Introduction to BI Reporting and the Departmental Playbook · HCM Academy</title>
-<meta name="description" content="You need a list or check across your area, such as everyone&#x27;s costing, rather than one person&#x27;s record." />
+<title>Reporting basics: BI reporting, the Departmental Playbook, and running reports · HCM Academy</title>
+<meta name="description" content="You need a list or check across your area, such as everyone&#x27;s costing, or you need to run an existing report and trust what it shows." />
 <meta name="theme-color" content="#1C1C1C" />
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="../course.css?v=cd833b31" />
@@ -20,9 +20,9 @@
 </header>
 <section class="hero" aria-labelledby="t">
   <div class="wrap">
-    <p class="mono crumb">Document Records &amp; Reporting &middot; Course 41 of 61</p>
-    <h1 id="t">Get started with BI <em>reporting</em>.</h1>
-    <ul class="meta" aria-label="Course details"><li class="v">V.02 draft</li><li>Micro-learning</li><li>5 min</li><li>Oracle BI (OTBI)</li><li>3-question check</li><li>Printable job aid</li></ul>
+    <p class="mono crumb">Document Records &amp; Reporting &middot; Course 34 of 49</p>
+    <h1 id="t">Run the reports your area <em>needs</em>.</h1>
+    <ul class="meta" aria-label="Course details"><li class="v">V.02 draft</li><li>Micro-learning</li><li>9 min</li><li>Oracle BI (OTBI)</li><li>6-question check</li><li>Printable job aid</li></ul>
     <p class="rec"><span>Owner: <b>HRIS</b></span><span>Updated Nov 18, 2026</span><a href="#record">What changed</a></p>
   </div>
   <nav class="parts" aria-label="Course parts"><ol>
@@ -37,36 +37,42 @@
       <p>Courses unlock once you've taken the pre-assessment. It takes about 5 minutes, it's not graded, and your results show which topics to start with.</p>
       <div class="acts"><a class="btn" href="../../assessment/pre/">Take the pre-assessment</a><a class="btn ghost" href="../../index.html#records">Back to all courses</a></div>
     </section>
-    <p class="draft"><b>V.02 draft</b>Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before release.</p><p class="draft"><b>Screen check</b>Confirm in Vanderbilt's Oracle or UKG during a recorded demo: Catalog folder path for the Departmental Playbook; Whether Reports and Analytics is reached via Navigator &gt; Tools or another Vanderbilt menu; Full list of Departmental Playbook reports beyond the three costing reports.</p>
+    <p class="draft"><b>V.02 draft</b>Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before release.</p><p class="draft"><b>Screen check</b>Confirm in Vanderbilt's Oracle or UKG during a recorded demo: Catalog folder path for the Departmental Playbook; Whether Reports and Analytics is reached via Navigator &gt; Tools or another Vanderbilt menu; Full list of Departmental Playbook reports beyond the three costing reports; Which standard Oracle HCM reports HCMs are expected to run and their folder; Whether those reports use an as-of/effective date prompt.</p>
     <section class="part" id="intro" aria-labelledby="h1">
       <p class="mono num">1 &middot; Intro</p>
       <h2 id="h1">When to <em>use</em> it.</h2>
       
-      <p>Oracle Transactional Business Intelligence (OTBI) reports on live Oracle HCM data. You use it to check your area&#x27;s people, assignments, and costing without opening records one at a time.</p><p>The Departmental Playbook gives HCMs a starting set of reports built for this work.</p>
-      <p class="use"><b>Use this when</b>You need a list or check across your area, such as everyone&#x27;s costing, rather than one person&#x27;s record.</p>
+      <p>Oracle Transactional Business Intelligence (OTBI) reports on live Oracle HCM data. You use it to check your area&#x27;s people, assignments, and costing without opening records one at a time. The Departmental Playbook gives HCMs a starting set of reports.</p><p>Most of your reporting is running a report someone already built and reading the results correctly. The key choices are the prompts you answer and the date you run it for.</p>
+      <p class="use"><b>Use this when</b>You need a list or check across your area, such as everyone&#x27;s costing, or you need to run an existing report and trust what it shows.</p>
     </section>
     <section class="part" id="steps" aria-labelledby="h2">
       <p class="mono num">2 &middot; Walk through</p>
-      <h2 id="h2">Step by <em>step</em>.</h2>
-      <p>Follow along in Oracle BI. Check off each step as you go.</p>
+      <h2 id="h2">Start with the Playbook, then run and read a <em>report</em>.</h2>
+      <p>Check off each item as you read.</p>
       <ol class="steps">
 <li><label><input type="checkbox" /><span class="st"><strong>Open Reports and Analytics (Navigator &gt; Tools &gt; Reports and Analytics).</strong><span class="sd">This is Oracle&#x27;s standard path to the BI catalog. From there you can search or browse for analyses and reports and open them.</span></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Know the folders: Shared Folders for official reports, My Folders for yours.</strong><span class="sd">Shared Folders holds reports built for others to run; the Custom subfolder holds reports your organization created. My Folders is private; only you can see what you save there.</span></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Search or browse to the report, then click its name to open it.</strong><span class="sd">Type part of the name and click Search, or browse folders using the breadcrumbs. Use Recent Items to get back to reports you used recently.</span></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Use the Departmental Playbook costing reports.</strong><span class="sd">The Playbook includes HCM Assignment Cost Allocation Plan, HCM Element Cost Allocation Plan, and HCM Cost Allocation Verification Plan. Use them to confirm costing for people in your area.</span><ul><li>HCM Assignment Cost Allocation Plan</li><li>HCM Element Cost Allocation Plan</li><li>HCM Cost Allocation Verification Plan</li></ul></span></label></li>
 <li><label><input type="checkbox" /><span class="st"><strong>Expect to see only the people your security allows.</strong><span class="sd">OTBI applies your Oracle data security. Two people can run the same report and see different rows.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Open Reports and Analytics and find the report.</strong><span class="sd">Go to Navigator &gt; Tools &gt; Reports and Analytics. Search by name or browse Shared Folders, then click the report name to open it.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Answer the prompts.</strong><span class="sd">Many reports open with prompts: fields such as business unit, department, or person that limit the results. Pick only what you need; leaving a prompt blank can return everyone you have access to.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Set the as-of or effective date.</strong><span class="sd">Oracle HCM data is date-effective. If the report has a date prompt, set it to the date you care about. A future-dated change will not show on today&#x27;s date.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Run the report and wait for results.</strong><span class="sd">Click Apply or OK. OTBI queries live data, so large requests can take time.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Read the results with the prompts in mind.</strong><span class="sd">Check the column headings and the prompt values shown before you share numbers. Count rows and spot-check a few people against Employment Info.</span></span></label></li>
+<li><label><input type="checkbox" /><span class="st"><strong>Rerun with new prompts instead of editing the report.</strong><span class="sd">To see a different area or date, change the prompt values and run again. You do not need to change the report itself.</span></span></label></li>
       </ol>
       <p class="stepcount" id="stepcount" aria-live="polite"></p>
       
       
-      <div class="watch"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>Watch-outs</h3><ul><li>Bad data in, bad data out. A report only reflects what was entered in Oracle.</li><li>Do not save changes over a shared report. Save your own copy in My Folders.</li><li>Open item: confirm where the Departmental Playbook lives in the catalog (folder path) and whether Vanderbilt exposes Reports and Analytics on a different menu.</li></ul></div>
+      <div class="watch"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>Watch-outs</h3><ul><li>Bad data in, bad data out. A report only reflects what was entered in Oracle.</li><li>Do not save changes over a shared report. Save your own copy in My Folders.</li><li>Open item: confirm where the Departmental Playbook lives in the catalog (folder path) and whether Vanderbilt exposes Reports and Analytics on a different menu.</li><li>Date matters. A person hired next week will not appear on a report run as of today.</li><li>Results show only people within your data security.</li><li>Open item: confirm which standard Oracle HCM reports Vanderbilt expects HCMs to run and where they are stored.</li></ul></div>
       <div class="docs"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>Official documentation</h3><p>Vendor documentation describes the standard process. Vanderbilt's setup, codes, and rules in this course take priority.</p><ul><li><a href="https://docs.oracle.com/en/cloud/saas/applications-common/24b/oacpr/view-analytics-reports-and-dashboards.html" target="_blank" rel="noopener">Oracle: View Analytics, Reports, and Dashboards<span class="sr"> (opens in a new tab)</span></a></li><li><a href="https://docs.oracle.com/en/cloud/saas/applications-common/26a/faacc/where-to-save-analytics-and-reports.html" target="_blank" rel="noopener">Oracle: Where to Save Analytics and Reports<span class="sr"> (opens in a new tab)</span></a></li></ul></div>
     </section>
     <section class="part quiz" id="check" aria-labelledby="h3">
       <p class="mono num">3 &middot; Knowledge check</p>
       <h2 id="h3">Check your <em>understanding</em>.</h2>
-      <p>Three questions. You get feedback on each answer. All three right completes the course.</p>
-      <fieldset data-a="0" data-why="The Playbook costing reports, including the Verification Plan, confirm costing." data-hint="Look back at the walkthrough."><legend><span class="qn">Q1</span>Which Playbook report would you use to confirm costing for your area?</legend><label><input type="radio" name="q0" value="0" />HCM Cost Allocation Verification Plan</label><label><input type="radio" name="q0" value="1" />A new hire report</label><label><input type="radio" name="q0" value="2" />The payroll calendar</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="1" data-why="My Folders is private; Shared Folders is for content others use." data-hint="Look back at the walkthrough."><legend><span class="qn">Q2</span>You save a report in My Folders. Who can see it?</legend><label><input type="radio" name="q1" value="0" />Everyone in your BU</label><label><input type="radio" name="q1" value="1" />Only you</label><label><input type="radio" name="q1" value="2" />Your PCB consultant</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="2" data-why="OTBI respects data security, so results vary by user." data-hint="Look back at the walkthrough."><legend><span class="qn">Q3</span>A colleague sees more rows than you on the same report. Why?</legend><label><input type="radio" name="q2" value="0" />The report is broken</label><label><input type="radio" name="q2" value="1" />You ran it on a different day</label><label><input type="radio" name="q2" value="2" />OTBI applies each user&#x27;s data security</label><p class="fb" aria-live="polite"></p></fieldset>
+      <p>Six questions. You get feedback on each answer. All six right completes the course.</p>
+      <fieldset data-a="0" data-why="The Playbook costing reports, including the Verification Plan, confirm costing." data-hint="Look back at the walkthrough."><legend><span class="qn">Q1</span>Which Playbook report would you use to confirm costing for your area?</legend><label><input type="radio" name="q0" value="0" />HCM Cost Allocation Verification Plan</label><label><input type="radio" name="q0" value="1" />A new hire report</label><label><input type="radio" name="q0" value="2" />The payroll calendar</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="1" data-why="My Folders is private; Shared Folders is for content others use." data-hint="Look back at the walkthrough."><legend><span class="qn">Q2</span>You save a report in My Folders. Who can see it?</legend><label><input type="radio" name="q1" value="0" />Everyone in your BU</label><label><input type="radio" name="q1" value="1" />Only you</label><label><input type="radio" name="q1" value="2" />Your PCB consultant</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="2" data-why="OTBI respects data security, so results vary by user." data-hint="Look back at the walkthrough."><legend><span class="qn">Q3</span>A colleague sees more rows than you on the same report. Why?</legend><label><input type="radio" name="q2" value="0" />The report is broken</label><label><input type="radio" name="q2" value="1" />You ran it on a different day</label><label><input type="radio" name="q2" value="2" />OTBI applies each user&#x27;s data security</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="1" data-why="Oracle HCM data is date-effective; set the date to when the change takes effect." data-hint="Look back at the walkthrough."><legend><span class="qn">Q4</span>A hire effective next Monday is missing from today&#x27;s report. What is the most likely reason?</legend><label><input type="radio" name="q3" value="0" />The hire failed</label><label><input type="radio" name="q3" value="1" />The report&#x27;s as-of date is today</label><label><input type="radio" name="q3" value="2" />OTBI only shows last month</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="0" data-why="Blank prompts often return everything within your access." data-hint="Look back at the walkthrough."><legend><span class="qn">Q5</span>You leave the department prompt blank. What should you expect?</legend><label><input type="radio" name="q4" value="0" />Results for everyone your security allows</label><label><input type="radio" name="q4" value="1" />An error</label><label><input type="radio" name="q4" value="2" />Only your own record</label><p class="fb" aria-live="polite"></p></fieldset><fieldset data-a="2" data-why="Prompts let you rerun a report for a different area without editing it." data-hint="Look back at the walkthrough."><legend><span class="qn">Q6</span>You need the same report for a different department. What should you do?</legend><label><input type="radio" name="q5" value="0" />Build a new report</label><label><input type="radio" name="q5" value="1" />Ask payroll to run it</label><label><input type="radio" name="q5" value="2" />Change the prompt values and rerun</label><p class="fb" aria-live="polite"></p></fieldset>
       <p class="score" id="score" hidden></p>
     </section>
     <section class="part" id="jobaid" aria-labelledby="h4">
@@ -77,19 +83,25 @@
       <div class="ja-preview">
         <article class="jobaid" aria-label="Job aid preview">
           <div class="ja-head"><img src="../../assets/img/vu-lockup-black.png" alt="Vanderbilt University" width="100" height="26" /><span class="mono">HCM Academy job aid &middot; Document Records &amp; Reporting</span></div>
-          <h2>Introduction to BI Reporting and the Departmental Playbook</h2>
-          <p class="ja-use"><b>Use when:</b> You need a list or check across your area, such as everyone&#x27;s costing, rather than one person&#x27;s record. &middot; <b>System:</b> Oracle BI (OTBI)</p>
+          <h2>Reporting basics: BI reporting, the Departmental Playbook, and running reports</h2>
+          <p class="ja-use"><b>Use when:</b> You need a list or check across your area, such as everyone&#x27;s costing, or you need to run an existing report and trust what it shows. &middot; <b>System:</b> Oracle BI (OTBI)</p>
           <ol>
 <li>Open Reports and Analytics (Navigator &gt; Tools &gt; Reports and Analytics).</li>
 <li>Know the folders: Shared Folders for official reports, My Folders for yours.</li>
 <li>Search or browse to the report, then click its name to open it.</li>
 <li>Use the Departmental Playbook costing reports.<ul><li>HCM Assignment Cost Allocation Plan</li><li>HCM Element Cost Allocation Plan</li><li>HCM Cost Allocation Verification Plan</li></ul></li>
 <li>Expect to see only the people your security allows.</li>
+<li>Open Reports and Analytics and find the report.</li>
+<li>Answer the prompts.</li>
+<li>Set the as-of or effective date.</li>
+<li>Run the report and wait for results.</li>
+<li>Read the results with the prompts in mind.</li>
+<li>Rerun with new prompts instead of editing the report.</li>
           </ol>
           
           
           <h3>Watch-outs</h3>
-          <ul class="jw"><li>Bad data in, bad data out. A report only reflects what was entered in Oracle.</li><li>Do not save changes over a shared report. Save your own copy in My Folders.</li><li>Open item: confirm where the Departmental Playbook lives in the catalog (folder path) and whether Vanderbilt exposes Reports and Analytics on a different menu.</li></ul>
+          <ul class="jw"><li>Bad data in, bad data out. A report only reflects what was entered in Oracle.</li><li>Do not save changes over a shared report. Save your own copy in My Folders.</li><li>Open item: confirm where the Departmental Playbook lives in the catalog (folder path) and whether Vanderbilt exposes Reports and Analytics on a different menu.</li><li>Date matters. A person hired next week will not appear on a report run as of today.</li><li>Results show only people within your data security.</li><li>Open item: confirm which standard Oracle HCM reports Vanderbilt expects HCMs to run and where they are stored.</li></ul>
           <div class="ja-foot"><span>V.02 draft, updated Nov 18, 2026. Owner: HRIS. Sources: Oracle: View Analytics, Reports, and Dashboards; Oracle: Where to Save Analytics and Reports; Oracle: HCM Subject Areas for Transactional Business Intelligence.</span><span>Questions: pcb@vanderbilt.edu</span></div>
         </article>
         
@@ -104,7 +116,7 @@
         <div><dt>Review</dt><dd>Built from Oracle documentation and official sources. Not yet reviewed by a Vanderbilt SME; confirm the open items before release.</dd></div>
       </dl>
       <h3 class="rech">What changed</h3>
-      <ul class="chg"><li><b>Nov 18, 2026</b>Wording: says Oracle HCM data where it means the system. In HCM Academy, HCM means the role.</li><li><b>Nov 13, 2026</b>Owner is now HRIS. It had no owner yet.</li><li><b>Nov 12, 2026</b>Owner still to be named.</li><li><b>October 2026</b>First draft (V.01).</li></ul>
+      <ul class="chg"><li><b>Nov 18, 2026</b>Now Reporting basics: Reporting 101 is part of this course.</li><li><b>Nov 18, 2026</b>Wording: says Oracle HCM data where it means the system. In HCM Academy, HCM means the role.</li><li><b>Nov 13, 2026</b>Owner is now HRIS. It had no owner yet.</li><li><b>Nov 12, 2026</b>Owner still to be named.</li><li><b>October 2026</b>First draft (V.01).</li></ul>
       <p class="recf"><a href="../../changes/">See changes across all courses</a>. Something out of date? Email <a href="mailto:pcb@vanderbilt.edu">pcb@vanderbilt.edu</a>.</p>
     </section>
   </div>
