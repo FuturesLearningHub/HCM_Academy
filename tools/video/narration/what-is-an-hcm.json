@@ -1,0 +1,38 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "What is an HCM? At Vanderbilt, HCM is a role. HCMs work inside the business: they sit in schools, departments, and units across Vanderbilt, close to the managers and employees they support, and they own the people work for their area.",
+    "In HCM Academy, HCM means you: the person who owns the people work for the departments and teams in your area. Oracle HCM is the system HCMs use to do that work. When a course means the system, it says Oracle HCM.",
+    "You serve the departments and teams in your area. You sit close to the managers and employees you support. You enter the hires, changes, and terminations their work needs, and you check that time and pay are right, working with managers, F U Ms, and others.",
+    "You do the work in Oracle HCM and UKG. You reach Oracle HCM through Our Workforce on the Oracle home page: positions, requisitions, hires, assignment changes, terminations, leave, costing, document records, and reports. UKG holds weekly time cards and time off for non-exempt staff.",
+    "Your work covers seven areas, and each has its own topic in HCM Academy: hiring, payroll and time cards, assignments, leave, costing, students and faculty, and records and reporting.",
+    "Two things to remember. When a course says HCM, it means you, the role. When it means the system, it says Oracle HCM. And payroll can only pay what the record says, and you enter the record."
+  ],
+  "clips": [
+    [
+      0.0,
+      18.44
+    ],
+    [
+      18.98,
+      34.32
+    ],
+    [
+      34.57,
+      54.15
+    ],
+    [
+      54.62,
+      77.27
+    ],
+    [
+      77.8,
+      91.7
+    ],
+    [
+      92.36,
+      107.15
+    ]
+  ]
+}

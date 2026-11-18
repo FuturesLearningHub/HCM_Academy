@@ -169,7 +169,7 @@ BEFORE = {
  "staff-supplement": dict(tx="Add a staff supplement",
     docs=[("Interim pay letter, filed as a Compensation Letters document record", "If finance asks")],
     docs_gap="Whether the letter is required for every supplement.",
-    checks=["The plan is the supplement your finance partner asked for.",
+    checks=["The plan is the supplement your FUM asked for.",
             "The amount is per payroll, and it is filled in.",
             "Start date is the first day of the target payroll month.",
             "An end date is set, or Ongoing is on with a reminder to end it."],
@@ -251,7 +251,7 @@ BEFORE = {
           ("Cost transfer memo, if an externally funded grant is affected", "Required")],
     checks=["Effective As-of Date is the first day of the pay period the costing should start.",
             "The lines total 100%.",
-            "The COA or POET string came from your finance partner.",
+            "The COA or POET string came from your FUM.",
             "You ran the HCM Cost Allocation Verification Plan report afterward."],
     confirm="Where the Retro Change Cutoff is published. It is not on the HR/Payroll Calendar.",
     cutoff="costing", submits="You. Entering costing needs the HCM role in Oracle; get the costing string from your FUM", approves=CHAIN,
@@ -353,6 +353,10 @@ EXTRA_CHANGES = {
     "rehire-eligibility": [(REVIEWED_ON, _ORACLE + " Field names in steps 1 and 2 now follow Oracle's documentation: Recommended for Rehire (Yes, No, Not Specified), and the search option to include terminated work relationships."), (SCREENS, _VIDEO)],
 }
 
+_FUM = "Wording: says FUM (financial unit manager), Vanderbilt's term, where it said finance partner."
+for _s in ("change-salary", "sign-on-bonus", "staff-supplement", "costing-impacts", "what-to-attach", "enter-edit-costing"):
+    EXTRA_CHANGES[_s] = [(REVIEWED_ON, _FUM)] + EXTRA_CHANGES.get(_s, [])
+
 # Changes made on Nov 13, 2026 from Vanderbilt's own published pages: the HR/Payroll Calendar for 2026 and 2027
 # (People Experience, Pay Calendar page) and the Vanderbilt Student Privacy Statement (University Registrar).
 _MONTHLY_FIX = "Monthly cutoff corrected from the published HR/Payroll Calendar: the 18th in most months, earlier in December."
@@ -385,8 +389,11 @@ def changes(c):
     """What changed on a course, newest first: (date, text)."""
     import reviews
     s = c["slug"]
+    import restructure
     if s in reviews.NEW: return [(REVIEWED_ON, reviews.NOTES.get(s, "New course."))]
-    own = owner(c); was = owner_first(c); out = ([(REVIEWED_ON, reviews.NOTES[s])] if s in reviews.NOTES else []) + list(EXTRA_CHANGES.get(s, []))
+    if s == restructure.ROLE["slug"]: return [(REVIEWED_ON, restructure.NOTE)]
+    own = owner(c); was = owner_first(c); out = ([(REVIEWED_ON, restructure.NOTES[s])] if s in restructure.NOTES else []) + \
+        ([(REVIEWED_ON, reviews.NOTES[s])] if s in reviews.NOTES else []) + list(EXTRA_CHANGES.get(s, []))
     b = before(s)
     if s in PUBLISHED: out.append((OWNERS_SET, PUBLISHED[s] + (" " + _BLOCK_FIX if b and b.get("cutoff") in ("monthly", "term", "time", "offcycle") else "")))
     elif b and b.get("cutoff") in ("monthly", "term", "time", "offcycle"): out.append((OWNERS_SET, _BLOCK_FIX))

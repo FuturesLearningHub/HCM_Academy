@@ -104,8 +104,14 @@ def page(c, n, total):
               f'<p class="draft"><b>{G.EDITION}</b>Built from SME sessions and Vanderbilt guides. Validate with the HCM group before release.</p>'
     intro = "".join(f"<p>{E(p)}</p>" for p in c["intro"])
     video = ""
-    if c.get("video"):
-        v = c["video"]
+    for v in (c.get("videos") or ([c["video"]] if c.get("video") else [])):
+        part = (f'<p class="vpart"><b>Part {v["part"]}</b>{E(v["title"])}</p>' if c.get("videos") else "")
+        video += part + one_video(v)
+    return page_rest(c, n, total, title_html, src, pending, intro, video)
+
+def one_video(v):
+    video = ""
+    if True:
         if v["src"].endswith(".mp4"):   # explainer video kept with the course (no sound; the captions are on screen)
             video = (f'<figure class="video"><div class="frame"><video controls playsinline preload="metadata" poster="{E(v["poster"])}" '
                      f'aria-label="Video: {E(v["title"])}"><source src="{E(v["src"])}" type="video/mp4" /></video></div>'
@@ -117,6 +123,9 @@ def page(c, n, total):
           video = (f'<figure class="video"><div class="frame"><iframe src="{E(v["src"])}" title="Video: {E(v["title"])}" loading="lazy" '
                    'allow="autoplay; fullscreen; clipboard-write" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'
                    '<figcaption>Watch first, then read the details below.</figcaption></figure>')
+    return video
+
+def page_rest(c, n, total, title_html, src, pending, intro, video):
     vf = VERIFY.get(c["slug"])
     if vf:
         pending += f'<p class="draft"><b>Screen check</b>Confirm in Vanderbilt\'s Oracle or UKG during a recorded demo: {E("; ".join(vf))}.</p>'
@@ -437,6 +446,8 @@ def build_changes():
         <li><b>Review and approve time cards, Enter PTO</b>, and the two <b>UKG courses</b> for managers and employees are now one course: UKG time cards and time off.</li>
         <li><b>Change existing costing</b> is now part of Enter costing for a person.</li>
         <li><b>Change salary</b> moved to Assignment Changes (Payroll still owns it), and <b>Add Assignment</b> moved to Students &amp; Faculty.</li>
+        <li><b>Start Here</b> went from nine courses to six, with nothing dropped. A new course, <b>What is an HCM?</b>, explains the role and includes Who owns what. <b>Data integrity</b> is now part of Oracle HCM structure, <b>Workflow and worklists</b> part of Working in Oracle HCM, and <b>Employee or independent contractor?</b> part of Worker types, classification, and required checks. Each merged course shows both videos, as Part 1 and Part 2.</li>
+        <li><b>HCM means the role.</b> Where a course means the system, it now says Oracle HCM. Finance partner now reads <b>FUM</b> (financial unit manager), Vanderbilt's term.</li>
       </ul>
       <p>Old links to merged courses take you to the course that absorbed them.</p>
       <h3 class="rech">Courses changed ({len(revd)})</h3>

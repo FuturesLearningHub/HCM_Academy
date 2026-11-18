@@ -6,8 +6,9 @@ HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 from course_content import COURSES  # noqa: E402
 import reviews  # noqa: E402
+import restructure  # noqa: E402
 BY = {c["slug"]: c for c in COURSES}
-for old, new in reviews.REMOVED.items():
+for old, new in list(reviews.REMOVED.items()) + list(restructure.REMOVED.items()):
     name = html.escape(BY[new]["name"])
     d = os.path.join(ROOT, "courses", old); os.makedirs(d, exist_ok=True)
     open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(f"""<!DOCTYPE html>

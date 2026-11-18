@@ -1228,7 +1228,7 @@ COURSES_R = [{'slug': 'hcm-structure',
   'intro': ["Costing tells Oracle which accounts pay for a person's salary. Each payroll run turns pay into costing results that move to "
             'the General Ledger, so wrong costing means wrong department and grant financials.',
             'Fixing costing after payroll runs takes extra processing, so getting it right up front saves everyone time.'],
-  'use_when': 'You set up or review costing for a hire, transfer, or funding change, or a finance partner questions where salary was '
+  'use_when': 'You set up or review costing for a hire, transfer, or funding change, or a FUM questions where salary was '
               'charged.',
   'steps_title': 'How costing flows',
   'steps': [{'t': 'Costing is set in Costing for Persons.',
@@ -2326,7 +2326,7 @@ COURSES_R = [{'slug': 'hcm-structure',
   'watch': ['Never use Student Expense Only to pay a student for services. That needs a student worker setup and an I-9.',
             "Open item: Vanderbilt's Student Expense Only setup in Oracle (worker type, person type, hire reason, assignment status, and "
             'end date) is not yet documented.',
-            'Open item: Who owns approving Student Expense Only records and how reimbursements route (HCM, finance partner, or another '
+            'Open item: Who owns approving Student Expense Only records and how reimbursements route (HCM, FUM, or another '
             'office).'],
   'docs': [('Oracle: Work Relationships', 'https://docs.oracle.com/en/cloud/saas/human-resources/fawhr/work-relationships.html'),
            ('Oracle: Where do person types come from?',

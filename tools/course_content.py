@@ -7,8 +7,8 @@
 
 TWO_PATHS = "Start from the Quick Action, or search the employee's name and open the action from their record. Both reach the same screen."
 CUTOFF = 'The monthly (exempt) HCM Transaction Cutoff is the 18th in most months and earlier in December. The HR/Payroll Calendar is the source of truth.'
-FINANCE = "Oracle needs little in comments and attachments, but many departmental finance approvers want more. Confirm what your finance partner expects before you submit."
-SUBMIT_D = "Submit sends the transaction into approval. If your finance partner wants a note or a document, click Continue first to reach the comments and attachments step."
+FINANCE = "Oracle needs little in comments and attachments, but many departmental finance approvers want more. Confirm what your FUM expects before you submit."
+SUBMIT_D = "Submit sends the transaction into approval. If your FUM wants a note or a document, click Continue first to reach the comments and attachments step."
 
 BRIANA = "HCM SME walkthrough, Oct 20"
 ALEX = "Costing SME session, Oct 20"
@@ -576,7 +576,7 @@ dict(slug="net-one-time-stipend", topic="payroll", topic_label="Compensation Man
   {'t': 'Enter the amount in the Net field (for example, $500).', 'd': 'The entry has two amount fields. Net is what the employee takes home; Oracle grosses it up to cover taxes. Leave Amount empty, because Amount means gross.'},
   {'t': 'Leave Process separately set to Yes.', 'd': 'This is a Yes/No field on the payment. Yes means Oracle calculates the payment on its own (so supplemental tax rules can apply), then pays it in the same paycheck as regular pay. It does not create a separate check. Change it only if payroll tells you to.'},
   {'t': 'Click Save.', 'd': 'Save adds the payment to the list. Check that the plan, start date, and Net amount look right in the list.'},
-  {'t': 'Submit, or click Continue to add comments or attachments first.', 'd': 'If your finance partner wants a note or document, click Continue to reach the comments and attachments step, add them, then Submit. Otherwise click Submit. Track approval from the notifications bell.'},
+  {'t': 'Submit, or click Continue to add comments or attachments first.', 'd': 'If your FUM wants a note or document, click Continue to reach the comments and attachments step, add them, then Submit. Otherwise click Submit. Track approval from the notifications bell.'},
  ],
  watch=["Missed the cutoff (around the 18th)? Date it for next month.","Only change Process separately if payroll tells you to.","Pay goes to direct deposit, which is required.","Set the effective as-of date in Individual Compensation before you search for the employee. Otherwise you can't pick an earlier start date.","Attach the manager's request (email or memo) and say what the payment is for, so the approver doesn't send it back."],
  docs=docs("icp","runtypes"),
@@ -594,11 +594,11 @@ dict(slug="sign-on-bonus", topic="payroll", topic_label="Compensation Management
  steps=[
   {'t': 'Open Individual Compensation for the employee.', 'd': "Search the employee's name in the search bar on the Oracle Home page, open their record, and choose Individual Compensation. Or use Our Workforce > Quick Actions > Individual Compensation and select the employee. Bonuses go here, not Change Salary, because they are not part of base pay."},
   {'t': 'Click Add, then choose One-time or recurring payment.', 'd': 'Add is at the top of the payments list. A sign-on bonus is a one-time payment.'},
-  {'t': 'Plan: pick the payment type, such as Bonus.', 'd': 'Open the plan list and pick the plan that matches the payment. The plan ties the payment to its pay element (in the award compensation guide, the sign-on bonus element is SGN; a general bonus is BON). Not sure which plan? Ask your finance partner.'},
+  {'t': 'Plan: pick the payment type, such as Bonus.', 'd': 'Open the plan list and pick the plan that matches the payment. The plan ties the payment to its pay element (in the award compensation guide, the sign-on bonus element is SGN; a general bonus is BON). Not sure which plan? Ask your FUM.'},
   {'t': 'Start date: the first day of the target payroll month (for example, Nov 1).', 'd': 'The bonus pays in the payroll covering this date, if it is entered before the cutoff.'},
   {'t': 'Enter the amount in the Amount field, not Net (for example, $1,500).', 'd': 'Amount is gross. The offer states a gross bonus, and the employee pays the taxes. Leave Net empty.'},
   {'t': 'Leave Process separately set to Yes, then click Save.', 'd': 'The bonus is calculated on its own for tax purposes and paid with the regular paycheck. After Save, check the plan, date, and amount in the list.'},
-  {'t': 'Click Continue, add comments or attachments, then Submit.', 'd': 'Attach the offer or bonus letter if your finance partner wants it, and file the signed letter as a Compensation Letters document record. Track approval from the notifications bell.'},
+  {'t': 'Click Continue, add comments or attachments, then Submit.', 'd': 'Attach the offer or bonus letter if your FUM wants it, and file the signed letter as a Compensation Letters document record. Track approval from the notifications bell.'},
  ],
  watch=["Set the effective as-of date in Individual Compensation before you search for the employee. Otherwise you can't pick an earlier start date.","Adding the bonus to the offer is the preferred path. It processes in one transaction and reduces Oracle failures.","Amount = gross. Net = take-home. Mixing them up changes what the employee receives."],
  docs=docs("icp","runtypes"),
@@ -616,7 +616,7 @@ dict(slug="staff-supplement", topic="payroll", topic_label="Compensation Managem
  steps=[
   {'t': 'Open Individual Compensation for the employee.', 'd': "Search the employee's name in the search bar on the Oracle Home page and choose Individual Compensation, or use Our Workforce > Quick Actions > Individual Compensation. Supplements are recurring payments on top of salary."},
   {'t': 'Click Add, then choose Add staff supplement.', 'd': 'Add is at the top of the payments list. This opens a recurring payment entry with start and end dates.'},
-  {'t': 'Plan: choose the supplement type.', 'd': 'Open the plan list and pick the supplement your finance partner asked for (see the table below). Each plan maps to a different pay element with its own rules.'},
+  {'t': 'Plan: choose the supplement type.', 'd': 'Open the plan list and pick the supplement your FUM asked for (see the table below). Each plan maps to a different pay element with its own rules.'},
   {'t': 'Enter the amount.', 'd': "This is the amount per payroll (for example, $2,000 a month). It's an easy field to skip, so check it before you save."},
   {'t': 'Leave Process separately set to Yes.', 'd': 'The supplement is calculated on its own and paid with the regular paycheck.'},
   {'t': 'Start date: the first day of the target payroll month (for example, Nov 1).', 'd': 'Payments begin in the payroll covering this date.'},
@@ -634,7 +634,7 @@ dict(slug="staff-supplement", topic="payroll", topic_label="Compensation Managem
  quiz=[
   dict(q="You don't know when the extra duties end. What do you do with the end date?", o=["Guess a date","Leave it Ongoing","Leave the whole supplement off"], a=1, why="Leave it Ongoing, and set yourself a reminder to end it."),
   dict(q="What is the risk with an Ongoing supplement?", o=["It stops after one month","It keeps paying until someone ends it","It cannot be ended"], a=1, why="Ongoing supplements keep paying until someone ends them."),
-  dict(q="Who decides which supplement plan to use?", o=["Ask your finance partner","The employee","Always Temporary Supplement"], a=0, why="Ask finance which plan they want."),
+  dict(q="Who decides which supplement plan to use?", o=["Ask your FUM","The employee","Always Temporary Supplement"], a=0, why="Ask your FUM which plan they want."),
  ]),
 
 # ───────────── OFFBOARDING ─────────────
@@ -724,11 +724,11 @@ dict(slug="costing-fundamentals", topic="costing", topic_label="Costing Manageme
   {'t': 'Search the person with Advanced Search and the right Effective As-of Date.', 'd': 'Costing is date-effective, so the date you search on is the date your entry applies to. Type the person\'s name in the search box, then click the Advanced Search link under it. In the filters, open Effective As-of Date, enter the date, click OK, then run the search. If the date is earlier than the person\'s record (for example, before their hire), you get "no data returned".', 'sub': ["Use today's date (or the first day of the current pay period) to see what applies now."]},
   {'t': 'Select the person, then select the Assignment on the left.', 'd': 'The left side, Costing for a Person Overview, lists the Payroll Relationship, Elements, and Assignments. A green check next to an assignment or element means it has costing for the date you searched. The right side, Cost Accounts, shows the costing lines.'},
   {'t': 'Read what you see.', 'd': '"No data to display" on the right means no specific costing: salary charges to the work unit\'s default COA (for example, work unit 46100, program 000). That is not an error. Lines on the right show the accounts and percentages currently charged.'},
-  {'t': 'Ask your finance partner whether your department splits the work unit by program code.', 'd': 'Some departments track teams separately (for example, Team A = 100, Team B = 200).', 'sub': ['No split: leave the default. Nothing to enter.', 'Split: enter costing for each person. Otherwise they default to program 000.']},
+  {'t': 'Ask your FUM whether your department splits the work unit by program code.', 'd': 'Some departments track teams separately (for example, Team A = 100, Team B = 200).', 'sub': ['No split: leave the default. Nothing to enter.', 'Split: enter costing for each person. Otherwise they default to program 000.']},
   {'t': 'Ask whether finance wants any role or payment tracked separately.', 'd': 'If yes, get the COA or POET string from finance and enter it (see Enter costing for a person). To check a whole unit at once, run the HCM Assignment Cost Allocation Plan report from the Departmental Playbook.'},
   {'t': 'Click Done.', 'd': 'Done (top right) closes the person and returns you to the Home page. Viewing changes nothing.'},
  ],
- watch=["Some departments set default costing at the work unit level, others at the business unit level. Know which applies to you.","Costing touches payroll and financial reporting. Wrong costing charges the wrong budget.","Costing practice varies by department. Validate with your finance partner."],
+ watch=["Some departments set default costing at the work unit level, others at the business unit level. Know which applies to you.","Costing touches payroll and financial reporting. Wrong costing charges the wrong budget.","Costing practice varies by department. Validate with your FUM."],
  docs=docs("cost_hier","cost_level"),
  quiz=[
   dict(q="An assignment has no costing. What happens?", o=["Payroll fails","Salary charges to the work unit's default COA","The employee isn't paid"], a=1, why="Blank costing means the work unit default applies. It is not an error."),
@@ -752,7 +752,7 @@ dict(slug="when-to-update-costing", topic="costing", topic_label="Costing Manage
   {'t': 'Split funding (for example, another area pays 20%): split costing setup.', 'd': "Enter two or more lines on the assignment that total 100%. Vanderbilt won't let any remainder fall to a default."},
   {'t': 'Before every HCM Transaction Cutoff: review costing for your unit.', 'd': 'Run the HCM Assignment Cost Allocation Plan and HCM Element Cost Allocation Plan reports (Departmental Playbook) to confirm the right costing will apply before payroll runs.'},
  ],
- watch=["Costing follows an employee who changes business units. Review it after every BU transfer so the new area isn't charged to the old accounts.","Most of these scenarios don't have walkthroughs recorded yet. Ask your finance partner when unsure.","Split funding and cross-unit bonuses may become reference resources rather than core training. To be decided by the HCM group."],
+ watch=["Costing follows an employee who changes business units. Review it after every BU transfer so the new area isn't charged to the old accounts.","Most of these scenarios don't have walkthroughs recorded yet. Ask your FUM when unsure.","Split funding and cross-unit bonuses may become reference resources rather than core training. To be decided by the HCM group."],
  docs=docs("cost_person","cost_hier"),
  quiz=[
   dict(q="An employee moves to a team with a different program code. What do you check?", o=["Nothing","That the program code in costing is still correct","Their salary"], a=1, why="A team change within the work unit can change the program code."),
@@ -763,8 +763,8 @@ dict(slug="when-to-update-costing", topic="costing", topic_label="Costing Manage
 dict(slug="enter-edit-costing", topic="costing", topic_label="Costing Management",
  title_pre="Enter costing for a", title_em="person", name="Enter costing for a person",
  system="Oracle HCM (Costing for Persons)", time="10 min", sources=[COSTGUIDE, BRIANA, ALEX],
- intro=["Use Costing for Persons to enter or change where an assignment, or a single pay element, is charged. In many areas the finance partner does this, so confirm who owns it in your department.",
-        "Get the COA or POET string from your finance partner before you start."],
+ intro=["Use Costing for Persons to enter or change where an assignment, or a single pay element, is charged. In many areas the FUM does this, so confirm who owns it in your department.",
+        "Get the COA or POET string from your FUM before you start."],
  use_when="The default won't work and the person or a payment needs specific costing.",
  steps=[
   {'t': 'Open Costing for Persons.', 'd': "Sign in to Oracle Cloud with your VUnetID. On the Home page, go to Our Workforce > Quick Actions (click Show More) > Costing for Persons; it's listed under Payroll. A person search page opens."},
@@ -892,3 +892,5 @@ VERIFY.update(reviews.VERIFY)
 for _gone in reviews.REMOVED: VERIFY.pop(_gone, None)
 import videos
 videos.apply(COURSES)
+import restructure
+restructure.apply(COURSES, VERIFY)   # Start Here slimmed to six courses, nothing dropped (Nov 18, 2026)

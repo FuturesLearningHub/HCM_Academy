@@ -14,7 +14,7 @@
 <script>
 boardScene({ eyebrow:'HCM Academy · Start Here', pre:'Know who owns ', em:'what', post:'.',
   p:"Many pay problems are handoff problems: each person assumed someone else had it. Here's your part as the HCM, who else acts, and what happens next.", meta:'Your part, by transaction',
-  rail:['You', 'Compensation', 'Recruiting', 'Employees and managers', 'Finance partners', 'Payroll', 'Track it'],
+  rail:['You', 'Compensation', 'Recruiting', 'Employees and managers', 'FUMs', 'Payroll', 'Track it'],
   pages:[
     { pre:'You own the ', em:'record', post:'.', lines:['You enter hires, changes, and terminations for your area.', 'You check time cards every week.'],
       art:B.lines(1, 'Your part as the HCM', 'Payroll can only pay what the record says', [[1, 'Hires, changes, and terminations'], [1, 'Weekly time card checks']]) },
@@ -24,8 +24,8 @@ boardScene({ eyebrow:'HCM Academy · Start Here', pre:'Know who owns ', em:'what
       art:B.lines(3, 'From a requisition', 'Central HR processes it', [[0, "Don't submit it yourself."]]) },
     { pre:'Employees and managers own the ', em:'hours', post:'.', lines:['You check that nothing is stuck.'],
       art:B.doc(4, 'Time cards', 'Who approves', [['Employee', 'Approves their time card'], ['Manager', 'Approves it'], ['Payroll', 'Signs off']]) },
-    { pre:'Finance partners own the ', em:'funding', post:'.', lines:['Get the costing string from your finance partner.'],
-      art:B.lines(5, 'Costing', 'Confirm who enters it', [[1, 'In many areas the finance partner also enters costing.'], [1, 'Confirm who owns it in your department.']]) },
+    { pre:'FUMs own the ', em:'funding', post:'.', lines:['FUMs are financial unit managers. Get the costing string from your FUM.'],
+      art:B.lines(5, 'Costing', 'Confirm who enters it', [[1, 'In many areas the FUM also enters costing.'], [1, 'Confirm who owns it in your department.']]) },
     { pre:'Payroll owns the run and every ', em:'correction', post:'.', lines:['Payroll decides how and when to correct the pay.'],
       art:B.doc(6, 'Bring payroll the facts', 'What payroll needs', [['Expected', 'What should have been paid'], ['Paid', 'What was paid'], ['Record', 'What the record shows']]) },
     { pre:'Track it until it is ', em:'approved', post:'.', lines:['Check the notifications bell daily, and before the cutoff.'],

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>What is an HCM explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). A concept course, shown as a branded board.
+     Every line comes from the course "What is an HCM?" (Part 1; Part 2 is the Who owns what video). -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script src="board-scene.js"></script>
+<script>
+boardScene({ eyebrow:'HCM Academy · Start Here', pre:'What is an ', em:'HCM', post:'?',
+  p:'At Vanderbilt, HCM is a role. HCMs work inside the business, close to the managers and employees they support, and they own the people work for their area.', meta:'The HCM role',
+  rail:['HCM means you', 'Who you serve', 'Oracle HCM and UKG', 'Seven areas'],
+  pages:[
+    { pre:'HCM means the ', em:'role', post:': you.', lines:['You own the people work for the departments and teams in your area.', 'When a course means the system, it says Oracle HCM.'],
+      art:B.doc(1, 'In HCM Academy', 'Two different things', [['HCM', 'The role: you'], ['Oracle HCM', 'The system HCMs use to do the work']]) },
+    { pre:'You serve your ', em:'area', post:'.', lines:['You sit close to the managers and employees you support.'],
+      art:B.lines(2, 'For the departments and teams you serve', 'Your part', [[1, 'Enter the hires, changes, and terminations their work needs'], [1, 'Check that time and pay are right'], [1, 'Work with managers, FUMs, and others']]) },
+    { pre:'You work in Oracle HCM and ', em:'UKG', post:'.', lines:['You reach Oracle HCM through Our Workforce on the Oracle home page.'],
+      art:B.doc(3, 'Where the work happens', 'Two systems', [['Oracle HCM', 'Positions, requisitions, hires, assignment changes, terminations, leave, costing, document records, reports'], ['UKG (Kronos)', 'Weekly time cards and time off for non-exempt staff']]) },
+    { pre:'Your work covers seven ', em:'areas', post:'.', lines:['Each area has its own topic in HCM Academy.'],
+      art:B.doc(4, 'HCM Academy topics', 'Your work, by area', [['Hiring', 'Positions to pending workers'], ['Payroll and time cards', 'Time card checks and payments'], ['Assignments', 'Changes, transfers, terminations'], ['Leave', 'FMLA, TMLA, exempt time off'], ['Costing', 'With the string from your FUM'], ['Students and faculty', 'Workers and assignments'], ['Records and reporting', 'Document records and reports']]) }
+  ],
+  out:{ pre:'Two things to ', em:'remember', post:'.', items:['When a course says HCM, it means you, the role. When it means the system, it says Oracle HCM.',
+    'Payroll can only pay what the record says, and you enter the record.'] } });
+</script>
+</body>
+</html>
