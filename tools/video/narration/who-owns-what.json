@@ -1,0 +1,53 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Who owns what. Many pay problems are handoff problems: each person assumed someone else had it. Here's your part as the HCM, who else acts, and what happens next.",
+    "You own the record. You enter hires, changes, and terminations for your area, and you check time cards every week. Payroll can only pay what the record says.",
+    "Compensation owns the job behind the pay. They pick the job code and level, and issue the pre-search and reclass memos. Don't decide exempt or non-exempt status yourself.",
+    "Recruiting and central HR own moves that come from a requisition. A transfer or promotion that came from a job application is processed by central HR. Don't submit it yourself.",
+    "Employees and managers own the hours. The employee approves their time card, the manager approves it, and payroll signs off. You check that nothing is stuck.",
+    "Finance partners own the funding. Get the costing string from your finance partner. In many areas, the finance partner also enters costing, so confirm who owns it in your department.",
+    "Payroll owns the payroll run, and every correction. Bring payroll the facts: what was expected, what was paid, and what the record shows. Payroll decides how and when to correct the pay.",
+    "Track your transaction until it's approved. Check the notifications bell daily, and before the cutoff. A transaction that's still pending doesn't pay.",
+    "Two things to remember. Never try to run or rerun payroll yourself. And never create a direct hire for someone already in a recruiting process."
+  ],
+  "clips": [
+    [
+      0.0,
+      10.44
+    ],
+    [
+      10.8,
+      21.84
+    ],
+    [
+      22.25,
+      33.58
+    ],
+    [
+      33.93,
+      48.07
+    ],
+    [
+      48.4,
+      58.75
+    ],
+    [
+      59.17,
+      73.42
+    ],
+    [
+      73.91,
+      86.63
+    ],
+    [
+      87.2,
+      96.86
+    ],
+    [
+      97.46,
+      107.73
+    ]
+  ]
+}

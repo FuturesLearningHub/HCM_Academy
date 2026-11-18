@@ -333,6 +333,8 @@ def who_rows():
 NEW_IN_V02 = {"what-to-attach", "who-owns-what", "shared-calendar", "pay-rules", "common-pay-errors"}
 TIME_CARD_RULE = {"weekly-time-card-check", "ukg-time-cards"}
 _VIDEO = "Added a narrated video and a detailed job aid with a picture for each step."
+_TERMS = "Title now says Oracle HCM: in HCM Academy, HCM means the role, and Oracle HCM is the system."
+_TERMS_DATA = "Wording: says Oracle HCM data where it means the system. In HCM Academy, HCM means the role."
 _ORACLE = "Video and job aid rebuilt on the Oracle screens, from Oracle's documentation; steps outside Oracle stay as cards."
 EXTRA_CHANGES = {
     # slug: [(date, text)] for hand-written entries. Newest first.
@@ -343,6 +345,11 @@ EXTRA_CHANGES = {
     "background-checks": [(REVIEWED_ON, _ORACLE), (SCREENS, _VIDEO)],
     "executive-search": [(REVIEWED_ON, _ORACLE), (SCREENS, _VIDEO)],
     "create-position": [(SCREENS, _VIDEO)], "update-position": [(SCREENS, _VIDEO)], "convert-pending-worker": [(SCREENS, _VIDEO)],
+    "hcm-structure": [(REVIEWED_ON, _TERMS + " " + _VIDEO)], "workflow-worklists": [(REVIEWED_ON, _TERMS + " " + _VIDEO)],
+    "who-owns-what": [(REVIEWED_ON, _VIDEO)], "quick-actions-person-info": [(REVIEWED_ON, _VIDEO)], "shared-calendar": [(REVIEWED_ON, _VIDEO)],
+    "ferpa-for-staff": [(REVIEWED_ON, _VIDEO)], "i9-background-by-worker-type": [(REVIEWED_ON, _VIDEO)], "employee-vs-contractor": [(REVIEWED_ON, _VIDEO)],
+    "data-integrity": [(REVIEWED_ON, "Watch-out matched to the SME review of Position best practices: reuse an inactive position only if it meets current guidelines. " + _VIDEO)],
+    "bi-intro-playbook": [(REVIEWED_ON, _TERMS_DATA)], "reporting-101": [(REVIEWED_ON, _TERMS_DATA)], "reporting-301": [(REVIEWED_ON, _TERMS_DATA)],
     "rehire-eligibility": [(REVIEWED_ON, _ORACLE + " Field names in steps 1 and 2 now follow Oracle's documentation: Recommended for Rehire (Yes, No, Not Specified), and the search option to include terminated work relationships."), (SCREENS, _VIDEO)],
 }
 

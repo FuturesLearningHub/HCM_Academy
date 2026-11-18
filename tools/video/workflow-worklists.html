@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Workflow and worklists explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). The header and Our Workforce follow Vanderbilt's screens; the
+     notifications list, approval history, and task actions follow standard Oracle and the course text (see the course's Screen
+     check: action labels and delegation are open items, so delegation is a card). Names are fictional.
+     Every caption and narration line comes from the course "Oracle HCM Workflow and Worklists". -->
+<link rel="stylesheet" href="engine/engine.css" />
+<style>
+.hist{ margin-top:6px; }
+.hist .hr{ display:grid; grid-template-columns:28px 1fr 160px; gap:12px; align-items:center; padding:12px 0; border-top:1px solid var(--o-line); font-size:14.5px; }
+.hist .hr small{ display:block; color:var(--o-ink2); font-size:13px; }
+.hist .st{ font-size:13px; font-weight:600; }
+.hist .ok{ color:#2E7D4F; } .hist .wait{ color:#946E24; } .hist .no{ color:var(--o-ink2); }
+.hist svg{ width:20px; height:20px; }
+</style>
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script>
+VIDEO.set({ H:2000, steps:6 });
+VIDEO.add(C.home({ notif:'Change Working Hours: Riley Thompson' }).replace(/<\/section>$/, '<div id="bellhit" style="position:absolute;left:1346px;top:25px;width:36px;height:36px"></div></section>'));
+var ok = C.I('checkc'), clk = C.I('clock'), dash = C.I('info');
+VIDEO.add(C.page('nlist', C.title('Notifications') + '<div class="lp" style="top:160px"><div class="bar"><span class="chip on">All</span><span class="chip">Action Required</span><span class="chip">FYI</span></div>' +
+  C.table({ id:'ntab', cols:'2.2fr 1.2fr 1fr 1fr', head:['Title', 'From', 'Status', 'Received'], rows:[
+    { id:'n-mine', cells:['<b style="color:#2a6bb1">Change Working Hours: Riley Thompson</b>', 'You', 'Pending approval', 'Today'] },
+    { id:'n-task', cells:['<b style="color:#2a6bb1">Approval required: Change Salary for Sam Patel</b>', 'Drew Kim', 'Assigned to you', 'Today'] },
+    { cells:['Absence request: Lee Robinson', 'Lee Robinson', 'Approved', 'Yesterday'] } ] }) + '</div>'));
+VIDEO.add(C.page('mine', C.title('Change Working Hours: Riley Thompson') + C.btns([{ t:'Actions', id:'b-mact' }]) +
+  '<div class="omenu" style="right:40px;top:146px" data-if="m-mact"><div id="m-wd" class="hov">Withdraw</div></div>' +
+  '<div class="lp" style="top:160px;width:760px"><div class="ecard" style="width:100%"><h4>Approval History</h4><div class="hist" id="hist">' +
+  '<div class="hr"><span class="ok">' + ok + '</span><div>Jordan Avery (you)<small>Submitted · Today, 9:12 AM</small></div><span class="st ok">Submitted</span></div>' +
+  '<div class="hr" id="h-wait"><span class="wait">' + clk + '</span><div>Morgan Ellis<small>Business unit approver</small></div><span class="st wait">Waiting</span></div>' +
+  '<div class="hr"><span class="no">' + dash + '</span><div>Central HR approval group<small>Not started</small></div><span class="st no">Not started</span></div></div>' +
+  '<h4 style="margin-top:18px">Comments</h4><p style="font-size:14px;margin:6px 0 0">Working hours 30 to 40, effective 12/1/2026.</p></div></div>' +
+  '<div class="toast" data-if="wd">' + ok + '<span>You withdrew the transaction. Fix it, and resubmit.</span></div>'));
+VIDEO.add(C.page('task', C.title('Approval required: Change Salary for Sam Patel') + C.btns([{ t:'Reject', id:'b-rej' }, { t:'Actions', id:'b-tact' }, { t:'Approve', cta:true, id:'b-app' }]) +
+  '<div class="omenu" style="right:120px;top:146px" data-if="m-tact"><div id="m-rmi" class="hov">Request More Information</div></div>' +
+  C.pban({ ini:'SP', c:'#9C5B3B', name:'Sam Patel', sub:'Research Analyst · Biological Sciences · Person Number 104531' }) +
+  '<div class="lp" style="top:262px;width:760px"><div class="ecard" style="width:100%"><h4>Details</h4><dl><dt>Action</dt><dd>Change Salary</dd><dt>Effective</dt><dd>1/1/2027</dd><dt>Submitted by</dt><dd>Drew Kim</dd></dl>' +
+  '<p class="flabel" style="margin-top:16px">Comments</p><div class="ta" id="f-com" data-focus="com" style="height:64px"><span data-bind="com"></span><span class="caret" data-caret="com"></span></div></div></div>'));
+
+VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Start Here', pre:'Track approvals and work your ', em:'worklist', post:'.', rule:true,
+  p:"Most transactions you submit in Oracle don't take effect right away. They route to approvers, and each approver sees a task in their notifications.", meta:'Oracle HCM · Notifications' }));
+VIDEO.addCard(C.card({ id:'del', theme:'cream', eyebrow:'Step 6 of 6 · Before you are out', pre:'Set up ', em:'delegation', post:'.', top:220,
+  items:['Oracle lets approvers delegate approval responsibilities to another person.', 'Use it for planned time away, so transactions are not stuck waiting on you.'], meta:'Open item: whether delegation is enabled for HCMs' }));
+VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Two things to ', em:'remember', post:'.', items:[
+  'Check the bell daily, and before every payroll cutoff. A transaction waiting on an approver is not in payroll yet.',
+  'People or transactions in your area missing? You may need an area of responsibility. Your business unit approver requests it.'], meta:'Questions: pcb@vanderbilt.edu' }));
+
+seg(); card('intro'); scene('home'); wait(3.5); hold(-.5);
+card('intro', false);
+capS(1, 'Click the notifications bell at the top right. Show All opens the full list, with filters.');
+wait(.4); press('#bellhit', function(){ flag('notif'); }, 1.0); wait(.6); hl('.notif h4 span'); wait(.8); mark(1, '.notif'); hold(-.4); hl(null);
+capS(2, 'Open a transaction you submitted to see its approval history: who approved, and who it is waiting on.');
+press('.notif h4 span', function(){ flag('notif', false); }, .6); scene('nlist'); wait(.4); press('#n-mine b', null, .8); scene('mine'); wait(.4);
+hl('#h-wait'); wait(1.2); mark(2, '#hist'); hold(-.3); hl(null);
+capS(3, 'For a task assigned to you, review the details, add a comment, and choose the action, such as Approve or Reject.');
+scene('nlist'); wait(.3); press('#n-task b', null, .8); scene('task'); wait(.4);
+fill('#f-com', 'com', 'Please attach the compensation memo.', 1.2); hl('#b-app'); wait(.6); hl('#b-rej'); wait(.6); hl(null); mark(3); hold(-.3);
+capS(4, 'For small fixes, Request More Information instead of rejecting. A rejected transaction starts the approvals over.');
+press('#b-tact', function(){ flag('m-tact'); }, .7); wait(.3); move('#m-rmi', .5); hl('#m-rmi'); wait(.8); mark(4, '#m-rmi'); hold(-.3); hl(null); flag('m-tact', false);
+capS(5, 'Need to change your own transaction? While it is still in approval, Withdraw it, fix it, and resubmit.');
+scene('mine'); wait(.4); press('#b-mact', function(){ flag('m-mact'); }, .7); wait(.3); move('#m-wd', .5); hl('#m-wd'); wait(.7); mark(5, '#m-wd'); click(function(){ hl(null); flag('m-mact', false); flag('wd'); }); wait(1.2); hold(-.3);
+capS(6, 'Before planned time away, set up delegation, so nothing gets stuck waiting on you.');
+flag('wd', false); card('del'); wait(2.8); mark(6); hold(-.6);
+seg(); card('out'); wait(.6); card('del', false); wait(1.4); hold(-2.2);
+VIDEO.run();
+</script>
+</body>
+</html>

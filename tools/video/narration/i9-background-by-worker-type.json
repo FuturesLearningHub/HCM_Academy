@@ -1,0 +1,53 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "I-9 and background check requirements by worker type. Not every person you bring on needs the same checks. Federal law requires a Form I-9 for every employee, and Vanderbilt requires background checks for some worker types. Get it wrong, and you either delay a start, or start someone without required clearance.",
+    "Identify the worker type first: student worker, staff, faculty, campus affiliate, or a service free stipend or student expense only appointment. The type sets which checks apply.",
+    "Know who counts as each type. Only Vanderbilt students hold a student relationship. Other interns are set up as postdocs, temporary staff, or term staff. Campus affiliates can be independent contractors, employees of contracted vendors, or non-compensated affiliates.",
+    "Then look up the requirement. Paid employees need an I-9. Staff and faculty also need a background check. Affiliates need a background check only. Service free stipend and student expense only appointments need neither.",
+    "The employee completes I-9 Section 1 by the first day of work for pay. It can be done any time after the offer is accepted.",
+    "Section 2 is due within three business days of the start date, after the employer reviews the documents in person. Start Monday, and Section 2 is due Thursday.",
+    "When a background check applies, wait for clear to start. P E B C clears the check, run through HireRight, and emails you. Don't start the person before that email.",
+    "No requisition? Staff checks on requisitions are automated in Oracle Recruiting. Other populations need a manual request through Formstack.",
+    "Two things to remember. Section 1 can't wait for the three-day window: it's due on day one. And New York requires non-criminal background checks before any conditional offer."
+  ],
+  "clips": [
+    [
+      0.0,
+      20.89
+    ],
+    [
+      21.53,
+      34.62
+    ],
+    [
+      35.2,
+      53.79
+    ],
+    [
+      54.34,
+      69.31
+    ],
+    [
+      69.92,
+      77.9
+    ],
+    [
+      78.35,
+      88.87
+    ],
+    [
+      89.47,
+      100.43
+    ],
+    [
+      100.95,
+      109.83
+    ],
+    [
+      110.42,
+      122.91
+    ]
+  ]
+}

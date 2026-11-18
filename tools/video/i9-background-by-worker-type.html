@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>I-9 and background checks explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). A concept course, shown as a branded board.
+     Every line comes from the course "I-9 and background check requirements by worker type". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script src="board-scene.js"></script>
+<script>
+boardScene({ eyebrow:'HCM Academy · Start Here', pre:'Match the checks to the worker ', em:'type', post:'.',
+  p:'Federal law requires a Form I-9 for every employee, and Vanderbilt requires background checks for some worker types. Get it wrong and you delay a start, or start someone without clearance.', meta:'I-9 · Background checks',
+  rail:['Worker type', 'Who counts', 'The table', 'Section 1', 'Section 2', 'Clear to start', 'No requisition'],
+  pages:[
+    { pre:'Identify the worker type ', em:'first', post:'.', lines:['The type sets which checks apply.'],
+      art:B.doc(1, 'Worker types', 'Which one is it?', [['Student worker', ''], ['Staff or faculty', ''], ['Campus affiliate', ''], ['Service Free Stipend', ''], ['Student Expense Only', '']]) },
+    { pre:'Know who counts as ', em:'each', post:'.', lines:['Only Vanderbilt students hold a student relationship.'],
+      art:B.doc(2, 'Who counts', 'Interns and affiliates', [['Other interns', 'Postdocs, temporary staff, or term staff'], ['Campus affiliates', 'Independent contractors, vendor employees, or non-compensated']]) },
+    { pre:'Look up the ', em:'requirement', post:'.', lines:['Paid employees need an I-9. Staff and faculty also need a background check.'],
+      art:B.doc(3, 'Requirements by worker type', 'I-9 · Background check', [['Student workers', 'I-9: Yes · Check: No'], ['Staff and faculty', 'I-9: Yes · Check: Yes'], ['Campus affiliates', 'I-9: No · Check: Yes'], ['Service Free Stipend', 'Neither'], ['Student Expense Only', 'Neither']]) },
+    { pre:'Section 1 by day ', em:'one', post:'.', lines:['The employee completes it any time after the offer is accepted, but no later than the first day of work for pay.'],
+      art:B.lines(4, 'I-9 Section 1', 'The employee', [[1, 'Any time after the offer is accepted'], [0, 'No later than the first day of work for pay']]) },
+    { pre:'Section 2 in three business ', em:'days', post:'.', lines:["The employer reviews the employee's documents in person."],
+      art:B.doc(5, 'I-9 Section 2', 'Within three business days', [['Start Monday', 'Due Thursday'], ['Job under three days', 'Finish it on day one']]) },
+    { pre:'Wait for clear to ', em:'start', post:'.', lines:['PEBC clears the check, run through HireRight, and emails clear to start.'],
+      art:B.lines(6, 'Background check', 'Before day one', [[1, 'Clear to start email from PEBC'], [0, "Don't start the person before it."]]) },
+    { pre:'No requisition? Request it ', em:'manually', post:'.', lines:['Checks for staff on requisitions are automated in Oracle Recruiting.'],
+      art:B.doc(7, 'Formstack', 'Manual background check request', [['Use it for', 'Populations not on a requisition']]) }
+  ],
+  out:{ pre:'Two things to ', em:'remember', post:'.', items:["Section 1 can't wait for the three-day window. It's due on day one.", 'New York requires non-criminal background checks before any conditional offer.'] } });
+</script>
+</body>
+</html>

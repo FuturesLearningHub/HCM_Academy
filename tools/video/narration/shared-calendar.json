@@ -1,0 +1,59 @@
+{
+ "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+ "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py, two cut points set by hand from the pause list; locked. clips[i] plays when segment i of the scene starts.",
+ "script": [
+  "The shared administrative calendar. Payroll runs on fixed dates. A transaction has to be approved before its cutoff, and a time card has to be in by its deadline, or the pay waits for the next run. Vanderbilt publishes those dates in the H R Payroll Calendar.",
+  "People Experience publishes it on the Pay Calendar page of its site, under Payroll. There's one P D F for each year, with a page for each month. The 2026 and 2027 calendars are posted.",
+  "Find your pay group. Each row is one payroll: weekly, biweekly, monthly, academic monthly, or off cycle. For each, the calendar gives the pay period, the paycheck date, the H C M Transaction Cutoff, and when time cards are due.",
+  "Monthly pay. In 2026, the H C M Transaction Cutoff for monthly and academic monthly pay is the 18th, in every month but December, when it's the 16th. It stays the 18th even on a weekend, so finish on the last working day before it.",
+  "Weekly and biweekly pay. The cutoff is the Friday a week before payday, in nearly every pay period. Holiday weeks move it.",
+  "Time cards are due at noon on the Monday after the pay period ends. In holiday weeks the deadline moves, often to 10 a m, or to Tuesday. Monthly pay has no time card.",
+  "Off-cycle runs. The cutoff and the time card deadline are noon, two days before the paycheck date, usually a Wednesday.",
+  "Submit early enough for approvals. A transaction counts only once it's fully approved, so leave time for every approver to act before the cutoff, and track it with the notifications bell.",
+  "Miss the cutoff, and a change that arrives after payroll is calculated is picked up as a retroactive adjustment in a later run. The person may be paid late, or need a correction.",
+  "Two things to remember. Don't work from memory: dates move around holidays, and the December cutoff is early. And pending approvals don't pay."
+ ],
+ "clips": [
+  [
+   0.0,
+   17.85
+  ],
+  [
+   18.35,
+   31.5
+  ],
+  [
+   32.12,
+   49.64
+  ],
+  [
+   50.36,
+   68.2
+  ],
+  [
+   68.6,
+   75.73
+  ],
+  [
+   76.14,
+   87.47
+  ],
+  [
+   87.9,
+   97.01
+  ],
+  [
+   97.27,
+   109.0
+  ],
+  [
+   109.31,
+   122.9
+  ],
+  [
+   123.64,
+   134.17
+  ]
+ ],
+ "locked": true
+}

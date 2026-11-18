@@ -1,0 +1,48 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "FERPA for staff. FERPA, the Family Educational Rights and Privacy Act, protects the privacy of student education records. As an HCM, you see student information when you hire and pay student workers, so you need to know what you may see, and what you may share.",
+    "Know what an education record is: records directly related to a student and kept by the school, such as transcripts, class schedules, grades, and disciplinary records. Those live in YES, Vanderbilt's student system, not in Oracle. What you do see in Oracle, such as Federal Work-Study status and personal information, needs the same care.",
+    "Access requires a legitimate educational interest. You may see education records only when you need them to do your job. Curiosity doesn't qualify.",
+    "Student worker records may be education records. Records about someone employed because they're a student, such as work-study, generally are. Treat student worker files with FERPA care.",
+    "Directory information has limits. It includes the student's name, email address, major, and dates of attendance, for example, and may be released unless the student has asked the University Registrar to withhold it. Grades, G P A, and class schedules are not directory information.",
+    "For other disclosures, the school needs the student's written consent. When in doubt, don't share. Refer the request.",
+    "Don't pass information along. Your access doesn't allow you to forward what you learn to anyone without their own legitimate educational interest.",
+    "Two things to remember. Never give a student's class schedule or grades to a caller, parent, or outside employer: send requests to the University Registrar. And FERPA questions go to the University Registrar, or the Office of the General Counsel."
+  ],
+  "clips": [
+    [
+      0.0,
+      18.62
+    ],
+    [
+      19.43,
+      41.74
+    ],
+    [
+      41.97,
+      54.26
+    ],
+    [
+      54.86,
+      67.04
+    ],
+    [
+      67.67,
+      86.48
+    ],
+    [
+      86.92,
+      93.47
+    ],
+    [
+      94.04,
+      104.84
+    ],
+    [
+      105.51,
+      122.83
+    ]
+  ]
+}

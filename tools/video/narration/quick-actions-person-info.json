@@ -1,0 +1,48 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Quick actions, and viewing person and employment information. Almost every HCM task starts the same way: open Our Workforce, pick a quick action, and search for the person. Before you change anything, read the Employment Info page, so you know the current assignment and recent history.",
+    "From the Oracle home page, open Our Workforce. It's Vanderbilt's name for Oracle's My Client Groups, and it holds the quick actions for people in your area.",
+    "Only a few quick actions show at first. Click Show More to see all of them, grouped by area, such as Employment. Which actions you see depends on your security role.",
+    "Open Employment Info and search for the person, by name or by person number. Person number is the safest way to avoid the wrong person with a similar name. Check the person type and status before you select.",
+    "Read the assignment details: business unit, department, job, position, location, manager, working hours, and assignment status. If the person has more than one assignment, make sure you're on the right one.",
+    "Review the history of changes. Click an entry to open View Employment Details, and see exactly what changed on that date.",
+    "Check for future-dated changes before you submit anything new. Oracle records are date effective, so a pending change, such as a transfer next month, can affect what you're about to submit. If you see one, coordinate before acting.",
+    "Two things to remember. Don't start a transaction until you've confirmed the right person and the right assignment. And a missing quick action usually means a security role issue, not a system error."
+  ],
+  "clips": [
+    [
+      0.0,
+      19.77
+    ],
+    [
+      20.41,
+      30.28
+    ],
+    [
+      30.82,
+      41.95
+    ],
+    [
+      42.62,
+      56.18
+    ],
+    [
+      56.75,
+      71.44
+    ],
+    [
+      72.07,
+      80.35
+    ],
+    [
+      80.82,
+      96.04
+    ],
+    [
+      96.71,
+      110.29
+    ]
+  ]
+}

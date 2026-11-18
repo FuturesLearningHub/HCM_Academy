@@ -1,0 +1,53 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Employee or independent contractor? Whether someone is an employee or a contractor is set by law and the facts of the work, not by what anyone calls it, or how they want to be paid. Misclassifying a worker can mean unpaid taxes, missed overtime, and penalties.",
+    "Ask who controls how the work is done. If the university directs how, when, and where the work is done, or trains the worker, that points to an employee.",
+    "Ask who controls the business side. Does the worker invest their own money, offer services to the public, set their price, and risk profit or loss? If not, that points to an employee.",
+    "Look at the relationship. Ongoing work with no set end, benefits, or work that's a regular part of the department's operations points to employment. A contract calling someone a contractor doesn't decide it.",
+    "For wage and hour law, apply the Department of Labor's economic reality test: is the worker economically dependent on the employer, or truly in business for themselves? Labels and pay method don't decide status.",
+    "Students who perform services, such as research help, office support, or event staffing, are generally employees, hired and paid through payroll. Payroll applies any student FICA exception, not you.",
+    "For a professional services agreement, Finance typically shares the I C 20 test. Fill it out with the requestor, so the answers are accurate. The completed test goes to an engagement consultant, who advises on the classification.",
+    "When in doubt, stop and ask before anyone starts. Get the classification answered first, then hire through Oracle if the person is an employee.",
+    "Two things to remember. A request to pay a student by invoice, gift card, or stipend for work performed is a red flag: hire them as an employee. And contractors are excluded from the new hire report, while employees must be included."
+  ],
+  "clips": [
+    [
+      0.0,
+      18.85
+    ],
+    [
+      19.49,
+      28.06
+    ],
+    [
+      28.47,
+      41.29
+    ],
+    [
+      41.51,
+      57.66
+    ],
+    [
+      58.29,
+      72.85
+    ],
+    [
+      73.3,
+      86.03
+    ],
+    [
+      86.31,
+      101.74
+    ],
+    [
+      102.35,
+      111.81
+    ],
+    [
+      112.71,
+      129.52
+    ]
+  ]
+}

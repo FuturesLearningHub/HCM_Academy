@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>FERPA for staff explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). A concept course, shown as a branded board.
+     Every line comes from the course "FERPA Tutorial for Staff". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script src="board-scene.js"></script>
+<script>
+boardScene({ eyebrow:'HCM Academy · Start Here', pre:'Protect student ', em:'records', post:'.',
+  p:'FERPA, the Family Educational Rights and Privacy Act, protects the privacy of student education records. As an HCM, you see student information when you hire and pay student workers.', meta:'FERPA · University Registrar',
+  rail:['Education records', 'Legitimate interest', 'Student workers', 'Directory information', 'Written consent', "Don't pass it on"],
+  pages:[
+    { pre:'What is an education ', em:'record', post:'?', lines:["Records directly related to a student and kept by the school. Those live in YES, Vanderbilt's student system, not in Oracle."],
+      art:B.doc(1, 'Education records', 'For example', [['Transcripts', 'In YES'], ['Class schedules', 'In YES'], ['Grades', 'In YES'], ['In Oracle', 'FWS status and personal information: same care']]) },
+    { pre:'A legitimate educational ', em:'interest', post:'.', lines:['You may see education records only when you need them to do your job.'],
+      art:B.lines(2, 'Access', 'Need it for your job?', [[1, 'Needed to do your job'], [0, "Curiosity doesn't qualify."]]) },
+    { pre:'Student worker ', em:'records', post:'.', lines:["Records about someone employed because they're a student, such as work-study, are generally education records."],
+      art:B.lines(3, 'Student worker files', 'Treat them with FERPA care', [[1, 'Employed because they are a student: generally an education record'], [0, 'Hired for reasons unrelated to student status: not']]) },
+    { pre:'Directory information has ', em:'limits', post:'.', lines:['It may be released unless the student asked the University Registrar in writing to withhold it.'],
+      art:B.doc(4, 'Directory information', 'On the list, and not', [['On the list', 'Name, email, major, dates of attendance, for example'], ['Not on the list', 'Grades, GPA, and class schedules']]) },
+    { pre:'Get written ', em:'consent', post:'.', lines:["Outside the FERPA exceptions, the school needs the student's written consent before disclosing education records."],
+      art:B.lines(5, 'When in doubt', "Don't share", [[1, 'Refer the request.']]) },
+    { pre:"Don't pass it ", em:'along', post:'.', lines:["Your access doesn't let you forward what you learn to anyone without their own legitimate educational interest."],
+      art:B.lines(6, 'What you learn', 'Stays with you', [[0, 'Do not forward it to others.']]) }
+  ],
+  out:{ pre:'Two things to ', em:'remember', post:'.', items:["Never give a student's class schedule or grades to a caller, parent, or outside employer. Send requests to the University Registrar.",
+    'FERPA questions go to the University Registrar or the Office of the General Counsel.'] } });
+</script>
+</body>
+</html>

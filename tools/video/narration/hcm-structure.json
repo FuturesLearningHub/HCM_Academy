@@ -1,0 +1,59 @@
+{
+ "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+ "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py, three cut points set by hand from the pause list; locked. clips[i] plays when segment i of the scene starts.",
+ "script": [
+  "Oracle HCM structure and key concepts. At Vanderbilt, HCM means you: the person inside the business who owns the people work for your area, from hiring, pay, and time cards, to positions, leave, costing, student jobs, and records. Oracle HCM is the system you do that work in. It stores every person inside a set of structures, and each transaction you submit changes one or more of them.",
+  "Start at the top. The enterprise is Vanderbilt as a whole in Oracle. The legal employer is the organization that legally employs the person: it hires them, pays them, and reports their taxes. Every work relationship belongs to one legal employer.",
+  "Next, a business unit and a work unit. A business unit is a large part of Vanderbilt that does its own HR and finance processing. A work unit is a smaller group inside it, where people are organized and, by default, costed. Use work unit, the term Oracle uses, rather than department.",
+  "A work relationship is the link between a person and a legal employer, for example as an employee, a contingent worker, or a nonworker. A person can have more than one, and each work relationship holds one or more assignments.",
+  "Tell a job from a position. A job is a generic role, such as Administrative Assistant. A position is one specific instance of that job, in a specific work unit. People are hired into positions, and the assignment can inherit values from the position.",
+  "A grade sets the pay range attached to a job or position. It does not set a person's actual salary. That is recorded separately, on the assignment.",
+  "Read the assignment. It's where the job, position, work unit, location, manager, hours, and payroll live. A person has only one primary work relationship, and one primary assignment in it.",
+  "Every person in Oracle has a unique person number. Use it to search, and to tell apart people with similar names.",
+  "Check the person type before you act. Employee, contingent worker, nonworker, and pending worker tell Oracle and payroll how to treat the record. The wrong one changes pay, benefits, and reporting.",
+  "Two things to remember. Changes to a position can flow into every incumbent's assignment, so know which fields the position controls before you edit it. And don't repurpose a position for a different worker type. Ask Compensation instead."
+ ],
+ "clips": [
+  [
+   0.0,
+   30.18
+  ],
+  [
+   30.7,
+   48.28
+  ],
+  [
+   49.07,
+   69.39
+  ],
+  [
+   70.13,
+   85.33
+  ],
+  [
+   85.85,
+   103.81
+  ],
+  [
+   104.58,
+   113.3
+  ],
+  [
+   113.56,
+   129.59
+  ],
+  [
+   130.34,
+   137.62
+  ],
+  [
+   138.47,
+   150.99
+  ],
+  [
+   151.28,
+   169.14
+  ]
+ ],
+ "locked": true
+}

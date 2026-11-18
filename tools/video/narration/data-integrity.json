@@ -1,0 +1,48 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Data integrity: bad data in, bad data out. In Oracle HCM, one record feeds the next. A wrong value on a position or assignment doesn't stay put. It flows into pay, costing, and every report built on it. Getting it right the first time is far cheaper than fixing it after payroll runs.",
+    "Follow the chain from position to pay. Positions feed requisitions, requisitions feed pending worker conversion, and conversion creates the assignment that drives pay. An error at the start repeats at every step.",
+    "Positions push values to assignments. With position synchronization, values on the position, such as department, job, location, and grade, flow to the incumbents' assignments. A wrong position value lands on every person in it.",
+    "Check dates as carefully as values. Oracle records are date effective, so every transaction that affects pay needs the date the change takes effect for pay. A wrong date can pay someone too early or too late, or create retro pay. An update adds history; a correction overwrites the old value.",
+    "Costing follows the data. Pay is charged to the costing on the assignment. Left blank, it uses the work unit's default, so a wrong work unit charges pay to the wrong place. A mistyped costing string goes to suspense.",
+    "Confirm what the position doesn't set. After a reclassification, person type, location, working hours, and hourly salary don't flow from the position. Check and update them on the assignment yourself.",
+    "Review before you submit. Read every field back against the source document: person, effective date, position, hours, pay, and costing. Then check the costing reports before the payroll cutoff.",
+    "Two things to remember. Fixes after payroll runs become retro adjustments, and may mean a late or incorrect paycheck. And don't repurpose a position across worker types to save time."
+  ],
+  "clips": [
+    [
+      0.0,
+      21.35
+    ],
+    [
+      21.87,
+      36.33
+    ],
+    [
+      36.92,
+      52.47
+    ],
+    [
+      52.95,
+      70.56
+    ],
+    [
+      70.88,
+      88.47
+    ],
+    [
+      88.95,
+      101.95
+    ],
+    [
+      102.43,
+      116.42
+    ],
+    [
+      116.87,
+      128.92
+    ]
+  ]
+}

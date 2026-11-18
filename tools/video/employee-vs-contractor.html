@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Employee or contractor explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). A concept course, shown as a branded board.
+     Every line comes from the course "Employee or independent contractor?". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script src="board-scene.js"></script>
+<script>
+boardScene({ eyebrow:'HCM Academy · Start Here', pre:'Employee or independent ', em:'contractor', post:'?',
+  p:"Status is set by law and the facts of the work, not by what anyone calls it or how they want to be paid. Misclassifying a worker can mean unpaid taxes, missed overtime, and penalties.", meta:'Worker classification',
+  rail:['Behavioral control', 'Financial control', 'The relationship', 'Economic reality', 'Students', 'IC20', 'When in doubt'],
+  pages:[
+    { pre:'Who controls the ', em:'work', post:'?', lines:['IRS common-law rules: behavioral control.'],
+      art:B.lines(1, 'Points to an employee', 'The university', [[1, 'Directs how, when, and where the work is done'], [1, 'Trains the worker']]) },
+    { pre:'Who controls the ', em:'business', post:' side?', lines:['Financial control. If not, that points to an employee.'],
+      art:B.lines(2, 'Does the worker', 'Run their own business?', [[1, 'Invest their own money'], [1, 'Offer services to the public'], [1, 'Set their price, and risk profit or loss']]) },
+    { pre:'Look at the ', em:'relationship', post:'.', lines:["A written contract calling someone a contractor doesn't decide it."],
+      art:B.lines(3, 'Points to employment', 'The relationship', [[1, 'Ongoing, with no set end'], [1, 'Benefits'], [1, "A regular part of the department's operations"]]) },
+    { pre:'The economic reality ', em:'test', post:'.', lines:['For wage and hour law, the Department of Labor asks:'],
+      art:B.lines(4, 'Under the FLSA', 'Economically dependent, or in business?', [[0, "Labels and pay method don't decide status."]]) },
+    { pre:'Students are ', em:'employees', post:'.', lines:['Research help, office support, or event staffing: hire and pay them through payroll.'],
+      art:B.lines(5, 'Students who perform services', 'Hire them as employees', [[1, 'Payroll applies any student FICA exception, not you.']]) },
+    { pre:'Use the IC20 ', em:'test', post:'.', lines:['For a professional services agreement, Finance typically shares the IC20 test.'],
+      art:B.doc(6, 'IC20', 'For a PSA request', [['Fill it out', 'With the requestor, so the answers are accurate'], ['Then', 'An engagement consultant advises on classification']]) },
+    { pre:'When in doubt, ', em:'stop', post:'.', lines:['Do not let work begin under a contract while status is unclear.'],
+      art:B.lines(7, 'Before anyone starts', 'Classification first', [[1, 'Get the classification answered.'], [1, 'Hire through Oracle if the person is an employee.']]) }
+  ],
+  out:{ pre:'Two things to ', em:'remember', post:'.', items:['Paying a student by invoice, gift card, or stipend for work performed is a red flag. Hire them as an employee.',
+    'Contractors are excluded from the new hire report. Employees must be included.'] } });
+</script>
+</body>
+</html>

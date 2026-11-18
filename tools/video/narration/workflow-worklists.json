@@ -1,0 +1,48 @@
+{
+  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
+  "note": "One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+  "script": [
+    "Oracle HCM workflow and worklists. Most transactions you submit in Oracle don't take effect right away. They route to approvers, and each approver sees a task in their notifications. Know where to look, and what Withdraw does, so transactions don't stall before the payroll cutoff.",
+    "Click the notifications bell at the top right of any Oracle page. It lists approval tasks and F Y I notifications. Select Show All to see the full list, with filters.",
+    "Find a transaction you submitted, and open it to see the approval history: who has approved, who it's waiting on, and any comments. A transaction is not final until all approvers have acted.",
+    "For a task assigned to you, open it, review the details, and choose the action, such as Approve or Reject. Add a comment when you reject or ask for changes, so the requester knows what to fix.",
+    "For small fixes, request more information instead of rejecting. The task comes back once it's answered. A rejected transaction must be resubmitted, and the whole approval process repeats.",
+    "Need to change your own transaction? While approval is still in progress, withdraw it. Approvers who haven't acted have it removed from their worklists. Fix it, and resubmit.",
+    "Before planned time away, set up delegation, so another person can approve for you, and nothing gets stuck waiting on you.",
+    "Two things to remember. Check the bell daily, and before every payroll cutoff: a transaction waiting on an approver is not in payroll yet. And if people or transactions in your area are missing, you may need an area of responsibility. Your business unit approver requests it."
+  ],
+  "clips": [
+    [
+      0.0,
+      19.1
+    ],
+    [
+      19.58,
+      31.5
+    ],
+    [
+      32.01,
+      44.54
+    ],
+    [
+      45.01,
+      57.89
+    ],
+    [
+      58.32,
+      70.77
+    ],
+    [
+      71.23,
+      81.92
+    ],
+    [
+      82.48,
+      89.86
+    ],
+    [
+      90.36,
+      108.74
+    ]
+  ]
+}

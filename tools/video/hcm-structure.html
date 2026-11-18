@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Oracle HCM structure explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). A concept course, shown as a branded board.
+     Every line comes from the course "Oracle HCM Structure and Key Concepts". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script src="board-scene.js"></script>
+<script>
+boardScene({ eyebrow:'HCM Academy · Start Here', pre:'How Oracle HCM is ', em:'organized', post:'.',
+  p:"HCM means you: the person inside the business who owns the people work for your area. Oracle HCM is the system you do that work in. Every transaction you submit changes one or more of its structures.", meta:'Oracle HCM · Key concepts',
+  rail:['Legal employer', 'Business and work unit', 'Work relationship', 'Job and position', 'Grade', 'Assignment', 'Person number', 'Person type'],
+  pages:[
+    { pre:'Start at the ', em:'top', post:'.', lines:['The enterprise is Vanderbilt as a whole in Oracle.', 'Every work relationship belongs to one legal employer.'],
+      art:B.doc(1, 'The top of the structure', 'Enterprise and legal employer', [['Enterprise', 'Vanderbilt as a whole'], ['Legal employer', 'Hires the person, pays them, and reports their taxes']]) },
+    { pre:'Business unit and ', em:'work unit', post:'.', lines:['A business unit does its own HR and finance processing.', 'A work unit is a smaller group inside it. Use work unit, the term Oracle uses, rather than department.'],
+      art:B.doc(2, 'Inside Vanderbilt', 'Two levels', [['Business unit (BU)', 'A large part of Vanderbilt'], ['Work unit', 'A group inside a BU, where people sit and are costed by default']], 'Some departments are grouped into a single work unit.') },
+    { pre:'The work ', em:'relationship', post:'.', lines:["The person's link to a legal employer.", 'A person can have more than one. Each holds one or more assignments.'],
+      art:B.doc(3, 'Work relationship', 'For example, as a', [['Employee', ''], ['Contingent worker', ''], ['Nonworker', '']]) },
+    { pre:'A job is not a ', em:'position', post:'.', lines:['People are hired into positions.', 'The assignment can inherit values from the position.'],
+      art:B.doc(4, 'Job vs. position', 'Generic role vs. specific seat', [['Job', 'A generic role, such as Administrative Assistant'], ['Position', 'One instance of the job in a specific work unit']], 'Job codes come from the job architecture.') },
+    { pre:'The ', em:'grade', post:'.', lines:['A grade sets the pay range for a job or position.', "It does not set a person's actual salary."],
+      art:B.doc(5, 'Pay', 'Where each part lives', [['Grade', 'The pay range'], ['Salary', 'Recorded separately, on the assignment']]) },
+    { pre:'Read the ', em:'assignment', post:'.', lines:['One primary work relationship, and one primary assignment in it.'],
+      art:B.doc(6, 'Assignment', 'Where it all lives', [['Job and position', ''], ['Work unit and location', ''], ['Manager and hours', ''], ['Payroll', '']]) },
+    { pre:'Use the person ', em:'number', post:'.', lines:['Every person in Oracle has a unique person number.', 'Use it to search, and to tell apart people with similar names.'],
+      art:B.lines(7, 'Two people, one name', 'Search by person number', [[1, 'Person numbers are unique.'], [0, 'Names are not.']]) },
+    { pre:'Check the person ', em:'type', post:'.', lines:['Person types tell Oracle and payroll how to treat the record.', 'The wrong one changes pay, benefits, and reporting.'],
+      art:B.doc(8, 'Person types', 'For example', [['Employee', ''], ['Contingent worker', ''], ['Nonworker', ''], ['Pending worker', '']]) }
+  ],
+  out:{ pre:'Two things to ', em:'remember', post:'.', items:["Changes to a position can flow into every incumbent's assignment. Know which fields the position controls before you edit it.",
+    "Don't repurpose a position for a different worker type. Ask Compensation instead."] } });
+</script>
+</body>
+</html>

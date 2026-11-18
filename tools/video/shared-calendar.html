@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Shared calendar explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). A concept course, shown as a branded board.
+     Every line comes from the course "The Shared Administrative Calendar". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script src="board-scene.js"></script>
+<script>
+boardScene({ eyebrow:'HCM Academy · Start Here', pre:'Work to the HR/Payroll ', em:'calendar', post:'.',
+  p:'Payroll runs on fixed dates. A transaction has to be approved before its cutoff, and a time card has to be in by its deadline, or the pay waits for the next run.', meta:'HR/Payroll Calendar · People Experience',
+  rail:['Open it', 'Pay group', 'Monthly', 'Weekly and biweekly', 'Time cards', 'Off cycle', 'Approvals', 'If you miss it'],
+  pages:[
+    { pre:'Open the HR/Payroll ', em:'Calendar', post:'.', lines:['People Experience publishes it on the Pay Calendar page of its site, under Payroll.'],
+      art:B.doc(1, 'hr.vanderbilt.edu · Payroll', 'Pay Calendar', [['Format', 'One PDF for each year, a page for each month'], ['Posted', 'The 2026 and 2027 calendars']]) },
+    { pre:'Find your pay ', em:'group', post:'.', lines:['Each row is one payroll, with its pay period, paycheck date, HCM Transaction Cutoff, and time card due date.'],
+      art:B.doc(2, 'Pay groups', 'Pay periods', [['Weekly', 'Monday to Sunday'], ['Biweekly', 'Two weeks, Sunday to Saturday'], ['Monthly', 'The calendar month'], ['Academic Monthly', 'The 16th to the 15th'], ['Off Cycle', 'Extra runs, about two a month']]) },
+    { pre:'Monthly: the ', em:'18th', post:'.', lines:['The 2026 HCM Transaction Cutoff for monthly and academic monthly pay.', "It stays the 18th on a weekend, so finish on the last working day before it."],
+      art:B.doc(3, '2026 HCM Transaction Cutoff', 'Monthly and academic monthly', [['Most months', 'The 18th'], ['December', 'The 16th']], 'In 2027 it is the 17th or the 19th in five months.') },
+    { pre:'Weekly and biweekly: a week before ', em:'payday', post:'.', lines:['The cutoff is the Friday a week before the paycheck date.', 'Holiday weeks move it.'],
+      art:B.doc(4, 'HCM Transaction Cutoff', 'Weekly and biweekly', [['Cutoff', 'Seven days before the paycheck date'], ['Holiday weeks', 'Check the calendar']]) },
+    { pre:'Time cards: noon ', em:'Monday', post:'.', lines:['Due at noon on the Monday after the pay period ends.', 'Monthly pay has no time card.'],
+      art:B.doc(5, 'Time Card Due', 'Weekly and biweekly', [['Usually', 'Noon, the Monday after the period ends'], ['Holiday weeks', 'Often 10am, or Tuesday']]) },
+    { pre:'Off cycle: two days ', em:'before', post:'.', lines:['The calendar lists the off-cycle paycheck dates.'],
+      art:B.doc(6, 'Off-cycle runs', 'Cutoff and time cards', [['Deadline', 'Noon, two days before the paycheck date'], ['Usually', 'A Wednesday']]) },
+    { pre:'Leave time for ', em:'approvals', post:'.', lines:['A transaction counts only once it is fully approved.'],
+      art:B.lines(7, 'Before the cutoff', 'Plan for every approver', [[1, 'Submit early enough for every approver to act.'], [1, 'Track it with the notifications bell.']]) },
+    { pre:'If you ', em:'miss', post:' it.', lines:['A change after payroll is calculated becomes a retroactive adjustment in a later run.'],
+      art:B.lines(8, 'Missed the cutoff', 'The pay waits', [[0, 'The person may be paid late.'], [0, 'Or need a correction.']]) }
+  ],
+  out:{ pre:'Two things to ', em:'remember', post:'.', items:["Don't work from memory. Dates move around holidays, and the December cutoff is early.", "Pending approvals don't pay."] } });
+</script>
+</body>
+</html>

@@ -15,6 +15,15 @@ VIDEOS = {
     "convert-pending-worker": dict(title="Convert a pending worker in Oracle HCM", aid="Converting a pending worker, step by step", source=SIM),
     "hire-non-worker": dict(title="Add a non-worker in Oracle HCM", aid="Converting a non-worker, step by step", source=SIM),
     "rehire-eligibility": dict(title="Rehires in Oracle HCM", aid="Rehires, step by step", source=SIM),
+    "hcm-structure": dict(title="How Oracle HCM is organized", aid="Oracle HCM structure, concept by concept", source=BOARD),
+    "workflow-worklists": dict(title="Approvals and worklists in Oracle HCM", aid="Workflow and worklists, step by step", source=SIM),
+    "who-owns-what": dict(title="Who owns what", aid="Who owns what, team by team", source=BOARD),
+    "quick-actions-person-info": dict(title="Find a person in Oracle HCM", aid="Finding a person and reading their record, step by step", source=SIM),
+    "shared-calendar": dict(title="Working to the HR/Payroll Calendar", aid="Reading the HR/Payroll Calendar, step by step", source=BOARD),
+    "ferpa-for-staff": dict(title="FERPA for staff", aid="FERPA, point by point", source=BOARD),
+    "i9-background-by-worker-type": dict(title="I-9 and background checks by worker type", aid="I-9 and background checks, step by step", source=BOARD),
+    "employee-vs-contractor": dict(title="Employee or independent contractor?", aid="Classifying a worker, step by step", source=BOARD),
+    "data-integrity": dict(title="Bad data in, bad data out", aid="Data integrity, step by step", source=BOARD),
 }
 
 def apply(courses):

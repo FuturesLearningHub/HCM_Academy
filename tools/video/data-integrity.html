@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Data integrity explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). A concept course, shown as a branded board.
+     Every line comes from the course "Data integrity: bad data in, bad data out". -->
+<link rel="stylesheet" href="engine/engine.css" />
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script src="board-scene.js"></script>
+<script>
+boardScene({ eyebrow:'HCM Academy · Start Here', pre:'Bad data in, bad data ', em:'out', post:'.',
+  p:"In Oracle HCM, one record feeds the next. A wrong value on a position or assignment doesn't stay put. It flows into pay, costing, and every report built on it.", meta:'Oracle HCM · Data integrity',
+  rail:['Position to pay', 'Synchronization', 'Dates', 'Costing', "What doesn't flow", 'Review'],
+  pages:[
+    { pre:'From position to ', em:'pay', post:'.', lines:['An error at the start repeats at every step.'],
+      art:B.doc(1, 'The chain', 'Each record feeds the next', [['Position', 'Feeds the requisition'], ['Requisition', 'Feeds the pending worker'], ['Conversion', 'Creates the assignment'], ['Assignment', 'Drives pay']]) },
+    { pre:'Positions push to ', em:'assignments', post:'.', lines:["With position synchronization, values flow to the incumbents' assignments and lock those fields."],
+      art:B.lines(2, 'Synchronized from the position', 'Department, job, location, grade', [[0, 'A wrong position value lands on every person in it.']]) },
+    { pre:'Check the ', em:'dates', post:'.', lines:['Oracle records are date effective. Use the date the change takes effect for pay.'],
+      art:B.doc(3, 'Effective dates', 'Update or correction?', [['Update', 'Adds history'], ['Correction', 'Overwrites the old value, with no history']], 'A wrong date can pay too early or too late, or create retro pay.') },
+    { pre:'Costing follows the ', em:'data', post:'.', lines:['Pay is charged to the costing on the assignment.'],
+      art:B.doc(4, 'Costing', 'Where pay is charged', [['Blank', "The work unit's default"], ['Wrong work unit', 'Charged to the wrong place'], ['Mistyped string', 'Goes to suspense']]) },
+    { pre:"What the position doesn't ", em:'set', post:'.', lines:['After a reclassification, check and update these on the assignment yourself.'],
+      art:B.doc(5, "Doesn't flow from the position", 'Check on the assignment', [['Person type', ''], ['Location', ''], ['Working hours', ''], ['Hourly salary', '']]) },
+    { pre:'Review before you ', em:'submit', post:'.', lines:['Read every field back against the source document, then check the costing reports before the cutoff.'],
+      art:B.lines(6, 'Read it back', 'Before you submit', [[1, 'Person and effective date'], [1, 'Position and hours'], [1, 'Pay and costing']]) }
+  ],
+  out:{ pre:'Two things to ', em:'remember', post:'.', items:['Fixes after payroll runs become retro adjustments, and may mean a late or incorrect paycheck.',
+    "Don't repurpose a position across worker types to save time."] } });
+</script>
+</body>
+</html>

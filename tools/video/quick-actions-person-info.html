@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Quick actions and Employment Info explainer</title>
+<!-- Explainer video source (HCM Academy kit, tools/video/engine). Our Workforce and Show More follow Vanderbilt's screens;
+     the Employment Info search, assignment, and history follow standard Oracle and the course text (see the course's Screen check).
+     Names and numbers are fictional. Every caption and narration line comes from the course
+     "Quick Actions and Viewing Person and Employment Information". -->
+<link rel="stylesheet" href="engine/engine.css" />
+<style>
+.hlist{ position:absolute; left:150px; top:448px; width:1000px; }
+.hlist h4{ margin:0 0 8px; font-size:16px; font-weight:600; }
+.hlist .hrow{ display:grid; grid-template-columns:130px 1fr 140px; gap:14px; padding:12px 14px; border-top:1px solid var(--o-line); font-size:14.5px; background:#fff; }
+.hlist .hrow b{ font-weight:600; color:#2a6bb1; }
+.hlist .tagf{ font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#946E24; }
+</style>
+</head>
+<body>
+<div id="stage"><div id="cam"></div></div>
+<script src="engine/engine.js"></script>
+<script>
+VIDEO.set({ H:2000, steps:6 });
+var F = C.field, rt = { ini:'RT', c:'#2F7D7A', name:'Riley Thompson', sub:'Employee · Active · Program Coordinator · Person Number 104522' };
+VIDEO.add(C.home());
+VIDEO.add(C.more());
+VIDEO.add(C.page('select', C.title('Employment Info', { sub:'Select a person' }) +
+  '<div class="ssearch"><div class="field" id="sel-search" data-focus="search">' + C.I('search') + '<span class="grow"><span data-bind="search"></span><span class="caret" data-caret="search"></span><span class="ph" data-ph="search">Search by name or person number</span></span></div></div>' +
+  '<div class="slist"><h3 data-if="!res">Recent (2)</h3><h3 data-if="res">Results (1)</h3>' +
+  '<div class="prow" data-if="!res"><div class="av" style="background:#7A5C2E">ME</div><div><b>Morgan Ellis</b><small>Employee · Active · Director · Person Number 104402</small></div></div>' +
+  '<div class="prow" data-if="!res"><div class="av" style="background:#9C5B3B">SP</div><div><b>Sam Patel</b><small>Employee · Active · Research Analyst · Person Number 104531</small></div></div>' +
+  '<div class="prow" id="row-rt" data-if="res"><div class="av" style="background:#2F7D7A">RT</div><div><b>Riley Thompson</b><small id="rt-type">Employee · Active · Program Coordinator · Person Number 104522</small></div></div></div>'));
+VIDEO.add(C.page('emp', C.title('Employment Info') + C.pban(rt) +
+  '<div class="einfo" style="top:262px"><div class="ecard" id="asg"><h4>Assignment</h4><dl><dt>Business Unit</dt><dd>Arts and Science</dd><dt>Department</dt><dd>Biological Sciences</dd>' +
+  '<dt>Job</dt><dd>Program Coordinator</dd><dt>Position</dt><dd>BIO-PC-01 Program Coordinator</dd><dt>Location</dt><dd>Nashville Main Campus</dd></dl></div>' +
+  '<div class="ecard"><h4>&nbsp;</h4><dl><dt>Manager</dt><dd>Morgan Ellis</dd><dt>Working Hours</dt><dd>40</dd><dt>Assignment Status</dt><dd>Active - Payroll Eligible</dd></dl></div></div>' +
+  '<div class="hlist"><h4>Employment History</h4>' +
+  '<div class="hrow" id="h-fut"><span>12/1/2026</span><span><b>Transfer</b> to Chemistry</span><span class="tagf">Future-dated</span></div>' +
+  '<div class="hrow" id="h-wh"><span>9/1/2026</span><span><b>Change Working Hours</b></span><span></span></div>' +
+  '<div class="hrow"><span>1/5/2026</span><span><b>Hire</b></span><span></span></div></div>' +
+  '<div class="scrim" data-if="ved"></div><div class="modal" data-if="ved" id="ved" style="width:620px"><h3>View Employment Details</h3><p style="font-size:14.5px;color:rgba(22,21,19,.7);margin:0 0 14px">Change Working Hours · Effective 9/1/2026</p>' +
+  '<div class="ecard" style="width:100%"><dl><dt>Working Hours</dt><dd>30 &rarr; <b>40</b></dd><dt>FTE</dt><dd>0.75 &rarr; <b>1.0</b></dd></dl></div>' +
+  '<div style="margin-top:18px;text-align:right"><span class="btn sec" id="b-ved">Done</span></div></div>'));
+
+VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Start Here', pre:'Find a person and read their ', em:'record', post:'.', rule:true,
+  p:'Almost every HCM task starts the same way: open Our Workforce, pick a quick action, and search for the person. Read Employment Info before you change anything.', meta:'Oracle HCM · Our Workforce' }));
+VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Two things to ', em:'remember', post:'.', items:[
+  "Don't start a transaction until you've confirmed the right person and the right assignment.",
+  'A missing quick action usually means a security role issue, not a system error.'], meta:'Questions: pcb@vanderbilt.edu' }));
+
+seg(); card('intro'); scene('home'); wait(3.5); hold(-.5);
+card('intro', false);
+capS(1, "Open Our Workforce: Vanderbilt's name for Oracle's My Client Groups. It holds the quick actions for people in your area.");
+wait(.4); press('#tab-wf', function(){ flag('tab-wf'); }, 1.0); wait(.4); hl('#qa-wf'); wait(1.2); mark(1, '#qa-wf'); hold(-.3); hl(null);
+capS(2, 'Click Show More to see every quick action, grouped by area. Which you see depends on your security role.');
+camTo('#qa-more', 1.3, .8, 120, -120); wait(.3); press('#qa-more span', null, .8); camTo(null, 1, 0); scene('more'); wait(.4);
+camTo('#more-g-employment', 1.25, 1.0, 120, -60); wait(.6); hl('#more-g-employment'); wait(1.2); mark(2); hold(-.3); hl(null);
+capS(3, 'Open Employment Info and search by name or person number. Check the person type and status before you select.');
+camTo(null, 1, 0); scene('home'); flag('tab-wf'); wait(.3); press('#qa-ei span', null, .8); scene('select'); wait(.3);
+fill('#sel-search', 'search', '104522', .7); flag('res'); wait(.5); hl('#rt-type'); wait(1.2); mark(3, '#row-rt'); hold(-.3); hl(null);
+capS(4, 'Read the assignment: business unit, department, job, position, location, manager, hours, and status.');
+press('#row-rt', null, .7); scene('emp'); wait(.4); hl('.einfo'); wait(1.4); mark(4, '.einfo'); hold(-.3); hl(null);
+capS(5, 'Review the history. Click an entry to open View Employment Details and see exactly what changed.');
+press('#h-wh b', function(){ flag('ved'); }, .9); wait(.5); mark(5, '#ved'); hold(-.8); press('#b-ved', function(){ flag('ved', false); }, .6); hold(-.2);
+capS(6, 'Check for future-dated changes before you submit anything new. If you see one, coordinate before acting.');
+hl('#h-fut'); wait(1.4); mark(6, '#h-fut'); hold(-.3); hl(null);
+seg(); card('out'); wait(2); hold(-2.2);
+VIDEO.run();
+</script>
+</body>
+</html>
