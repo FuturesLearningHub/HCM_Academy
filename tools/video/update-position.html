@@ -46,12 +46,12 @@ VIDEO.add(C.page('pos', C.title('Program Coordinator', { id:'pos-top' }) +
     '<div class="att" data-in="att1">' + C.I('clip') + 'Reclass memo.pdf</div>' + C.cont('c2') }) + '</div>' +
   '<div class="scrim" data-if="dlg"></div><div class="modal" data-if="dlg" id="dlg"><h3>Update Position</h3><div class="fld2" style="grid-template-columns:260px 260px">' +
     F({ id:'f-date', label:'Effective Start Date', bind:'date', ph:'m/d/yyyy', icon:'cal' }) +
-    F({ id:'f-reason', label:'Action Reason', bind:'reason', ph:'Select a value', icon:'down', ddIf:'dd-reason', dd:[{ id:'o-reclass', t:'Reclassification to a higher range' }, { t:'Assignment category change' }, { t:'Name change' }] }) +
+    F({ id:'f-reason', label:'Action Reason', bind:'reason', ph:'Select a value', icon:'down', ddIf:'dd-reason', dd:[{ id:'o-reclass', t:'Reclassification to a higher range' }, { t:'Assignment category change' }, { t:'Work unit change' }, { t:'Location change' }] }) +
     '</div><div style="margin-top:22px;text-align:right"><span class="btn sec" style="margin-right:8px">Cancel</span><span class="btn cta" id="b-ok">OK</span></div></div>'));
 VIDEO.add(C.home({ toast:'You submitted the update to Senior Program Coordinator.' }).replace('data-screen="home"', 'data-screen="done"'));
 
 VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Update a ', em:'position', post:'.', rule:true,
-  p:"Most often the name changes, and for a reclassification the job code and maybe the assignment category. Some changes reach the incumbent's assignment once approved. Others don't.", meta:'Oracle HCM · Workforce Structures' }));
+  p:"When the role changes: its name, a reclassification with a new job code, its category, its work unit, or its work location. Some changes reach the incumbent's assignment once approved. Others don't.", meta:'Oracle HCM · Workforce Structures' }));
 VIDEO.addCard(C.card({ id:'sync', theme:'cream', eyebrow:'Step 6 of 6 · After approval', pre:"What doesn't ", em:'flow', post:' to the assignment.', top:220,
   items:['Person type', 'Location', 'Working hours', 'Hourly salary'],
   p:"Open the employee's Employment Info and use Change Assignment (position change within business unit) to update these and the business title.", meta:'Then Change Assignment' }));

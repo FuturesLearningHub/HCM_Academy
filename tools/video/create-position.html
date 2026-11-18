@@ -12,7 +12,7 @@
 <div id="stage"><div id="cam"></div></div>
 <script src="engine/engine.js"></script>
 <script>
-VIDEO.set({ H:2000, steps:10 });
+VIDEO.set({ H:2000, steps:11 });
 var F = C.field;
 VIDEO.add(C.home());
 VIDEO.add(C.more());
@@ -54,49 +54,52 @@ VIDEO.add(C.page('form', C.title('Create Position', { id:'form-top' }) + C.btns(
 VIDEO.add(C.home({ toast:'You submitted the position Program Coordinator for approval.' }).replace('data-screen="home"', 'data-screen="done"'));
 
 VIDEO.addCard(C.card({ id:'intro', h:'big', eyebrow:'HCM Academy · Hiring', pre:'Create a ', em:'position', post:'.', rule:true,
-  p:"Every hire starts with a position. The requisition is built from it, and the new hire's assignment inherits from it. Have the position description and the pre-search memo ready.", meta:'Oracle HCM · Workforce Structures' }));
+  p:"Every hire starts with a position. The requisition is built from it, and the new hire's assignment inherits from it. Have the position description and, for a staff position, the pre-search memo ready.", meta:'Oracle HCM · Workforce Structures' }));
+VIDEO.addCard(C.card({ id:'decide', theme:'cream', eyebrow:'Step 1 of 11 · Decide first', pre:'A new position, or an ', em:'update', post:'?', top:150,
+  inner:'<div class="two" style="margin-top:6px"><div class="box"><div class="k">Create a new position</div><b>A new seat</b><p>A new role. A seat in a different location. A new business unit: positions can\'t move between business units.</p></div>' +
+        '<div class="box"><div class="k">Update the position</div><b>The same role changes</b><p>Its name, its job code (a reclassification), its category, its work unit, or its location. See Update a position.</p></div></div>', meta:'Decide first' }));
 VIDEO.addCard(C.card({ id:'out', eyebrow:'Watch-outs', pre:'Three things to ', em:'remember', post:'.', items:[
-  "Don't reactivate an inactive position. Old job codes on it can block updates and approval. Create a new one.",
+  "An inactive position that no longer meets current guidelines, such as one with an old job code, can block updates and approval. Bring it up to date or create a new one.",
   "Don't repurpose an unused position built for a different worker type. Create a new one.",
   'The requisition copies the position when it is submitted. Fix the position before you create the requisition.'], meta:'Questions: pcb@vanderbilt.edu' }));
 
 /* ---------- timeline: one segment per narration paragraph ---------- */
 seg(); card('intro'); scene('home'); wait(3.5); hold(-.5);
-card('intro', false);
-capS(1, 'Open Positions: Our Workforce, Show More, then Positions under Workforce Structures.');
+seg(); card('decide'); wait(.6); card('intro', false); wait(4); mark(1); hold(-.6); card('decide', false); wait(.6);
+capS(2, 'Open Positions: Our Workforce, Show More, then Positions under Workforce Structures.');
 wait(.5); press('#tab-wf', function(){ flag('tab-wf'); }, 1.0); wait(.5);
 camTo('#qa-more', 1.3, .8, 120, -120); wait(.4); press('#qa-more span', null, .9); camTo(null, 1, 0); scene('more'); wait(.3);
 camTo('#more-workforce-structures-positions', 1.3, 1.4, 120, -40); wait(1.5); move('#more-workforce-structures-positions span', .9); hl('#more-workforce-structures-positions'); wait(.3); hold(.6);
 click(function(){ hl(null); }); camTo(null, 1, 0); scene('positions'); wait(.4);
-capS(2, 'Search with Status set to Active. Incumbents shows who sits in each position.');
-wait(.3); hl('#f-status'); wait(.8); hl(null); press('#b-search', function(){ flag('searched'); }); wait(.6); hl('#ptab'); wait(.6); mark(1, '#ptab'); hold(-.2); hl(null);
-capS(3, 'Select Add. The new position opens at When and Why.');
-wait(.3); move('#b-add', .9); hl('#b-add'); wait(.3); click(function(){ hl(null); }); scene('form'); wait(.5); mark(2, '#s1'); hold(-.2);
-capS(4, 'Effective date: today, not the start date. Status Active, action reason New Position.');
-camTo('#s1', 1.15, .9, 55, 60); wait(.5); fill('#f-date', 'date', '11/17/2026', 1.0); mark(3, '#f-date');
-pick('#f-status2', 'dd-status', '#o-active', 'status', 'Active'); pick('#f-reason', 'dd-reason', '#o-new', 'reason', 'New Position'); mark(4);
+capS(3, 'Search with Status set to Active. Incumbents shows who sits in each position.');
+wait(.3); hl('#f-status'); wait(.8); hl(null); press('#b-search', function(){ flag('searched'); }); wait(.6); hl('#ptab'); wait(.6); mark(2, '#ptab'); hold(-.2); hl(null);
+capS(4, 'Select Add. The new position opens at When and Why.');
+wait(.3); move('#b-add', .9); hl('#b-add'); wait(.3); click(function(){ hl(null); }); scene('form'); wait(.5); mark(3, '#s1'); hold(-.2);
+capS(5, 'Effective date: today, not the start date. Status Active, action reason New Position.');
+camTo('#s1', 1.15, .9, 55, 60); wait(.5); fill('#f-date', 'date', '11/17/2026', 1.0); mark(4, '#f-date');
+pick('#f-status2', 'dd-status', '#o-active', 'status', 'Active'); pick('#f-reason', 'dd-reason', '#o-new', 'reason', 'New Position'); mark(5);
 hold(1.2); press('#c1', function(){ flag('s1-done'); }); hold(-.3);
-capS(5, 'Business unit, name, and code. Work unit means department.');
+capS(6, 'Business unit, name, and code. Work unit means department.');
 camTo('#f-name', 1.15, .9, 0, 150); wait(.4);
-pick('#f-bu', 'dd-bu', '#o-bu', 'bu', 'Arts and Science'); fill('#f-name', 'name', 'Program Coordinator', .9); fill('#f-code', 'code', 'BIO-PC-01', .7); mark(5);
-move('#f-wu', .8); click(function(){ fset('wu'); }); type('wu', 'Biological', .6); flag('dd-wu'); wait(.3); press('#o-wu', function(){ flag('dd-wu', false); val('wu', 'Biological Sciences'); fset(null); }, .5); mark(6, '#f-wu'); hold(-.2);
-capS(6, 'Job: search by the six-digit code from the memo. Leave Manager blank.');
-move('#f-job', .8); click(function(){ fset('job'); }); type('job', '104221', .7); flag('dd-job'); wait(.4); press('#o-job', function(){ flag('dd-job', false); val('job', '104221 Program Coordinator'); fset(null); }, .6); mark(7, '#f-job');
+pick('#f-bu', 'dd-bu', '#o-bu', 'bu', 'Arts and Science'); fill('#f-name', 'name', 'Program Coordinator', .9); fill('#f-code', 'code', 'BIO-PC-01', .7); mark(6);
+move('#f-wu', .8); click(function(){ fset('wu'); }); type('wu', 'Biological', .6); flag('dd-wu'); wait(.3); press('#o-wu', function(){ flag('dd-wu', false); val('wu', 'Biological Sciences'); fset(null); }, .5); mark(7, '#f-wu'); hold(-.2);
+capS(7, 'Job: search by the code from the memo. Leave Manager blank.');
+move('#f-job', .8); click(function(){ fset('job'); }); type('job', '104221', .7); flag('dd-job'); wait(.4); press('#o-job', function(){ flag('dd-job', false); val('job', '104221 Program Coordinator'); fset(null); }, .6); mark(8, '#f-job');
 wait(.4); hl('#f-mgr'); wait(1.4); hold(.2); hl(null);
-capS(7, 'Location: where the person would sit. Assignment category: the one on the memo.');
+capS(8, 'Location: where the person would sit. Assignment category: the one on the memo.');
 camTo('#f-cat', 1.15, .9, 0, 110); wait(.4);
-move('#f-loc', .8); click(function(){ fset('loc'); }); type('loc', 'Nashville', .6); flag('dd-loc'); wait(.3); press('#o-loc', function(){ flag('dd-loc', false); val('loc', 'Nashville Main Campus'); fset(null); }, .5); mark(8, '#f-loc');
-pick('#f-cat', 'dd-cat', '#o-cat', 'cat', 'Professional exempt'); mark(9, '#f-cat'); hold(-.2);
-capS(8, 'Standard working hours: always 40. Working hours: the actual hours.');
-camTo('#f-wh', 1.15, .8, 0, 90); fill('#f-std', 'std', '40', .4); fill('#f-wh', 'wh', '20', .4); val('fte', '0.5'); wait(.3); hl('#f-fte'); wait(1.0); mark(10, '#f-fte'); hold(-.2); hl(null);
-capS(9, 'Headcount 1 is Single incumbent. Overlap allowed: Yes.');
-camTo('#f-type', 1.15, .8, 0, 90); fill('#f-hc', 'hc', '1', .3); pick('#f-type', 'dd-type', '#o-single', 'ptype', 'Single incumbent'); mark(11, '#f-type');
-press('#f-ovl span', function(){ flag('ovl'); }); wait(.3); mark(12, '#f-ovl'); hold(1.0);
+move('#f-loc', .8); click(function(){ fset('loc'); }); type('loc', 'Nashville', .6); flag('dd-loc'); wait(.3); press('#o-loc', function(){ flag('dd-loc', false); val('loc', 'Nashville Main Campus'); fset(null); }, .5); mark(9, '#f-loc');
+pick('#f-cat', 'dd-cat', '#o-cat', 'cat', 'Professional exempt'); mark(10, '#f-cat'); hold(-.2);
+capS(9, 'Standard working hours: always 40. Working hours: the actual hours.');
+camTo('#f-wh', 1.15, .8, 0, 90); fill('#f-std', 'std', '40', .4); fill('#f-wh', 'wh', '20', .4); val('fte', '0.5'); wait(.3); hl('#f-fte'); wait(1.0); mark(11, '#f-fte'); hold(-.2); hl(null);
+capS(10, 'Headcount 1 is Single incumbent. Overlap allowed: Yes.');
+camTo('#f-type', 1.15, .8, 0, 90); fill('#f-hc', 'hc', '1', .3); pick('#f-type', 'dd-type', '#o-single', 'ptype', 'Single incumbent'); mark(12, '#f-type');
+press('#f-ovl span', function(){ flag('ovl'); }); wait(.3); mark(13, '#f-ovl'); hold(1.0);
 press('#c2', function(){ flag('s2-done'); }); hold(-.3);
-capS(10, 'Attach the memo and position description, add comments, and Submit.');
+capS(11, 'Attach the documents, add comments, and Submit.');
 camTo('#s3', 1.15, .9, 55, 150); wait(.4);
 press('#f-att', function(){ flag('att1'); }); wait(.3); press('#f-att', function(){ flag('att2'); }, .4);
-fill('#f-com', 'com', 'New Program Coordinator position for the lab. Pre-search memo attached.', 1.8); mark(13);
+fill('#f-com', 'com', 'New Program Coordinator position for the lab. Pre-search memo attached.', 1.8); mark(14);
 press('#c3', function(){ flag('s3-done'); flag('can-submit'); }); camTo(null, 1, .9); wait(.6);
 move('#b-submit', .9); hl('#b-submit'); wait(.3); hold(.4); click(function(){ hl(null); }); scene('done'); flag('tab-wf'); flag('toast'); wait(.8); hold(-.6);
 seg(); card('out'); wait(2); hold(-2.2);
