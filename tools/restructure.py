@@ -250,6 +250,12 @@ def apply(courses, verify):
         vf = _uniq([x for p in m["parts"] for x in verify.get(p, [])])
         if vf: verify[m["slug"]] = vf
         merged[m["slug"]] = c
+    # UKG time cards: our recreation of the recorded walkthrough replaces the Guidde embed, and its stills replace the screenshots
+    u = merged["ukg-time-cards"]
+    u["video"] = {"src": "video/ukg-time-cards.mp4", "poster": "video/ukg-time-cards.jpg", "title": "Managing time cards and PTO in UKG",
+                  "narrated": True, "kind": "sim"}
+    u["detailed"] = dict(u["detailed"], source=V.SIM, steps=[dict(x, img=f"step-{i:02d}.jpg") for i, x in enumerate(u["detailed"]["steps"], 1)])
+    verify["ukg-time-cards"] = [x for x in verify.get("ukg-time-cards", []) if "pay code names" not in x]
     for gone in REMOVED: verify.pop(gone, None)
     out = []
     for c in courses:

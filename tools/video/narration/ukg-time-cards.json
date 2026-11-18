@@ -1,6 +1,6 @@
 {
  "voice": "ElevenLabs voice Nhs7eitvQWFTQBsf0yiT (Sarah Explains), eleven_v4",
- "note": "Recreation of the Guidde walkthrough Managing Time Cards and PTO in Kronos UKG, in HCM Academy style. One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py. clips[i] plays when segment i of the scene starts.",
+ "note": "Recreation of the Guidde walkthrough Managing Time Cards and PTO in Kronos UKG, in HCM Academy style. One read of the whole script, cut at the pauses between paragraphs by tools/video/align.py; the cut between paragraphs 8 and 9 set by hand from the pause list; locked. clips[i] plays when segment i of the scene starts.",
  "script": [
   "UKG time cards: managing time cards and P T O. As the HCM, you check your non-exempt employees' time cards every week, and step in when an employee can't enter their own time. Entering time is the employee's job. Approving is the line manager's.",
   "Start in Oracle. On the home page, on the Me tab, under Apps, select UKG, Kronos, Timesheets.",
@@ -15,5 +15,55 @@
   "Scroll up and click Save. This is an open pay period, so don't click Submit; you'd have to edit, update, and resubmit the time card later. You can always come back, review the time, and make adjustments.",
   "Two things to remember. In an open pay period, save, don't submit. And one person doesn't both submit and approve the same time card: if you submit for an employee, the line manager approves it."
  ],
- "clips": []
+ "clips": [
+  [
+   0.0,
+   17.72
+  ],
+  [
+   18.3,
+   25.32
+  ],
+  [
+   25.66,
+   36.47
+  ],
+  [
+   36.72,
+   50.02
+  ],
+  [
+   50.39,
+   65.07
+  ],
+  [
+   65.6,
+   85.01
+  ],
+  [
+   85.49,
+   93.56
+  ],
+  [
+   94.03,
+   100.01
+  ],
+  [
+   100.46,
+   112.2
+  ],
+  [
+   112.45,
+   122.97
+  ],
+  [
+   123.46,
+   137.26
+  ],
+  [
+   137.83,
+   152.26
+  ]
+ ],
+ "locked": true
 }

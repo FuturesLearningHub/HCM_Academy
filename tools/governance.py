@@ -353,6 +353,8 @@ EXTRA_CHANGES = {
     "rehire-eligibility": [(REVIEWED_ON, _ORACLE + " Field names in steps 1 and 2 now follow Oracle's documentation: Recommended for Rehire (Yes, No, Not Specified), and the search option to include terminated work relationships."), (SCREENS, _VIDEO)],
 }
 
+EXTRA_CHANGES["ukg-time-cards"] = [(REVIEWED_ON, "Video and job aid rebuilt from Vanderbilt's recorded UKG walkthrough, with fictional names. They replace the "
+    "Guidde video and its blurred screenshots. The PTO-Vacation and PTO-Sick pay codes are confirmed on screen.")] + EXTRA_CHANGES.get("ukg-time-cards", [])
 _FUM = "Wording: says FUM (financial unit manager), Vanderbilt's term, where it said finance partner."
 for _s in ("change-salary", "sign-on-bonus", "staff-supplement", "costing-impacts", "what-to-attach", "enter-edit-costing"):
     EXTRA_CHANGES[_s] = [(REVIEWED_ON, _FUM)] + EXTRA_CHANGES.get(_s, [])
@@ -390,7 +392,8 @@ def changes(c):
     import reviews
     s = c["slug"]
     import restructure
-    if s in reviews.NEW: return [(REVIEWED_ON, reviews.NOTES.get(s, "New course."))]
+    if s in reviews.NEW: return list(EXTRA_CHANGES.get(s, [])) + ([(REVIEWED_ON, restructure.NOTES[s])] if s in restructure.NOTES else []) + \
+        [(REVIEWED_ON, reviews.NOTES.get(s, "New course."))]
     if s == restructure.ROLE["slug"]: return [(REVIEWED_ON, restructure.NOTE)]
     own = owner(c); was = owner_first(c); out = ([(REVIEWED_ON, restructure.NOTES[s])] if s in restructure.NOTES else []) + \
         ([(REVIEWED_ON, reviews.NOTES[s])] if s in reviews.NOTES else []) + list(EXTRA_CHANGES.get(s, []))
