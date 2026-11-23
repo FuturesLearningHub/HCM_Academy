@@ -9,7 +9,7 @@ from course_content import COURSES  # noqa: E402
 import governance as G  # noqa: E402
 ROOT = os.path.dirname(HERE)
 E = lambda s: html.escape(str(s), quote=True)
-SITE = "me5231979.github.io/HCM_Academy"
+SITE = "futureslearninghub.github.io/HCM_Academy"
 EDITION = f"{G.EDITION} · {G.EDITION_MONTH}"
 TABLE_ROWS = 16   # rows of a long table on each continuation page
 

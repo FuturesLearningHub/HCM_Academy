@@ -150,7 +150,7 @@ Last run 2026-10-20:
 ## Publishing
 
 GitHub Pages: Settings, Pages, Deploy from a branch, pick the branch and `/ (root)`.
-The site then lives at `https://me5231979.github.io/HCM_Academy/`.
+The site then lives at `https://futureslearninghub.github.io/HCM_Academy/`.
 
 An internal training prototype, not an official Vanderbilt University site.
 

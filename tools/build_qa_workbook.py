@@ -10,7 +10,7 @@ from openpyxl.worksheet.datavalidation import DataValidation
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 from course_content import COURSES, VERIFY  # noqa: E402
 ROOT = os.path.dirname(HERE)
-SITE = "https://me5231979.github.io/HCM_Academy/"
+SITE = "https://futureslearninghub.github.io/HCM_Academy/"
 BLACK, GOLD, OAK, CREAM, SAND = "1C1C1C", "CFAE70", "946E24", "F5F3EF", "E0D5C0"
 
 # landing structure: topics, sections, rows, status

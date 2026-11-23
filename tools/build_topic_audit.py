@@ -92,7 +92,7 @@ doc = f'''<!DOCTYPE html>
     <span class="src oracle">Oracle docs, pending SME review</span> Built from Oracle documentation and official sources; confirm it matches Vanderbilt practice.
     <span class="src none">No content yet</span> Listed on the site as Coming soon.</div>
   <div class="sign"><div><div class="fl"><i class="tok">QAS1</i><i class="tok end">QZS1</i></div>Reviewer</div><div><div class="fl"><i class="tok">QAS2</i><i class="tok end">QZS2</i></div>Area or role</div><div><div class="fl"><i class="tok">QAS3</i><i class="tok end">QZS3</i></div>Date</div></div>
-  <p class="ret">Return to pcb@vanderbilt.edu. Online: me5231979.github.io/HCM_Academy</p>
+  <p class="ret">Return to pcb@vanderbilt.edu. Online: futureslearninghub.github.io/HCM_Academy</p>
 </section>
 {chr(10).join(body)}
 </body></html>'''
