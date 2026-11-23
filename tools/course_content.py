@@ -894,3 +894,5 @@ import videos
 videos.apply(COURSES)
 import restructure
 restructure.apply(COURSES, VERIFY)   # Start Here slimmed to six courses, nothing dropped (Nov 18, 2026)
+import audit_nov23
+audit_nov23.apply(COURSES)          # Assignment change review notes (Nov 23, 2026)

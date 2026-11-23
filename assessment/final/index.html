@@ -71,22 +71,22 @@ window.HCM_ASSESS = {
     costing: 'Costing Management', students: 'Student & Faculty Hiring and Assignments', records: 'Document Records & Reporting'
   },
   pre: [
-    {"topic":"start","q":"What is the HCM role?","o":["The Oracle system that runs payroll","People in the business who own the people transactions for their area","The central HR team that approves all hires"],"a":1},
+    {"topic":"start","q":"What is the HCM role?","o":["The Oracle system that runs payroll","Staff in the business who own people transactions for their area","The central HR team that approves all hires"],"a":1},
     {"topic":"start","q":"Where do you start most Oracle transactions for an employee?","o":["Our Workforce > Quick Actions","The UKG main menu","The payroll calendar"],"a":0},
-    {"topic":"recruiting","q":"What must you have before a position can be posted?","o":["A signed offer letter","The compensation memo from Compensation","A costing string from finance"],"a":1},
-    {"topic":"recruiting","q":"Who normally adds a sign-on bonus?","o":["The recruiter, on the offer","Payroll, after the first paycheck","The employee, in Oracle"],"a":0},
+    {"topic":"recruiting","q":"What must you have before a position can be posted?","o":["A signed offer letter","The pre-search memo from Compensation","A costing string from finance"],"a":1},
+    {"topic":"recruiting","q":"Who normally adds a sign-on bonus to the offer?","o":["The recruiter, on the offer","The HCM, at pending worker conversion","Payroll, after the first paycheck"],"a":0,"draft":true},
     {"topic":"payroll","q":"Who runs the payroll cycle?","o":["The HCM","Payroll","The employee's manager"],"a":1},
     {"topic":"payroll","q":"You enter hours on a time card in an open pay period. What do you click?","o":["Submit","Save","Approve"],"a":1},
-    {"topic":"positions","q":"After you submit a termination, do you need to send payroll a separate request to stop pay?","o":["Yes, email payroll","No, the termination stops pay and payroll is notified","Yes, file an off-cycle request"],"a":1},
+    {"topic":"positions","q":"After a timely termination is submitted, do you need to send a separate request to Payroll to stop pay?","o":["Yes, email payroll","No, the termination stops pay and payroll is notified","Yes, file an off-cycle request"],"a":1},
     {"topic":"positions","q":"An employee resigns. Which action do you choose?","o":["Voluntary separation","Involuntary termination","Change salary"],"a":0},
     {"topic":"leave","q":"Where is exempt (monthly) employee time off managed?","o":["Oracle","UKG","A paper form"],"a":0,"draft":true},
-    {"topic":"leave","q":"Does pay frequency (monthly vs. biweekly) change how you process a leave?","o":["Yes","No, it's always the same","Only for faculty"],"a":0,"draft":true},
+    {"topic":"leave","q":"From a time and attendance view, does pay frequency (monthly or biweekly) change where leave time is recorded?","o":["Yes: monthly (exempt) time off is in Oracle, and biweekly time is in UKG","No, it's always the same","Only for faculty"],"a":0,"draft":true},
     {"topic":"costing","q":"An assignment has no costing. What happens?","o":["Payroll fails","Salary charges to the work unit's default account","The employee isn't paid"],"a":1},
-    {"topic":"costing","q":"Who gives you the account (COA or POET) string to enter?","o":["Payroll","Your finance partner","The employee"],"a":1},
+    {"topic":"costing","q":"Who gives you the account (COA or POET) string to enter?","o":["Payroll","Usually your finance partner or business entity approver, though it can come from another source","The employee"],"a":1},
     {"topic":"students","q":"What does FERPA protect?","o":["Student education records","Employee salary data","Faculty research grants"],"a":0,"draft":true},
     {"topic":"students","q":"Can a staff supplement be used for a student worker?","o":["Yes","No, staff supplements are not for students, faculty, post-docs, or temps","Only over the summer"],"a":1,"draft":true},
-    {"topic":"records","q":"Where does a signed retention letter belong?","o":["In an email to payroll","On the employee's file in Oracle, as a document record","In your department's shared drive"],"a":1},
-    {"topic":"records","q":"What is a document record?","o":["A report of all employees","A file plus details about it: type, name, and the dates it covers","A payroll transaction"],"a":1}
+    {"topic":"records","q":"Where does a signed retention letter belong?","o":["In an email to payroll","In Oracle as a document record, and also in your department's shared drive if your department keeps one","Only in your department's shared drive"],"a":1},
+    {"topic":"records","q":"In Oracle, what is a document record?","o":["A report that lists all employees","A document filed on the employee's record, with its type, name, and the dates it covers","A payroll transaction"],"a":1}
   ],
   final: [
     {"topic":"start","q":"You submitted a salary change. How do you see where it is in approval?","o":["Email payroll","The notifications bell at the top of Oracle","Wait for the next paycheck"],"a":1,"why":"Every transaction's status shows under the notifications bell."},

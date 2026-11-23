@@ -19,7 +19,8 @@ UPDATED = "Nov 12, 2026"        # when the V.02 draft was first published
 OWNERS_SET = "Nov 13, 2026"     # when owners were set to the teams: Payroll and HRIS
 SCREENS = "Nov 17, 2026"       # videos added; corrections from Vanderbilt's Our Workforce screens
 REVIEWED_ON = "Nov 18, 2026"   # Vanderbilt SME review applied (tools/reviews.py)
-LATEST = REVIEWED_ON            # the newest change across all courses
+AUDITED = "Nov 23, 2026"       # assignment change review notes applied (tools/audit_nov23.py)
+LATEST = AUDITED            # the newest change across all courses
 FIRST = "October 2026"          # when the V.01 courses were first drafted
 
 # ───────────── Owners ─────────────
@@ -123,17 +124,18 @@ BEFORE = {
     then="Payroll pays what the record says. A missing element or a wrong conversion means a wrong first paycheck."),
  "change-assignment": dict(tx="Change Assignment",
     docs=[], docs_gap="No document is named for this transaction yet.",
-    checks=["It is not a move to another position. That is a transfer.",
-            "The effective date lines up with the payroll calendar.",
+    checks=["For one change that has a direct action (manager, location, working hours, direct reports), use that action instead.",
+            "The effective date is when the change takes effect. The payroll calendar shows which payroll processes it.",
             "Salary is selected and reviewed if the change affects pay.",
-            "After a reclassification: person type, location, working hours, and hourly salary are updated here."],
+            "Position Override toggles are checked, especially Manager Name.",
+            "After a reclassification: fields the position may not update are checked (which ones is to confirm)."],
     cutoff="monthly", submits="You", approves=CHAIN, then="Payroll pays from the approved assignment."),
  "change-working-hours": dict(tx="Change working hours",
     docs=[("The approval or agreement for the change", "Attach")],
-    checks=["You are in Change Assignment with Salary selected, so hours and pay change together.",
+    checks=["The right path: Change Working Hours when only hours change; Change Assignment with Salary when salary changes too.",
             "Working hours hold the new weekly hours. Standard working hours stay at 40.",
             "FTE recalculated as expected (for example, 30 of 40 = 0.75).",
-            "Salary is prorated, or the agreed amount is entered."],
+            "If salary changed: prorated or the agreed amount entered, with a comment saying what changed and why."],
     cutoff="monthly", submits="You", approves=CHAIN, then="Payroll pays the new salary from the effective date."),
  "promote": dict(tx="Promote (no requisition)",
     docs=[], docs_gap="No document is named yet, and whether Compensation must approve the new salary is an open item.",
@@ -151,10 +153,11 @@ BEFORE = {
     cutoff="monthly", submits="You", approves=CHAIN, then="You review costing in the new area. Payroll pays from the approved assignment."),
  "add-assignment": dict(tx="Add an assignment (second job)",
     docs=[], docs_gap="No document is named yet, and whether a second assignment needs pre-approval from Compensation or your PCB consultant is an open item.",
-    checks=["The person already has an active employee assignment.",
-            "The position for the new job exists and is correct.",
-            "Only one assignment is primary.",
-            "Salary, payroll details, and costing are entered for the new assignment."],
+    checks=["You started from the three-dot menu on an active assignment in Employment Info.",
+            "The new assignment points to an active position.",
+            "Payroll Details and Salary are included; Direct Reports only if the person will have direct reports.",
+            "Position Override toggles are checked, especially Manager Name.",
+            "Only one assignment is primary, and costing is added if the job shouldn't use the default."],
     cutoff="monthly", submits="You", approves=CHAIN, then="Each assignment has its own costing, hours, and pay."),
  "change-salary": dict(tx="Change salary",
     docs=[("Signed letter (for example, a retention letter), filed as a Compensation Letters document record", "Attach"),
@@ -391,6 +394,12 @@ def changes(c):
     """What changed on a course, newest first: (date, text)."""
     import reviews
     s = c["slug"]
+    import audit_nov23
+    return ([(AUDITED, audit_nov23.NOTES[s])] if s in audit_nov23.NOTES else []) + _changes(c)
+
+def _changes(c):
+    s = c["slug"]
+    import reviews
     import restructure
     if s in reviews.NEW: return list(EXTRA_CHANGES.get(s, [])) + ([(REVIEWED_ON, restructure.NOTES[s])] if s in restructure.NOTES else []) + \
         [(REVIEWED_ON, reviews.NOTES.get(s, "New course."))]
