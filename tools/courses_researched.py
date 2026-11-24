@@ -1029,7 +1029,7 @@ COURSES_R = [{'slug': 'hcm-structure',
               'UKG: Approve or deny a submitted timecard change (Pending Changes)',
               'UKG: Respond to time-off requests in Control Center'],
   'intro': ["Non-exempt (weekly/biweekly) pay depends on approved UKG time cards. Managers approve their employees' time; you check time "
-            'cards weekly and chase managers who are behind.',
+            'cards weekly and follow up with managers who are behind.',
             'This course walks through what a manager does in UKG so you can coach them and spot what is blocking pay.'],
   'use_when': 'A manager asks how to approve time, fix a missed punch, or respond to a time-off request, or a time card is not approved '
               'near the pay deadline.',
@@ -1815,7 +1815,7 @@ COURSES_R = [{'slug': 'hcm-structure',
              'd': 'Termination stops pay and Oracle notifies payroll. Submit before the payroll cutoff (exempt cutoff is around the 18th; '
                   'check the payroll calendar).'},
             {'t': 'For non-exempt employees, get the final UKG time card approved.',
-             'd': 'Final weekly or biweekly pay depends on the approved time card. Chase the manager until it shows Approved.'},
+             'd': 'Final weekly or biweekly pay depends on the approved time card. Follow up with the manager until it shows Approved.'},
             {'t': 'Review costing for the ending assignment.',
              'd': 'Check Costing for Persons so costing ends with the job. Use the Departmental Playbook cost allocation reports to '
                   'confirm.'},
@@ -2012,7 +2012,7 @@ COURSES_R = [{'slug': 'hcm-structure',
              'sub': ['PTO is in 4-hour increments', "In an open pay period, Save, don't Submit"]},
             {'t': 'Biweekly: pay depends on approved time cards, so check them weekly.',
              'd': 'The employee approves, the manager approves, and payroll signs off. Check the Approval State column (Open, Submitted, '
-                  'Approved) every week and chase managers who have not approved.'},
+                  'Approved) every week and follow up with managers who have not approved.'},
             {'t': 'For both: update the leave status in Oracle when a leave starts and ends.',
              'd': 'The assignment lives in Oracle for every employee. See the Leave status updates course for the Change Assignment '
                   'steps.'}],
@@ -2084,7 +2084,7 @@ COURSES_R = [{'slug': 'hcm-structure',
                      ['Completed', 'Approved, in the past'],
                      ['Awaiting withdrawal approval', 'Withdrawal requested, not yet approved'],
                      ['Withdrawn', 'Cancelled; no longer counts']]},
-  'watch': ['A request sitting with an approver has not reached payroll. Chase approvals before the payroll cutoff.',
+  'watch': ['A request sitting with an approver has not reached payroll. Follow up on approvals before the payroll cutoff.',
             "Open item: Vanderbilt's approval routing for each absence type (who approves, whether HR or the Leave team is in the chain, "
             'what happens if an approver does not act) must be confirmed.',
             "Open item: Vanderbilt's leave process is pending review by the Leave SME."],
@@ -2119,7 +2119,7 @@ COURSES_R = [{'slug': 'hcm-structure',
   'sources': ['Oracle: How do I use quick actions to manage absences?',
               'Oracle: Using Absence Management',
               'Oracle: Absence Recording Statuses'],
-  'intro': ["Exempt (monthly) employees' time off is managed in Oracle, not UKG. You review it, approve or chase approval, and enter it on "
+  'intro': ["Exempt (monthly) employees' time off is managed in Oracle, not UKG. You review it, approve it or follow up on its approval, and enter it on "
             "someone's behalf when needed.",
             'Oracle gives you three quick actions for this: Add Absence, Existing Absences, and Absence Balance.'],
   'use_when': 'You need to review, approve, enter, or correct time off for an exempt employee.',

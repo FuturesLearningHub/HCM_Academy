@@ -414,7 +414,7 @@ dict(slug="hcm-role-in-payroll", topic="payroll", topic_label="Payroll & Timecar
  steps=[
   {"t":"All new hires: you own the hire.","d":"Pay starts with the hire record. If an element is missing or the hire is converted incorrectly, the first paycheck is wrong, and payroll can only pay what the record says.","sub":["Process the hire correctly.","Confirm every payroll element is on the record."]},
   {"t":"Exempt (monthly) employees: hands off, with two exceptions.","d":"Monthly salaried pay runs from the salary on the record. You only act when something extra is being paid or something has gone wrong.","sub":["Add a compensation payment when needed, such as a lump sum.","Work an issue with payroll when one comes up."]},
-  {"t":"Weekly and biweekly employees: check time cards every week.","d":"Hourly pay depends on submitted, approved time cards. A missing time card means a missing or short paycheck, so this is the one recurring payroll task that is yours.","sub":["Confirm every time card is submitted.","Chase managers for missing or late time cards.","Escalate errors you can't resolve to payroll."]},
+  {"t":"Weekly and biweekly employees: check time cards every week.","d":"Hourly pay depends on submitted, approved time cards. A missing time card means a missing or short paycheck, so this is the one recurring payroll task that is yours.","sub":["Confirm every time card is submitted.","Follow up with managers about missing or late time cards.","Escalate errors you can't resolve to payroll."]},
   {"t":"Errors: you work them with payroll.","d":"You bring the facts (what was expected, what was paid, what the record shows). Payroll decides how and when to correct the pay, including any off-cycle payment."},
  ],
  watch=["Never try to run or rerun payroll yourself. That is payroll's job.",
@@ -423,7 +423,7 @@ dict(slug="hcm-role-in-payroll", topic="payroll", topic_label="Payroll & Timecar
  quiz=[
   dict(q="Who runs the payroll cycle?", o=["The HCM","Payroll","The employee's manager"], a=1, why="Payroll runs payroll. HCMs make sure records and time cards are right so it can run."),
   dict(q="For exempt (monthly) employees, when does the HCM step in?", o=["Every pay period, to approve hours","Only to add a compensation payment or fix an issue","Never"], a=1, why="Exempt pay is hands off unless you are adding a payment, such as a lump sum, or working an issue."),
-  dict(q="What is your weekly task for weekly and biweekly employees?", o=["Confirm every time card is submitted and chase managers for missing ones","Submit every time card yourself","Nothing; payroll checks them"], a=0, why="Check that all time cards are submitted, chase managers, and escalate errors to payroll."),
+  dict(q="What is your weekly task for weekly and biweekly employees?", o=["Confirm every time card is submitted and follow up with managers about missing ones","Submit every time card yourself","Nothing; payroll checks them"], a=0, why="Check that all time cards are submitted, follow up with managers, and escalate errors to payroll."),
  ]),
 
 dict(slug="weekly-time-card-check", topic="payroll", topic_label="Payroll & Timecards",
@@ -458,7 +458,7 @@ dict(slug="weekly-time-card-check", topic="payroll", topic_label="Payroll & Time
  docs=docs("ukg_approve"),
  quiz=[
   dict(q="How often do you run this check?", o=["Once a month","Every week","Only when payroll asks"], a=1, why="Weekly and biweekly employees need a weekly check."),
-  dict(q="A time card is missing. What do you do first?", o=["Contact the employee's manager and get it submitted","Submit it yourself with estimated hours","Contact payroll right away"], a=0, why="Chase the manager first. Escalate to payroll only for errors you can't resolve."),
+  dict(q="A time card is missing. What do you do first?", o=["Contact the employee's manager and get it submitted","Submit it yourself with estimated hours","Contact payroll right away"], a=0, why="Follow up with the manager first. Escalate to payroll only for errors you can't resolve."),
   dict(q="Why filter to your department name in UKG?", o=["UKG requires it before saving","The list shows everyone until you filter","It submits the time cards for you"], a=1, why="Without the filter you see every employee you have access to, not just yours."),
  ]),
 

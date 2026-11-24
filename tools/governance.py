@@ -292,7 +292,7 @@ WHO_EXTRA = [
     ("Exempt or non-exempt status", "Do not decide it yourself.", "Compensation.", "Payroll pays by the status on the record."),
     ("Background check", "You set it up on the requisition and wait for clearance.", "The background check team clears the hire.", "None."),
     ("Transfer or promotion from a requisition", "Not you. Never create a direct hire for someone already in process.", "Recruiting sends it to central HR, which processes it.", "Payroll pays from the approved assignment."),
-    ("Weekly time card check", "You, every week. You chase managers for missing or late time cards.", "Employees and managers approve.", "Payroll signs off, then runs payroll."),
+    ("Weekly time card check", "You, every week. You follow up with managers about missing or late time cards.", "Employees and managers approve.", "Payroll signs off, then runs payroll."),
     ("A pay error", "You bring the facts: what was expected, what was paid, what the record shows.", "The manager helps with time card facts.", "Payroll decides how and when to correct it, including any off-cycle payment."),
     ("Running payroll", "Never you. Do not try to run or rerun payroll.", "None.", "Payroll."),
 ]
