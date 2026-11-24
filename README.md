@@ -4,7 +4,7 @@ The landing page for Vanderbilt's HCM Academy: what the HCM role is, what the
 Academy is for, and the topics with their courses.
 
 Built with the Vanderbilt FLH course builder pattern, matching Working Smarter
-(`FuturesLearningHub/Course_Library`, `learn/index.html`): same colors, type, header,
+(`FuturesLearningHub/FLH-Learning-Library-`, `learn/index.html`): same colors, type, header,
 hero, and footer. One self-contained HTML file, no framework,
 no build step, no backend. Fonts and lockups live in `assets/`.
 
